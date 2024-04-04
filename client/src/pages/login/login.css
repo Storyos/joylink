@@ -1,0 +1,80 @@
+* {
+    margin: 5px;
+}
+
+.boxGroup {
+    position: fixed;
+    /*top, left를 50%로 했을때 화면 중앙에 요소위차가 지정됨*/
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -100%);
+    /*화면 중앙위치에서 boxGroup 위치를 조정함*/
+}
+
+.loginBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 20vh;
+}
+
+.inputBox {
+    display: flex;
+    flex-direction: column;
+}
+
+.inputField {
+    width: 30vh;
+    height: 5vh;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.loginButton {
+    width: 10vh;
+    height: 11vh;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.loginButton:hover {
+    background-color: #0056b3;
+}
+
+.findBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    ;
+    align-items: center;
+}
+
+#findId {
+    padding: 7px;
+    color: #fff;
+    background-color: #007bff;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+}
+
+#join {
+    padding: 7px;
+    color: #fff;
+    background-color: #007bff;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+}
+
+#findId:hover,
+#join:hover {
+    background-color: #0056b3;
+}
