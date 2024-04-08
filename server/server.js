@@ -18,7 +18,9 @@ app.use(cookieParser());
 // app.use('/login',loginRouter);
 // test1();
 // test2(supabase);
+
 const query = 'France';
+
 // test3(query);
 selectQuery('id',12);
 
