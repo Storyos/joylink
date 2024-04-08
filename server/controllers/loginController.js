@@ -50,15 +50,17 @@ async function selectQuery(col,value){
     // 패턴은 like('name','%Fr%')
     // NUll or TF 일때는 is('name',null)
     // 배열안에 있는지 확인할때는 in('name',['a','b'])
-    console.log(data);
+    return data;
 }
 
 function selectQueryWrap(req,res,next){
-    const col = 'id';
-    const value = 12;
+    const col = req.params.id?req.params.id:'id';
+    const value = req.params.value?req.params.value:12;
 
     selectQuery(col,value)
         .then(data => {
+            console.log("data가 json형태로 보내질꺼임");
+            console.log(data);
             res.json(data);
         })
         .catch(error => {
