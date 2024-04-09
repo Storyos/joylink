@@ -3,7 +3,7 @@ const loginrouter = express.Router();
 const loginController = require("../controllers/loginController")
 
 
-const test1 = require("../API/test");
-const dbConnect = require('../config/dbConnect');
+loginrouter.route('/')
+    .get(loginController.selectQueryWrap);
 
 module.exports = loginrouter;
