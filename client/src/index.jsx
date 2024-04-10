@@ -4,6 +4,6 @@ import ClubIntro from "./pages/clubPromotion/clubIntro";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
-        <FindIdPw></FindIdPw>
+        <ClubIntro></ClubIntro>
     </React.StrictMode>
 )
