@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from 'react-dom/client'
-// import FindIdPw from "./pages/findIdPw/findIdPw.jsx";
-import Header from "./components/header/header";
+import ClubIntro from "./pages/clubPromotion/clubIntro";
+
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
-        <Header />
+        <FindIdPw></FindIdPw>
     </React.StrictMode>
 )
