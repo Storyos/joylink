@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from 'react-dom/client'
-import ClubIntro from "./pages/clubPromotion/clubIntro";
+import ClubCreate from "./pages/clubPromotion/clubCreate";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.ClubCreate(document.getElementById('root')).render(
     <React.StrictMode>
-        <FindIdPw></FindIdPw>
+        <ClubCreate></ClubCreate>
     </React.StrictMode>
 )
