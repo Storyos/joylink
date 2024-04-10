@@ -1,7 +1,7 @@
-import "./clubIntro.css";
+import "./cbIntro.css";
 import Navbar from "../../components/Navbar";
 
-function ClubIntro() {
+function CbIntro() {
   return (
     <div className="App-Container">
       <Navbar />
@@ -17,4 +17,4 @@ function ClubIntro() {
   );
 }
 
-export default ClubIntro;
+export default CbIntro;
