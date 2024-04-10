@@ -1,9 +1,10 @@
 import React from "react";
 import ReactDOM from 'react-dom/client'
-import ClubIntro from "./pages/clubPromotion/clubIntro";
-
+import Header from "./components/header/header";
+import Footer from "./components/footer/footer";
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
-        <FindIdPw></FindIdPw>
+        <Header />
+        <Footer />
     </React.StrictMode>
 )
