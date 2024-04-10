@@ -1,9 +1,16 @@
 import React from "react";
 import ReactDOM from 'react-dom/client'
-import ClubIntro from "./pages/clubPromotion/clubIntro";
+import MyInfo from './components/myInfo/myInfo'
+import Header from './components/header/header'
+import MyClubPage from "./pages/myClubPage/myClub";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
-        <ClubIntro></ClubIntro>
+        <Header></Header>
+        <div style={{ display: 'flex' }}>
+            <MyInfo></MyInfo>
+            <MyClubPage></MyClubPage>
+        </div>
     </React.StrictMode>
 )
+
