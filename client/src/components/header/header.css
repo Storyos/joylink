@@ -1,0 +1,38 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+header {
+  background-color: #C0E5FF;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 200px;
+}
+.header a {
+  text-decoration: none;
+  color: #000;
+}
+.header_logo_menu {
+  display: flex;
+  align-items: center;
+}
+.header_logo {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+.header_menu {
+  display: flex;
+  margin-left: 50px;
+}
+.header_menu ol {
+  margin-right: 20px;
+}
+.header_button button {
+  margin-right: 10px;
+  padding: 3px;
+  background-color: white;
+  border: none;
+  border-radius: 3px;
+}
