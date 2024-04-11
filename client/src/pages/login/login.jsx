@@ -22,7 +22,11 @@ export default function Login() {
             provider: 'kakao',
         });
     }
-    
+    const handleFacebookLogin = async () => {
+        const {data, error} = await supabase.auth.signInWithOAuth({
+            provider : 'facebook',
+        });
+    }
     return (
         <>
             <div className='boxGroup'>
@@ -38,13 +42,15 @@ export default function Login() {
                     <h5>계정이 없으신가요?</h5>
                     <button onClick={(handleGoogleLogin, handletest1)}>구글로그인</button>
                     <button onClick={(handlekakaoLogin,handletest1)}>카카오 로그인</button>
+                    <button onClick={(handleFacebookLogin,handletest1)}>FaceBook 로그인</button>
                     <button>회원가입</button>
                 </div>
             </div>
+            
             <div>
                 {(
                     <div>
-                        <h3>현재 로그인된 Email:{testData ? testData : "Guest"}</h3>
+                        <h3>현재 로그인된 Email: {testData ? testData : "Guest"}</h3>
                     </div>
                 )}
             </div>
