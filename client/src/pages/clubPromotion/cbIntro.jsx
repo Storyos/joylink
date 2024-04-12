@@ -1,7 +1,7 @@
 import './clubIntro.css'
 import Header from '../../components/header/header';
 
-function ClubIntro() {
+function CbIntro() {
   return (
     <div className="App-Container">
       <Header></Header>
@@ -17,4 +17,4 @@ function ClubIntro() {
   );
 }
 
-export default ClubIntro;
+export default CbIntro;
