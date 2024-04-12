@@ -1,10 +1,10 @@
-import "./cbIntro.css";
-import Navbar from "../../components/Navbar";
+import './clubIntro.css'
+import Header from '../../components/header/header';
 
 function CbIntro() {
   return (
     <div className="App-Container">
-      <Navbar />
+      <Header></Header>
       <div className="Box">
         <div className="Top">
           <div className="BoxTitle">동아리 상세 설명</div>
