@@ -57,17 +57,41 @@ export default function Mypage () {
         </div>
         
         {/* 쪽지 리스트 */}
-        <div className='border-2'>
-          <div className='flex p-2 mb-4'>
+        <div className='mb-4 border-2'>
+          
+          <div className='flex items-center p-2 mb-4'>
             <input type="checkbox" />
             <div className='flex justify-between w-full mx-2'>
               <div>
-                <button className='ml-1 text-center w-28'>user</button>
-                <button className='ml-2'>동아리 오리엔테이션 일정 공지</button>
+                <p className='inline-block ml-1 text-center w-28'>user1</p>
+                <a href='#' className='ml-2'>동아리 오리엔테이션 일정 공지</a>
               </div>
-              <button className=''>2024-04-12</button>
+              <button className='w-20 text-sm'>2024-04-14</button>
             </div>
           </div>
+          
+          <div className='flex items-center p-2 mb-4'>
+            <input type="checkbox" />
+            <div className='flex justify-between w-full mx-2'>
+              <div>
+                <p className='inline-block ml-1 text-center w-28'>user2</p>
+                <a href='#' className='ml-2'>회비 관련 문의드립니다.</a>
+              </div>
+              <button className='w-20 text-sm'>2024-04-13</button>
+            </div>
+          </div>
+
+          <div className='flex items-center p-2 mb-4'>
+            <input type="checkbox" />
+            <div className='flex justify-between w-full mx-2'>
+              <div>
+                <p className='inline-block ml-1 text-center w-28'>user3</p>
+                <a href='#' className='ml-2'>동아리 가입 신청합니다.</a>
+              </div>
+              <button className='w-20 text-sm'>2024-04-12</button>
+            </div>
+          </div>
+
         </div>
 
         {/* 하단 버튼 */}
