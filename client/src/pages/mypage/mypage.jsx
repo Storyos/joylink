@@ -1,19 +1,23 @@
 import './mypage.css'
 import Header from '../../components/header/header'
 import Footer from '../../components/footer/footer'
+import { useState } from 'react'
 
 export default function Mypage () {
+    
+
+  // message modal창 열고 닫기
+  const [display, setDisplay] = useState("none");
+  const modalStyle = display;
+  const handleOpenMessage = () => {
+    setDisplay("");
+  }
+
+  const handleCloseMessage = () => {
+    setDisplay("none");
+  }
+
   
-  const messageModal = document.querySelector(".message");
-
-  function handleOpenMessage() {
-    messageModal.classList.remove("hidden");
-  }
-
-  function handelCloseMessge() {
-    messageModal.classList.add("hidden");
-  }
-
   return (
     <>
       <Header />
@@ -43,7 +47,7 @@ export default function Mypage () {
       </div>
 
       {/* 쪽지 modal box */}
-      <div className='fixed inset-0 hidden p-4 m-auto bg-white border border-black border-solid message' style={{width:'650px',height:'650px'}} >
+      <div id = "mypage_massage" className='fixed inset-0 p-4 m-auto bg-white border border-black border-solid' style={{width:'650px',height:'650px', display:modalStyle}} >
         <h1 className='mb-4' >쪽지</h1>
         
         {/* 상단 버튼 */}
@@ -106,7 +110,7 @@ export default function Mypage () {
         {/* 하단 버튼 */}
         <div className='flex justify-end'>
           <button className='p-1 px-3 border-2'>삭제</button>
-          <button className='p-1 px-3 border-2' onClick={handelCloseMessge}>닫기</button>
+          <button className='p-1 px-3 border-2' onClick={handleCloseMessage}>닫기</button>
         </div>
         
       </div>
