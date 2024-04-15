@@ -25,7 +25,6 @@ const ClubItem = () => (
   </div>
 );
 
-
 const ClubList = () => {
   const clubs = [1, 2, 3, 4, 5];
   return (
@@ -46,6 +45,7 @@ function CbSearch() {
           <div className="mb-4 text-xl font-bold">동아리 상세 설명</div>
           <ClubList />
         </div>
+        <div className="p-4 text-center text-gray-600"></div>
       </div>
     </div>
   );
