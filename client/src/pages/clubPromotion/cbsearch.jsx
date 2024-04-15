@@ -1,17 +1,20 @@
 import React from 'react';
 
 const SearchBar = () => (
-  <div className="flex items-center justify-between p-4">
-    <input
-      type="text"
-      placeholder="동아리 검색"
-      className="p-2 border border-gray-300 rounded"
-    />
-    <button className="p-2 text-white bg-blue-500 rounded hover:bg-blue-700">
-      검색
-    </button>
+  <div className="flex items-center justify-center p-4">
+    <div className="flex w-3/4 max-w-2xl">
+      <input
+        type="text"
+        placeholder="동아리 검색"
+        className="flex-1 p-2 border border-gray-300 rounded-l-lg" // flex-1을 사용하여 너비를 최대로 확장
+      />
+      <button className="p-2 text-white bg-blue-500 rounded-r-lg hover:bg-blue-700">
+        검색
+      </button>
+    </div>
   </div>
 );
+
 
 const ClubItem = () => (
   <div className="flex items-center justify-between p-4 border-b border-gray-200 min-h-24">
