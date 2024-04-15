@@ -1,4 +1,3 @@
-import './mypage.css'
 import Header from '../../components/header/header'
 import Footer from '../../components/footer/footer'
 import { useState, useTransition } from 'react'
@@ -58,24 +57,24 @@ export default function Mypage () {
       <Header />
       
       {/* 메인 영역 */}
-      <div className='mypage_box'>
-        <h2 className='mypage_title'>MyPage</h2>
-        <div className='mypage_content_box'>
-          <div className='mypage_menu'>
-            <div className='mypage_menu_list'>
-              <button>내 정보 수정</button>
-              <button>내 동아리</button>
-              <button>신청 현황</button>
-              <button onClick={handleOpenMessage}>쪽지</button>
-              <button>북마크</button>
+      <div className='pb-24 mx-48 my-12 rounded-3xl' style={{backgroundColor:'#c9c9c9'}}>
+        <h2 className='py-8 text-center'>MyPage</h2>
+        <div className='flex justify-around'>
+          <div className='w-1/6 rounded-2xl' style={{backgroundColor:'#e9e9e9'}}>
+            <div className='flex flex-col items-center justify-around' style={{minHeight:'500px'}}>
+              <button className='font-bold'>내 정보 수정</button>
+              <button className='font-bold'>내 동아리</button>
+              <button className='font-bold'>신청 현황</button>
+              <button className='font-bold' onClick={handleOpenMessage}>쪽지</button>
+              <button className='font-bold'>북마크</button>
             </div>
           </div>
-          <div className='mypage_content'>
-            <p className='mypage_content_title'>내정보</p>
+          <div className='w-3/5 p-8 rounded-xl' style={{backgroundColor:'#e9e9e9'}}>
+            <p className='mb-12'>내정보</p>
             <ul className='mypage_content_list'>
-              <li>1</li>
-              <li>2</li>
-              <li>3</li>
+              <li className='mb-2'>1</li>
+              <li className='mb-2'>2</li>
+              <li className='mb-2'>3</li>
             </ul>
           </div>
         </div>
