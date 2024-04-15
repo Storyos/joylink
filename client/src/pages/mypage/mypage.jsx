@@ -3,7 +3,16 @@ import Header from '../../components/header/header'
 import Footer from '../../components/footer/footer'
 
 export default function Mypage () {
+  
+  const messageModal = document.querySelector(".message");
 
+  function handleOpenMessage() {
+    messageModal.classList.remove("hidden");
+  }
+
+  function handelCloseMessge() {
+    messageModal.classList.add("hidden");
+  }
 
   return (
     <>
@@ -18,7 +27,7 @@ export default function Mypage () {
               <button>내 정보 수정</button>
               <button>내 동아리</button>
               <button>신청 현황</button>
-              <button>쪽지</button>
+              <button onClick={handleOpenMessage}>쪽지</button>
               <button>북마크</button>
             </div>
           </div>
@@ -34,7 +43,7 @@ export default function Mypage () {
       </div>
 
       {/* 쪽지 modal box */}
-      <div className='fixed inset-0 p-4 m-auto bg-white border border-black border-solid' style={{width:'650px',height:'650px'}} >
+      <div className='fixed inset-0 hidden p-4 m-auto bg-white border border-black border-solid message' style={{width:'650px',height:'650px'}} >
         <h1 className='mb-4' >쪽지</h1>
         
         {/* 상단 버튼 */}
@@ -60,7 +69,7 @@ export default function Mypage () {
         <div className='mb-4 border-2'>
           
           <div className='flex items-center p-2 mb-4'>
-            <input type="checkbox" />
+            <input type="checkbox"/>
             <div className='flex justify-between w-full mx-2'>
               <div>
                 <p className='inline-block ml-1 text-center w-28'>user1</p>
@@ -97,7 +106,7 @@ export default function Mypage () {
         {/* 하단 버튼 */}
         <div className='flex justify-end'>
           <button className='p-1 px-3 border-2'>삭제</button>
-          <button className='p-1 px-3 border-2'>닫기</button>
+          <button className='p-1 px-3 border-2' onClick={handelCloseMessge}>닫기</button>
         </div>
         
       </div>
