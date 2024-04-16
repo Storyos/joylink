@@ -203,7 +203,7 @@ export default function Mypage () {
 
           {/* 하단 버튼 */}
           <div className='flex justify-end'>
-            <button className='p-1 px-3 border-2'>삭제</button>
+            <button className='p-1 px-3 mr-1 border-2'>삭제</button>
             <button className='p-1 px-3 border-2' onClick={handleCloseMessage}>닫기</button>
           </div>
         </div>
@@ -227,7 +227,7 @@ export default function Mypage () {
           </div>
           
           <div className='flex justify-end'>
-            <button className='p-1 px-3 border-2' onClick={handleMessageSend}>전송</button>
+            <button className='p-1 px-3 mr-1 border-2' onClick={handleMessageSend}>전송</button>
             <button className='p-1 px-3 border-2' onClick={handleMessageWrite}>목록</button>
           </div>
           
