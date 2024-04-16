@@ -8,10 +8,6 @@ import { BrowserRouter as Router } from "react-router-dom";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Header></Header>
-    <div style={{ display: "flex" }}>
-      <MyInfo></MyInfo>
-      <MyClubPage></MyClubPage>
-    </div>
   </React.StrictMode>
 );
 

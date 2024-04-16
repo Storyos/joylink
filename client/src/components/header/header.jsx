@@ -1,12 +1,12 @@
-import './header.css'
+
 
 export default function Header() {
   
   return (
     <header>
-      <div className='header'>
-        <div className='header_logo_menu'>
-          <a href="#" className="header_logo">JoyLink</a>
+      <div>
+        <div>
+          <link>JoyLink</link>
           <ul className='header_menu'>
             <ol><a href="#" className="header_club">모임찾기</a></ol>
             <ol><a href="#" className="header_notice">공지사항</a></ol>
@@ -21,3 +21,4 @@ export default function Header() {
     </header>
   )
 }
+

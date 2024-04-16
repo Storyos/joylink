@@ -1,4 +1,3 @@
-import './findIdPw.css'
 
 export default function findIdPw(){
 
