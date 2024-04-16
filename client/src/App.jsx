@@ -1,8 +1,8 @@
 import { createClient } from '@supabase/supabase-js';
-import { Routes, Route } from 'react-router-dom'
-import Mypage from './pages/mypage/mypage';
-import Login from './pages/login/login';
-import Join from './pages/join/join'
+
+import Header from './components/header/header';
+import Footer from './components/footer/footer';
+import { Outlet } from 'react-router-dom';
 
 // 환경변수를 사용하여 Superbase URL 및 키 설정
 const supabaseUrl = 'https://vtvkgtqvczyuteenfadw.supabase.co';
@@ -13,11 +13,11 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 export default function App() {
     return (
-        <Routes>
-            <Route path='/' element={<Mypage/>} />
-            <Route path='/login' element={<Login/>}/>
-            <Route path='/join' element={<Join/>}/>
-        </Routes>
+        <>
+            <Header />
+            <div><Outlet/></div>
+            <Footer />
+        </>
     );
 }
 

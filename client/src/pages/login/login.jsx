@@ -1,4 +1,4 @@
-import './login.css';
+
 import { supabase } from '../../App';
 import { useState } from 'react';
 

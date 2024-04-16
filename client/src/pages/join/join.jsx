@@ -1,4 +1,4 @@
-import './join.css'
+
 
 export default function Join() {
   return (
