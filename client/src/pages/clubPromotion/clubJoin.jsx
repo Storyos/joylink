@@ -1,10 +1,10 @@
-import './clubIntro.css'
-import Header from '../../components/header/header';
+// import './clubIntro.css'
+// import Header from '../../components/header/header';
 
-function ClubIntro() {
+function ClubJoin() {
   return (
     <div className="App-Container">
-      <Header></Header>
+      {/* <Header></Header> */}
       <div className="Box">
         <div className="Top">
           <div className="BoxTitle">동아리 상세 설명</div>
@@ -17,4 +17,4 @@ function ClubIntro() {
   );
 }
 
-export default ClubIntro;
+export default ClubJoin;
