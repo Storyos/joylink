@@ -6,4 +6,5 @@ loginrouter.route('/')
     .get(loginController.insertQuery);
 
 
+
 module.exports = loginrouter;

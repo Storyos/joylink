@@ -11,9 +11,5 @@ function broadcast(msg) {
 })
 }
 
-const presenceTrackStatus = await chats.track({
-    user: 'user-1',
-    online_at: new Date().toISOString(),
-})
 
 module.exports = broadcast;

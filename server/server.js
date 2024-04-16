@@ -1,9 +1,11 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const dbConnect = require('./config/dbConnect');
-const loginRouter = require('./routes/login');
 const cors = require('cors');
+
+const loginRouter = require('./routes/login');
 const broadcastRouter = require('./routes/broadcast');
+const signUprouter = require('./routes/sign');
 
 const supabase = dbConnect();
 const app = express();
@@ -15,8 +17,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use('/login', loginRouter);
-app.use('/test', broadcastRouter)
-
+app.use('/test', broadcastRouter);
+app.use('/sign',signUprouter);
 
 const handleInserts = (payload) => {
     console.log('Change received!', payload)
