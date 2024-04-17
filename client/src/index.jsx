@@ -4,17 +4,13 @@ import Header from "./components/header/header.jsx"
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/login/login.jsx"
 import Join from "./pages/join/join.jsx";
+import MyInfo from "./components/myInfo/myInfo.jsx";
 import './index.css';
+
 
 ReactDOM.render(
   <>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Header/>}></Route>
-        <Route path="/login" element={<Login/>}></Route>
-        <Route path="/join" element={<Join/>}></Route>
-      </Routes>
-    </BrowserRouter>
+  <MyInfo></MyInfo>
   </>,
   document.getElementById("root")
 );

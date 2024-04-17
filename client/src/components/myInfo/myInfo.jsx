@@ -1,6 +1,5 @@
-import './myInfo.css'
 
-export default function myInfo(){
+export default function MyInfo(){
 
   return(
     <div className='myInfo'>
