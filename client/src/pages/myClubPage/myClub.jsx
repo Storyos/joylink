@@ -1,4 +1,3 @@
-import "./myClub.css";
 
 
 export default function myClubPage() {
