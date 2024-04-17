@@ -10,7 +10,7 @@ import './index.css';
 
 ReactDOM.render(
   <>
-  <MyInfo></MyInfo>
+    <MyInfo></MyInfo>
   </>,
   document.getElementById("root")
 );
