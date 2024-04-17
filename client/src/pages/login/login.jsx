@@ -1,8 +1,11 @@
+import React from "react";
+import { Link } from "react-router-dom";
 import { supabase } from '../../App';
 import { useState } from 'react';
 
 export default function Login() {
     const [testData, setTestData] = useState(null);
+
     // 구글 로그인 처리
     const handleGoogleLogin = async () => {
         try {
@@ -18,7 +21,7 @@ export default function Login() {
     };
 
     // 테스트 요청 처리
-    const handletest1 = async () => {
+    const handleTest1 = async () => {
         try {
             const response = await fetch('http://localhost:3001/login', {
                 method: 'GET'
@@ -44,21 +47,23 @@ export default function Login() {
     };
 
     return (
-        <>
+        <div className="flex justify-center items-center h-screen">
             <div className='boxGroup'>
-                <div className="loginBox">
-                    <div className="inputBox">
-                        <input type="text" className="inputField" placeholder="아이디"></input>
-                        <input type="password" className="inputField" placeholder="비밀번호"></input>
+                <div className="loginBox bg-gray-100 p-4 rounded-lg">
+                    <div className="inputBox mb-4">
+                        <input type="text" className="inputField w-full py-2 px-4 rounded border border-gray-300 focus:outline-none focus:border-blue-500" placeholder="아이디" />
+                        <input type="password" className="inputField w-full py-2 px-4 rounded border border-gray-300 focus:outline-none focus:border-blue-500 mt-2" placeholder="비밀번호" />
                     </div>
-                    <button className="loginButton" onClick={handleLogin}>Login</button>
+                    <button className="loginButton bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded w-full" onClick={handleLogin}>로그인</button>
                 </div>
-                <div className="findBox">
-                    <button id='findId'>아이디/비밀번호 찾기</button>
-                    <h5>계정이 없으신가요?</h5>
-                    <button onClick={handleGoogleLogin}>구글로그인</button>
-                    <button onClick={handletest1}>TEST Button</button>
-                    <button id='join' onClick={handleSignUp}>회원가입</button>
+                <div className="findBox mt-4 text-center">
+                    <button id='findId' className="text-blue-500 hover:underline">아이디/비밀번호 찾기</button>
+                    <h5 className="mt-2">계정이 없으신가요?</h5>
+                    <div className="flex justify-center mt-4">
+                        <button onClick={handleGoogleLogin} className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded mr-2">구글로그인</button>
+                        <button onClick={handleTest1} className="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded mr-2">TEST Button</button>
+                        <button id='join' onClick={handleSignUp} className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">회원가입</button>
+                    </div>
                 </div>
             </div>
             <div>
@@ -69,6 +74,6 @@ export default function Login() {
                     </div>
                 )}
             </div>
-        </>
+        </div>
     );
 }

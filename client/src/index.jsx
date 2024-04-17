@@ -1,13 +1,21 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
-import MyInfo from "./components/myInfo/myInfo";
-import Header from "./components/header/header";
-import MyClubPage from "./pages/myClubPage/myClub";
-import { BrowserRouter as Router } from "react-router-dom";
+import ReactDOM from "react-dom";
+import Header from "./components/header/header.jsx"
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Login from "./pages/login/login.jsx"
+import Join from "./pages/join/join.jsx";
+import './index.css';
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <Header></Header>
-  </React.StrictMode>
+ReactDOM.render(
+  <>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Header/>}></Route>
+        <Route path="/login" element={<Login/>}></Route>
+        <Route path="/join" element={<Join/>}></Route>
+      </Routes>
+    </BrowserRouter>
+  </>,
+  document.getElementById("root")
 );
 
