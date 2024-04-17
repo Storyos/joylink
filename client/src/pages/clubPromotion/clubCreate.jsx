@@ -1,10 +1,10 @@
 import "./clubCreate.css";
-import Navbar from "../../components/Navbar";
+
 
 function ClubCreate() {
   return (
     <div className="App-Container">
-      <Navbar />
+
       <div className="Box">
         <div className="Top">
         <div className="BoxTitle">동아리명  <div className="Content1"></div></div>
@@ -21,6 +21,6 @@ function ClubCreate() {
       <div className="Footer">푸터</div>
     </div>
   );
-}
+} 
 
 export default ClubCreate;

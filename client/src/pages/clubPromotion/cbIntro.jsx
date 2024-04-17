@@ -1,4 +1,4 @@
-import './clubIntro.css'
+
 import Header from '../../components/header/header';
 
 function CbIntro() {

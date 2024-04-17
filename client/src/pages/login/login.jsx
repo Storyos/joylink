@@ -47,22 +47,22 @@ export default function Login() {
     };
 
     return (
-        <div className="flex justify-center items-center h-screen">
+        <div className="flex items-center justify-center h-screen">
             <div className='boxGroup'>
-                <div className="loginBox bg-gray-100 p-4 rounded-lg">
-                    <div className="inputBox mb-4">
-                        <input type="text" className="inputField w-full py-2 px-4 rounded border border-gray-300 focus:outline-none focus:border-blue-500" placeholder="아이디" />
-                        <input type="password" className="inputField w-full py-2 px-4 rounded border border-gray-300 focus:outline-none focus:border-blue-500 mt-2" placeholder="비밀번호" />
+                <div className="p-4 bg-gray-100 rounded-lg loginBox">
+                    <div className="mb-4 inputBox">
+                        <input type="text" className="w-full px-4 py-2 border border-gray-300 rounded inputField focus:outline-none focus:border-blue-500" placeholder="아이디" />
+                        <input type="password" className="w-full px-4 py-2 mt-2 border border-gray-300 rounded inputField focus:outline-none focus:border-blue-500" placeholder="비밀번호" />
                     </div>
-                    <button className="loginButton bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded w-full" onClick={handleLogin}>로그인</button>
+                    <button className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded loginButton hover:bg-blue-600" onClick={handleLogin}>로그인</button>
                 </div>
-                <div className="findBox mt-4 text-center">
+                <div className="mt-4 text-center findBox">
                     <button id='findId' className="text-blue-500 hover:underline">아이디/비밀번호 찾기</button>
                     <h5 className="mt-2">계정이 없으신가요?</h5>
                     <div className="flex justify-center mt-4">
-                        <button onClick={handleGoogleLogin} className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded mr-2">구글로그인</button>
-                        <button onClick={handleTest1} className="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded mr-2">TEST Button</button>
-                        <button id='join' onClick={handleSignUp} className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">회원가입</button>
+                        <button onClick={handleGoogleLogin} className="px-4 py-2 mr-2 font-bold text-white bg-red-500 rounded hover:bg-red-600">구글로그인</button>
+                        <button onClick={handleTest1} className="px-4 py-2 mr-2 font-bold text-white bg-gray-500 rounded hover:bg-gray-600">TEST Button</button>
+                        <button id='join' onClick={handleSignUp} className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-600">회원가입</button>
                     </div>
                 </div>
             </div>
