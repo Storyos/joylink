@@ -17,16 +17,33 @@ export default function Login() {
         setTestData(data.data.user.email);
         console.log(data.data.user.email);
     }
+
     const handlekakaoLogin = async () => {
         const { data, error } = await supabase.auth.signInWithOAuth({
             provider: 'kakao',
         });
+        const useremail = data.data.user.email;
+
     }
-    const handleFacebookLogin = async () => {
-        const {data, error} = await supabase.auth.signInWithOAuth({
-            provider : 'facebook',
-        });
+
+    const checkemail = async (email) => {
+        const { data, error } = await supabase
+            .from('users')
+            .select('*')
+            .eq('email', email)
+            .single()
+
+        // 회원가입 이력이 있는 경우
+        if (data) {
+            // 바로 메인페이지로 넘어감
+        }
+
+        // 회원가입 이력이 없는 경우
+        else {
+            // 추가 회원가입으로 넘어가는 로직
+        }
     }
+
     return (
         <>
             <div className='boxGroup'>
@@ -41,12 +58,11 @@ export default function Login() {
                     <button id='findId'>아이디/비밀번호 찾기</button>
                     <h5>계정이 없으신가요?</h5>
                     <button onClick={(handleGoogleLogin, handletest1)}>구글로그인</button>
-                    <button onClick={(handlekakaoLogin,handletest1)}>카카오 로그인</button>
-                    <button onClick={(handleFacebookLogin,handletest1)}>FaceBook 로그인</button>
+                    <button onClick={(handlekakaoLogin, handletest1)}>카카오 로그인</button>
                     <button>회원가입</button>
                 </div>
             </div>
-            
+
             <div>
                 {(
                     <div>
