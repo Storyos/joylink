@@ -1,9 +1,21 @@
 import React from "react";
-import ReactDOM from 'react-dom/client'
-import App from "./App.jsx";
+import ReactDOM from "react-dom";
+import Header from "./components/header/header.jsx"
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Login from "./pages/login/login.jsx"
+import Join from "./pages/join/join.jsx";
+import './index.css';
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-    <React.StrictMode>
-        <App></App>
-    </React.StrictMode>
-)
+ReactDOM.render(
+  <>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Header/>}></Route>
+        <Route path="/login" element={<Login/>}></Route>
+        <Route path="/join" element={<Join/>}></Route>
+      </Routes>
+    </BrowserRouter>
+  </>,
+  document.getElementById("root")
+);
+
