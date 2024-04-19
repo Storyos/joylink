@@ -3,7 +3,8 @@ import Footer from '../../components/footer/footer'
 import { useState, useTransition } from 'react'
 
 export default function Mypage () {
-    
+  
+  
 
   // message modal창 열고 닫기
   const [modalDisplay, setModalDisplay] = useState("none");
