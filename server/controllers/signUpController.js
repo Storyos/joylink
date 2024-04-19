@@ -18,16 +18,16 @@ async function signUp(req, res) {
     if (error) console.error(error);
     else {
         // 여기서 email 인증해주세요
-        // supabase
-        // .from('users')
-        // .insert({
-        //     user_id : email,
-        //     user_name : userdata.user_name,
-        //     user_pn : userdata.user_pn,
-        //     user_birth: userdata.user_birth,
-        //     user_gender :userdata.user_gender,
-        //     // user_verified :
-        // })
+        supabase
+        .from('users')
+        .insert({
+            user_id : email,
+            user_name : userdata.user_name,
+            user_pn : userdata.user_pn,
+            user_birth: userdata.user_birth,
+            user_gender :userdata.user_gender,
+            // user_verified :
+        })
         console.log('data :>> ', data);
         res.status(201).json({ success: true, message: '회원 가입 중'});
     }
