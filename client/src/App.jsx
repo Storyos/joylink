@@ -14,9 +14,9 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 export default function App() {
     return (
         <>
-            <Header />
+            {/* <Header /> */}
             <div><Outlet/></div>
-            <Footer />
+            {/* <Footer /> */}
         </>
     );
 }
