@@ -55,7 +55,7 @@ export default function Mypage () {
 
   return (
     <>
-    
+    <Header></Header>
       {/* 메인 영역 */}
       <div className='pb-24 mx-48 my-12 rounded-3xl' style={{backgroundColor:'#c9c9c9'}}>
         <h2 className='py-8 text-center'>MyPage</h2>

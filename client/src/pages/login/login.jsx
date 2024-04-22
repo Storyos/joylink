@@ -37,6 +37,7 @@ export default function Login() {
     }, [email]);
 
     // OAUTH로 로그인 했을때 추가정보가 기입되었는지 체크
+    // 근데 이거는 메인페이지에서 진행해야될듯
     const checkAdditionalUserInfo = async(email) => {
         const {data, error} = await supabase.from('users').select(email).eq(email,email)
         if(!data){
