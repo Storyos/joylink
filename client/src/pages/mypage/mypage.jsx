@@ -1,6 +1,7 @@
 import Header from '../../components/header/header'
 import Footer from '../../components/footer/footer'
 import { useState, useTransition } from 'react'
+import { supabase } from '../../App';
 
 export default function Mypage () {
   
@@ -18,21 +19,32 @@ export default function Mypage () {
   }
 
   // 받은 쪽지, 보낸 쪽지 버튼
-  const [recievedMessage, setRecievedMessage] = useState("");
-  const [sentMessage, setSentMessage] = useState("none");
+  const [recievedMessagebtn, setRecievedMessagebtn] = useState("");
+  const [sentMessagebtn, setSentMessagebtn] = useState("none");
   
-  const recievedMassageStyle = recievedMessage;
-  const sentMessageStyle = sentMessage;
+  const recievedMessageStyle = recievedMessagebtn;
+  const sentMessageStyle = sentMessagebtn;
 
   const handleSentMessage = () => {
-    setRecievedMessage("none");
-    setSentMessage("");
+    // 여기서 메시지 제목, 받은사람, 날짜 query로 호출
+    //  --> 받은사람은 join해서 찾기
+    // select (제목, 받은사람,날짜 ) from messages 
+    // where 보낸사람==내id 
+    setRecievedMessagebtn("none");
+    setSentMessagebtn("");
   }
 
   const handleRecievedMessage = () => {
-    setRecievedMessage("");
-    setSentMessage("none");
+    // 여기서 메시지 제목, 보낸사람, 날짜 query로 호출
+    // --> 보낸사람은 join해서 찾기
+    setRecievedMessagebtn("");
+    setSentMessagebtn("none");
   }
+
+  // 받은 쪽지, 보낸 쪽지 list 변수
+  const [receivedMessage,setRecievedMessage] = useState([]);
+  const [sentMessage,setSentMessage] = useState([]);
+  
 
 
   // 쪽지 쓰기 버튼
@@ -48,14 +60,45 @@ export default function Mypage () {
   }
   
   // 쪽지 전송 버튼
-  const handleMessageSend = () => {
+  const handleMessageSend = async () => {
+    const {data,error}= await supabase.from('messages').insert({
+      'msg_title':title,
+      'msg_body':content,
+      'msg_rcv_seq':receiver,
+      'msg_snd_seq':13
+    })
+    
+    // 전송쪽 다시 초기화
+    setTitle("");
+    setContent("");
+    setReceiver("");
+    
+    if(error){
+      console.error(error);
+    }
+    console.log(data);
     alert("쪽지 전송이 완료되었습니다.")
     handleMessageWrite();
   }
 
+  // 쪽지 쓸때 보낼꺼
+  const [title,setTitle] = useState("");
+  const [receiver,setReceiver] = useState("");
+  const [content,setContent] = useState("");
+
+  const handleTitleChange = (event) => {
+    setTitle(event.target.value);
+  };
+  const handlereceiverChange = (event) => {
+    setReceiver(event.target.value);
+  };
+  const handleContentChange = (event) => {
+    setContent(event.target.value);
+  };
+
   return (
     <>
-    
+    <Header></Header>
       {/* 메인 영역 */}
       <div className='pb-24 mx-48 my-12 rounded-3xl' style={{backgroundColor:'#c9c9c9'}}>
         <h2 className='py-8 text-center'>MyPage</h2>
@@ -81,7 +124,7 @@ export default function Mypage () {
       </div>
 
       {/* 쪽지 modal box */}
-      <div id = "mypage_massage" className='fixed inset-0 p-4 m-auto bg-white border border-black border-solid' style={{width:'650px',height:'650px', display:modalStyle}} >
+      <div id = "mypage_message" className='fixed inset-0 p-4 m-auto bg-white border border-black border-solid' style={{width:'650px',height:'650px', display:modalStyle}} >
         <h1 className='mb-4' >쪽지</h1>
         
         <div id='message_list' style={{display:messageListStyle}}>
@@ -100,7 +143,7 @@ export default function Mypage () {
           </div>
           
           {/* 받은 쪽지 */}
-          <div style={{display:recievedMassageStyle}}>
+          <div style={{display:recievedMessageStyle}}>
             {/* 리스트 상단 */}
             <div className='flex p-2 mb-4 border-2'>
               <input type="checkbox" />
@@ -113,7 +156,8 @@ export default function Mypage () {
             
             {/* 쪽지 리스트 */}
             <div className='mb-4 border-2'>
-              
+            
+              {/*여기서 쪽지 정보를 받아서 출력 */}
               <div className='flex items-center p-2 mb-4'>
                 <input type="checkbox"/>
                 <div className='flex justify-between w-full mx-2'>
@@ -214,15 +258,15 @@ export default function Mypage () {
           <div>
             <div className='py-2'>
               <label htmlFor="message_write_title"><p className='inline-block text-center w-28'>제목</p></label> 
-              <input id='message_write_title' type="text" className= 'border-2' style={{width:'450px'}}/>
+              <input id='message_write_title' type="text" className= 'border-2' style={{width:'450px'}} onChange={handleTitleChange}/>
             </div>
             <div className='py-2'>
               <label htmlFor="message_write_receiver"><p className='inline-block text-center w-28'>받는 사람</p></label> 
-              <input id='message_write_receiver' type="text" className= 'border-2' style={{width:'450px'}}/>
+              <input id='message_write_receiver' type="text" className= 'border-2' style={{width:'450px'}} onChange={handlereceiverChange}/>
             </div>
             <div className='flex py-2 '>
               <label htmlFor="message_write_content"><p className='inline-block text-center w-28'>내용</p></label>
-              <textarea id="message_write_content" className='border-2 resize-none'  style={{width:'450px', height:'300px'}}></textarea>
+              <textarea id="message_write_content" className='border-2 resize-none'  style={{width:'450px', height:'300px'}} onChange={handleContentChange}></textarea>
             </div>
           </div>
           
