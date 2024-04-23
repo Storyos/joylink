@@ -44,7 +44,7 @@ const NoticeList = () => {
     );
   };
 
-  const NoticePageWithSidebar = () => {
+  const NoticePage = () => {
     return (
       <div className="container p-4 mx-auto mb-16">
         <div className="flex items-center h-20 mb-4 bg-white">
@@ -64,4 +64,4 @@ const NoticeList = () => {
   };
   
   
-  export default NoticePageWithSidebar;
+  export default NoticePage;
