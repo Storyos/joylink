@@ -97,7 +97,10 @@ export default function Chatting() {
             <h1>Chat Room</h1>
             <div>
                 {messages.map((msg, index) => (
-                    <div key={index}>{msg.chat_content}</div> // msg.chat_content로 가정합니다.
+                    
+                // msg.user_seq==='내user_seq'?내 말풍선:남의 말풍선 처리 필요
+                <div key={index}>{msg.chat_content}</div> // msg.chat_content로 가정합니다.
+                
                 ))}
             </div>
             <form onSubmit={sendMessage}>
@@ -111,4 +114,5 @@ export default function Chatting() {
             </form>
         </div>
     );
+
 }
