@@ -1,9 +1,9 @@
-import Header from '../../components/header/header'
-import Footer from '../../components/footer/footer'
-import { useState, useTransition } from 'react'
+import { useState } from 'react'
 
 export default function Mypage () {
     
+  const [mypageMenu, setMypageMenu] = useState("myInfo")
+  
 
   // message modal창 열고 닫기
   const [modalDisplay, setModalDisplay] = useState("none");
@@ -61,19 +61,22 @@ export default function Mypage () {
         <div className='flex justify-around'>
           <div className='w-1/6 rounded-2xl' style={{backgroundColor:'#e9e9e9'}}>
             <div className='flex flex-col items-center justify-around' style={{minHeight:'500px'}}>
-              <button className='font-bold'>내 정보 수정</button>
+              <button className='font-bold'>내 정보</button>
+              <button className='font-bold'>정보 수정</button>
               <button className='font-bold'>내 동아리</button>
-              <button className='font-bold'>신청 현황</button>
               <button className='font-bold' onClick={handleOpenMessage}>쪽지</button>
-              <button className='font-bold'>북마크</button>
+              <button className='font-bold'>신청 현황</button>
             </div>
           </div>
           <div className='w-3/5 p-8 rounded-xl' style={{backgroundColor:'#e9e9e9'}}>
             <p className='mb-12'>내정보</p>
+            {/* 내정보 표로 만들기 */}
             <ul className='mypage_content_list'>
-              <li className='mb-2'>1</li>
-              <li className='mb-2'>2</li>
-              <li className='mb-2'>3</li>
+              <li className='mb-2'>아이디(이메일) : </li>
+              <li className='mb-2'>이름 : </li>
+              <li className='mb-2'>성별 : </li>
+              <li className='mb-2'>생년월일 : </li>
+              <li className='mb-2'>전화번호 : </li>
             </ul>
           </div>
         </div>
