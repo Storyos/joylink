@@ -6,7 +6,6 @@ import Login from './pages/login/login';
 import Join from './pages/join/join';
 import Notice from "./pages/notice/notice";
 import Chatting from './pages/chatting/chatting'
-import NoticePageWithSidebar from "./pages/notice/noticepage";
 import CbSearch from "./pages/clubPromotion/cbsearch";
 
 export default function Main() {
