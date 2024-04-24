@@ -2,8 +2,9 @@ const express = require('express');
 const loginrouter = express.Router();
 const loginController = require("../controllers/loginController")
 
+loginrouter.route('/')
+    .get(loginController.insertQuery);
 
-const test1 = require("../API/test");
-const dbConnect = require('../config/dbConnect');
+
 
 module.exports = loginrouter;

@@ -1,6 +1,8 @@
 // import './clubIntro.css'
 // import Header from '../../components/header/header';
 
+import Header from '../../components/header/header';
+
 function ClubJoin() {
   return (
     <div className="App-Container">
