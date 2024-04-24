@@ -22,7 +22,7 @@ export default function Header() {
         <div>
           <ul className="flex space-x-4">
             <li><Link to="/" className="text-gray-800 hover:text-blue-600">JoyLink</Link></li>
-            <li><Link to="/clubpromotionweb" className="text-gray-800 hover:text-blue-600">모임찾기</Link></li>
+            <li><Link to="/cbSearch" className="text-gray-800 hover:text-blue-600">모임찾기</Link></li>
             <li><Link to="/notice" className="text-gray-800 hover:text-blue-600">공지사항</Link></li>
             <li><Link className="text-gray-800 hover:text-blue-600">VR체험관</Link></li>
           </ul>

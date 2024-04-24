@@ -42,7 +42,7 @@ function CbSearch() {
       <SearchBar />
       <div className="max-w-4xl p-8 mx-auto">
         <div className="p-4 bg-white rounded shadow">
-          <div className="mb-4 text-xl font-bold">동아리 상세 설명</div>
+          <div className="mb-4 text-xl font-bold">동아리 목록</div>
           <ClubList />
         </div>
         <div className="p-4 text-center text-gray-600"></div>
