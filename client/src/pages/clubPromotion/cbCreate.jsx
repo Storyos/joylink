@@ -1,10 +1,8 @@
 import "./cbCreate.css";
-import Navbar from "../../components/Navbar";
 
 function CbCreate() {
   return (
     <div className="App-Container">
-      <Navbar />
       <div className="Box">
         <div className="Top">
         <div className="BoxTitle">동아리명  <div className="Content1"></div></div>
