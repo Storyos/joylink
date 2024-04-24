@@ -5,6 +5,8 @@ import Mypage from './pages/mypage/mypage';
 import Login from './pages/login/login';
 import Join from './pages/join/join';
 import Notice from "./pages/notice/notice";
+import Chatting from './pages/chatting/chatting'
+import NoticePageWithSidebar from "./pages/notice/noticepage";
 import CbSearch from "./pages/clubPromotion/cbsearch";
 
 export default function Main() {
@@ -21,6 +23,7 @@ export default function Main() {
             </Route>
             <Route path="/login" element={<Login/>}/>
             <Route path="/join" element={<Join/>}/>
+            <Route path="/chatting" element={<Chatting/>}></Route>
         </Routes>
       </BrowserRouter>
   );
