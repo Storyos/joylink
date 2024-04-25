@@ -22,7 +22,7 @@ export default function Header() {
         <div>
           <ul className="flex space-x-4">
             <li><Link to="/" className="text-gray-800 hover:text-blue-600">JoyLink</Link></li>
-            <li><Link to="/clubpromotionweb" className="text-gray-800 hover:text-blue-600">모임찾기</Link></li>
+            <li><Link to="/cbSearch" className="text-gray-800 hover:text-blue-600">모임찾기</Link></li>
             <li><Link to="/notice" className="text-gray-800 hover:text-blue-600">공지사항</Link></li>
             <li><Link className="text-gray-800 hover:text-blue-600">VR체험관</Link></li>
           </ul>
@@ -37,6 +37,7 @@ export default function Header() {
             }
           </div>
           <button className="px-4 py-2 font-bold text-white bg-blue-600 rounded hover:bg-blue-700"><Link to="/join">회원가입</Link></button>
+          <button className="px-4 py-2 font-bold text-white bg-blue-600 rounded hover:bg-blue-700"><Link to="/getInfo">회원가입 추가정보 받기</Link></button>
         </div>
       </div>
     </header>
