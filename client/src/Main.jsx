@@ -6,7 +6,7 @@ import Login from './pages/login/login';
 import Join from './pages/join/join';
 import Notice from "./pages/notice/notice";
 import Chatting from './pages/chatting/chatting'
-
+import CbSearch from "./pages/cbSearch/cbsearch";
 
 export default function Main() {
   return (
@@ -18,6 +18,7 @@ export default function Main() {
               <Route path="notice" element={<Notice/>}/>
               <Route path="notice/${notice.id}" element={<Notice/>}/>
               <Route path="notice/${event.id}" element={<Notice/>}/>
+              <Route path="clubsearch" element={<CbSearch/>}/>
             </Route>
             <Route path="/login" element={<Login/>}/>
             <Route path="/join" element={<Join/>}/>
