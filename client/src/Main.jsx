@@ -2,8 +2,9 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import App from "./App";
 import Mainpage from "./pages/mainpage/mainpage";
 import Mypage from './pages/mypage/mypage';
-// import CbIntro from './pages/cbIntro/cbIntro'; 
+import CbJoin from "./pages/cbJoin/cbJoin";
 import CbSearch from './pages/cbSearch/cbSearch'
+import CbDescription from "./pages/cbDescription/cbDescription";
 import Notice from "./pages/notice/notice";
 import Login from './pages/login/login';
 import Join from './pages/join/join';
@@ -19,6 +20,8 @@ export default function Main() {
           <Route path="mypage" element={<Mypage/>}/>
           <Route path="cbSearch" element={<CbSearch/>}/> 
           <Route path="notice" element={<Notice/>}/>
+          <Route path="cbDescription" element={<CbDescription/>}/>
+          <Route path="cbJoin" element={<CbJoin/>}/>
           <Route path="notice/:noticeId" element={<Notice/>}/>
           <Route path="event/:eventId" element={<Notice/>}/>
         </Route>

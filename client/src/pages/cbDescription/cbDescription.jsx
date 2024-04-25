@@ -1,23 +1,20 @@
-import React from 'react';
-import Header from '../../components/header/header';
-import Footer from '../../components/footer/footer';
-
-function CbIntro() {
+function CbDescription() {
   return (
-    <>
-      <Header />
-      <div className="w-screen bg-white">
-        <div className="mx-auto mt-36 mb-14 p-7 bg-gray-300 rounded-lg w-[calc(100%-56px)] h-[776px] flex flex-col justify-between items-end">
-          <div className="flex flex-col w-full gap-6">
-            <div className="text-2xl font-normal text-black">동아리 상세 설명</div>
-            <div className="w-full bg-gray-200 rounded-lg h-[488px] overflow-y-auto"></div>
-          </div>
-          <button className="w-[172px] h-[61px] flex items-center justify-center bg-gray-200 rounded-lg text-black text-2xl font-normal cursor-pointer">신청</button>
+    <div className="flex flex-col items-center justify-center w-screen py-10 bg-white">
+      <div className="flex flex-col items-end justify-between w-full max-w-4xl p-6 my-4 bg-gray-300 rounded-lg">
+        <div className="flex flex-col w-full gap-6">
+          <div className="text-2xl text-black">동아리 상세 설명</div>
+          <div className="w-full bg-gray-200 rounded h-96"></div> {/* h-96 is an example height */}
         </div>
       </div>
-      <Footer />
-    </>
+      <div className="flex gap-4">
+
+        <button className="flex items-center justify-center h-16 text-2xl text-black bg-gray-300 rounded cursor-pointer w-44">
+          신청하기
+        </button>
+      </div>
+    </div>
   );
 }
 
-export default CbIntro;
+export default CbDescription;

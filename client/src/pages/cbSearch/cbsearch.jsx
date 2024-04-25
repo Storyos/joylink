@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const SearchBar = () => (
   <div className="flex items-center justify-center p-4">
@@ -18,12 +19,17 @@ const SearchBar = () => (
 
 const ClubItem = () => (
   <div className="flex items-center justify-between p-4 border-b border-gray-200 min-h-24">
-    <span className="block">동아리 정보</span>
-    <button className="p-2 text-white bg-green-500 rounded hover:bg-green-700">
+    {/* Apply styles directly to Link */}
+    <Link to="/cbDescription" className="block text-blue-500 hover:text-blue-700">
+      동아리 정보
+    </Link>
+    <Link to="/cbJoin" className="p-2 text-white bg-green-500 rounded hover:bg-green-700">
       신청
-    </button>
+    </Link>
   </div>
 );
+
+
 
 const ClubList = () => {
   const clubs = [1, 2, 3, 4, 5];
