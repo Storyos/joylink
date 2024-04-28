@@ -7,14 +7,19 @@ export default function Mypage () {
     
 
   // message modal창 열고 닫기
-  const [modalDisplay, setModalDisplay] = useState("Open");
-  const modalStyle = modalDisplay;
+  const [modalDisplay, setModalDisplay] = useState("Close");
   const handleOpenMessage = () => {
     setModalDisplay("Open");
   }
 
   const handleCloseMessage = () => {
     setModalDisplay("Close");
+  }
+
+  // mypage 메뉴
+  const [mypageMenu, setMypageMenu] = useState("userInfo")
+  const handleMypageMenu = (menu) => {
+    setMypageMenu(`${menu}`)
   }
 
   return (
@@ -26,11 +31,11 @@ export default function Mypage () {
         <div className='flex justify-around'>
           <div className='w-1/6 rounded-2xl' style={{backgroundColor:'#e9e9e9'}}>
             <div className='flex flex-col items-center justify-around' style={{minHeight:'500px'}}>
-              <button className='font-bold'>내 정보</button>
-              <button className='font-bold'>정보 수정</button>
-              <button className='font-bold'>내 동아리</button>
+              <button className='font-bold' onClick={() => handleMypageMenu("userInfo")}>내 정보</button>
+              <button className='font-bold' onClick={() => handleMypageMenu("updateInfo")}>정보 수정</button>
+              <button className='font-bold' onClick={() => handleMypageMenu("myclub")}>내 동아리</button>
               <button className='font-bold' onClick={handleOpenMessage}>쪽지</button>
-              <button className='font-bold'>신청 현황</button>
+              <button className='font-bold' onClick={() => handleMypageMenu("application")}>신청 현황</button>
             </div>
           </div>
           <div className='w-3/5 p-8 rounded-xl' style={{backgroundColor:'#e9e9e9'}}>

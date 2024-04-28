@@ -7,6 +7,7 @@ export default function MessageModal(props) {
 
   // 받은 쪽지, 보낸 쪽지 버튼
   const [messageBtn, setMessageBtn] = useState("Recieved");
+  
   const [title, setTitle] = useState("");
   const [receiver, setReceiver] = useState("");
   const [content, setContent] = useState("");
@@ -15,7 +16,12 @@ export default function MessageModal(props) {
   const [receivedMessage, setReceivedMessage] = useState([]);
   const [sentMessage, setSentMessage] = useState([]);
 
-
+  // 쪽지 페이지를 저장하는 배열
+  const [receivedPage, setReceivedPage] =  useState([]);
+  const [sentPage, setSentPage] = useState([]);
+  
+  
+  
   const fetchReceivedMessages = async () => {
     const { data, error } = await supabase.from('messages').select(`*`).eq('msg_rcv_seq', 13);
     if (error) {
@@ -23,6 +29,14 @@ export default function MessageModal(props) {
     } else {
       console.log('받은 데이터', data);
       setReceivedMessage(data);
+
+      // 받은 쪽지 페이지 개수 계산해서 배열로 저장
+      let count = (Math.floor((receivedMessage.length-1)/5)+1);
+      let list = [];
+      for (let i = 1; i <= count; i ++) {
+        list.push(i);
+      }
+      setReceivedPage(list);
     }
   };
 
@@ -41,6 +55,14 @@ export default function MessageModal(props) {
     }
     console.log('보낸 데이터', data);
     setSentMessage(data);
+
+    // 보낸 쪽지 페이지 개수 계산해서 배열로 저장
+    let count = (Math.floor((data.length - 1) / 5) + 1);
+    let list = [];
+    for (let i = 1; i <= count; i ++) {
+      list.push(i);
+    }
+    setSentPage(list);
     setMessageBtn("Sent");
   }
 
@@ -56,6 +78,14 @@ export default function MessageModal(props) {
     }
     console.log('받은 데이터', data);
     setReceivedMessage(data);
+    
+    // 받은 쪽지 페이지 개수 계산해서 배열로 저장
+    let count = (Math.floor((receivedMessage.length-1)/5)+1);
+    let list = [];
+    for (let i = 1; i <= count; i ++) {
+      list.push(i);
+    }
+    setReceivedPage(list);
     setMessageBtn("Recieved")
   }
 
@@ -87,6 +117,7 @@ export default function MessageModal(props) {
     }
     console.log(data);
     alert("쪽지 전송이 완료되었습니다.")
+    //쪽지 리스트로 돌아가기
     handleMessageWrite();
   }
 
@@ -111,19 +142,19 @@ export default function MessageModal(props) {
           <div className='flex p-2 mb-4 border-2'>
             <input type="checkbox" />
             <div className='flex justify-center w-full mx-2'>
-              <button>
+              <p>
                 {messageBtn == "Recieved" && "보낸 사람"}
                 {messageBtn == "Sent" && "받은 사람"}
-              </button>
-              <button className='mx-48'>제목</button>
-              <button>날짜</button>
+              </p>
+              <p className='mx-48'>제목</p>
+              <p>날짜</p>
             </div>
           </div>
           {/* // 받은쪽지 보는곳 */}
           {messageBtn === "Recieved" &&
             <div className='mb-4 border-2'>
               {receivedMessage.length > 0 ? (
-                receivedMessage.map((msg, index) => (
+                receivedMessage.slice(0,5).map((msg, index) => (
                   <div key={index} className='flex items-center p-2 mb-4'>
                     <input type="checkbox" />
                     <div className='flex justify-between w-full mx-2'>
@@ -131,7 +162,7 @@ export default function MessageModal(props) {
                         <p className='inline-block ml-1 text-center w-28'>{msg.msg_snd_seq}</p>
                         <a href='#' className='ml-2'>{msg.msg_body}</a>
                       </div>
-                      <button className='w-20 text-sm'>{msg.msg_send_time}</button>
+                      <p className='w-20 text-sm'>{msg.msg_send_time}</p>
                     </div>
                   </div>
                 ))
@@ -140,12 +171,20 @@ export default function MessageModal(props) {
               )}
             </div>
           }
+          {/* 하단에 페이지 버튼 표시 */}
+          {messageBtn === "Recieved" && receivedPage.length > 0 &&
+            <div>
+              {receivedPage.map((page, index) => (
+                <span key ={index}>{page}</span>
+              ))} 
+            </div>
+          }
 
           {/* // 보낸쪽지 보는곳 */}
           {messageBtn === "Sent" &&
             <div className='mb-4 border-2'>
               {sentMessage.length > 0 ? (
-                sentMessage.map((msg, index) => (
+                sentMessage.slice(0,5).map((msg, index) => (
                   <div key={index} className='flex items-center p-2 mb-4'>
                     <input type="checkbox" />
                     <div className='flex justify-between w-full mx-2'>
@@ -153,13 +192,21 @@ export default function MessageModal(props) {
                         <p className='inline-block ml-1 text-center w-28'>{msg.msg_rcv_seq}</p>
                         <a href='#' className='ml-2'>{msg.msg_body}</a>
                       </div>
-                      <button className='w-20 text-sm'>{msg.msg_send_time}</button>
+                      <p className='w-20 text-sm'>{msg.msg_send_time}</p>
                     </div>
                   </div>
                 ))
               ) : (
                 <p>보낸 쪽지가 없습니다.</p>
               )}
+            </div>
+          }
+          {/* 하단에 페이지 버튼 표시 */}
+          {messageBtn === "Sent" &&
+            <div>
+              {sentPage.map((page, index) => (
+                <span key ={index}>{page}</span>
+              ))} 
             </div>
           }
 
@@ -208,15 +255,15 @@ export default function MessageModal(props) {
           <div>
             <div className='py-2'>
               <label htmlFor="message_write_title"><p className='inline-block text-center w-28'>제목</p></label>
-              <input id='message_write_title' type="text" className='border-2' style={{ width: '450px' }} onChange={handleTitleChange} />
+              <input id='message_write_title' type="text" className='border-2' style={{ width: '450px' }} onChange={() => handleTitleChange} />
             </div>
             <div className='py-2'>
               <label htmlFor="message_write_receiver"><p className='inline-block text-center w-28'>받는 사람</p></label>
-              <input id='message_write_receiver' type="text" className='border-2' style={{ width: '450px' }} onChange={handlereceiverChange} />
+              <input id='message_write_receiver' type="text" className='border-2' style={{ width: '450px' }} onChange={() => handlereceiverChange} />
             </div>
             <div className='flex py-2 '>
               <label htmlFor="message_write_content"><p className='inline-block text-center w-28'>내용</p></label>
-              <textarea id="message_write_content" className='border-2 resize-none' style={{ width: '450px', height: '300px' }} onChange={handleContentChange}></textarea>
+              <textarea id="message_write_content" className='border-2 resize-none' style={{ width: '450px', height: '300px' }} onChange={() => handleContentChange}></textarea>
             </div>
           </div>
 
