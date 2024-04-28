@@ -5,12 +5,13 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/login/login.jsx"
 import Join from "./pages/join/join.jsx";
 import MyInfo from "./components/myInfo/myInfo.jsx";
+import Main from "./Main.jsx";
 import './index.css';
 
 
 ReactDOM.render(
   <>
-    <MyInfo></MyInfo>
+    <Main></Main>
   </>,
   document.getElementById("root")
 );
