@@ -1,18 +1,11 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import Header from "./components/header/header.jsx"
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Login from "./pages/login/login.jsx"
-import Join from "./pages/join/join.jsx";
-import MyInfo from "./components/myInfo/myInfo.jsx";
-import Main from "./Main.jsx";
-import './index.css';
+import ReactDOM from 'react-dom/client'
+import Main from "./Main";
+import './index.css' // tailwindcss 적용을 위한 css 파일
 
 
-ReactDOM.render(
-  <>
-    <Main></Main>
-  </>,
-  document.getElementById("root")
-);
-
+ReactDOM.createRoot(document.getElementById('root')).render(
+    <React.StrictMode>
+      <Main />
+    </React.StrictMode>
+)

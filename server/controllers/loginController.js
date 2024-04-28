@@ -8,9 +8,9 @@ const supabase =  dbConnect();
 async function insertQuery() {
     try{
     await supabase
-        .from('test1')
+        .from('chats')
         .insert({
-            text: "Sample Text"
+            chat_content: "Sample Text"
         });
         console.log("Data INserted");
     }
