@@ -7,7 +7,7 @@ export default function MessageModal(props) {
 
   // 받은 쪽지, 보낸 쪽지 버튼
   const [messageBtn, setMessageBtn] = useState("Recieved");
-  
+
   const [title, setTitle] = useState("");
   const [receiver, setReceiver] = useState("");
   const [content, setContent] = useState("");
@@ -17,11 +17,26 @@ export default function MessageModal(props) {
   const [sentMessage, setSentMessage] = useState([]);
 
   // 쪽지 페이지를 저장하는 배열
-  const [receivedPage, setReceivedPage] =  useState([]);
+  const [receivedPage, setReceivedPage] = useState([]);
   const [sentPage, setSentPage] = useState([]);
+
+  const [userseq,setUserSeq] =useState("");
   
-  
-  
+  const getMyUserSeq = async () => {
+    const {data, error} = await supabase.auth.getUser();
+    if(error){
+      console.log("token정보 가져오는거 에러뜸");
+    }else{
+      console.log(data);
+    }
+  }
+
+    // 컴포넌트가 마운트될 때 받은 쪽지를 로드 (1회수행)
+    useEffect(() => {
+      getMyUserSeq();
+      fetchReceivedMessages();
+    }, []);
+
   const fetchReceivedMessages = async () => {
     const { data, error } = await supabase.from('messages').select(`*`).eq('msg_rcv_seq', 13);
     if (error) {
@@ -31,19 +46,19 @@ export default function MessageModal(props) {
       setReceivedMessage(data);
 
       // 받은 쪽지 페이지 개수 계산해서 배열로 저장
-      let count = (Math.floor((receivedMessage.length-1)/5)+1);
-      let list = [];
-      for (let i = 1; i <= count; i ++) {
-        list.push(i);
-      }
-      setReceivedPage(list);
+
     }
   };
 
-  // 컴포넌트가 마운트될 때 받은 쪽지를 로드 (1회수행)
-  useEffect(() => {
-    fetchReceivedMessages();
-  }, []);
+  useEffect(()=>{
+    let count = (Math.floor((receivedMessage.length-1)/5)+1);
+    let list = [];
+    for (let i = 1; i <= count; i ++) {
+      list.push(i);
+    }
+    setReceivedPage(list);
+  },[receivedMessage]);
+
 
   const handleSentMessage = async () => {
     // 함수명 :fetchSntData()
@@ -59,7 +74,7 @@ export default function MessageModal(props) {
     // 보낸 쪽지 페이지 개수 계산해서 배열로 저장
     let count = (Math.floor((data.length - 1) / 5) + 1);
     let list = [];
-    for (let i = 1; i <= count; i ++) {
+    for (let i = 1; i <= count; i++) {
       list.push(i);
     }
     setSentPage(list);
@@ -78,14 +93,7 @@ export default function MessageModal(props) {
     }
     console.log('받은 데이터', data);
     setReceivedMessage(data);
-    
-    // 받은 쪽지 페이지 개수 계산해서 배열로 저장
-    let count = (Math.floor((receivedMessage.length-1)/5)+1);
-    let list = [];
-    for (let i = 1; i <= count; i ++) {
-      list.push(i);
-    }
-    setReceivedPage(list);
+
     setMessageBtn("Recieved")
   }
 
@@ -154,7 +162,7 @@ export default function MessageModal(props) {
           {messageBtn === "Recieved" &&
             <div className='mb-4 border-2'>
               {receivedMessage.length > 0 ? (
-                receivedMessage.slice(0,5).map((msg, index) => (
+                receivedMessage.slice(0, 5).map((msg, index) => (
                   <div key={index} className='flex items-center p-2 mb-4'>
                     <input type="checkbox" />
                     <div className='flex justify-between w-full mx-2'>
@@ -175,8 +183,8 @@ export default function MessageModal(props) {
           {messageBtn === "Recieved" && receivedPage.length > 0 &&
             <div>
               {receivedPage.map((page, index) => (
-                <span key ={index}>{page}</span>
-              ))} 
+                <span key={index}>{page}</span>
+              ))}
             </div>
           }
 
@@ -184,7 +192,7 @@ export default function MessageModal(props) {
           {messageBtn === "Sent" &&
             <div className='mb-4 border-2'>
               {sentMessage.length > 0 ? (
-                sentMessage.slice(0,5).map((msg, index) => (
+                sentMessage.slice(0, 5).map((msg, index) => (
                   <div key={index} className='flex items-center p-2 mb-4'>
                     <input type="checkbox" />
                     <div className='flex justify-between w-full mx-2'>
@@ -205,8 +213,8 @@ export default function MessageModal(props) {
           {messageBtn === "Sent" &&
             <div>
               {sentPage.map((page, index) => (
-                <span key ={index}>{page}</span>
-              ))} 
+                <span key={index}>{page}</span>
+              ))}
             </div>
           }
 
