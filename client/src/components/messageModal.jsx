@@ -23,6 +23,10 @@ export default function MessageModal(props) {
 
   const [userseq, setUserSeq] = useState("");
 
+  // 쪽지 리스트 전체 체크박스 상태
+  const [receivedCheckbox, setReceivedCheckbox] = useState(false)
+  const [sentCheckbox, setSentCheckbox] = useState(false)
+
   // 현재 페이지의 상태가 저장되어 있는 변수, 기본값 : 1 페이지
   const [currentReceivedPage, setCurrentReceivedPage] = useState(1)
   const [currentSentPage, setCurrentSentPage] = useState(1)
@@ -212,7 +216,8 @@ export default function MessageModal(props) {
 
           {/* 리스트 상단 */}
           <div className='flex p-2 mb-4 border-2'>
-            <input type="checkbox" />
+            {messageBtn == "Received" && <input type="checkbox" onChange={() => setReceivedCheckbox(receivedCheckbox ? false : true)} defaultChecked = {receivedCheckbox}/>}
+            {messageBtn == "Sent" && <input type="checkbox" onChange={() => setSentCheckbox(sentCheckbox ? false : true)}defaultChecked = {sentCheckbox} />}
             <div className='flex justify-center w-full mx-2'>
               <p>
                 {messageBtn == "Received" && "보낸 사람"}
@@ -230,9 +235,9 @@ export default function MessageModal(props) {
                   // 현재 페이지의 5개 쪽지 정보 표시
                   receivedMessage.slice((currentReceivedPage - 1) * 5, currentReceivedPage * 5).map((msg, index) => (
                     <div key={index} className='flex items-center p-2 mb-4'>
-                      <input type="checkbox" />
+                      <input type="checkbox" defaultChecked={receivedCheckbox} />
                       <div className='flex justify-between w-full mx-2'>
-                        <div>
+                        <div className="flex items-center">
                           <p className='inline-block ml-1 text-center w-28'>{msg.users.user_name}</p>
                           <a href='#' className='ml-2'>{msg.msg_title}</a>
                         </div>
@@ -266,9 +271,9 @@ export default function MessageModal(props) {
                   // 현재 페이지의 5개 쪽지 정보 표시
                   sentMessage.slice((currentSentPage - 1) * 5, currentSentPage * 5).map((msg, index) => (
                     <div key={index} className='flex items-center p-2 mb-4'>
-                      <input type="checkbox" />
+                      <input type="checkbox" defaultChecked={sentCheckbox} />
                       <div className='flex justify-between w-full mx-2'>
-                        <div>
+                        <div className="flex items-center">
                           <p className='inline-block ml-1 text-center w-28'>{msg.users.user_name}</p>
                           <a href='#' className='ml-2'>{msg.msg_title}</a>
                         </div>
@@ -321,7 +326,7 @@ export default function MessageModal(props) {
         {/* 검색창 */}
         <div className='flex justify-end mb-4'>
           <input  className='px-1 border-2' id="searchbyTitle" onKeyDown={handleKeyDown} type="text" placeholder='제목 검색' ref={inputRef} />
-          <button onClick={handleSearchbyTitle} id="searchButton">검색</button>
+          <button className='px-1 ml-2 border-2' onClick={handleSearchbyTitle} id="searchButton">검색</button>
         </div>
 
         {/* 쪽지 리스트  */}
