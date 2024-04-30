@@ -4,7 +4,7 @@ export default function myClubPage() {
   return (
     <div className="flex">
       <div className="w-1/5">
-        <MyInfo/>
+        <MyInfo/> {/*사이드바*/}
       </div>
       <div className="w-2/3">
         <div>
