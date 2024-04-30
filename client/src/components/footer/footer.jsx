@@ -3,7 +3,7 @@
 export default function Footer () {
 
   return (
-    <footer>
+    <footer className="bg-[#C0E5FF] p-4">
       <div className="footer">
         <p>서비스 이용약관 | 개인정보 처리방침 | 서비스 안내</p>
         <p><b>고객센터</b> | 02-123-1234</p>

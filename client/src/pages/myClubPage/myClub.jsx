@@ -1,10 +1,10 @@
 
 
-export default function myClubPage() {
+export default function MyClubPage() {
 
   return (
     <>
-      <div className="myClub_post">
+      <div>
         <h1>게시글</h1>
         <h2>게시글 리스트</h2>
       </div>

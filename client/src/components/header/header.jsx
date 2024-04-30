@@ -27,15 +27,13 @@ export default function Header() {
             <li><Link className="text-gray-800 hover:text-blue-600">VR체험관</Link></li>
           </ul>
         </div>
-        <div>
-          <div>
-            {
-              isLoggedIn?
-            (<button className="px-4 py-2 mr-2 font-bold text-white bg-blue-600 rounded hover:bg-blue-700"><Link to="/login">로그아웃</Link></button>)
-            :
-            (<button className="px-4 py-2 mr-2 font-bold text-white bg-blue-600 rounded hover:bg-blue-700"><Link to="/login">로그인</Link></button>)
-            }
-          </div>
+        <div className="flex">
+          {
+            isLoggedIn?
+          (<button className="px-4 py-2 mr-2 font-bold text-white bg-blue-600 rounded hover:bg-blue-700"><Link to="/login">로그아웃</Link></button>)
+          :
+          (<button className="px-4 py-2 mr-2 font-bold text-white bg-blue-600 rounded hover:bg-blue-700"><Link to="/login">로그인</Link></button>)
+          }
           <button className="px-4 py-2 font-bold text-white bg-blue-600 rounded hover:bg-blue-700"><Link to="/join">회원가입</Link></button>
           <button className="px-4 py-2 font-bold text-white bg-blue-600 rounded hover:bg-blue-700"><Link to="/getInfo">회원가입 추가정보 받기</Link></button>
         </div>
