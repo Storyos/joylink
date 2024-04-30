@@ -35,7 +35,16 @@ export default function MessageModal(props) {
 
 
   const fetchReceivedMessages = async () => {
-    const { data, error } = await supabase.from('messages').select(`*`).eq('msg_rcv_seq', 13);
+    const { data, error } = await supabase.from('messages').select(`
+      msg_snd_seq,
+      msg_rcv_seq,
+      msg_title,
+      msg_body,
+      msg_send_time,
+      users : msg_snd_seq (
+        user_name
+      )
+    `).eq(`msg_rcv_seq`, 13)
     if (error) {
       console.error("받은 쪽지 select query 에러", error);
     } else {
