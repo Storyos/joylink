@@ -90,15 +90,21 @@ export default function Mypage () {
             {/* 내 동아리 */}
             {mypageMenu == "myclub" && 
             <div>
-              <p className='mb-12 text-center'>내 동아리</p>
-              <p>현재 가입한 동아리가 존재하지 않습니다.</p>
+              <table className='w-full'>
+                <caption className='mb-8'>내 동아리</caption>
+                <tr className='border-2 border-[#c9c9c9]'>
+                  <th className='border-2 border-[#c9c9c9] min-w-[150px] p-2'>아이디(이메일)</th>
+                  <td className='border-2 border-[#c9c9c9] text-center min-w-[300px]'>"abcd@naver.com"</td>
+                </tr>
+              </table>
+              <p></p>
             </div>
             }
 
             {/* 신청 현황 */}
             {mypageMenu == "application" && 
             <div>
-              <p className='mb-12 text-center'>신청 현황</p>
+              <p className='mb-8 text-center'>신청 현황</p>
               <p>현재 가입 신청한 동아리가 존재하지 않습니다.</p>
             </div>
             }
