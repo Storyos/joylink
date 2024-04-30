@@ -16,3 +16,4 @@ export default function myClubPage() {
     </div>
   );
 }
+
