@@ -1,4 +1,4 @@
-import { useEffect, useState, useTransition } from "react";
+import { useEffect, useState, useTransition, useRef } from "react";
 import { supabase } from '../App';
 
 export default function MessageModal(props) {
@@ -6,11 +6,12 @@ export default function MessageModal(props) {
   const handleCloseMessage = props.handleCloseMessage;
 
   // 받은 쪽지, 보낸 쪽지 버튼
-  const [messageBtn, setMessageBtn] = useState("Recieved");
-
+  const [messageBtn, setMessageBtn] = useState("Received");
+  const inputRef = useRef(null);
   const [title, setTitle] = useState("");
   const [receiver, setReceiver] = useState("");
   const [content, setContent] = useState("");
+  const [searchbyTitle, setSerachByTitle] = useState("");
 
   // 받은 쪽지, 보낸 쪽지 list 변수
   const [receivedMessage, setReceivedMessage] = useState([]);
@@ -20,19 +21,19 @@ export default function MessageModal(props) {
   const [receivedPage, setReceivedPage] = useState([]);
   const [sentPage, setSentPage] = useState([]);
 
-  const [userseq,setUserSeq] =useState("");
-  
+  const [userseq, setUserSeq] = useState("");
+
   // 현재 페이지의 상태가 저장되어 있는 변수, 기본값 : 1 페이지
   const [currentReceivedPage, setCurrentReceivedPage] = useState(1)
   const [currentSentPage, setCurrentSentPage] = useState(1)
-  
+
   // 페이지 버튼 클릭 시 현재 페이지의 상태 전환
-  const handlePageBtn = (messageType,page) => {
+  const handlePageBtn = (messageType, page) => {
     if (messageType === "Received") setCurrentReceivedPage(page); console.log(page)
     if (messageType === "Sent") setCurrentSentPage(page); console.log(page)
   }
 
-  
+
   const fetchReceivedMessages = async () => {
     const { data, error } = await supabase.from('messages').select(`*`).eq('msg_rcv_seq', 13);
     if (error) {
@@ -40,20 +41,20 @@ export default function MessageModal(props) {
     } else {
       console.log('받은 데이터', data);
       setReceivedMessage(data);
-      
+
     }
   };
 
-  useEffect(()=>{
-      // 받은 쪽지 페이지 개수 계산해서 배열로 저장
-      let count = (Math.floor((receivedMessage.length-1)/5)+1);
-      let list = [];
-      for (let i = 1; i <= count; i ++) {
-        list.push(i);
-      }
-      setReceivedPage(list);
-  },[receivedMessage])
-  
+  useEffect(() => {
+    // 받은 쪽지 페이지 개수 계산해서 배열로 저장
+    let count = (Math.floor((receivedMessage.length - 1) / 5) + 1);
+    let list = [];
+    for (let i = 1; i <= count; i++) {
+      list.push(i);
+    }
+    setReceivedPage(list);
+  }, [receivedMessage])
+
   // 컴포넌트가 마운트될 때 받은 쪽지를 로드 (1회수행)
   useEffect(() => {
     fetchReceivedMessages();
@@ -63,7 +64,17 @@ export default function MessageModal(props) {
     // 함수명 :fetchSntData()
     // 기  능 :DB에서 내가 보낸쪽지 가져오기
     // 여기서 13은 임의로 보낸사람 seq저장한것
-    const { data, error } = await supabase.from('messages').select(`*`).eq(`msg_snd_seq`, 13)
+    const { data, error } = await supabase.from('messages').select(`
+      msg_snd_seq,
+      msg_rcv_seq,
+      msg_title,
+      msg_body,
+      msg_send_time,
+      users : msg_rcv_seq (
+        user_name
+      )
+    `).eq(`msg_snd_seq`, 13)
+
     if (error) {
       console.error("보낸쪽지 select query 에러");
     }
@@ -80,22 +91,67 @@ export default function MessageModal(props) {
     setMessageBtn("Sent");
   }
 
-  const handleRecievedMessage = async () => {
+  const handleReceivedMessage = async () => {
 
     // 여기서 처음 들어왔을때 data를 미리 저장해두고, 
     // 함수명 :fetchRcvData()
     // 기  능 :DB에서 내가 받은쪽지 가져오기
     // 여기서 1은 임의로 받은사람 저장한것
-    const { data, error } = await supabase.from('messages').select(`*`).eq('msg_rcv_seq', 13)
+    const { data, error } = await supabase.from('messages').select(`
+      msg_snd_seq,
+      msg_rcv_seq,
+      msg_title,
+      msg_body,
+      msg_send_time,
+      users : msg_snd_seq (
+        user_name
+      )
+    `).eq(`msg_rcv_seq`, 13)
     if (error) {
       console.error("받은 쪽지 select query 에러");
     }
     console.log('받은 데이터', data);
     setReceivedMessage(data);
 
-    setMessageBtn("Recieved")
+    setMessageBtn("Received")
   }
 
+  // 쪽지 검색 기능
+  const handleSearchbyTitle = async () => {
+    const currentInputValue = inputRef.current.value;
+    setTitle(currentInputValue);
+    console.log("현재 메시지 버튼 상태", messageBtn);
+    console.log("현재 검색어 : ", currentInputValue);
+    if (messageBtn === "Received") {
+      const { data, error } = await supabase.from('messages').select(`
+      msg_snd_seq,
+      msg_rcv_seq,
+      msg_title,
+      msg_body,
+      msg_send_time,
+      users : msg_snd_seq (
+        user_name
+      )
+    `).eq(`msg_rcv_seq`, 13).like('msg_title', `%${currentInputValue}%`);
+      console.log("데이터", data);
+      setReceivedMessage(data);
+    }
+    else {
+      console.log("여기는 왔나?");
+      const { data, error } = await supabase.from('messages').select(`
+      msg_snd_seq,
+      msg_rcv_seq,
+      msg_title,
+      msg_body,
+      msg_send_time,
+      users : msg_rcv_seq (
+        user_name
+      )
+    `).eq(`msg_snd_seq`, 13).like('msg_title', `%${currentInputValue}%`);
+      console.log("데이터", data);
+      setSentMessage(data);
+    }
+  }
 
 
   // 쪽지 쓰기 버튼
@@ -150,7 +206,7 @@ export default function MessageModal(props) {
             <input type="checkbox" />
             <div className='flex justify-center w-full mx-2'>
               <p>
-                {messageBtn == "Recieved" && "보낸 사람"}
+                {messageBtn == "Received" && "보낸 사람"}
                 {messageBtn == "Sent" && "받은 사람"}
               </p>
               <p className='mx-48'>제목</p>
@@ -158,18 +214,18 @@ export default function MessageModal(props) {
             </div>
           </div>
           {/* // 받은쪽지 보는곳 */}
-          {messageBtn === "Recieved" &&
+          {messageBtn === "Received" &&
             <div className="text-center">
               <div className='mb-1 border-2'>
                 {receivedMessage.length > 0 ? (
                   // 현재 페이지의 5개 쪽지 정보 표시
-                  receivedMessage.slice((currentReceivedPage-1)*5,currentReceivedPage*5).map((msg, index) => (
+                  receivedMessage.slice((currentReceivedPage - 1) * 5, currentReceivedPage * 5).map((msg, index) => (
                     <div key={index} className='flex items-center p-2 mb-4'>
                       <input type="checkbox" />
                       <div className='flex justify-between w-full mx-2'>
                         <div>
-                          <p className='inline-block ml-1 text-center w-28'>{msg.msg_snd_seq}</p>
-                          <a href='#' className='ml-2'>{msg.msg_body}</a>
+                          <p className='inline-block ml-1 text-center w-28'>{msg.users.user_name}</p>
+                          <a href='#' className='ml-2'>{msg.msg_title}</a>
                         </div>
                         <p className='w-20 text-sm'>{msg.msg_send_time}</p>
                       </div>
@@ -179,16 +235,16 @@ export default function MessageModal(props) {
                   <p>받은 쪽지가 없습니다.</p>
                 )}
               </div>
-              
+
               {/* 하단에 페이지 버튼 표시 */}
               <div>
                 {receivedPage.map((page, index) => (
-                  <button key ={index}
-                    className={`mx-1 ${page === currentReceivedPage ? 'text-black' : 'text-[#c9c9c9]'}`} 
-                    onClick={() => handlePageBtn("Received",page)}>
-                      {page}
+                  <button key={index}
+                    className={`mx-1 ${page === currentReceivedPage ? 'text-black' : 'text-[#c9c9c9]'}`}
+                    onClick={() => handlePageBtn("Received", page)}>
+                    {page}
                   </button>
-                ))} 
+                ))}
               </div>
             </div>
           }
@@ -199,13 +255,13 @@ export default function MessageModal(props) {
               <div className='mb-1 border-2'>
                 {sentMessage.length > 0 ? (
                   // 현재 페이지의 5개 쪽지 정보 표시
-                  sentMessage.slice((currentSentPage-1)*5,currentSentPage*5).map((msg, index) => (
+                  sentMessage.slice((currentSentPage - 1) * 5, currentSentPage * 5).map((msg, index) => (
                     <div key={index} className='flex items-center p-2 mb-4'>
                       <input type="checkbox" />
                       <div className='flex justify-between w-full mx-2'>
                         <div>
-                          <p className='inline-block ml-1 text-center w-28'>{msg.msg_rcv_seq}</p>
-                          <a href='#' className='ml-2'>{msg.msg_body}</a>
+                          <p className='inline-block ml-1 text-center w-28'>{msg.users.user_name}</p>
+                          <a href='#' className='ml-2'>{msg.msg_title}</a>
                         </div>
                         <p className='w-20 text-sm'>{msg.msg_send_time}</p>
                       </div>
@@ -215,16 +271,16 @@ export default function MessageModal(props) {
                   <p>보낸 쪽지가 없습니다.</p>
                 )}
               </div>
-              
+
               {/* 하단에 페이지 버튼 표시 */}
               <div>
                 {sentPage.map((page, index) => (
-                  <button key ={index}
-                    className={`mx-1 ${page === currentSentPage ? 'text-black' : 'text-[#c9c9c9]'}`} 
-                    onClick={() => handlePageBtn("Sent",page)}>
-                      {page}
+                  <button key={index}
+                    className={`mx-1 ${page === currentSentPage ? 'text-black' : 'text-[#c9c9c9]'}`}
+                    onClick={() => handlePageBtn("Sent", page)}>
+                    {page}
                   </button>
-                ))}        
+                ))}
               </div>
             </div>
           }
@@ -242,7 +298,7 @@ export default function MessageModal(props) {
         {/* 상단 버튼 */}
         <div className='flex justify-between mb-4'>
           <span className='p-1 border-2'>
-            <button className='mx-4' onClick={handleRecievedMessage}>받은 쪽지</button>
+            <button className='mx-4' onClick={handleReceivedMessage}>받은 쪽지</button>
             <button className='mx-4' onClick={handleSentMessage}>보낸 쪽지</button>
           </span>
           <button onClick={handleMessageWrite} className='p-1 border-2'>쪽지 쓰기</button>
@@ -250,7 +306,8 @@ export default function MessageModal(props) {
 
         {/* 검색창 */}
         <div className='flex justify-end mb-4'>
-          <input className='px-1 border-2' type="text" placeholder='제목 검색' />
+          <input className='px-1 border-2' id="searchbyTitle" type="text" placeholder='제목 검색' ref={inputRef} />
+          <button onClick={handleSearchbyTitle} id="searchButton">검색</button>
         </div>
 
         {/* 쪽지 리스트  */}
