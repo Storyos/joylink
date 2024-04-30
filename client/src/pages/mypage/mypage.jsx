@@ -88,7 +88,7 @@ export default function Mypage () {
 
           </div>
         </div>
-      </div> */}
+      </div> 
       
       {/* 쪽지 modal box */}
       {modalDisplay == "Open" &&
