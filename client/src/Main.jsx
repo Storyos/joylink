@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import App from "./App";
 import Mainpage from "./pages/mainpage/mainpage";
-import Mypage from './pages/mypage/Mypage';
+import Mypage from './pages/mypage/mypage';
 import CbJoin from "./pages/cbJoin/cbJoin";
 import CbSearch from './pages/cbSearch/cbsearch';
 import CbCreate from "./pages/cbCreate/cbCreate";
