@@ -97,7 +97,7 @@ export default function Mypage () {
 
   return (
     <>
-      <Header />
+      {/* <Header />
       <div className='mypage_box'>
         <h2 className='mypage_title'>MyPage</h2>
         <div className='mypage_content_box'>
@@ -119,7 +119,7 @@ export default function Mypage () {
             </ul>
           </div>
         </div>
-      </div>
+      </div> */}
       
       {/* 쪽지 modal box */}
       {modalDisplay == "Open" &&
