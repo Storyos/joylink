@@ -298,7 +298,12 @@ export default function MessageModal(props) {
       </>
     )
   }
-
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      handleSearchbyTitle();
+    }
+  };
+  
   // 쪽지 리스트 화면
   const MessageList = () => {
     return (
@@ -315,7 +320,7 @@ export default function MessageModal(props) {
 
         {/* 검색창 */}
         <div className='flex justify-end mb-4'>
-          <input className='px-1 border-2' id="searchbyTitle" type="text" placeholder='제목 검색' ref={inputRef} />
+          <input  className='px-1 border-2' id="searchbyTitle" onKeyDown={handleKeyDown} type="text" placeholder='제목 검색' ref={inputRef} />
           <button onClick={handleSearchbyTitle} id="searchButton">검색</button>
         </div>
 
