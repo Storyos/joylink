@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <input type="file" id="fileInput" />
+  <script src="../config/dbConnect.js"></script>
+  <script>
+
+    // dbConnect.js 파일에서 반환된 객체를 사용하여 Supabase 클라이언트 객체를 초기화합니다.
+    const supabase = dbConnect();
+
+    async function Uploadfile(file) {
+
+      const fileOptions = {
+        contentType: 'image/png',  // MIME 타입을 올바르게 설정
+      }
+
+      const { data, error } = await supabase.storage
+        .from('testtest')
+        .upload(`${file.name}`, file, fileOptions)
+
+      if (error) {
+        console.error('Upload error:', error)
+        return
+      }
+
+      console.log('File uploaded:', data)
+    }
+
+    document.getElementById('fileInput').addEventListener('change', function (event) {
+      if (event.target.files.length > 0) {
+        const file = event.target.files[0];
+        Uploadfile(file);
+      }
+    });
+
+  </script>
+</body>
+
+</html>
