@@ -11,8 +11,7 @@ import Login from './pages/login/login';
 import Join from './pages/join/join';
 import GetInfo from "./pages/getInfo/getInfo";
 import Chatting from './pages/chatting/chatting';
-
-
+import MyClubPage from "./pages/myClubPage/myClub";
 export default function Main() {
   return (
     <BrowserRouter>
@@ -32,6 +31,7 @@ export default function Main() {
         <Route path="/join" element={<Join/>}/>
         <Route path="/getInfo" element={<GetInfo/>}/>
         <Route path="/chatting" element={<Chatting/>}/>
+        <Route path="/myclub" element={<MyClubPage/>}/>
       </Routes>
     </BrowserRouter>
   );
