@@ -43,21 +43,38 @@ export default function Mypage () {
             {/* 내 정보 */}
             {mypageMenu == "userInfo" &&
             <div>
-              <p className='mb-12'>내정보</p>
-              <ul className='mypage_content_list'>
-                <li className='mb-2'>아이디(이메일) : </li>
-                <li className='mb-2'>이름 : </li>
-                <li className='mb-2'>성별 : </li>
-                <li className='mb-2'>생년월일 : </li>
-                <li className='mb-2'>전화번호 : </li>
-              </ul>
+              <table className='w-full'>
+
+                <caption className='mb-8 font-bold'>내 정보</caption>
+                <tr className='border-2 border-[#c9c9c9]'>
+                  <th className='border-2 border-[#c9c9c9] min-w-[150px] p-2'>아이디(이메일)</th>
+                  <td className='border-2 border-[#c9c9c9] text-center min-w-[300px]'>"abcd@naver.com"</td>
+                </tr>
+                <tr className='border-2 border-[#c9c9c9]'>
+                  <th className='border-2 border-[#c9c9c9] p-2'>이름</th>
+                  <td className='border-2 border-[#c9c9c9] text-center'>"1234"</td>
+                </tr>
+                <tr className='border-2 border-[#c9c9c9]'>
+                  <th className='border-2 border-[#c9c9c9] p-2'>성별</th>
+                  <td className='border-2 border-[#c9c9c9] text-center'>"남"</td>
+                </tr>
+                <tr className='border-2 border-[#c9c9c9]'>
+                  <th className='border-2 border-[#c9c9c9] p-2'>생년월일</th>
+                  <td className='border-2 border-[#c9c9c9] text-center'>"12345678"</td>
+                </tr>
+                <tr className='border-2 border-[#c9c9c9]'>
+                  <th className='border-2 border-[#c9c9c9] p-2'>전화번호</th>
+                  <td className='border-2 border-[#c9c9c9] text-center'>"010-1234-5678"</td>
+                </tr>
+                
+              </table>
             </div>
             }
             
             {/* 정보 수정 */}
             {mypageMenu == "updateInfo" && 
             <div>
-              <p className='mb-12'>정보 수정</p>
+              <p className='mb-8 font-bold text-center'>정보 수정</p>
               <ul>
                 <li><label htmlFor="">아이디(이메일) <input type="text" className='w-full rounded'/></label></li>
                 <li><label htmlFor="">비밀번호 <input type="text" className='w-full rounded'/></label></li>
@@ -73,14 +90,54 @@ export default function Mypage () {
             {/* 내 동아리 */}
             {mypageMenu == "myclub" && 
             <div>
-              <p className='mb-12'>내 동아리</p>
+              <table className='w-full'>
+                <caption className='mb-8 font-bold'>내가 가입한 동아리</caption>
+                <tr className='border-2 border-[#c9c9c9]'>
+                  <th className='border-2 border-[#c9c9c9] w-[50px] p-2'> </th>
+                  <td className='border-2 border-[#c9c9c9] text-center min-w-[300px] p-2'>동아리 명</td>
+                </tr>
+                <tr className='border-2 border-[#c9c9c9]'>
+                  <th className='border-2 border-[#c9c9c9] w-[50px] p-2'>1</th>
+                  <td className='border-2 border-[#c9c9c9] text-center min-w-[300px]'>동아리1</td>
+                </tr>
+                <tr className='border-2 border-[#c9c9c9]'>
+                  <th className='border-2 border-[#c9c9c9] w-[50px] p-2'>2</th>
+                  <td className='border-2 border-[#c9c9c9] text-center min-w-[300px]'>동아리2</td>
+                </tr>
+                <tr className='border-2 border-[#c9c9c9]'>
+                  <th className='border-2 border-[#c9c9c9] w-[50px] p-2'>3</th>
+                  <td className='border-2 border-[#c9c9c9] text-center min-w-[300px]'>동아리3</td>
+                </tr>
+              </table>
             </div>
             }
 
             {/* 신청 현황 */}
             {mypageMenu == "application" && 
             <div>
-              <p className='mb-12'>신청 현황</p>
+              <table className='w-full'>
+                <caption className='mb-8 font-bold'>신청 중인 동아리</caption>
+                <tr className='border-2 border-[#c9c9c9]'>
+                  <th className='border-2 border-[#c9c9c9] w-[50px]'> </th>
+                  <td className='border-2 border-[#c9c9c9] text-center min-w-[300px] p-2'>동아리 명</td>
+                  <td className='border-2 border-[#c9c9c9] text-center'>신청 현황</td>
+                </tr>
+                <tr className='border-2 border-[#c9c9c9]'>
+                  <th className='border-2 border-[#c9c9c9] w-[50px]'>1</th>
+                  <td className='border-2 border-[#c9c9c9] text-center min-w-[300px] p-2'>동아리1</td>
+                  <td className='border-2 border-[#c9c9c9] text-center'>신청 중</td>
+                </tr>
+                <tr className='border-2 border-[#c9c9c9]'>
+                  <th className='border-2 border-[#c9c9c9] w-[50px]'>2</th>
+                  <td className='border-2 border-[#c9c9c9] text-center min-w-[300px] p-2'>동아리2</td>
+                  <td className='border-2 border-[#c9c9c9] text-center'>가입 완료</td>
+                </tr>
+                <tr className='border-2 border-[#c9c9c9]'>
+                  <th className='border-2 border-[#c9c9c9] w-[50px]'>3</th>
+                  <td className='border-2 border-[#c9c9c9] text-center min-w-[300px] p-2'>동아리 명</td>
+                  <td className='border-2 border-[#c9c9c9] text-center'>신청 취소</td>
+                </tr>
+              </table>
             </div>
             }
             
@@ -88,7 +145,7 @@ export default function Mypage () {
 
           </div>
         </div>
-      </div>
+      </div> 
       
       {/* 쪽지 modal box */}
       {modalDisplay == "Open" &&
