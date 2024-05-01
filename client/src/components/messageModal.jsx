@@ -31,7 +31,19 @@ export default function MessageModal(props) {
   const [currentReceivedPage, setCurrentReceivedPage] = useState(1)
   const [currentSentPage, setCurrentSentPage] = useState(1)
 
-  const [checkboxState, setCheckboxState] = useState([]);
+
+  //  전체 checkbox 제어
+  const toggleAllCheckboxes = (isChecked, messageType) => {
+    // 해당 타입의 모든 쪽지의 상태를 업데이트하는 로직
+    const updateFunc = messageType === "Received" ? setReceivedCheckbox : setSentCheckbox;
+    updateFunc(isChecked);
+    // 각 쪽지에 대해 handleCheckboxChange 호출
+    const messages = messageType === "Received" ? receivedMessage : sentMessage;
+    messages.forEach(msg => {
+      const fakeEvent = { target: { checked: isChecked } };
+      handleCheckboxChange(fakeEvent, msg.msg_seq);
+    });
+  };
 
   // 페이지 버튼 클릭 시 현재 페이지의 상태 전환
   const handlePageBtn = (messageType, page) => {
@@ -59,9 +71,9 @@ export default function MessageModal(props) {
   }
 
   // 메시지에 checkbox 처리 
-  function handleMessageCheckbox (target){
+  function handleMessageCheckbox(target) {
     // const {data, error} = await supabase.from('messages')
-    
+
     console.log(target);
 
   }
@@ -208,6 +220,16 @@ export default function MessageModal(props) {
     }
   }
 
+  //
+  const handleCheckboxChange= (event, messageId)=> {
+    if (event.target.checked) {
+      console.log(`Checkbox with message ID ${messageId} is checked.`);
+      // 여기에 추가적인 로직을 실행할 수 있습니다.
+    } else {
+      console.log(`Checkbox with message ID ${messageId} is unchecked.`);
+      // 체크 해제 상태에 대한 로직을 실행할 수 있습니다.
+    }
+  }
 
   // 쪽지 쓰기 버튼
   const [messageWriteBtn, setMessageWriteBtn] = useState("List")
@@ -258,8 +280,8 @@ export default function MessageModal(props) {
 
           {/* 리스트 상단 */}
           <div className='flex p-2 mb-4 border-2'>
-            {messageBtn == "Received" && <input type="checkbox" onChange={() => setReceivedCheckbox(receivedCheckbox ? false : true)} defaultChecked = {receivedCheckbox}/>}
-            {messageBtn == "Sent" && <input type="checkbox" onChange={() => setSentCheckbox(sentCheckbox ? false : true)}defaultChecked = {sentCheckbox} />}
+            {messageBtn == "Received" && <input type="checkbox" onChange={(e) => toggleAllCheckboxes(e.target.checked, "Received")} checked={receivedCheckbox} />}
+            {messageBtn == "Sent" && <input type="checkbox" onChange={(e) => toggleAllCheckboxes(e.target.checked, "Sent")} checked={sentCheckbox} />}
             <div className='flex justify-center w-full mx-2'>
               <p>
                 {messageBtn == "Received" && "보낸 사람"}
@@ -277,8 +299,7 @@ export default function MessageModal(props) {
                   // 현재 페이지의 5개 쪽지 정보 표시
                   receivedMessage.slice((currentReceivedPage - 1) * 5, currentReceivedPage * 5).map((msg, index) => (
                     <div key={index} className='flex items-center p-2 mb-4'>
-                      <input type="checkbox" defaultChecked={receivedCheckbox} id={msg.msg_seq} onChange={handleMessageCheckbox(msg.msg_seq)}/>
-                      <div className='flex justify-between w-full mx-2'>
+                      <input type="checkbox" checked={messageBtn === "Received" ? receivedCheckbox : sentCheckbox} id={msg.msg_seq} onChange={(e) => handleCheckboxChange(e, msg.msg_seq)}/>                      <div className='flex justify-between w-full mx-2'>
                         <div className="flex items-center">
                           <p className='inline-block ml-1 text-center w-28'>{msg.users.user_name}</p>
                           <a href='#' className='ml-2'>{msg.msg_title}</a>
@@ -313,7 +334,7 @@ export default function MessageModal(props) {
                   // 현재 페이지의 5개 쪽지 정보 표시
                   sentMessage.slice((currentSentPage - 1) * 5, currentSentPage * 5).map((msg, index) => (
                     <div key={index} className='flex items-center p-2 mb-4'>
-                      <input type="checkbox" defaultChecked={sentCheckbox} />
+                      <input type="checkbox" defaultChecked={sentCheckbox} onChange={(e) => handleCheckboxChange(e, msg.msg_seq)} />
                       <div className='flex justify-between w-full mx-2'>
                         <div className="flex items-center">
                           <p className='inline-block ml-1 text-center w-28'>{msg.users.user_name}</p>
@@ -367,7 +388,7 @@ export default function MessageModal(props) {
 
         {/* 검색창 */}
         <div className='flex justify-end mb-4'>
-          <input  className='px-1 border-2' id="searchbyTitle" onKeyDown={handleKeyDown} type="text" placeholder='제목 검색' ref={inputRef} />
+          <input className='px-1 border-2' id="searchbyTitle" onKeyDown={handleKeyDown} type="text" placeholder='제목 검색' ref={inputRef} />
           <button className='px-1 ml-2 border-2' onClick={handleSearchbyTitle} id="searchButton">검색</button>
         </div>
 
