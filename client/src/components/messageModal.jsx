@@ -21,6 +21,10 @@ export default function MessageModal(props) {
   const [receivedPage, setReceivedPage] = useState([]);
   const [sentPage, setSentPage] = useState([]);
 
+  // 체크된 쪽지를 저장하는 배열
+  const [checkedMessage, setcheckedMEssage] = useState([]);
+
+  // 상태관리 전 사용될 User_seq (user 정보)
   const [userseq, setUserSeq] = useState("");
 
   // 쪽지 리스트 전체 체크박스 상태
@@ -37,6 +41,7 @@ export default function MessageModal(props) {
     // 해당 타입의 모든 쪽지의 상태를 업데이트하는 로직
     const updateFunc = messageType === "Received" ? setReceivedCheckbox : setSentCheckbox;
     updateFunc(isChecked);
+
     // 각 쪽지에 대해 handleCheckboxChange 호출
     const messages = messageType === "Received" ? receivedMessage : sentMessage;
     messages.forEach(msg => {
@@ -70,13 +75,7 @@ export default function MessageModal(props) {
     }
   }
 
-  // 메시지에 checkbox 처리 
-  function handleMessageCheckbox(target) {
-    // const {data, error} = await supabase.from('messages')
 
-    console.log(target);
-
-  }
 
   // 받은쪽지 목록 Update
   const fetchReceivedMessages = async () => {
@@ -220,22 +219,28 @@ export default function MessageModal(props) {
     }
   }
 
-  //
-  const handleCheckboxChange= (event, messageId)=> {
-    if (event.target.checked) {
+  const handleCheckboxChange = (event, messageId) => {
+    const isChecked = event.target.checked;
+    if (isChecked) {
       console.log(`Checkbox with message ID ${messageId} is checked.`);
-      // 여기에 추가적인 로직을 실행할 수 있습니다.
+      // 체크된 경우, checkedMessage 배열에 ID 추가 (중복 방지)
+      setCheckedMessage(prev => [...new Set([...prev, messageId])]);
     } else {
       console.log(`Checkbox with message ID ${messageId} is unchecked.`);
-      // 체크 해제 상태에 대한 로직을 실행할 수 있습니다.
+      // 체크 해제된 경우, checkedMessage 배열에서 해당 ID 제거
+      setCheckedMessage(prev => prev.filter(id => id !== messageId));
     }
-  }
-
+  };
   // 쪽지 쓰기 버튼
   const [messageWriteBtn, setMessageWriteBtn] = useState("List")
 
   const handleMessageWrite = () => {
     setMessageWriteBtn(messageWriteBtn == "List" ? "Write" : "List")
+  }
+
+  // 쪽지 삭제 버튼
+  const handleDeleteMessage = async () => {
+    console.log("안녕");
   }
 
   // 쪽지 전송 버튼
@@ -299,7 +304,7 @@ export default function MessageModal(props) {
                   // 현재 페이지의 5개 쪽지 정보 표시
                   receivedMessage.slice((currentReceivedPage - 1) * 5, currentReceivedPage * 5).map((msg, index) => (
                     <div key={index} className='flex items-center p-2 mb-4'>
-                      <input type="checkbox" checked={messageBtn === "Received" ? receivedCheckbox : sentCheckbox} id={msg.msg_seq} onChange={(e) => handleCheckboxChange(e, msg.msg_seq)}/>                      <div className='flex justify-between w-full mx-2'>
+                      <input type="checkbox" checked={messageBtn === "Received" ? receivedCheckbox : sentCheckbox} id={msg.msg_seq} onChange={(e) => handleCheckboxChange(e, msg.msg_seq)} />                      <div className='flex justify-between w-full mx-2'>
                         <div className="flex items-center">
                           <p className='inline-block ml-1 text-center w-28'>{msg.users.user_name}</p>
                           <a href='#' className='ml-2'>{msg.msg_title}</a>
@@ -397,7 +402,7 @@ export default function MessageModal(props) {
 
         {/* 하단 버튼 */}
         <div className='flex justify-end'>
-          <button className='p-1 px-3 mr-1 border-2'>삭제</button>
+          <button className='p-1 px-3 mr-1 border-2' onClick={handleDeleteMessage}>삭제</button>
           <button className='p-1 px-3 border-2' onClick={handleCloseMessage}>닫기</button>
         </div>
       </div>
