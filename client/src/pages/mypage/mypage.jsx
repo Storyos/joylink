@@ -45,7 +45,7 @@ export default function Mypage () {
             <div>
               <table className='w-full'>
 
-                <caption className='mb-8'>내 정보</caption>
+                <caption className='mb-8 font-bold'>내 정보</caption>
                 <tr className='border-2 border-[#c9c9c9]'>
                   <th className='border-2 border-[#c9c9c9] min-w-[150px] p-2'>아이디(이메일)</th>
                   <td className='border-2 border-[#c9c9c9] text-center min-w-[300px]'>"abcd@naver.com"</td>
@@ -74,7 +74,7 @@ export default function Mypage () {
             {/* 정보 수정 */}
             {mypageMenu == "updateInfo" && 
             <div>
-              <p className='mb-8 text-center'>정보 수정</p>
+              <p className='mb-8 font-bold text-center'>정보 수정</p>
               <ul>
                 <li><label htmlFor="">아이디(이메일) <input type="text" className='w-full rounded'/></label></li>
                 <li><label htmlFor="">비밀번호 <input type="text" className='w-full rounded'/></label></li>
@@ -91,21 +91,53 @@ export default function Mypage () {
             {mypageMenu == "myclub" && 
             <div>
               <table className='w-full'>
-                <caption className='mb-8'>내 동아리</caption>
+                <caption className='mb-8 font-bold'>내가 가입한 동아리</caption>
                 <tr className='border-2 border-[#c9c9c9]'>
-                  <th className='border-2 border-[#c9c9c9] min-w-[150px] p-2'>아이디(이메일)</th>
-                  <td className='border-2 border-[#c9c9c9] text-center min-w-[300px]'>"abcd@naver.com"</td>
+                  <th className='border-2 border-[#c9c9c9] w-[50px] p-2'> </th>
+                  <td className='border-2 border-[#c9c9c9] text-center min-w-[300px] p-2'>동아리 명</td>
+                </tr>
+                <tr className='border-2 border-[#c9c9c9]'>
+                  <th className='border-2 border-[#c9c9c9] w-[50px] p-2'>1</th>
+                  <td className='border-2 border-[#c9c9c9] text-center min-w-[300px]'>동아리1</td>
+                </tr>
+                <tr className='border-2 border-[#c9c9c9]'>
+                  <th className='border-2 border-[#c9c9c9] w-[50px] p-2'>2</th>
+                  <td className='border-2 border-[#c9c9c9] text-center min-w-[300px]'>동아리2</td>
+                </tr>
+                <tr className='border-2 border-[#c9c9c9]'>
+                  <th className='border-2 border-[#c9c9c9] w-[50px] p-2'>3</th>
+                  <td className='border-2 border-[#c9c9c9] text-center min-w-[300px]'>동아리3</td>
                 </tr>
               </table>
-              <p></p>
             </div>
             }
 
             {/* 신청 현황 */}
             {mypageMenu == "application" && 
             <div>
-              <p className='mb-8 text-center'>신청 현황</p>
-              <p>현재 가입 신청한 동아리가 존재하지 않습니다.</p>
+              <table className='w-full'>
+                <caption className='mb-8 font-bold'>신청 중인 동아리</caption>
+                <tr className='border-2 border-[#c9c9c9]'>
+                  <th className='border-2 border-[#c9c9c9] w-[50px]'> </th>
+                  <td className='border-2 border-[#c9c9c9] text-center min-w-[300px] p-2'>동아리 명</td>
+                  <td className='border-2 border-[#c9c9c9] text-center'>신청 현황</td>
+                </tr>
+                <tr className='border-2 border-[#c9c9c9]'>
+                  <th className='border-2 border-[#c9c9c9] w-[50px]'>1</th>
+                  <td className='border-2 border-[#c9c9c9] text-center min-w-[300px] p-2'>동아리1</td>
+                  <td className='border-2 border-[#c9c9c9] text-center'>신청 중</td>
+                </tr>
+                <tr className='border-2 border-[#c9c9c9]'>
+                  <th className='border-2 border-[#c9c9c9] w-[50px]'>2</th>
+                  <td className='border-2 border-[#c9c9c9] text-center min-w-[300px] p-2'>동아리2</td>
+                  <td className='border-2 border-[#c9c9c9] text-center'>가입 완료</td>
+                </tr>
+                <tr className='border-2 border-[#c9c9c9]'>
+                  <th className='border-2 border-[#c9c9c9] w-[50px]'>3</th>
+                  <td className='border-2 border-[#c9c9c9] text-center min-w-[300px] p-2'>동아리 명</td>
+                  <td className='border-2 border-[#c9c9c9] text-center'>신청 취소</td>
+                </tr>
+              </table>
             </div>
             }
             
