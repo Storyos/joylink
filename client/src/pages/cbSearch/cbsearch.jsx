@@ -12,7 +12,7 @@ const SearchBar = () => (
       <button className="p-2 mr-4 text-white bg-blue-500 rounded-r-lg hover:bg-blue-700">
         검색
       </button>
-      <Link to="/cbCreate" className='p-2 text-white bg-blue-500 rounded-lg t-white mar hover:bg-blue-700 '>동아리 만들기</Link>
+      <Link to="/clubCreate" className='p-2 text-white bg-blue-500 rounded-lg t-white mar hover:bg-blue-700 '>동아리 만들기</Link>
     </div>
   </div>
 );

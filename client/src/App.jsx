@@ -23,3 +23,4 @@ export default function App() {
 
 // 필요한 경우, supabase 클라이언트를 다른 컴포넌트에서 재사용하기 위해 export 할 수 있습니다.
 export { supabase };
+
