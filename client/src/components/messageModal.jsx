@@ -27,15 +27,45 @@ export default function MessageModal(props) {
   const [currentReceivedPage, setCurrentReceivedPage] = useState(1)
   const [currentSentPage, setCurrentSentPage] = useState(1)
 
+  const [checkboxState, setCheckboxState] = useState([]);
+
   // 페이지 버튼 클릭 시 현재 페이지의 상태 전환
   const handlePageBtn = (messageType, page) => {
     if (messageType === "Received") setCurrentReceivedPage(page); console.log(page)
     if (messageType === "Sent") setCurrentSentPage(page); console.log(page)
   }
 
+  // 쪽지 읽음표시
+  async function updateMessageReadState(target) {
+    // 받은쪽지의 읽음표시
+    if (messageBtn == 'Received') {
+      await supabase.from('messages').update('').eq(`msg_seq`, target);
+    }
+  }
+  //  쪽지 삭제여뷰 (실제 DB는 아니고 상태만 Check)
+  async function updateMessageDeleteState(target) {
+    // 받은쪽지에서 삭제시
+    if (messageBtn == 'Received') {
+      await supabase.from('messages').update('rcv_deleted').eq(`msg_seq`, target);
+    }
+    // 보낸 쪽지에서 삭제 시
+    else {
+      await supabase.from('messages').update('snd_deleted').eq(`msg_seq`, target);
+    }
+  }
 
+  // 메시지에 checkbox 처리 
+  function handleMessageCheckbox (target){
+    // const {data, error} = await supabase.from('messages')
+    
+    console.log(target);
+
+  }
+
+  // 받은쪽지 목록 Update
   const fetchReceivedMessages = async () => {
     const { data, error } = await supabase.from('messages').select(`
+      msg_seq,
       msg_snd_seq,
       msg_rcv_seq,
       msg_title,
@@ -45,6 +75,8 @@ export default function MessageModal(props) {
         user_name
       )
     `).eq(`msg_rcv_seq`, 13)
+      .eq(`rcv_deleted`, false)
+
     if (error) {
       console.error("받은 쪽지 select query 에러", error);
     } else {
@@ -74,6 +106,7 @@ export default function MessageModal(props) {
     // 기  능 :DB에서 내가 보낸쪽지 가져오기
     // 여기서 13은 임의로 보낸사람 seq저장한것
     const { data, error } = await supabase.from('messages').select(`
+      msg_seq,
       msg_snd_seq,
       msg_rcv_seq,
       msg_title,
@@ -83,7 +116,7 @@ export default function MessageModal(props) {
         user_name
       )
     `).eq(`msg_snd_seq`, 13)
-
+      .eq(`snd_deleted`, false)
     if (error) {
       console.error("보낸쪽지 select query 에러");
     }
@@ -107,6 +140,7 @@ export default function MessageModal(props) {
     // 기  능 :DB에서 내가 받은쪽지 가져오기
     // 여기서 1은 임의로 받은사람 저장한것
     const { data, error } = await supabase.from('messages').select(`
+      msg_seq,
       msg_snd_seq,
       msg_rcv_seq,
       msg_title,
@@ -116,6 +150,8 @@ export default function MessageModal(props) {
         user_name
       )
     `).eq(`msg_rcv_seq`, 13)
+      .eq(`rcv_deleted`, false)
+
     if (error) {
       console.error("받은 쪽지 select query 에러");
     }
@@ -133,6 +169,7 @@ export default function MessageModal(props) {
     console.log("현재 검색어 : ", currentInputValue);
     if (messageBtn === "Received") {
       const { data, error } = await supabase.from('messages').select(`
+      msg_seq,
       msg_snd_seq,
       msg_rcv_seq,
       msg_title,
@@ -141,13 +178,16 @@ export default function MessageModal(props) {
       users : msg_snd_seq (
         user_name
       )
-    `).eq(`msg_rcv_seq`, 13).like('msg_title', `%${currentInputValue}%`);
+    `).eq(`msg_rcv_seq`, 13)
+        .eq(`rcv_deleted`, false)
+        .like('msg_title', `%${currentInputValue}%`);
       console.log("데이터", data);
       setReceivedMessage(data);
     }
     else {
       console.log("여기는 왔나?");
       const { data, error } = await supabase.from('messages').select(`
+      msg_seq,
       msg_snd_seq,
       msg_rcv_seq,
       msg_title,
@@ -156,7 +196,9 @@ export default function MessageModal(props) {
       users : msg_rcv_seq (
         user_name
       )
-    `).eq(`msg_snd_seq`, 13).like('msg_title', `%${currentInputValue}%`);
+    `).eq(`msg_snd_seq`, 13)
+        .eq(`snd_deleted`, false)
+        .like('msg_title', `%${currentInputValue}%`);
       console.log("데이터", data);
       setSentMessage(data);
     }
@@ -230,7 +272,7 @@ export default function MessageModal(props) {
                   // 현재 페이지의 5개 쪽지 정보 표시
                   receivedMessage.slice((currentReceivedPage - 1) * 5, currentReceivedPage * 5).map((msg, index) => (
                     <div key={index} className='flex items-center p-2 mb-4'>
-                      <input type="checkbox" />
+                      <input type="checkbox" id={msg.msg_seq} onChange={handleMessageCheckbox(msg.msg_seq)} />
                       <div className='flex justify-between w-full mx-2'>
                         <div>
                           <p className='inline-block ml-1 text-center w-28'>{msg.users.user_name}</p>
@@ -303,7 +345,7 @@ export default function MessageModal(props) {
       handleSearchbyTitle();
     }
   };
-  
+
   // 쪽지 리스트 화면
   const MessageList = () => {
     return (
@@ -320,7 +362,7 @@ export default function MessageModal(props) {
 
         {/* 검색창 */}
         <div className='flex justify-end mb-4'>
-          <input  className='px-1 border-2' id="searchbyTitle" onKeyDown={handleKeyDown} type="text" placeholder='제목 검색' ref={inputRef} />
+          <input className='px-1 border-2' id="searchbyTitle" onKeyDown={handleKeyDown} type="text" placeholder='제목 검색' ref={inputRef} />
           <button onClick={handleSearchbyTitle} id="searchButton">검색</button>
         </div>
 
