@@ -3,7 +3,8 @@ import App from "./App";
 import Mainpage from "./pages/mainpage/mainpage";
 import Mypage from './pages/mypage/mypage';
 import CbJoin from "./pages/cbJoin/cbJoin";
-import CbSearch from './pages/cbSearch/cbSearch'
+import CbSearch from './pages/cbSearch/cbsearch';
+import CbCreate from "./pages/cbCreate/cbCreate";
 import CbDescription from "./pages/cbDescription/cbDescription";
 import Notice from "./pages/notice/notice";
 import Login from './pages/login/login';
@@ -22,6 +23,7 @@ export default function Main() {
           <Route index element={<Mainpage/>}/>
           <Route path="mypage" element={<Mypage/>}/>
           <Route path="cbSearch" element={<CbSearch/>}/> 
+          <Route path="cbCreate" element={<CbCreate/>}/> 
           <Route path="notice" element={<Notice/>}/>
           <Route path="cbDescription" element={<CbDescription/>}/>
           <Route path="cbJoin" element={<CbJoin/>}/>
@@ -36,6 +38,7 @@ export default function Main() {
         <Route path="/join" element={<Join/>}/>
         <Route path="/getInfo" element={<GetInfo/>}/>
         <Route path="/chatting" element={<Chatting/>}/>
+        <Route path="/myclub" element={<MyClubPage/>}/>
       </Routes>
     </BrowserRouter>
   );
