@@ -14,6 +14,7 @@ import Chatting from './pages/chatting/chatting';
 import MyClubPage from "./pages/myClubPage/myClub";
 import ClubManagementPost from "./pages/myClubPagePost/myClubPagePost";
 import ClubManagementPage from "./pages/clubManagementPage/clubManagementPage";
+import ViewAccountPage from "./pages/viewAccountPage/viewAccountPage";
 
 export default function Main() {
   return (
@@ -32,6 +33,7 @@ export default function Main() {
           <Route path="myClubPage" element={<MyClubPage/>}/>
           <Route path="clubManagementPost" element={<ClubManagementPost/>}/>
           <Route path="clubManagementPage" element={<ClubManagementPage/>}/>
+          <Route path="viewAccountPage" element={<ViewAccountPage/>}/>
           </Route>
         
         <Route path="/login" element={<Login/>}/>
