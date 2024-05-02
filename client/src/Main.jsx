@@ -11,6 +11,9 @@ import Login from './pages/login/login';
 import Join from './pages/join/join';
 import GetInfo from "./pages/getInfo/getInfo";
 import Chatting from './pages/chatting/chatting';
+import MyClubPage from "./pages/myClubPage/myClub";
+import ClubManagementPost from "./pages/myClubPagePost/myClubPagePost";
+import ClubManagementPage from "./pages/clubManagementPage/clubManagementPage";
 
 export default function Main() {
   return (
@@ -27,9 +30,9 @@ export default function Main() {
           <Route path="notice/:noticeId" element={<Notice/>}/>
           <Route path="event/:eventId" element={<Notice/>}/>
           <Route path="myClubPage" element={<MyClubPage/>}/>
-          <Route path="clubManagement" element={<ClubManagement/>}>
+          <Route path="clubManagementPost" element={<ClubManagementPost/>}/>
+          <Route path="clubManagementPage" element={<ClubManagementPage/>}/>
           </Route>
-        </Route>
         
         <Route path="/login" element={<Login/>}/>
         <Route path="/join" element={<Join/>}/>
@@ -40,5 +43,4 @@ export default function Main() {
     </BrowserRouter>
   );
 }
-
 
