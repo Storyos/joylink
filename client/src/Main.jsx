@@ -18,6 +18,7 @@ export default function Main() {
       <Routes>
         <Route path="/" element={<App/>}>
           <Route index element={<Mainpage/>}/>
+          <Route path="checkUserInfo" element={<Chatting></Chatting>}/>
           <Route path="mypage" element={<Mypage/>}/>
           <Route path="cbSearch" element={<CbSearch/>}/> 
           <Route path="cbCreate" element={<CbCreate/>}/> 

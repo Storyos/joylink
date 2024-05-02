@@ -39,6 +39,8 @@ export default function Login() {
     // OAUTH로 로그인 했을때 추가정보가 기입되었는지 체크
     // 근데 이거는 메인페이지에서 진행해야될듯
     const checkAdditionalUserInfo = async(email) => {
+        const session = await supabase.auth.getUser(); 
+        email = session.data.user.email
         const {data, error} = await supabase.from('users').select(email).eq(email,email)
         if(!data){
             alert("추가 정보입력이 필요합니다.")
@@ -51,8 +53,14 @@ export default function Login() {
     const handleGoogleLogin = async () => {
         const { data, error } = await supabase.auth.signInWithOAuth({
             provider: "google",
+            options:{
+                redirectTo:'http://localhost:3000/checkUserInfo'
+            }
         });
         if (error) console.log("error :", error);
+        else{
+            console.log(data);
+        }
     };
 
 
@@ -122,7 +130,7 @@ export default function Login() {
                     <h5 className="mt-2">계정이 없으신가요?</h5>
                     <div className="flex justify-center mt-4">
                         <button onClick={handleGoogleLogin} className="px-4 py-2 mr-2 font-bold text-white bg-red-500 rounded hover:bg-red-600">구글로그인</button>
-                        <button onClick={handleTest1} className="px-4 py-2 mr-2 font-bold text-white bg-gray-500 rounded hover:bg-gray-600">TEST Button</button>
+                        <button onClick={handleTest1} className="px-4 ,py-2 mr-2 font-bold text-white bg-gray-500 rounded hover:bg-gray-600">TEST Button</button>
                         <button id='join' onClick={handleTest1} className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-600">회원가입</button>
                     </div>
                 </div>
