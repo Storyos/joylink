@@ -12,6 +12,7 @@ import Join from './pages/join/join';
 import GetInfo from "./pages/getInfo/getInfo";
 import Chatting from './pages/chatting/chatting';
 import MyClubPage from "./pages/myClubPage/myClub";
+import ChattingModal from "./components/chattingModal";
 export default function Main() {
   return (
     <BrowserRouter>
@@ -32,6 +33,7 @@ export default function Main() {
         <Route path="/getInfo" element={<GetInfo/>}/>
         <Route path="/chatting" element={<Chatting/>}/>
         <Route path="/myclub" element={<MyClubPage/>}/>
+        <Route path="/chattingpage"element={<ChattingModal/>} />
       </Routes>
     </BrowserRouter>
   );
