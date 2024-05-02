@@ -1,11 +1,10 @@
-import Header from '../../components/header/header'
-import Footer from '../../components/footer/footer'
+
 import { useState, useTransition } from 'react'
 import { supabase } from '../../App';
+import MessageModal from '../../components/messageModal';
 
 export default function Mypage () {
-  
-  
+    
 
   // message modal창 열고 닫기
   const [modalDisplay, setModalDisplay] = useState("Close");
@@ -32,9 +31,9 @@ export default function Mypage () {
         <div className='flex justify-around'>
           <div className='w-1/6 rounded-2xl' style={{backgroundColor:'#e9e9e9'}}>
             <div className='flex flex-col items-center justify-around' style={{minHeight:'500px'}}>
-              <button className='font-bold'>내 정보 수정</button>
-              <button className='font-bold'>내 동아리</button>
-              <button className='font-bold'>신청 현황</button>
+              <button className='font-bold' onClick={() => handleMypageMenu("userInfo")}>내 정보</button>
+              <button className='font-bold' onClick={() => handleMypageMenu("updateInfo")}>정보 수정</button>
+              <button className='font-bold' onClick={() => handleMypageMenu("myclub")}>내 동아리</button>
               <button className='font-bold' onClick={handleOpenMessage}>쪽지</button>
               <button className='font-bold' onClick={() => handleMypageMenu("application")}>신청 현황</button>
             </div>
@@ -70,6 +69,7 @@ export default function Mypage () {
                 
               </table>
             </div>
+            }
             
             {/* 정보 수정 */}
             {mypageMenu == "updateInfo" && 
@@ -139,50 +139,10 @@ export default function Mypage () {
                 </tr>
               </table>
             </div>
+            }
             
-            {/* 쪽지 리스트 */}
-            <div className='mb-4 border-2'>
-              
-              <div className='flex items-center p-2 mb-4'>
-                <input type="checkbox"/>
-                <div className='flex justify-between w-full mx-2'>
-                  <div>
-                    <p className='inline-block ml-1 text-center w-28'>user1</p>
-                    <a href='#' className='ml-2'>쪽지 보내기 1</a>
-                  </div>
-                  <button className='w-20 text-sm'>2024-04-14</button>
-                </div>
-              </div>
-              
-              <div className='flex items-center p-2 mb-4'>
-                <input type="checkbox" />
-                <div className='flex justify-between w-full mx-2'>
-                  <div>
-                    <p className='inline-block ml-1 text-center w-28'>user2</p>
-                    <a href='#' className='ml-2'>쪽지 보내기 2</a>
-                  </div>
-                  <button className='w-20 text-sm'>2024-04-13</button>
-                </div>
-              </div>
-    
-              <div className='flex items-center p-2 mb-4'>
-                <input type="checkbox" />
-                <div className='flex justify-between w-full mx-2'>
-                  <div>
-                    <p className='inline-block ml-1 text-center w-28'>user3</p>
-                    <a href='#' className='ml-2'>쪽지 보내기 3</a>
-                  </div>
-                  <button className='w-20 text-sm'>2024-04-12</button>
-                </div>
-              </div>
-    
-            </div>
-          </div>
+            
 
-          {/* 하단 버튼 */}
-          <div className='flex justify-end'>
-            <button className='p-1 px-3 mr-1 border-2'>삭제</button>
-            <button className='p-1 px-3 border-2' onClick={handleCloseMessage}>닫기</button>
           </div>
         </div>
       </div> 
