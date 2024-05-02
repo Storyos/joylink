@@ -12,12 +12,14 @@ import Join from './pages/join/join';
 import GetInfo from "./pages/getInfo/getInfo";
 import Chatting from './pages/chatting/chatting';
 import MyClubPage from "./pages/myClubPage/myClub";
-import ChattingModal from "./components/chattingModal";
+import ClubManagement from "./pages/myClubPagePost/myClubPagePost";
+
+
 export default function Main() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App/>}>
+        <Route path="/" element={<App/>}> 
           <Route index element={<Mainpage/>}/>
           <Route path="mypage" element={<Mypage/>}/>
           <Route path="cbSearch" element={<CbSearch/>}/> 
@@ -27,7 +29,11 @@ export default function Main() {
           <Route path="cbJoin" element={<CbJoin/>}/>
           <Route path="notice/:noticeId" element={<Notice/>}/>
           <Route path="event/:eventId" element={<Notice/>}/>
+          <Route path="myClubPage" element={<MyClubPage/>}/>
+          <Route path="clubManagement" element={<ClubManagement/>}>
+          </Route>
         </Route>
+        
         <Route path="/login" element={<Login/>}/>
         <Route path="/join" element={<Join/>}/>
         <Route path="/getInfo" element={<GetInfo/>}/>
@@ -38,3 +44,5 @@ export default function Main() {
     </BrowserRouter>
   );
 }
+
+
