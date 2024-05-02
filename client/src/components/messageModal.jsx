@@ -166,6 +166,13 @@ export default function MessageModal(props) {
     }
   }
 
+  // 쪽지 내용 확인
+  const [messageContentsBtn, setMessageContentsBtn] = useState("List")
+  const [messageContentsData, setMessageContentsData] = useState()
+  const handleMessageContentsOpen = (msg) => {
+    setMessageContentsBtn("Contents")
+    setMessageContentsData(msg)
+  }
 
   // 쪽지 쓰기 버튼
   const [messageWriteBtn, setMessageWriteBtn] = useState("List")
@@ -239,7 +246,7 @@ export default function MessageModal(props) {
                       <div className='flex justify-between w-full mx-2'>
                         <div className="flex items-center">
                           <p className='inline-block ml-1 text-center w-28'>{msg.users.user_name}</p>
-                          <a href='#' className='ml-2'>{msg.msg_title}</a>
+                          <button className='ml-2' onClick={() => handleMessageContentsOpen(msg)}>{msg.msg_title}</button>
                         </div>
                         <p className='w-20 text-sm'>{msg.msg_send_time}</p>
                       </div>
@@ -275,7 +282,7 @@ export default function MessageModal(props) {
                       <div className='flex justify-between w-full mx-2'>
                         <div className="flex items-center">
                           <p className='inline-block ml-1 text-center w-28'>{msg.users.user_name}</p>
-                          <a href='#' className='ml-2'>{msg.msg_title}</a>
+                          <button className='ml-2' onClick={() => handleMessageContentsOpen(msg)}>{msg.msg_title}</button>
                         </div>
                         <p className='w-20 text-sm'>{msg.msg_send_time}</p>
                       </div>
@@ -372,13 +379,45 @@ export default function MessageModal(props) {
     )
   }
 
+    // 쪽지 상세 내용 화면
+    const MessageContents = (props) => {
+      const msg = props.msg;
+      
+      return (
+        <div>
+          <table className="w-full border-2">
+            <tr>
+              <td className="py-1 text-center border-2 w-[100px]">제목</td>
+              <td className="pl-2 border-2">{msg.msg_title}</td>
+            </tr>
+            <tr>
+              <td className="py-1 text-center border-2">보낸 사람</td>
+              <td className="pl-2 border-2">{msg.users.user_name}</td>
+            </tr>
+            <tr>
+              <td className="py-1 text-center border-2">보낸 시간</td>
+              <td className="pl-2 border-2">{msg.msg_send_time}</td>
+            </tr>
+          </table>
+          
+          <div className="px-4 py-2 mt-4 border-2 min-h-[300px]">{msg.msg_body}</div>
+          
+          <div className="mt-4 text-end">
+            <button className="p-1 px-3 border-2" onClick={() => setMessageContentsBtn("List")}>목록</button>
+          </div>
+        </div>
+      )
+    }
   return (
     <>
       <div id="mypage_message" className='fixed inset-0 p-4 m-auto bg-white border border-black border-solid' style={{ width: '650px', height: '650px' }} >
         <h1 className='mb-4' >쪽지</h1>
 
-        {messageWriteBtn == "List" &&
+        {messageWriteBtn == "List" && messageContentsBtn == "List" &&
           <MessageList />
+        }
+        {messageWriteBtn == "List" && messageContentsBtn == "Contents" &&
+          <MessageContents msg = {messageContentsData}/>
         }
         {messageWriteBtn == "Write" &&
           <MessageWrite />
