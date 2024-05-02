@@ -1,12 +1,12 @@
-export default function ChattingModal () {
-
-
+export default function ChattingModal (props) {
+  const handleCloseChatting = props.handleCloseChatting;
+  
   return (
     <>
       <div className="fixed rounded-[10px] w-[450px] h-[500px] inset-0 m-auto bg-[#e9e9e9] shadow-lg">
         <div className="relative w-full h-full">
           <div className="mt-2 text-center">채팅</div>
-          <button className="absolute text-[#a9a9a9] right-4 top-0">X</button>
+          <button className="absolute text-[#a9a9a9] right-4 top-0" onClick={handleCloseChatting}>X</button>
 
           {/* 채팅 영역 */}
           <div className="absolute flex flex-col w-[420px]">

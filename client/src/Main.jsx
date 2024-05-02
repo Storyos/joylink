@@ -39,7 +39,6 @@ export default function Main() {
         <Route path="/getInfo" element={<GetInfo/>}/>
         <Route path="/chatting" element={<Chatting/>}/>
         <Route path="/myclub" element={<MyClubPage/>}/>
-        <Route path="/chattingpage"element={<ChattingModal/>} />
       </Routes>
     </BrowserRouter>
   );
