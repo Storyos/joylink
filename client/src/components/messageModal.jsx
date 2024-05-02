@@ -35,19 +35,21 @@ export default function MessageModal(props) {
   const [currentReceivedPage, setCurrentReceivedPage] = useState(1)
   const [currentSentPage, setCurrentSentPage] = useState(1)
 
-
-  //  전체 checkbox 제어
+  // 전체 checkbox 제어
   const toggleAllCheckboxes = (isChecked, messageType) => {
     const updateFunc = messageType === "Received" ? setReceivedCheckbox : setSentCheckbox;
     updateFunc(isChecked);
-  
+
     const messages = messageType === "Received" ? receivedMessage : sentMessage;
     if (isChecked) {
+      // 체크가 되었을 때 모든 메시지의 msg_seq를 checkedMessage 배열에 추가
       setCheckedMessage(messages.map(msg => msg.msg_seq));
     } else {
+      // 체크가 해제되었을 때 checkedMessage 배열을 비움
       setCheckedMessage([]);
     }
   };
+
 
 
   // 페이지 버튼 클릭 시 현재 페이지의 상태 전환
@@ -63,17 +65,36 @@ export default function MessageModal(props) {
       await supabase.from('messages').update('').eq(`msg_seq`, target);
     }
   }
+  
   //  쪽지 삭제여뷰 (실제 DB는 아니고 상태만 Check)
-  async function updateMessageDeleteState(target) {
+  async function updateMessageDeleteState() {
     // 받은쪽지에서 삭제시
-    if (messageBtn == 'Received') {
-      await supabase.from('messages').update('rcv_deleted').eq(`msg_seq`, target);
+    if(messageBtn=='Received'){
+    for (let messageId of checkedMessage) {
+      const { data, error } = await supabase
+        .from('messages')
+        .update({ rcv_deleted: true })
+        .eq('msg_seq', messageId);
+      if (error) {
+        console.error('Error updating message:', error);
+        return;
+      }
+      alert("삭제완료");
     }
-    // 보낸 쪽지에서 삭제 시
-    else {
-      await supabase.from('messages').update('snd_deleted').eq(`msg_seq`, target);
+  } else{
+    for (let messageId of checkedMessage) {
+      const { data, error } = await supabase
+        .from('messages')
+        .update({ snd_deleted: true })
+        .eq('msg_seq', messageId);
+      if (error) {
+        console.error('Error updating message:', error);
+        return;
+      }
+      alert("삭제완료");
     }
   }
+}
 
 
 
@@ -231,6 +252,7 @@ export default function MessageModal(props) {
       setCheckedMessage(prev => prev.filter(id => id !== messageId));
     }
   };
+
   // 쪽지 쓰기 버튼
   const [messageWriteBtn, setMessageWriteBtn] = useState("List")
 
@@ -238,10 +260,6 @@ export default function MessageModal(props) {
     setMessageWriteBtn(messageWriteBtn == "List" ? "Write" : "List")
   }
 
-  // 쪽지 삭제 버튼 ( 05/01 구현중 ...)
-  const handleDeleteMessage = async () => {
-    console.log(checkedMessage);
-  }
 
   // 쪽지 전송 버튼
   const handleMessageSend = async () => {
@@ -311,146 +329,146 @@ export default function MessageModal(props) {
                       </div>
                       <p className='w-20 text-sm'>{msg.msg_send_time}</p>
                     </div>
-              ))
-              ) : (
-              <p>받은 쪽지가 없습니다.</p>
+                  ))
+                ) : (
+                  <p>받은 쪽지가 없습니다.</p>
                 )}
-            </div>
+              </div>
 
               {/* 하단에 페이지 버튼 표시 */}
-          <div>
-            {receivedPage.map((page, index) => (
-              <button key={index}
-                className={`mx-1 ${page === currentReceivedPage ? 'text-black' : 'text-[#c9c9c9]'}`}
-                onClick={() => handlePageBtn("Received", page)}>
-                {page}
-              </button>
-            ))}
-          </div>
-        </div>
+              <div>
+                {receivedPage.map((page, index) => (
+                  <button key={index}
+                    className={`mx-1 ${page === currentReceivedPage ? 'text-black' : 'text-[#c9c9c9]'}`}
+                    onClick={() => handlePageBtn("Received", page)}>
+                    {page}
+                  </button>
+                ))}
+              </div>
+            </div>
           }
 
-        {/* // 보낸쪽지 보는곳 */}
-        {messageBtn === "Sent" &&
-          <div className="text-center">
-            <div className='mb-1 border-2'>
-              {sentMessage.length > 0 ? (
-                // 현재 페이지의 5개 쪽지 정보 표시
-                sentMessage.slice((currentSentPage - 1) * 5, currentSentPage * 5).map((msg, index) => (
-                  <div key={index} className='flex items-center p-2 mb-4'>
-                    <input type="checkbox" checked={checkedMessage.includes(msg.msg_seq)} onChange={(e) => handleCheckboxChange(e, msg.msg_seq)} />
-                    <div className='flex justify-between w-full mx-2'>
-                      <div className="flex items-center">
-                        <p className='inline-block ml-1 text-center w-28'>{msg.users.user_name}</p>
-                        <a href='#' className='ml-2'>{msg.msg_title}</a>
+          {/* // 보낸쪽지 보는곳 */}
+          {messageBtn === "Sent" &&
+            <div className="text-center">
+              <div className='mb-1 border-2'>
+                {sentMessage.length > 0 ? (
+                  // 현재 페이지의 5개 쪽지 정보 표시
+                  sentMessage.slice((currentSentPage - 1) * 5, currentSentPage * 5).map((msg, index) => (
+                    <div key={index} className='flex items-center p-2 mb-4'>
+                      <input type="checkbox" checked={checkedMessage.includes(msg.msg_seq)} onChange={(e) => handleCheckboxChange(e, msg.msg_seq)} />
+                      <div className='flex justify-between w-full mx-2'>
+                        <div className="flex items-center">
+                          <p className='inline-block ml-1 text-center w-28'>{msg.users.user_name}</p>
+                          <a href='#' className='ml-2'>{msg.msg_title}</a>
+                        </div>
+                        <p className='w-20 text-sm'>{msg.msg_send_time}</p>
                       </div>
-                      <p className='w-20 text-sm'>{msg.msg_send_time}</p>
                     </div>
-                  </div>
-                ))
-              ) : (
-                <p>보낸 쪽지가 없습니다.</p>
-              )}
-            </div>
+                  ))
+                ) : (
+                  <p>보낸 쪽지가 없습니다.</p>
+                )}
+              </div>
 
-            {/* 하단에 페이지 버튼 표시 */}
-            <div>
-              {sentPage.map((page, index) => (
-                <button key={index}
-                  className={`mx-1 ${page === currentSentPage ? 'text-black' : 'text-[#c9c9c9]'}`}
-                  onClick={() => handlePageBtn("Sent", page)}>
-                  {page}
-                </button>
-              ))}
+              {/* 하단에 페이지 버튼 표시 */}
+              <div>
+                {sentPage.map((page, index) => (
+                  <button key={index}
+                    className={`mx-1 ${page === currentSentPage ? 'text-black' : 'text-[#c9c9c9]'}`}
+                    onClick={() => handlePageBtn("Sent", page)}>
+                    {page}
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
-        }
+          }
 
-      </div >
+        </div >
       </>
     )
-}
-const handleKeyDown = (event) => {
-  if (event.key === 'Enter') {
-    handleSearchbyTitle();
   }
-};
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      handleSearchbyTitle();
+    }
+  };
 
-// 쪽지 리스트 화면
-const MessageList = () => {
-  return (
-    <div id='message_list'>
+  // 쪽지 리스트 화면
+  const MessageList = () => {
+    return (
+      <div id='message_list'>
 
-      {/* 상단 버튼 */}
-      <div className='flex justify-between mb-4'>
-        <span className='p-1 border-2'>
-          <button className='mx-4' onClick={handleReceivedMessage}>받은 쪽지</button>
-          <button className='mx-4' onClick={handleSentMessage}>보낸 쪽지</button>
-        </span>
-        <button onClick={handleMessageWrite} className='p-1 border-2'>쪽지 쓰기</button>
+        {/* 상단 버튼 */}
+        <div className='flex justify-between mb-4'>
+          <span className='p-1 border-2'>
+            <button className='mx-4' onClick={handleReceivedMessage}>받은 쪽지</button>
+            <button className='mx-4' onClick={handleSentMessage}>보낸 쪽지</button>
+          </span>
+          <button onClick={handleMessageWrite} className='p-1 border-2'>쪽지 쓰기</button>
+        </div>
+
+        {/* 검색창 */}
+        <div className='flex justify-end mb-4'>
+          <input className='px-1 border-2' id="searchbyTitle" onKeyDown={handleKeyDown} type="text" placeholder='제목 검색' ref={inputRef} />
+          <button className='px-1 ml-2 border-2' onClick={handleSearchbyTitle} id="searchButton">검색</button>
+        </div>
+
+        {/* 쪽지 리스트  */}
+        <MessageListContents />
+
+        {/* 하단 버튼 */}
+        <div className='flex justify-end'>
+          <button className='p-1 px-3 mr-1 border-2' onClick={updateMessageDeleteState}>삭제</button>
+          <button className='p-1 px-3 border-2' onClick={handleCloseMessage}>닫기</button>
+        </div>
       </div>
+    )
+  }
 
-      {/* 검색창 */}
-      <div className='flex justify-end mb-4'>
-        <input className='px-1 border-2' id="searchbyTitle" onKeyDown={handleKeyDown} type="text" placeholder='제목 검색' ref={inputRef} />
-        <button className='px-1 ml-2 border-2' onClick={handleSearchbyTitle} id="searchButton">검색</button>
-      </div>
+  // 쪽지 쓰기 화면
+  const MessageWrite = () => {
+    return (
+      <>
+        <div id='message_write' className='p-1 border-2'>
 
-      {/* 쪽지 리스트  */}
-      <MessageListContents />
+          <div>
+            <div className='py-2'>
+              <label htmlFor="message_write_title"><p className='inline-block text-center w-28'>제목</p></label>
+              <input id='message_write_title' type="text" className='border-2' style={{ width: '450px' }} onChange={() => handleTitleChange} />
+            </div>
+            <div className='py-2'>
+              <label htmlFor="message_write_receiver"><p className='inline-block text-center w-28'>받는 사람</p></label>
+              <input id='message_write_receiver' type="text" className='border-2' style={{ width: '450px' }} onChange={() => handlereceiverChange} />
+            </div>
+            <div className='flex py-2 '>
+              <label htmlFor="message_write_content"><p className='inline-block text-center w-28'>내용</p></label>
+              <textarea id="message_write_content" className='border-2 resize-none' style={{ width: '450px', height: '300px' }} onChange={() => handleContentChange}></textarea>
+            </div>
+          </div>
 
-      {/* 하단 버튼 */}
-      <div className='flex justify-end'>
-        <button className='p-1 px-3 mr-1 border-2' onClick={handleDeleteMessage}>삭제</button>
-        <button className='p-1 px-3 border-2' onClick={handleCloseMessage}>닫기</button>
-      </div>
-    </div>
-  )
-}
+          <div className='flex justify-end'>
+            <button className='p-1 px-3 mr-1 border-2' onClick={handleMessageSend}>전송</button>
+            <button className='p-1 px-3 border-2' onClick={handleMessageWrite}>목록</button>
+          </div>
 
-// 쪽지 쓰기 화면
-const MessageWrite = () => {
+        </div>
+      </>
+    )
+  }
+
   return (
     <>
-      <div id='message_write' className='p-1 border-2'>
+      <div id="mypage_message" className='fixed inset-0 p-4 m-auto bg-white border border-black border-solid' style={{ width: '650px', height: '650px' }} >
+        <h1 className='mb-4' >쪽지</h1>
 
-        <div>
-          <div className='py-2'>
-            <label htmlFor="message_write_title"><p className='inline-block text-center w-28'>제목</p></label>
-            <input id='message_write_title' type="text" className='border-2' style={{ width: '450px' }} onChange={() => handleTitleChange} />
-          </div>
-          <div className='py-2'>
-            <label htmlFor="message_write_receiver"><p className='inline-block text-center w-28'>받는 사람</p></label>
-            <input id='message_write_receiver' type="text" className='border-2' style={{ width: '450px' }} onChange={() => handlereceiverChange} />
-          </div>
-          <div className='flex py-2 '>
-            <label htmlFor="message_write_content"><p className='inline-block text-center w-28'>내용</p></label>
-            <textarea id="message_write_content" className='border-2 resize-none' style={{ width: '450px', height: '300px' }} onChange={() => handleContentChange}></textarea>
-          </div>
-        </div>
-
-        <div className='flex justify-end'>
-          <button className='p-1 px-3 mr-1 border-2' onClick={handleMessageSend}>전송</button>
-          <button className='p-1 px-3 border-2' onClick={handleMessageWrite}>목록</button>
-        </div>
-
+        {messageWriteBtn == "List" &&
+          <MessageList />
+        }
+        {messageWriteBtn == "Write" &&
+          <MessageWrite />
+        }
       </div>
     </>
   )
-}
-
-return (
-  <>
-    <div id="mypage_message" className='fixed inset-0 p-4 m-auto bg-white border border-black border-solid' style={{ width: '650px', height: '650px' }} >
-      <h1 className='mb-4' >쪽지</h1>
-
-      {messageWriteBtn == "List" &&
-        <MessageList />
-      }
-      {messageWriteBtn == "Write" &&
-        <MessageWrite />
-      }
-    </div>
-  </>
-)
 }
