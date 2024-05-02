@@ -54,8 +54,8 @@ export default function MessageModal(props) {
 
   // 페이지 버튼 클릭 시 현재 페이지의 상태 전환
   const handlePageBtn = (messageType, page) => {
-    if (messageType === "Received") setCurrentReceivedPage([]); console.log(page)
-    if (messageType === "Sent") setCurrentSentPage([]); console.log(page)
+    if (messageType === "Received") setCurrentReceivedPage(page); console.log(page)
+    if (messageType === "Sent") setCurrentSentPage(page); console.log(page)
   }
 
   // 쪽지 읽음표시 (아직 미구현)
