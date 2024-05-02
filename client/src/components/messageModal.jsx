@@ -4,7 +4,7 @@ import { supabase } from '../App';
 export default function MessageModal(props) {
   // 메시지 모달창 닫기
   const handleCloseMessage = props.handleCloseMessage;
-
+  const handleOpenMessage = props.handleOpenMessage;
   // 받은 쪽지, 보낸 쪽지 버튼
   const [messageBtn, setMessageBtn] = useState("Received");
   const inputRef = useRef(null);
@@ -65,38 +65,45 @@ export default function MessageModal(props) {
       await supabase.from('messages').update('').eq(`msg_seq`, target);
     }
   }
-  
+
   //  쪽지 삭제여뷰 (실제 DB는 아니고 상태만 Check)
   async function updateMessageDeleteState() {
     // 받은쪽지에서 삭제시
-    if(messageBtn=='Received'){
-    for (let messageId of checkedMessage) {
-      const { data, error } = await supabase
-        .from('messages')
-        .update({ rcv_deleted: true })
-        .eq('msg_seq', messageId);
-      if (error) {
-        console.error('Error updating message:', error);
-        return;
+    if (messageBtn == 'Received') {
+      for (let messageId of checkedMessage) {
+        const { data, error } = await supabase
+          .from('messages')
+          .update({ rcv_deleted: true })
+          .eq('msg_seq', messageId);
+        if (error) {
+          console.error('Error updating message:', error);
+          return;
+        }
+        alert("삭제완료");
       }
-      alert("삭제완료");
-    }
-  } else{
-    for (let messageId of checkedMessage) {
-      const { data, error } = await supabase
-        .from('messages')
-        .update({ snd_deleted: true })
-        .eq('msg_seq', messageId);
-      if (error) {
-        console.error('Error updating message:', error);
-        return;
+    } else {
+      for (let messageId of checkedMessage) {
+        const { data, error } = await supabase
+          .from('messages')
+          .update({ snd_deleted: true })
+          .eq('msg_seq', messageId);
+        if (error) {
+          console.error('Error updating message:', error);
+          return;
+        }
+        alert("삭제완료");
       }
-      alert("삭제완료");
     }
+    // 여기서 새로고침이 안되네
+    handleCloseAndThenOpen();
   }
-}
 
-
+  const handleCloseAndThenOpen = () => {
+    handleCloseMessage(); // 먼저 모달을 닫는 함수 호출
+    setTimeout(() => {
+      handleOpenMessage(); // 0.5초 후 모달을 여는 함수 호출
+    }, 50); // 500 밀리초 지연
+  }
 
   // 받은쪽지 목록 Update
   const fetchReceivedMessages = async () => {
