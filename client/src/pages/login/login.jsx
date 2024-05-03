@@ -36,18 +36,7 @@ export default function Login() {
         }
     }, [email]);
 
-    // OAUTH로 로그인 했을때 추가정보가 기입되었는지 체크
-    // 근데 이거는 메인페이지에서 진행해야될듯
-    const checkAdditionalUserInfo = async(email) => {
-        const session = await supabase.auth.getUser(); 
-        email = session.data.user.email
-        const {data, error} = await supabase.from('users').select(email).eq(email,email)
-        if(!data){
-            alert("추가 정보입력이 필요합니다.")
-            // 여기서 추가 회원가입 입력페이지로 이동
-        }
-    }
-
+    
 
     // 구글 로그인 처리
     const handleGoogleLogin = async () => {

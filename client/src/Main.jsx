@@ -12,13 +12,14 @@ import Join from './pages/join/join';
 import GetInfo from "./pages/getInfo/getInfo";
 import Chatting from './pages/chatting/chatting';
 import MyClubPage from "./pages/myClubPage/myClub";
+import CheckUserInfo from "./pages/login/checkUserInfo";
 export default function Main() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App/>}>
           <Route index element={<Mainpage/>}/>
-          <Route path="checkUserInfo" element={<Chatting></Chatting>}/>
+          <Route path="checkUserInfo" element={<CheckUserInfo></CheckUserInfo>}/>
           <Route path="mypage" element={<Mypage/>}/>
           <Route path="cbSearch" element={<CbSearch/>}/> 
           <Route path="cbCreate" element={<CbCreate/>}/> 
