@@ -50,7 +50,14 @@ export default function MessageModal(props) {
     }
   };
 
-
+    // 쪽지 내용 확인
+    const [messageContentsBtn, setMessageContentsBtn] = useState("List")
+    const [messageContentsData, setMessageContentsData] = useState()
+    const handleMessageContentsOpen = (msg) => {
+      setMessageContentsBtn("Contents")
+      setMessageContentsData(msg)
+    }
+  
 
   // 페이지 버튼 클릭 시 현재 페이지의 상태 전환
   const handlePageBtn = (messageType, page) => {
