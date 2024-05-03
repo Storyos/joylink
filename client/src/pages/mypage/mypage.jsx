@@ -9,10 +9,11 @@ export default function Mypage () {
   // message modal창 열고 닫기
   const [modalDisplay, setModalDisplay] = useState("Close");
   const handleOpenMessage = () => {
+    console.log("모달창 여는중..")
     setModalDisplay("Open");
   }
 
-  const handleCloseMessage = () => {
+  const handleCloseMessage =  () => {
     setModalDisplay("Close");
   }
 
@@ -149,8 +150,9 @@ export default function Mypage () {
       
       {/* 쪽지 modal box */}
       {modalDisplay == "Open" &&
-        <MessageModal handleCloseMessage = {handleCloseMessage}/>
+        <MessageModal handleCloseMessage={handleCloseMessage} handleOpenMessage={handleOpenMessage} />
       }
+
     </>
   )
 }
