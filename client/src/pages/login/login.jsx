@@ -94,12 +94,9 @@ export default function Login() {
             console.log("에러발생");
             console.error(error);
         } else {
-            console.log('로그인성공!');
             alert("로그인 성공~");
-            
             // 로그인 성공시 이동하는 곳
             navigate('/');
-            // 여기서 route 부탁드려요
             
         }
     }
