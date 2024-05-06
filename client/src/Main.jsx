@@ -12,16 +12,20 @@ import Join from './pages/join/join';
 import GetInfo from "./pages/getInfo/getInfo";
 import Chatting from './pages/chatting/chatting';
 import MyClubPage from "./pages/myClubPage/myClub";
-import ClubManagementPost from "./pages/myClubPagePost/myClubPagePost";
-import ClubManagementPage from "./pages/clubManagementPage/clubManagementPage";
-import ViewAccountPage from "./pages/viewAccountPage/viewAccountPage";
+<<<<<<<<< Temporary merge branch 1
+import ClubManagement from "./pages/myClubPagePost/myClubPagePost";
 
+
+=========
+>>>>>>>>> Temporary merge branch 2
 export default function Main() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App/>}> 
           <Route index element={<Mainpage/>}/>
+          <Route path="checkUserInfo" element={<CheckUserInfo></CheckUserInfo>}/>
+          <Route path="EmailVerified" element={<EmailVerified/>}></Route>
           <Route path="mypage" element={<Mypage/>}/>
           <Route path="cbSearch" element={<CbSearch/>}/> 
           <Route path="cbCreate" element={<CbCreate/>}/> 

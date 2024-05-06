@@ -1,7 +1,13 @@
-import React from "react";
-
+import React, { useState } from "react";
+import ChattingModal from "../chattingModal";
 // MyInfo 컴포넌트
 export default function MyInfo() {
+  
+  const [chattingDisplay, setChattingDisplay] = useState("Close");
+  const handleCloseChatting = () => {
+    setChattingDisplay("Close");
+  };
+  
   return (
     <div>
       {/* 좌측에 배치되는 MyInfo 컴포넌트 */}
@@ -11,7 +17,7 @@ export default function MyInfo() {
           <button>Club Management</button>
         </div>
         <div class="border border-indigo-600 ...">
-          <button>채팅</button>
+          <button onClick={() => setChattingDisplay("Open")}>채팅</button>
         </div>
         <div class="border border-indigo-600 ...">
           <button>장부</button>
@@ -26,6 +32,8 @@ export default function MyInfo() {
           </div>
         </div>
       </div>
+
+      {chattingDisplay === "Open" && <ChattingModal handleCloseChatting = {handleCloseChatting}/>}
     </div>
   );
 }
