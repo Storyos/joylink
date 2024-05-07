@@ -74,9 +74,10 @@ export default function Login() {
         const { data, error } = await supabase
             .from('users')
             .select('*')
-            .eq('user_email_verified', true)
+            // .eq('user_email_verified', true)
             .eq('user_id', useremail)
             .single()
+        
             console.log(data);
         if (!data) {
             alert("이메일 인증이 아직 안되었습니다.");
