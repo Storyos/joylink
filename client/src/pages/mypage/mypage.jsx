@@ -27,45 +27,45 @@ export default function Mypage () {
     <>
 
       {/* 메인 영역 */}
-      <div className='pb-24 mx-48 my-12 rounded-3xl' style={{backgroundColor:'#c9c9c9'}}>
-        <h2 className='py-8 text-center'>MyPage</h2>
-        <div className='flex justify-around'>
-          <div className='w-1/6 rounded-2xl' style={{backgroundColor:'#e9e9e9'}}>
-            <div className='flex flex-col items-center justify-around' style={{minHeight:'500px'}}>
-              <button className='font-bold' onClick={() => handleMypageMenu("userInfo")}>내 정보</button>
-              <button className='font-bold' onClick={() => handleMypageMenu("updateInfo")}>정보 수정</button>
-              <button className='font-bold' onClick={() => handleMypageMenu("myclub")}>내 동아리</button>
-              <button className='font-bold' onClick={handleOpenMessage}>쪽지</button>
-              <button className='font-bold' onClick={() => handleMypageMenu("application")}>신청 현황</button>
+      <div className='pt-12 pb-24 mx-80 rounded-3xl'>
+        <p className='p-1 mb-4 text-2xl font-bold'>마이페이지</p>
+        <div className='flex justify-between'>
+          <div className='w-[12%] rounded-[10px] bg-[#e9e9e9]'>
+            <div className='flex flex-col items-center min-h-[500px] py-4'>
+              <button className={'font-bold text-[#a9a9a9] my-2 '+ (mypageMenu === 'userInfo' && 'text-black')} onClick={() => handleMypageMenu("userInfo")}>내 정보</button>
+              <button className={'font-bold text-[#a9a9a9] my-2 '+ (mypageMenu === 'updateInfo' && 'text-black')} onClick={() => handleMypageMenu("updateInfo")}>정보 수정</button>
+              <button className={'font-bold text-[#a9a9a9] my-2 '+ (mypageMenu === 'myclub' && 'text-black')} onClick={() => handleMypageMenu("myclub")}>내 동아리</button>
+              <button className='font-bold text-[#a9a9a9] my-2' onClick={handleOpenMessage}>쪽지</button>
+              <button className={'font-bold text-[#a9a9a9] my-2 '+ (mypageMenu === 'application' && 'text-black')} onClick={() => handleMypageMenu("application")}>신청 현황</button>
             </div>
           </div>
-          <div className='w-3/5 p-8 rounded-xl' style={{backgroundColor:'#e9e9e9'}}>
+          <div className='w-4/5 p-8 rounded-xl bg-[#e9e9e9] ml-10'>
             
             {/* 내 정보 */}
             {mypageMenu == "userInfo" &&
-            <div>
-              <table className='w-full'>
+            <div className='flex justify-center'>
+              <table className='w-[70%]'>
 
                 <caption className='mb-8 font-bold'>내 정보</caption>
                 <tr className='border-2 border-[#c9c9c9]'>
-                  <th className='border-2 border-[#c9c9c9] min-w-[150px] p-2'>아이디(이메일)</th>
-                  <td className='border-2 border-[#c9c9c9] text-center min-w-[300px]'>"abcd@naver.com"</td>
+                  <th className='border-2 border-[#c9c9c9] text-sm p-2 w-[25%]'>아이디(이메일)</th>
+                  <td className='border-2 border-[#c9c9c9] text-center'>abcd@naver.com</td>
                 </tr>
                 <tr className='border-2 border-[#c9c9c9]'>
-                  <th className='border-2 border-[#c9c9c9] p-2'>이름</th>
-                  <td className='border-2 border-[#c9c9c9] text-center'>"1234"</td>
+                  <th className='border-2 border-[#c9c9c9] p-2 text-sm'>이름</th>
+                  <td className='border-2 border-[#c9c9c9] text-center'>1234</td>
                 </tr>
                 <tr className='border-2 border-[#c9c9c9]'>
-                  <th className='border-2 border-[#c9c9c9] p-2'>성별</th>
-                  <td className='border-2 border-[#c9c9c9] text-center'>"남"</td>
+                  <th className='border-2 border-[#c9c9c9] p-2 text-sm'>성별</th>
+                  <td className='border-2 border-[#c9c9c9] text-center'>남</td>
                 </tr>
                 <tr className='border-2 border-[#c9c9c9]'>
-                  <th className='border-2 border-[#c9c9c9] p-2'>생년월일</th>
-                  <td className='border-2 border-[#c9c9c9] text-center'>"12345678"</td>
+                  <th className='border-2 border-[#c9c9c9] p-2 text-sm'>생년월일</th>
+                  <td className='border-2 border-[#c9c9c9] text-center'>12345678</td>
                 </tr>
                 <tr className='border-2 border-[#c9c9c9]'>
-                  <th className='border-2 border-[#c9c9c9] p-2'>전화번호</th>
-                  <td className='border-2 border-[#c9c9c9] text-center'>"010-1234-5678"</td>
+                  <th className='border-2 border-[#c9c9c9] p-2 text-sm'>전화번호</th>
+                  <td className='border-2 border-[#c9c9c9] text-center'>010-1234-5678</td>
                 </tr>
                 
               </table>
@@ -74,24 +74,26 @@ export default function Mypage () {
             
             {/* 정보 수정 */}
             {mypageMenu == "updateInfo" && 
-            <div>
-              <p className='mb-8 font-bold text-center'>정보 수정</p>
-              <ul>
-                <li><label htmlFor="">아이디(이메일) <input type="text" className='w-full rounded'/></label></li>
-                <li><label htmlFor="">비밀번호 <input type="text" className='w-full rounded'/></label></li>
-                <li><label htmlFor="">이름 <input type="text" className='w-full rounded'/></label></li>
-                <li><label htmlFor="">전화번호 <input type="text" className='w-full rounded'/></label></li>
-              </ul>
-              <div className='flex justify-end'>
-                <button className='border-2 border-[#c9c9c9] p-1 mt-2'>수정하기</button>
+            <div className='flex justify-center '>
+              <div className='w-[70%]'>
+                <p className='mb-8 font-bold text-center'>정보 수정</p>
+                <ul>
+                  <li><label htmlFor="" className='text-sm'>아이디(이메일) <input type="text" className='w-full text-base rounded'/></label></li>
+                  <li><label htmlFor="" className='text-sm'>비밀번호 <input type="text" className='w-full text-base rounded'/></label></li>
+                  <li><label htmlFor="" className='text-sm'>이름 <input type="text" className='w-full text-base rounded'/></label></li>
+                  <li><label htmlFor="" className='text-sm'>전화번호 <input type="text" className='w-full text-base rounded'/></label></li>
+                </ul>
+                <div className='flex justify-end'>
+                  <button className='border-2 bg-[#c9c9c9] p-1 px-2 mt-2 rounded-[5px]'>수정</button>
+                </div>
               </div>
             </div>
             }
 
             {/* 내 동아리 */}
             {mypageMenu == "myclub" && 
-            <div>
-              <table className='w-full'>
+            <div className='flex justify-center'>
+              <table className='w-[70%]'>
                 <caption className='mb-8 font-bold'>내가 가입한 동아리</caption>
                 <tr className='border-2 border-[#c9c9c9]'>
                   <th className='border-2 border-[#c9c9c9] w-[50px] p-2'> </th>
@@ -115,8 +117,8 @@ export default function Mypage () {
 
             {/* 신청 현황 */}
             {mypageMenu == "application" && 
-            <div>
-              <table className='w-full'>
+            <div className='flex justify-center'>
+              <table className='w-[70%]'>
                 <caption className='mb-8 font-bold'>신청 중인 동아리</caption>
                 <tr className='border-2 border-[#c9c9c9]'>
                   <th className='border-2 border-[#c9c9c9] w-[50px]'> </th>

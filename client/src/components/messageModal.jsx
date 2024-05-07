@@ -337,11 +337,13 @@ export default function MessageModal(props) {
                   receivedMessage.slice((currentReceivedPage - 1) * 5, currentReceivedPage * 5).map((msg, index) => (
                     <div key={index} className='flex items-center p-2 mb-4'>
                       <input type="checkbox" checked={checkedMessage.includes(msg.msg_seq)} onChange={(e) => handleCheckboxChange(e, msg.msg_seq)} />
-                      <div className="flex items-center">
-                        <p className='inline-block ml-1 text-center w-28'>{msg.users.user_name}</p>
-                        <a href='#' className='ml-2'>{msg.msg_title}</a>
+                      <div className="flex justify-between w-full mx-2">
+                        <div className="flex items-center">
+                          <p className='inline-block ml-1 text-center w-28'>{msg.users.user_name}</p>
+                          <a href='#' className='ml-2'>{msg.msg_title}</a>
+                        </div>
+                        <p className='w-20 text-sm'>{msg.msg_send_time}</p>
                       </div>
-                      <p className='w-20 text-sm'>{msg.msg_send_time}</p>
                     </div>
                   ))
                 ) : (
