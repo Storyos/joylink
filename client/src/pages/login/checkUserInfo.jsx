@@ -28,6 +28,6 @@ export default function CheckUserInfo(){
     useEffect(()=>{
         checkAdditionalUserInfo();
     },[]);
-
     return null
 }
+

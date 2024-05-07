@@ -1,19 +1,10 @@
 import React, { useState } from 'react';
-
-// Modal 컴포넌트
-function Modal({ message, onClose }) {
-  return (
-    <div className="fixed inset-0 flex items-center justify-center bg-gray-600 bg-opacity-50">
-      <div className="p-5 bg-white rounded">
-        <h1>알림</h1>
-        <p>{message}</p>
-        <button onClick={onClose} className="p-2 mt-2 text-white bg-blue-500 rounded">닫기</button>
-      </div>
-    </div>
-  );
-}
+import TestEditor from '../../components/draftEditor';
+import CreateModal from '../../components/createModal'; // 이름 변경
+import Button from '@mui/material/Button';
 
 function CbCreate() {
+  // 모달 상태를 관리하기 위한 상태 훅
   const [showModal, setShowModal] = useState(false);
 
   // 모달을 표시하는 함수
@@ -22,53 +13,38 @@ function CbCreate() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center w-screen py-10 bg-white">
-      <div className="flex flex-col items-start justify-between w-full max-w-4xl p-6 my-4 bg-gray-300 rounded-lg">
-        <div className="mb-6 text-2xl text-black">동아리 만들기</div>
-        <div className="flex flex-col w-full gap-4 p-4 bg-gray-200 rounded">
-          <div className="flex items-center gap-3">
-            <label className="text-lg text-gray-700 w-1/4 min-w-[100px]">동아리명</label>
-            <input 
-              className="flex-grow p-2 bg-white border border-gray-300 rounded" 
-              placeholder="동아리명 입력" 
-            />
-          </div>
-          <div className="flex items-center gap-3">
-            <label className="text-lg text-gray-700 w-1/4 min-w-[100px]">동아리 분류</label>
-            <input 
-              className="flex-grow p-2 bg-white border border-gray-300 rounded" 
-              placeholder="동아리 분류 입력" 
-            />
-          </div>
-          <div className="flex items-center gap-3">
-            <label className="text-lg text-gray-700 w-1/4 min-w-[100px]">활동 지역</label>
-            <input 
-              className="flex-grow p-2 bg-white border border-gray-300 rounded" 
-              placeholder="활동 지역 입력" 
-            />
-          </div>
-          <div className="flex items-center gap-3">
-            <label className="text-lg text-gray-700 w-1/4 min-w-[100px]">동아리 소개</label>
-            <textarea 
-              className="flex-grow p-2 bg-white border border-gray-300 rounded" 
-              placeholder="동아리에 대한 설명" 
-            />
-          </div>
+    <>
+      <section className="p-20 mx-auto max-w-screen-6xl bg-f3f4f6">
+        <div className='max-w-screen-6xl'>
+          <fieldset className="p-4 mb-6 border">
+            <legend className="mb-4 text-lg font-bold">모임 만들기</legend>
+            <div className="flex justify-between mb-4 space-x-4">
+              <div className="flex-grow">
+                <input type="text" placeholder="제목을 입력하세요 (100자 이내)" className="w-full mb-4 input" />
+                <input type="text" placeholder="이벤트를 간단하게 소개하세요 (100자 이내)" className="w-full mb-4 input" />
+                <input type="text" placeholder="태그 (예: #온오프믹스, #스타트업, #창업)" className="w-full input" />
+              </div>
+              <div className="w-48">
+                <img src="/path/to/your/image.jpg" alt="Event" className="w-full h-auto" />
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset className="p-4 border">
+            <legend className="mb-4 text-lg font-bold">상세 정보</legend>
+            <div>
+              <TestEditor />  // DraftEditor 컴포넌트 사용
+            </div>
+          </fieldset>
         </div>
+      </section>
+      <div className='fixed bottom-0 flex justify-center w-full py-4 space-x-4 bg-black bg-opacity-50'>
+        <Button variant="contained" color="primary">미리보기</Button>
+        <Button variant="contained" color="primary">임시저장</Button>
+        <Button onClick={handleCreate} variant="contained" color="primary">작성완료</Button>
       </div>
-      <div className="flex gap-4 mt-4">
-        <button className="flex items-center justify-center h-16 text-2xl text-black bg-gray-300 rounded cursor-pointer w-44">
-          취소
-        </button>
-        <button 
-          onClick={handleCreate}
-          className="flex items-center justify-center h-16 text-2xl text-black bg-gray-300 rounded cursor-pointer w-44"
-        >
-          생성하기
-        </button>
-      </div>
-      {showModal && <Modal message="동아리가 성공적으로 생성되었습니다." onClose={() => setShowModal(false)} />}
-    </div>
+      {showModal && <CreateModal message="동아리가 성공적으로 생성되었습니다." onClose={() => setShowModal(false)} />}
+    </>
   );
 }
 
