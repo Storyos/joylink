@@ -12,12 +12,9 @@ import Join from './pages/join/join';
 import GetInfo from "./pages/getInfo/getInfo";
 import Chatting from './pages/chatting/chatting';
 import MyClubPage from "./pages/myClubPage/myClub";
-<<<<<<<<< Temporary merge branch 1
 import ClubManagement from "./pages/myClubPagePost/myClubPagePost";
-
-
-=========
->>>>>>>>> Temporary merge branch 2
+import CheckUserInfo from "./pages/login/checkUserInfo";
+import EmailVerified from "./pages/login/emailVerified";
 export default function Main() {
   return (
     <BrowserRouter>
@@ -35,10 +32,9 @@ export default function Main() {
           <Route path="notice/:noticeId" element={<Notice/>}/>
           <Route path="event/:eventId" element={<Notice/>}/>
           <Route path="myClubPage" element={<MyClubPage/>}/>
-          <Route path="clubManagementPost" element={<ClubManagementPost/>}/>
-          <Route path="clubManagementPage" element={<ClubManagementPage/>}/>
-          <Route path="viewAccountPage" element={<ViewAccountPage/>}/>
+          <Route path="clubManagement" element={<ClubManagement/>}>
           </Route>
+        </Route>
         
         <Route path="/login" element={<Login/>}/>
         <Route path="/join" element={<Join/>}/>

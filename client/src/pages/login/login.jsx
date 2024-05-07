@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import useUserStore from "../../zustand/useUserStore"; // zustand에 로그인후 컬럼정보 저장
 
 export default function Login() {
     const [testData, setTestData] = useState(null);
@@ -35,7 +36,6 @@ export default function Login() {
             updateUserData(email);
         }
     }, [email]);
-
     
 
     // 구글 로그인 처리
@@ -94,13 +94,13 @@ export default function Login() {
             console.log("에러발생");
             console.error(error);
         } else {
+            useUserStore.getState().setUser(data); // zustand에 로그인후 컬럼정보 저장
             alert("로그인 성공~");
-            // 로그인 성공시 이동하는 곳
-            navigate('/');
-            
+            const userState = useUserStore.getState(); // 상태를 가져옵니다
+            console.log(userState.user);
+            navigate('/'); // 로그인 성공시 이동하는 곳
         }
     }
-
     return (
         <div className="flex items-center justify-center h-screen">
             <div className='boxGroup'>
@@ -131,3 +131,5 @@ export default function Login() {
         </div >
     );
 }
+
+
