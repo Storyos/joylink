@@ -15,6 +15,7 @@ import MyClubPage from "./pages/myClubPage/myClub";
 import ClubManagement from "./pages/myClubPagePost/myClubPagePost";
 import CheckUserInfo from "./pages/login/checkUserInfo";
 import EmailVerified from "./pages/login/emailVerified";
+import ChattingModal from "./components/chattingModal";
 export default function Main() {
   return (
     <BrowserRouter>
@@ -39,7 +40,7 @@ export default function Main() {
         <Route path="/login" element={<Login/>}/>
         <Route path="/join" element={<Join/>}/>
         <Route path="/getInfo" element={<GetInfo/>}/>
-        <Route path="/chatting" element={<Chatting/>}/>
+        <Route path="/chatting" element={<ChattingModal/>}/>
         <Route path="/myclub" element={<MyClubPage/>}/>
       </Routes>
     </BrowserRouter>
