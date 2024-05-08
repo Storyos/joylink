@@ -417,17 +417,17 @@ export default function MessageModal(props) {
 
         {/* 상단 버튼 */}
         <div className='flex justify-between mb-4'>
-          <span className='p-1 border-2'>
-            <button className='mx-4' onClick={handleReceivedMessage}>받은 쪽지</button>
-            <button className='mx-4' onClick={handleSentMessage}>보낸 쪽지</button>
+          <span className='border-2'>
+            <button className='px-4 py-1 hover:bg-[#e9e9e9]' onClick={handleReceivedMessage}>받은 쪽지</button>
+            <button className='px-4 py-1 hover:bg-[#e9e9e9]' onClick={handleSentMessage}>보낸 쪽지</button>
           </span>
-          <button onClick={handleMessageWrite} className='p-1 border-2'>쪽지 쓰기</button>
+          <button onClick={handleMessageWrite} className='p-1 border-2 hover:bg-[#e9e9e9]'>쪽지 쓰기</button>
         </div>
 
         {/* 검색창 */}
         <div className='flex justify-end mb-4'>
           <input className='px-1 border-2' id="searchbyTitle" onKeyDown={handleKeyDown} type="text" placeholder='제목 검색' ref={inputRef} />
-          <button className='px-1 ml-2 border-2' onClick={handleSearchbyTitle} id="searchButton">검색</button>
+          <button className='px-1 ml-2 border-2 hover:bg-[#e9e9e9]' onClick={handleSearchbyTitle} id="searchButton">검색</button>
         </div>
 
         {/* 쪽지 리스트  */}
@@ -435,8 +435,8 @@ export default function MessageModal(props) {
 
         {/* 하단 버튼 */}
         <div className='flex justify-end'>
-          <button className='p-1 px-3 mr-1 border-2' onClick={updateMessageDeleteState}>삭제</button>
-          <button className='p-1 px-3 border-2' onClick={handleCloseMessage}>닫기</button>
+          <button className='p-1 px-3 mr-1 border-2 hover:bg-[#e9e9e9]' onClick={updateMessageDeleteState}>삭제</button>
+          <button className='p-1 px-3 border-2 hover:bg-[#e9e9e9]' onClick={handleCloseMessage}>닫기</button>
         </div>
       </div>
     )
@@ -464,8 +464,8 @@ export default function MessageModal(props) {
           </div>
 
           <div className='flex justify-end'>
-            <button className='p-1 px-3 mr-1 border-2' onClick={handleMessageSend}>전송</button>
-            <button className='p-1 px-3 border-2' onClick={handleMessageWrite}>목록</button>
+            <button className='p-1 px-3 mr-1 border-2 hover:bg-[#e9e9e9]' onClick={handleMessageSend}>전송</button>
+            <button className='p-1 px-3 border-2 hover:bg-[#e9e9e9]' onClick={handleMessageWrite}>목록</button>
           </div>
 
         </div>
@@ -497,7 +497,7 @@ export default function MessageModal(props) {
           <div className="px-4 py-2 mt-4 border-2 min-h-[300px]">{msg.msg_body}</div>
           
           <div className="mt-4 text-end">
-            <button className="p-1 px-3 border-2" onClick={() => setMessageContentsBtn("List")}>목록</button>
+            <button className="p-1 px-3 border-2 hover:bg-[#e9e9e9]" onClick={() => setMessageContentsBtn("List")}>목록</button>
           </div>
         </div>
       )
