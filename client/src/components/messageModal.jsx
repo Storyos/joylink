@@ -442,6 +442,11 @@ export default function MessageModal(props) {
     )
   }
 
+  // 받는 사람 검색하기
+  const handleSearchReceivedUser = () => {
+    window.open("/searchreceiveduser","searchreceiveduser","width=420, height=420, top=200, left=550")
+  }
+  
   // 쪽지 쓰기 화면
   const MessageWrite = () => {
     return (
@@ -451,15 +456,15 @@ export default function MessageModal(props) {
           <div>
             <div className='py-2'>
               <label htmlFor="message_write_title"><p className='inline-block text-center w-28'>제목</p></label>
-              <input id='message_write_title' type="text" className='border-2' style={{ width: '450px' }} onChange={() => handleTitleChange} />
+              <input id='message_write_title' type="text" className='border-2 w-[450px]' onChange={() => handleTitleChange} />
             </div>
             <div className='py-2'>
-              <label htmlFor="message_write_receiver"><p className='inline-block text-center w-28'>받는 사람</p></label>
-              <input id='message_write_receiver' type="text" className='border-2' style={{ width: '450px' }} onChange={() => handlereceiverChange} />
+              <label htmlFor="message_write_receiver"><p className='inline-block text-center w-28 hover:bg-[#e9e9e9]' onClick={handleSearchReceivedUser}>받는 사람</p></label>
+              <input id='message_write_receiver' type="text" className='border-2 w-[450px]' disabled />
             </div>
             <div className='flex py-2 '>
               <label htmlFor="message_write_content"><p className='inline-block text-center w-28'>내용</p></label>
-              <textarea id="message_write_content" className='border-2 resize-none' style={{ width: '450px', height: '300px' }} onChange={() => handleContentChange}></textarea>
+              <textarea id="message_write_content" className='border-2 resize-none w-[450px] h-[300px]' onChange={() => handleContentChange}></textarea>
             </div>
           </div>
 
