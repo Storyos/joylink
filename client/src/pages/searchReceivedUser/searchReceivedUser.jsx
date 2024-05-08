@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react"
 export default function SearchReceivedUser () {
   
   const [userData, setUserData] = useState([]);
-  const [selectedUserData, setSelectedUserData] = useState();
 
   const inputRef = useRef(null)
 
@@ -19,7 +18,7 @@ export default function SearchReceivedUser () {
       console.error("받은 사람 select query 에러", error);
     } else {
       console.log('받은 데이터', data);
-      await setUserData(data);
+      setUserData(data);
     }
   }
 
@@ -34,7 +33,8 @@ export default function SearchReceivedUser () {
     userData.forEach ((user) => {
       user.user_name.includes(searchName) && searchData.push(user);
     })
-    setUserData(searchData);    
+    setUserData(searchData);
+    console.log()
   }
 
   // 엔터 눌러도 검색 가능
@@ -43,6 +43,12 @@ export default function SearchReceivedUser () {
       handleSearchbyUser();
     }
   };
+
+  // 유저 선택 시 팝업창 닫으면서 MessageModal로 데이터 보내기
+  const handleClickUser = (userName, userId) => {
+    window.opener.postMessage({username : userName, userid : userId});
+    window.close();
+  }
 
   return (
     <div className="flex justify-center">
@@ -62,7 +68,7 @@ export default function SearchReceivedUser () {
             </tr>
             {userData.map((user, index) => (
               <tr key={index}>
-                <td className="border-2"><button className="hover:bg-[#e9e9e9] px-1" onClick={()=>{setSelectedUserData(user.user_name)}}>{user.user_name}</button></td>
+                <td className="border-2"><button className="hover:bg-[#e9e9e9] px-1" onClick={()=>{handleClickUser(user.user_name, user.user_id)}}>{user.user_name}</button></td>
                 <td className="border-2">{user.user_id}</td>
               </tr>
             ))}
