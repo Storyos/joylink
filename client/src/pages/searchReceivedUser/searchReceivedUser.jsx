@@ -2,9 +2,10 @@ import { supabase } from "../../App";
 import { useEffect, useRef, useState } from "react"
 
 export default function SearchReceivedUser () {
-
-  const [userData, setUserData] = useState([]);
   
+  const [userData, setUserData] = useState([]);
+  const [selectedUserData, setSelectedUserData] = useState();
+
   const inputRef = useRef(null)
 
   // 유저 데이터 불러오기
@@ -61,7 +62,7 @@ export default function SearchReceivedUser () {
             </tr>
             {userData.map((user, index) => (
               <tr key={index}>
-                <td className="border-2"><button className="hover:bg-[#e9e9e9] px-1">{user.user_name}</button></td>
+                <td className="border-2"><button className="hover:bg-[#e9e9e9] px-1" onClick={()=>{setSelectedUserData(user.user_name)}}>{user.user_name}</button></td>
                 <td className="border-2">{user.user_id}</td>
               </tr>
             ))}

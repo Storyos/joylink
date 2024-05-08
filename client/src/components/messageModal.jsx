@@ -446,6 +446,12 @@ export default function MessageModal(props) {
   const handleSearchReceivedUser = () => {
     window.open("/searchreceiveduser","searchreceiveduser","width=420, height=420, top=200, left=550")
   }
+
+  // 검색 데이터 들고오기
+  const [selectedUser, setSelectedUser] = useState("");
+  const handleSelectUser = (userName) => {
+    setSelectedUser(userName)
+  }
   
   // 쪽지 쓰기 화면
   const MessageWrite = () => {
@@ -460,7 +466,7 @@ export default function MessageModal(props) {
             </div>
             <div className='py-2'>
               <label htmlFor="message_write_receiver"><p className='inline-block text-center w-28 hover:bg-[#e9e9e9]' onClick={handleSearchReceivedUser}>받는 사람</p></label>
-              <input id='message_write_receiver' type="text" className='border-2 w-[450px]' disabled />
+              <input id='message_write_receiver' type="text" className='border-2 w-[450px]' disabled value={selectedUser} />
             </div>
             <div className='flex py-2 '>
               <label htmlFor="message_write_content"><p className='inline-block text-center w-28'>내용</p></label>
