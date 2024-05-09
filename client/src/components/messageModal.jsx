@@ -453,10 +453,14 @@ export default function MessageModal(props) {
   
   // 팝업창에서 메시지를 받아옴
   const handleMessageFromPopUp = (event) => {
-    console.log(event.data.username);
-    console.log(event.data.userid);
-    setSelectedUserName(event.data.username);
-    setSelectedUserId(event.data.userid);
+    const username = event.data.username;
+    const userId = event.data.userId;
+    console.log(username);
+    console.log(userId);
+    if (event.data.username !== undefined) {
+      setSelectedUserName(username);
+      setSelectedUserId(userId);      
+    }
   };
   
   useEffect(() => {
@@ -479,7 +483,7 @@ export default function MessageModal(props) {
             </div>
             <div className='py-2'>
               <label htmlFor="message_write_receiver"><p className='inline-block text-center w-28 hover:bg-[#e9e9e9]' onClick={handleSearchReceivedUser}>받는 사람</p></label>
-              <input id='message_write_receiver' type="text" className='border-2 w-[450px]' disabled value={`${selectedUserName}(${selectedUserId})`} />
+              <input id='message_write_receiver' type="text" className='border-2 w-[450px]' disabled value={selectedUserName && `${selectedUserName}(${selectedUserId})`} />
             </div>
             <div className='flex py-2 '>
               <label htmlFor="message_write_content"><p className='inline-block text-center w-28'>내용</p></label>

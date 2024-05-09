@@ -34,7 +34,6 @@ export default function SearchReceivedUser () {
       user.user_name.includes(searchName) && searchData.push(user);
     })
     setUserData(searchData);
-    console.log()
   }
 
   // 엔터 눌러도 검색 가능
@@ -46,7 +45,7 @@ export default function SearchReceivedUser () {
 
   // 유저 선택 시 팝업창 닫으면서 MessageModal로 데이터 보내기
   const handleClickUser = (userName, userId) => {
-    window.opener.postMessage({username : userName, userid : userId});
+    window.opener.postMessage({username: userName, userId: userId});
     window.close();
   }
 
