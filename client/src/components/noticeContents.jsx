@@ -46,8 +46,9 @@ export default function NoticeContents (props) {
     return (
 
       <div className="w-[800px] rounded-[10px] bg-white shadow">
-        <div className="flex justify-end" >
-          <input className="px-2 py-1 mt-4 mr-8 bg-gray-100 rounded-md outline-none" type="text" placeholder="게시글 검색"/>
+        <div className="flex justify-end mt-4" >
+          <input className="px-2 py-1 mr-2 bg-gray-100 rounded-md outline-none" type="text" placeholder="게시글 검색"/>
+          <button className="px-2 bg-gray-100 rounded-[5px] hover:bg-[#e9e9e9] mr-4">검색</button>
         </div>
         <div className="min-h-[400px] m-4 py-4 rounded-[10px] bg-gray-100">
           {menu == "Notice" &&
