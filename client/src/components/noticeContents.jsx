@@ -45,11 +45,11 @@ export default function NoticeContents (props) {
     
     return (
 
-      <div className="w-2/3 rounded-lg bg-[#c9c9c9]">
+      <div className="w-[800px] rounded-[10px] bg-white shadow">
         <div className="flex justify-end" >
-          <input className="bg-[#e9e9e9] rounded-md py-1 px-2 mr-8 mt-4 outline-none" type="text" placeholder="게시글 검색"/>
+          <input className="px-2 py-1 mt-4 mr-8 bg-gray-100 rounded-md outline-none" type="text" placeholder="게시글 검색"/>
         </div>
-        <div className="min-h-[400px] m-4 py-4 rounded-lg bg-[#e9e9e9]">
+        <div className="min-h-[400px] m-4 py-4 rounded-[10px] bg-gray-100">
           {menu == "Notice" &&
             <div>
               <ul>
@@ -85,15 +85,15 @@ export default function NoticeContents (props) {
 
   const NoticeDetail = () => {
     return (
-      <div className="w-2/3 rounded-lg bg-[#c9c9c9]">
-        <div className="bg-[#e9e9e9] rounded-lg m-4 py-2 px-4 text-sm">
+      <div className="w-[800px] rounded-lg bg-white shadow">
+        <div className="px-4 py-2 m-4 text-sm bg-gray-100 rounded-lg">
           <h1 className="text-lg font-bold">
             {menu == `Notice` && `${noticebody.title}`}
             {menu == "Event" && "이벤트1"}
             {menu == "Menual" && "메뉴얼1"}
           </h1>
         </div>
-        <div className="min-h-[360px] m-4 p-4 rounded-lg bg-white">
+        <div className="min-h-[360px] m-4 p-4 rounded-lg bg-gray-100">
           <p className="">
             {menu == `Notice` && `${noticebody.body}`}
 
