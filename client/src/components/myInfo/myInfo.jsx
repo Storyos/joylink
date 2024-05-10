@@ -11,12 +11,11 @@ export default function MyInfo() {
   return (
     <div>
       <div>
-        <div className="border-indigo-800 p-2 border-2 rounded-lg ... m-3 bg-gray-100">
+        <div className="border-indigo-800 p-2 border-2 rounded-lg m-3 bg-gray-100">
           <h2>내 정보</h2><br></br><br></br>
           <button className="m-2">Club Management</button>
         </div>
-        <div className="border-indigo-800 p-2 border-2 rounded-lg ... m-3
-        bg-gray-100">
+        <div className="border-indigo-800 p-2 border-2 rounded-lg m-3 bg-gray-100">
           <button onClick={() => setChattingDisplay("Open")} >채팅</button>
         </div>
         <div className="border-indigo-800 p-2 border-2 rounded-lg ... m-3 bg-gray-100">

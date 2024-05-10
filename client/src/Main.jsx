@@ -16,6 +16,7 @@ import ClubManagement from "./pages/myClubPagePost/myClubPagePost";
 import CheckUserInfo from "./pages/login/checkUserInfo";
 import EmailVerified from "./pages/login/emailVerified";
 import ClubManagementPage from "./pages/clubManagementPage/clubManagementPage";
+import MyClubPagePost from "./pages/myClubPagePost/myClubPagePost";
 
 export default function Main() {
   return (
@@ -35,6 +36,7 @@ export default function Main() {
           <Route path="event/:eventId" element={<Notice />} />
           <Route path="myClubPage" element={<MyClubPage />} />
           <Route path="clubManagementPage" element={<ClubManagementPage />} />
+          <Route path="MyClubPagePost" element={<MyClubPagePost/>} />
           <Route path="clubManagement" element={<ClubManagement />}> {/*여기서 Route가 닫힌다!*/}
           </Route>
         </Route>

@@ -3,7 +3,7 @@ import MyInfo from "../../components/myInfo/myInfo";
 export default function MyClubPage() {
   return (
     <div className="flex justify-center">
-      <div className="w-1/7">
+      <div>
         <MyInfo/> {/* 사이드바 */}
       </div>
       <div className="w-1/2 p-6">

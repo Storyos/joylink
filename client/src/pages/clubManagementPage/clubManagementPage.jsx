@@ -38,8 +38,8 @@ export default function ClubManagementPage() {
         </button>
       </div>
 
-      <div className="flex justify-center border m-5">
-        {/* 각 버튼에 대한 설정 화면을 보여줌 */}
+      <div className="flex justify-center border border-indigo-800 m-5">
+        {/* 각 버튼에 대한 설정 화면을 보여줍니다 */}
         {activeTab && (
           <div>
             <h1>{activeTab}입니다</h1>
