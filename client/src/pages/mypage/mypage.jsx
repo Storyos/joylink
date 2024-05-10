@@ -97,18 +97,25 @@ export default function Mypage () {
                 <tr className='border-2 border-[#c9c9c9]'>
                   <th className='border-2 border-[#c9c9c9] w-[50px] p-2'> </th>
                   <td className='border-2 border-[#c9c9c9] text-center min-w-[300px] p-2 text-sm'>동아리 명</td>
+                  <td className='border-2 border-[#c9c9c9] text-center text-sm'>가입 날짜</td>
                 </tr>
                 <tr className='border-2 border-[#c9c9c9]'>
                   <th className='border-2 border-[#c9c9c9] w-[50px] p-2'>1</th>
                   <td className='border-2 border-[#c9c9c9] text-center min-w-[300px] text-sm'>동아리1</td>
+                  <td className='border-2 border-[#c9c9c9] text-center text-sm'>2024/05/07</td>
+
                 </tr>
                 <tr className='border-2 border-[#c9c9c9]'>
                   <th className='border-2 border-[#c9c9c9] w-[50px] p-2'>2</th>
                   <td className='border-2 border-[#c9c9c9] text-center min-w-[300px] text-sm'>동아리2</td>
+                  <td className='border-2 border-[#c9c9c9] text-center text-sm'>2024/05/08</td>
+
                 </tr>
                 <tr className='border-2 border-[#c9c9c9]'>
                   <th className='border-2 border-[#c9c9c9] w-[50px] p-2'>3</th>
                   <td className='border-2 border-[#c9c9c9] text-center min-w-[300px] text-sm'>동아리3</td>
+                  <td className='border-2 border-[#c9c9c9] text-center text-sm'>2024/05/09</td>
+
                 </tr>
               </table>
             </div>
