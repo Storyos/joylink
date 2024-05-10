@@ -1,4 +1,5 @@
 import MyInfo from "../../components/myInfo/myInfo";
+import { Link } from "react-router-dom";
 
 export default function MyClubPage() {
   return (
