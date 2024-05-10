@@ -1,6 +1,8 @@
 // src/CbSearch.jsx
-import React from 'react';
+import {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
+import { supabase } from '../../App';
+
 
 const SearchBar = () => (
   <div className="flex items-center justify-center p-4">
@@ -29,6 +31,23 @@ const EventItem = ({ title, imageSrc, description }) => (
 );
 
 const EventGrid = () => {
+  const [clublist, setClubList] = useState([]);
+  
+  useEffect(()=>{
+    getClubList();
+  },[])
+  
+  const getClubList = async () =>{
+    const {data,error} = await supabase.from('clubs').select('*');
+    if(error){
+      console.log(error);
+    }else{
+      console.log(data);
+      setClubList(data);
+    }
+  }
+
+
   const events = [
     { id: 1, title: "로프트 테이블", imageSrc: "https://cdn.pixabay.com/photo/2013/11/03/08/05/cheers-204742_1280.jpg", description: "청년들 테이블 이벤트" },
     { id: 2, title: "현책, 예술이 되다", imageSrc: "https://cdn.pixabay.com/photo/2022/08/02/14/11/flower-7361784_1280.jpg", description: "예술과 책 이벤트" },
@@ -50,8 +69,8 @@ const EventGrid = () => {
 
   return (
     <div className="grid w-full grid-cols-4 gap-6">
-      {events.map(event => (
-        <EventItem key={event.id} {...event} />
+      {clublist.map(clublist => (
+        <EventItem title={clublist.club_nm} imageSrc="https://cdn.pixabay.com/photo/2013/11/03/08/05/cheers-204742_1280.jpg" />
       ))}
     </div>
   );
@@ -63,7 +82,7 @@ function CbSearch() {
       <SearchBar />
       <div className="max-w-[1280px] p-8 mx-auto">
         <div className="p-4 overflow-hidden bg-white rounded shadow">
-          <div className="mb-4 text-xl font-bold">진행 중인 이벤트 (16개)</div>
+          <div className="mb-4 text-xl font-bold">동아리 목록</div>
           <EventGrid />
         </div>
         <div className="flex justify-center mt-4 space-x-1 text-sm text-gray-600">
