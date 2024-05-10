@@ -17,25 +17,25 @@ export default function Header() {
     }, []);
 
   return (
-    <header className="bg-white shadow-md ">
-      <div className="container flex items-center justify-between px-4 py-4 mx-auto">
-        <div>
-          <ul className="flex space-x-4">
-            <li><Link to="/" className="text-gray-800 hover:text-blue-600">JoyLink</Link></li>
-            <li><Link to="/cbSearch" className="text-gray-800 hover:text-blue-600">모임찾기</Link></li>
-            <li><Link to="/notice" className="text-gray-800 hover:text-blue-600">공지사항</Link></li>
-            <li><Link className="text-gray-800 hover:text-blue-600">VR체험관</Link></li>
+    <header className="bg-indigo-400 mb-10">
+      <div className="p-7">
+          <ul className="flex text-3xl font-medium justify-center">
+            <li><Link to="/" className="text-white hover:text-indigo-800 mx-5">JoyLink</Link></li>
+            <li><Link to="/cbSearch" className="text-white hover:text-indigo-800 mx-5">모임찾기</Link></li>
+            <li><Link to="/notice" className="text-white hover:text-indigo-800 mx-5">공지사항</Link></li>
+            <li><Link className="text-white hover:text-indigo-800 mx-5">VR체험관</Link></li>
           </ul>
-        </div>
-        <div className="flex">
+
+        <div className="flex justify-center font-medium pt-20">
           {
             isLoggedIn?
-          (<button className="px-4 py-2 mr-2 font-bold text-white bg-blue-600 rounded hover:bg-blue-700"><Link to="/login">로그아웃</Link></button>)
+          (<button className="mr-2 text-white rounded hover:text-indigo-800"><Link to="/login">로그아웃</Link></button>)
           :
-          (<button className="px-4 py-2 mr-2 font-bold text-white bg-blue-600 rounded hover:bg-blue-700"><Link to="/login">로그인</Link></button>)
+          (<button className="mr-2 text-white hover:text-indigo-800"><Link to="/login">로그인</Link></button>)
           }
-          <button className="px-4 py-2 font-bold text-white bg-blue-600 rounded hover:bg-blue-700"><Link to="/join">회원가입</Link></button>
-          <button className="px-4 py-2 font-bold text-white bg-blue-600 rounded hover:bg-blue-700"><Link to="/getInfo">회원가입 추가정보 받기</Link></button>
+          
+          <button className="px-4 py-2 text-white hover:text-indigo-800"><Link to="/join">회원가입</Link></button>
+          <button className="px-4 py-2 text-white hover:text-indigo-800"><Link to="/getInfo">회원가입 추가정보 받기</Link></button>
         </div>
       </div>
     </header>

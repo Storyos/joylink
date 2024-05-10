@@ -88,8 +88,8 @@ export default function Login() {
             email: useremail,
             password: userpassword,
         })
-        console.log("여기서 찍히는 값인가?", data);
-        console.log('userpassword :>> ', userpassword);
+        console.log("여기서 찍히는 값인가?", data); // 테스트
+        console.log('userpassword :>> ', userpassword); // 테스트
         if (error) {
             console.log("에러발생");
             console.error(error);
@@ -97,7 +97,7 @@ export default function Login() {
             useUserStore.getState().setUser(data); // zustand에 로그인후 컬럼정보 저장
             alert("로그인 성공~");
             const userState = useUserStore.getState(); // 상태를 가져옵니다
-            console.log(userState.user);
+            console.log(userState.user); // 테스트용으로 콘솔출력
             navigate('/'); // 로그인 성공시 이동하는 곳
         }
     }

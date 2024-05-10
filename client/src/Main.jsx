@@ -15,34 +15,40 @@ import MyClubPage from "./pages/myClubPage/myClub";
 import ClubManagement from "./pages/myClubPagePost/myClubPagePost";
 import CheckUserInfo from "./pages/login/checkUserInfo";
 import EmailVerified from "./pages/login/emailVerified";
+import ClubManagementPage from "./pages/clubManagementPage/clubManagementPage";
+
 export default function Main() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App/>}> 
-          <Route index element={<Mainpage/>}/>
-          <Route path="checkUserInfo" element={<CheckUserInfo></CheckUserInfo>}/>
-          <Route path="EmailVerified" element={<EmailVerified/>}></Route>
-          <Route path="mypage" element={<Mypage/>}/>
-          <Route path="cbSearch" element={<CbSearch/>}/> 
-          <Route path="cbCreate" element={<CbCreate/>}/> 
-          <Route path="notice" element={<Notice/>}/>
-          <Route path="cbDescription" element={<CbDescription/>}/>
-          <Route path="cbJoin" element={<CbJoin/>}/>
-          <Route path="notice/:noticeId" element={<Notice/>}/>
-          <Route path="event/:eventId" element={<Notice/>}/>
-          <Route path="myClubPage" element={<MyClubPage/>}/>
-          <Route path="clubManagement" element={<ClubManagement/>}>
+        <Route path="/" element={<App/>}>
+          <Route index element={<Mainpage/>} />
+          <Route path="checkUserInfo" element={<CheckUserInfo />} />
+          <Route path="EmailVerified" element={<EmailVerified />} />
+          <Route path="mypage" element={<Mypage />} />
+          <Route path="cbSearch" element={<CbSearch />} /> 
+          <Route path="cbCreate" element={<CbCreate />} /> 
+          <Route path="notice" element={<Notice />} />
+          <Route path="cbDescription" element={<CbDescription />} />
+          <Route path="cbJoin" element={<CbJoin />} />
+          <Route path="notice/:noticeId" element={<Notice />} />
+          <Route path="event/:eventId" element={<Notice />} />
+          <Route path="myClubPage" element={<MyClubPage />} />
+          <Route path="clubManagementPage" element={<ClubManagementPage />} />
+          <Route path="clubManagement" element={<ClubManagement />}> {/*여기서 Route가 닫힌다!*/}
           </Route>
         </Route>
-        
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/join" element={<Join/>}/>
-        <Route path="/getInfo" element={<GetInfo/>}/>
-        <Route path="/chatting" element={<Chatting/>}/>
-        <Route path="/myclub" element={<MyClubPage/>}/>
+
+        <Route path="/login" element={<Login />} />
+        <Route path="/join" element={<Join />} />
+        <Route path="/getInfo" element={<GetInfo />} />
+        <Route path="/chatting" element={<Chatting />} />
+        <Route path="/myclub" element={<MyClubPage />} />
       </Routes>
     </BrowserRouter>
   );
 }
+
+
+
 
