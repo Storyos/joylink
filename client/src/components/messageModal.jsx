@@ -417,17 +417,17 @@ export default function MessageModal(props) {
 
         {/* 상단 버튼 */}
         <div className='flex justify-between mb-4'>
-          <span className='p-1 border-2'>
-            <button className='mx-4' onClick={handleReceivedMessage}>받은 쪽지</button>
-            <button className='mx-4' onClick={handleSentMessage}>보낸 쪽지</button>
+          <span className='border-2'>
+            <button className='px-4 py-1 hover:bg-[#e9e9e9]' onClick={handleReceivedMessage}>받은 쪽지</button>
+            <button className='px-4 py-1 hover:bg-[#e9e9e9]' onClick={handleSentMessage}>보낸 쪽지</button>
           </span>
-          <button onClick={handleMessageWrite} className='p-1 border-2'>쪽지 쓰기</button>
+          <button onClick={handleMessageWrite} className='p-1 border-2 hover:bg-[#e9e9e9]'>쪽지 쓰기</button>
         </div>
 
         {/* 검색창 */}
         <div className='flex justify-end mb-4'>
           <input className='px-1 border-2' id="searchbyTitle" onKeyDown={handleKeyDown} type="text" placeholder='제목 검색' ref={inputRef} />
-          <button className='px-1 ml-2 border-2' onClick={handleSearchbyTitle} id="searchButton">검색</button>
+          <button className='px-1 ml-2 border-2 hover:bg-[#e9e9e9]' onClick={handleSearchbyTitle} id="searchButton">검색</button>
         </div>
 
         {/* 쪽지 리스트  */}
@@ -435,13 +435,41 @@ export default function MessageModal(props) {
 
         {/* 하단 버튼 */}
         <div className='flex justify-end'>
-          <button className='p-1 px-3 mr-1 border-2' onClick={updateMessageDeleteState}>삭제</button>
-          <button className='p-1 px-3 border-2' onClick={handleCloseMessage}>닫기</button>
+          <button className='p-1 px-3 mr-1 border-2 hover:bg-[#e9e9e9]' onClick={updateMessageDeleteState}>삭제</button>
+          <button className='p-1 px-3 border-2 hover:bg-[#e9e9e9]' onClick={handleCloseMessage}>닫기</button>
         </div>
       </div>
     )
   }
 
+  // 받는 사람 검색하기 팝업창
+  const handleSearchReceivedUser = () => {
+    window.open("/searchreceiveduser","searchreceiveduser","width=420, height=420, top=200, left=550")
+  }
+
+  // 팝업창에서 들고 온 검색 데이터 저장
+  const [selectedUserName, setSelectedUserName] = useState("");
+  const [selectedUserId, setSelectedUserId] = useState("");
+  
+  // 팝업창에서 메시지를 받아옴
+  const handleMessageFromPopUp = (event) => {
+    const username = event.data.username;
+    const userId = event.data.userId;
+    console.log(username);
+    console.log(userId);
+    if (event.data.username !== undefined) {
+      setSelectedUserName(username);
+      setSelectedUserId(userId);      
+    }
+  };
+  
+  useEffect(() => {
+    window.addEventListener("message", handleMessageFromPopUp);
+    return () => {
+      window.removeEventListener("message", handleMessageFromPopUp);
+    };
+  }, []);
+  
   // 쪽지 쓰기 화면
   const MessageWrite = () => {
     return (
@@ -451,21 +479,21 @@ export default function MessageModal(props) {
           <div>
             <div className='py-2'>
               <label htmlFor="message_write_title"><p className='inline-block text-center w-28'>제목</p></label>
-              <input id='message_write_title' type="text" className='border-2' style={{ width: '450px' }} onChange={() => handleTitleChange} />
+              <input id='message_write_title' type="text" className='border-2 w-[450px]' onChange={() => handleTitleChange} />
             </div>
             <div className='py-2'>
-              <label htmlFor="message_write_receiver"><p className='inline-block text-center w-28'>받는 사람</p></label>
-              <input id='message_write_receiver' type="text" className='border-2' style={{ width: '450px' }} onChange={() => handlereceiverChange} />
+              <label htmlFor="message_write_receiver"><p className='inline-block text-center w-28 hover:bg-[#e9e9e9]' onClick={handleSearchReceivedUser}>받는 사람</p></label>
+              <input id='message_write_receiver' type="text" className='border-2 w-[450px]' disabled value={selectedUserName && `${selectedUserName}(${selectedUserId})`} />
             </div>
             <div className='flex py-2 '>
               <label htmlFor="message_write_content"><p className='inline-block text-center w-28'>내용</p></label>
-              <textarea id="message_write_content" className='border-2 resize-none' style={{ width: '450px', height: '300px' }} onChange={() => handleContentChange}></textarea>
+              <textarea id="message_write_content" className='border-2 resize-none w-[450px] h-[300px]' onChange={() => handleContentChange}></textarea>
             </div>
           </div>
 
           <div className='flex justify-end'>
-            <button className='p-1 px-3 mr-1 border-2' onClick={handleMessageSend}>전송</button>
-            <button className='p-1 px-3 border-2' onClick={handleMessageWrite}>목록</button>
+            <button className='p-1 px-3 mr-1 border-2 hover:bg-[#e9e9e9]' onClick={handleMessageSend}>전송</button>
+            <button className='p-1 px-3 border-2 hover:bg-[#e9e9e9]' onClick={handleMessageWrite}>목록</button>
           </div>
 
         </div>
@@ -497,7 +525,7 @@ export default function MessageModal(props) {
           <div className="px-4 py-2 mt-4 border-2 min-h-[300px]">{msg.msg_body}</div>
           
           <div className="mt-4 text-end">
-            <button className="p-1 px-3 border-2" onClick={() => setMessageContentsBtn("List")}>목록</button>
+            <button className="p-1 px-3 border-2 hover:bg-[#e9e9e9]" onClick={() => setMessageContentsBtn("List")}>목록</button>
           </div>
         </div>
       )

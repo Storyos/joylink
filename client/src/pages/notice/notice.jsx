@@ -15,20 +15,24 @@ export default function Notice () {
   }
   
   return (
-    <>
-      <div className="flex justify-between my-20 mx-60">
-        <div className="flex flex-col w-1/6 min-h-[600px]">
-          <h1 className="py-8 text-3xl font-bold text-center">공지사항</h1>
-          <div className="h-full bg-[#e9e9e9] rounded-lg" >
-            <ul className="my-8 text-center">
-              <il className="block my-6 text-lg"><button onClick={handleNoticeMenu}>공지사항</button></il>
-              <il className="block my-6 text-lg"><button onClick={handleEventMenu}>이벤트</button></il>
-              <il className="block my-6 text-lg"><button onClick={handleMenualMenu}>메뉴얼</button></il>
-            </ul>
-          </div>
+    <div className="flex justify-center py-20 bg-gray-100">
+      <div className="flex flex-col w-[120px] min-h-[600px] mr-10">
+        <h1 className="py-4 text-2xl font-bold text-center">공지사항</h1>
+        <div className="h-full bg-white rounded-[10px] shadow">
+          <ul className="my-8 text-center">
+            <li className="block my-6 text-sm text-[#a9a9a9]">
+              <button onClick={handleNoticeMenu} className={noticeMenu === "Notice" ? "text-black" : ""}>공지사항</button>
+            </li>
+            <li className="block my-6 text-sm text-[#a9a9a9]">
+              <button onClick={handleEventMenu} className={noticeMenu === "Event" ? "text-black" : ""}>이벤트</button>
+            </li>
+            <li className="block my-6 text-sm text-[#a9a9a9]">
+              <button onClick={handleMenualMenu} className={noticeMenu === "Menual" ? "text-black" : ""}>메뉴얼</button>
+            </li>
+          </ul>
         </div>
-        <NoticeContents menu={noticeMenu}/>
       </div>
-    </>
+      <NoticeContents menu={noticeMenu}/>
+    </div>
   )
 }
