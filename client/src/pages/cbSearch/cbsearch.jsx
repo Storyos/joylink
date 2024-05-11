@@ -9,10 +9,10 @@ const SearchBar = () => (
         placeholder="동아리 검색"
         className="flex-1 p-2 border border-gray-300 rounded-l-lg" // flex-1을 사용하여 너비를 최대로 확장
       />
-      <button className="p-2 mr-4 text-white bg-blue-500 rounded-r-lg hover:bg-blue-700">
+      <button className="p-2 mr-4 text-white bg-indigo-500 rounded-r-lg hover:bg-blue-700">
         검색
       </button>
-      <Link to="/cbCreate" className='p-2 text-white bg-blue-500 rounded-lg t-white mar hover:bg-blue-700 '>동아리 만들기</Link>
+      <Link to="/cbCreate" className='p-2 text-white bg-indigo-500 rounded-lg t-white mar hover:bg-blue-700 '>동아리 만들기</Link>
     </div>
   </div>
 );
@@ -21,10 +21,10 @@ const SearchBar = () => (
 const ClubItem = () => (
   <div className="flex items-center justify-between p-4 border-b border-gray-200 min-h-24">
     {/* Apply styles directly to Link */}
-    <Link to="/cbDescription" className="block text-blue-500 hover:text-blue-700">
+    <Link to="/cbDescription" className="block text-indigo-500 hover:text-blue-700">
       동아리 정보
     </Link>
-    <Link to="/cbJoin" className="p-2 text-white bg-green-500 rounded hover:bg-green-700">
+    <Link to="/cbJoin" className="p-2 text-white bg-indigo-500 rounded hover:bg-blue-700">
       신청
     </Link>
   </div>
