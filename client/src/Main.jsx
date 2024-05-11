@@ -18,6 +18,7 @@ import EmailVerified from "./pages/login/emailVerified";
 import ClubManagementPage from "./pages/clubManagementPage/clubManagementPage";
 import MyClubPagePost from "./pages/myClubPagePost/myClubPagePost";
 import ViewAccountPage from "./pages/viewAccountPage/viewAccountPage";
+import Gallery from "./pages/gallery/gallery";
 
 export default function Main() {
   return (
@@ -37,8 +38,9 @@ export default function Main() {
           <Route path="event/:eventId" element={<Notice />} />
           <Route path="myClubPage" element={<MyClubPage />} />
           <Route path="clubManagementPage" element={<ClubManagementPage />} />
-          <Route path="MyClubPagePost" element={<MyClubPagePost/>} />
-          <Route path="ViewAccountPage" element={<ViewAccountPage/>} />
+          <Route path="myClubPagePost" element={<MyClubPagePost/>} />
+          <Route path="viewAccountPage" element={<ViewAccountPage/>} />
+          <Route path="gallery" element={<Gallery />} />
           <Route path="clubManagement" element={<ClubManagement />}> {/*여기서 Route가 닫힌다!*/}
           </Route>
         </Route>
@@ -52,7 +54,6 @@ export default function Main() {
     </BrowserRouter>
   );
 }
-
 
 
 

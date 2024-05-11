@@ -1,5 +1,4 @@
 
-
 export default function ViewAccountPage() {
   return (
     <>
@@ -18,3 +17,4 @@ export default function ViewAccountPage() {
     </>
   );
 }
+
