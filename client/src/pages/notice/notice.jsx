@@ -16,7 +16,6 @@ export default function Notice() {
 
   return (
     <div className="flex justify-center">
-
       <div className="w-1/6 border-2 rounded-lg border-indigo-400 m-5 bg-gray-100 lg:w-1/12">
           <h1 className="flex justify-center m-7">카테고리</h1>
           <ul className="mt-4 flex flex-col items-center">
@@ -30,12 +29,10 @@ export default function Notice() {
               <button onClick={handleMenualMenu}>메뉴얼</button>
             </li>
           </ul> 
-      </div>
-      
+      </div>  
       <div className="w-3/5 border-2 rounded-lg border-indigo-400 m-5 bg-gray-100">
         <NoticeContents menu={noticeMenu} />
       </div>
-
     </div>
   );
 }

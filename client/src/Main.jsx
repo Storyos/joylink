@@ -19,6 +19,7 @@ import ClubManagementPage from "./pages/clubManagementPage/clubManagementPage";
 import MyClubPagePost from "./pages/myClubPagePost/myClubPagePost";
 import ViewAccountPage from "./pages/viewAccountPage/viewAccountPage";
 import Gallery from "./pages/gallery/gallery";
+import Vr from "./pages/VR/vr";
 
 export default function Main() {
   return (
@@ -45,6 +46,7 @@ export default function Main() {
           </Route>
         </Route>
 
+        <Route path="/vr" element={<Vr/>} />
         <Route path="/login" element={<Login />} />
         <Route path="/join" element={<Join />} />
         <Route path="/getInfo" element={<GetInfo />} />
