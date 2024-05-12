@@ -7,42 +7,40 @@ export default function ChattingModal() {
   // 여기는 나중에 Zustand로 변경할 예정
   const user_seq = 13
   const club_seq = 1
+
+  // messages : 채팅들을 저장하는 곳
   const [messages, setMessages] = useState([]);
+
   const [input, setInput] = useState([]);
 
-  useEffect(()=>{
+  async function loadInitialMessages() {
+    const { data, error } = await supabase
+      .from('chats')
+      .select('*')
+      .eq('club_seq', club_seq)
+      .order('chat_time', { ascending: true });
+
+    if (error) {
+      console.error('Error loading messages:', error);
+    } else {
+      setMessages(data);
+    }
+  }
+  
+  useEffect(() => {
     // 실시간 메시지 구독 설정
     async function messageSubscription() {
       await supabase
         .channel('room1')
-        .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'chats', filter: `club_seq=1` },handlesubscribe)
+        .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'chats', filter: `club_seq=eq.${club_seq}` }, handlesubscribe)
         .subscribe()
     }
     messageSubscription();
-  },[])
-
-  useEffect(() => {
-    // 초기 메시지 로딩
-    async function loadInitialMessages() {
-      const { data, error } = await supabase
-        .from('chats')
-        .select('*')
-        .eq('club_seq', club_seq)
-        .order('chat_time', { ascending: false });
-
-      if (error) {
-        console.error('Error loading messages:', error);
-      } else {
-        setMessages(data);
-      }
-    }
-
     loadInitialMessages();
+  }, [])
 
-    
-  }, [club_seq]);
-  
-  const handlesubscribe = () =>{
+  const handlesubscribe = () => {
+    loadInitialMessages();
     alert("문자왔어요")
   }
 
@@ -51,7 +49,6 @@ export default function ChattingModal() {
   const sendMessage = (e) => {
     e.preventDefault();
     if (!input.trim()) return;
-    setMessages([input]);
     setInput('');
   };
 
@@ -70,7 +67,7 @@ export default function ChattingModal() {
       if (error) {
         console.error('Message send error', error);
       } else {
-        console.log("메시지가 전송되었습니다.");
+        console.log("메시지가 전송되었습니다.", input);
         setInput(''); // 입력 필드 초기화
       }
     } catch (error) {
@@ -89,33 +86,20 @@ export default function ChattingModal() {
 
           {/* 채팅 영역 */}
           <div className="absolute flex flex-col w-[420px]">
+            {messages.map((msg, index) => (
+              msg.user_seq === user_seq ?
+                <div className="flex self-end my-2 ">
+                  <div className="bg-[#fff951] max-w-[300px] inline-block rounded-[10px] py-1 px-2">{msg.chat_content}</div>
+                </div> :
+                <div className="flex my-2 ml-4">
+                  <div className="bg-[#C0E4FF] w-[30px] h-[30px] inline-block rounded-[10px] mt-2"></div>
+                  <div className="inline-block ml-4">
+                    <div>{msg.user_seq}</div>
+                    <div className="bg-white max-w-[300px] inline-block rounded-[10px] py-1 px-2">{msg.chat_content}</div>
+                  </div>
+                </div>
 
-            {/* 남이 쓴 채팅 */}
-            <div className="flex my-2 ml-4">
-              <div className="bg-[#C0E4FF] w-[30px] h-[30px] inline-block rounded-[10px] mt-2"></div>
-              <div className="inline-block ml-4">
-                <div>user1</div>
-                <div className="bg-white max-w-[300px] inline-block rounded-[10px] py-1 px-2">가나다라마바사</div>
-              </div>
-            </div>
-
-            {/* 내가 쓴 채팅 */}
-            <div className="flex self-end my-2 ">
-              <div className="bg-[#fff951] max-w-[300px] inline-block rounded-[10px] py-1 px-2">채팅채팅채팅채팅채팅채팅채팅채팅채팅채팅채팅채팅채팅채팅채팅채팅채팅채팅채팅채팅</div>
-            </div>
-
-            <div className="flex my-2 ml-4">
-              <div className="bg-[#C0E4FF] w-[30px] h-[30px] inline-block rounded-[10px] mt-2"></div>
-              <div className="inline-block ml-4">
-                <div>user2</div>
-                <div className="bg-white max-w-[300px] inline-block rounded-[10px] py-1 px-2">채팅채팅채팅채팅채팅채팅채팅채팅채팅채팅채팅채팅채팅채팅채팅채팅채팅채팅채팅채팅</div>
-              </div>
-            </div>
-
-            <div className="flex self-end my-2">
-              <div className="bg-[#fff951] max-w-[300px] inline-block rounded-[10px] py-1 px-2">내가 쓴 채팅</div>
-            </div>
-
+            ))}
           </div>
 
 
