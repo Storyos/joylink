@@ -10,40 +10,41 @@ export default function ChattingModal() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState([]);
 
+  useEffect(()=>{
+    // 실시간 메시지 구독 설정
+    async function messageSubscription() {
+      await supabase
+        .channel('room1')
+        .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'chats', filter: `club_seq=1` },handlesubscribe)
+        .subscribe()
+    }
+    messageSubscription();
+  },[])
 
-    useEffect(() => {
-      // 초기 메시지 로딩
-      async function loadInitialMessages() {
-        const { data, error } = await supabase
-          .from('chats')
-          .select('*')
-          .eq('club_seq', club_seq)
-          .order('created_at', { ascending: false });
-    
-        if (error) {
-          console.error('Error loading messages:', error);
-        } else {
-          setMessages(data);
-        }
+  useEffect(() => {
+    // 초기 메시지 로딩
+    async function loadInitialMessages() {
+      const { data, error } = await supabase
+        .from('chats')
+        .select('*')
+        .eq('club_seq', club_seq)
+        .order('chat_time', { ascending: false });
+
+      if (error) {
+        console.error('Error loading messages:', error);
+      } else {
+        setMessages(data);
       }
+    }
+
+    loadInitialMessages();
+
     
-      loadInitialMessages();
-    
-      // 실시간 메시지 구독 설정
-      async function messageSubscription(){ supabase
-        .from(`chats:club_seq=eq.${club_seq}`)
-        .on('INSERT', ({ new: newMessage }) => {
-          setMessages(prevMessages => [...prevMessages, newMessage]);
-        })
-        .subscribe();
-      }
-      
-      // 구독 해제
-      return () => {
-        supabase.removeSubscription(messageSubscription);
-      };
-    }, [club_seq]);
-    
+  }, [club_seq]);
+  
+  const handlesubscribe = () =>{
+    alert("문자왔어요")
+  }
 
 
   // 채팅입력창의 input정보 받기
@@ -58,14 +59,14 @@ export default function ChattingModal() {
   const handleMessageInsert = async (e) => {
     e.preventDefault(); // 폼 전송 기본 동작 막기
     if (!input.trim()) return; // 입력값이 비어있으면 반환
-  
+
     try {
       const { error } = await supabase.from('chats').insert({
         club_seq: club_seq,
         user_seq: user_seq,
         chat_content: input
       });
-  
+
       if (error) {
         console.error('Message send error', error);
       } else {
@@ -76,7 +77,7 @@ export default function ChattingModal() {
       console.error("메시지 전송 에러", error);
     }
   }
-  
+
 
 
   return (
