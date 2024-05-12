@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useState, useEffect } from "react";
 import { supabase } from "../App";
 
@@ -7,12 +7,19 @@ export default function ChattingModal() {
   // 여기는 나중에 Zustand로 변경할 예정
   const user_seq = 13
   const club_seq = 1
-
   // messages : 채팅들을 저장하는 곳
   const [messages, setMessages] = useState([]);
-
   const [input, setInput] = useState([]);
+  const messagesEndRef = useRef(null); // Ref for the messages container
 
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();  
+  }, [messages]); 
+  
   async function loadInitialMessages() {
     const { data, error } = await supabase
       .from('chats')
@@ -26,7 +33,7 @@ export default function ChattingModal() {
       setMessages(data);
     }
   }
-  
+
   useEffect(() => {
     // 실시간 메시지 구독 설정
     async function messageSubscription() {
@@ -41,7 +48,6 @@ export default function ChattingModal() {
 
   const handlesubscribe = () => {
     loadInitialMessages();
-    alert("문자왔어요")
   }
 
 
@@ -79,13 +85,13 @@ export default function ChattingModal() {
 
   return (
     <>
-      <div className="fixed rounded-[10px] w-[450px] h-[500px] inset-0 m-auto bg-[#e9e9e9] shadow-lg">
+      <div className="fixed rounded-[10px] w-[450px] h-[500px] inset-0 m-auto bg-[#e9e9e9] shadow-lg ">
         <div className="relative w-full h-full">
           <div className="mt-2 text-center">채팅</div>
           <button className="absolute text-[#a9a9a9] right-4 top-0" >X</button>
 
           {/* 채팅 영역 */}
-          <div className="absolute flex flex-col w-[420px]">
+          <div className="absolute flex flex-col w-[420px] h-[400px] overflow-auto">
             {messages.map((msg, index) => (
               msg.user_seq === user_seq ?
                 <div className="flex self-end my-2 ">
@@ -100,9 +106,9 @@ export default function ChattingModal() {
                 </div>
 
             ))}
+
+            <div ref={messagesEndRef} />
           </div>
-
-
           {/* 채팅 입력창 */}
           <div className="absolute bottom-0 rounded-b-[10px] bg-white ">
 
