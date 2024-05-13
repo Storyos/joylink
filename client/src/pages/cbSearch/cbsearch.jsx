@@ -12,21 +12,24 @@ const SearchBar = () => (
         placeholder="이벤트 검색"
         className="flex-1 p-2 border border-gray-300 rounded-l-lg"
       />
-      <button className="p-2 mr-4 text-white bg-blue-500 rounded-r-lg hover:bg-blue-700">
+      <button className="p-2 mr-4 text-white bg-indigo-500 rounded-r-lg hover:bg-blue-700">
         검색
       </button>
-      <Link to="/cbCreate" className="p-2 text-white bg-blue-500 rounded-lg hover:bg-blue-700">
-        동아리 만들기
-      </Link>
+      <Link to="/cbCreate" className='p-2 text-white bg-indigo-500 rounded-lg t-white mar hover:bg-blue-700 '>동아리 만들기</Link>
     </div>
   </div>
 );
 
-const EventItem = ({ title, imageSrc, description }) => (
-  <div className="flex flex-col items-center w-full h-full p-4 transition-shadow duration-300 bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg">
-    <img src={imageSrc} alt={title} className="w-full h-auto mb-4" />
-    <div className="font-bold">{title}</div>
-    <p className="text-sm text-gray-600">{description}</p>
+
+const ClubItem = () => (
+  <div className="flex items-center justify-between p-4 border-b border-gray-200 min-h-24">
+    {/* Apply styles directly to Link */}
+    <Link to="/cbDescription" className="block text-indigo-500 hover:text-blue-700">
+      동아리 정보
+    </Link>
+    <Link to="/cbJoin" className="p-2 text-white bg-indigo-500 rounded hover:bg-blue-700">
+      신청
+    </Link>
   </div>
 );
 
@@ -36,7 +39,7 @@ const EventGrid = ({ clublist, currentPage, itemsPerPage }) => {
   return (
     <div className="grid w-full grid-cols-4 gap-6">
       {paginatedEvents.map(clublist => (
-        <EventItem title={clublist.club_nm} imageSrc="https://cdn.pixabay.com/photo/2013/11/03/08/05/cheers-204742_1280.jpg" />
+        <ClubItem title={clublist.club_nm} imageSrc="https://cdn.pixabay.com/photo/2013/11/03/08/05/cheers-204742_1280.jpg" />
       ))}
     </div>
   );

@@ -8,7 +8,7 @@ export default function Chatting() {
     const [club_seq, setClub_seq] = useState(null);
     const [user_seq, setUser_seq] = useState(null);
     const [myemail, setMyEmail] = useState(null);
-
+    
     // 내정보 Update 받는곳
     useEffect(() => {
         async function getEmailnUserSeq() {

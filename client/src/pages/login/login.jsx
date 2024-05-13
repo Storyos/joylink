@@ -82,24 +82,36 @@ export default function Login() {
             await handlelogin();
         }
     }
-
+    const fetchUserData = async () => {
+        const { data, error } = await supabase
+            .from('users')
+            .select('*')
+            .eq('user_id', useremail)
+            .single()
+            console.log(data);
+        if(error){
+            console.error(error);
+        }else{
+            useUserStore.getState().setUser(data); // zustand에 로그인후 컬럼정보 저장
+            alert("로그인 성공~");
+            const userState = useUserStore.getState(); // 상태를 가져옵니다
+            console.log("상태저장 값:",userState.user); // 테스트용으로 
+            navigate('/');
+        }
+        
+    }
     // 로그인 요청 처리
     const handlelogin = async () => {
         const { data, error } = await supabase.auth.signInWithPassword({
             email: useremail,
             password: userpassword,
         })
-        console.log("여기서 찍히는 값인가?", data);
-        console.log('userpassword :>> ', userpassword);
+        console.log("여기서 찍히는 값인가?", data); // 테스트
         if (error) {
             console.log("에러발생");
             console.error(error);
         } else {
-            useUserStore.getState().setUser(data); // zustand에 로그인후 컬럼정보 저장
-            alert("로그인 성공~");
-            const userState = useUserStore.getState(); // 상태를 가져옵니다
-            console.log(userState.user);
-            navigate('/'); // 로그인 성공시 이동하는 곳
+            await fetchUserData();
         }
     }
     return (
