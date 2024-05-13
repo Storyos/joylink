@@ -33,7 +33,7 @@ export default function MyInfo() {
           <Link to="/gallery"><button>갤러리</button></Link>
           <Link to="/clubNotice"><button>동아리 공지사항</button></Link>
           <Link to="/freeBoard"><button>자유게시판</button></Link>
-          <Link to=""><button>질문게시판</button></Link>
+          <Link to="/questionBoard"><button>질문게시판</button></Link>
         </div>
       </div>
 
