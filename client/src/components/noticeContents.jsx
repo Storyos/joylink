@@ -25,6 +25,7 @@ export default function NoticeContents (props) {
   const handleList = () => {
     setDetails(false)
   }
+  
   useEffect(() => {
     getNoticeList();
   }, [])
