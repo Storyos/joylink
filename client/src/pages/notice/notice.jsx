@@ -13,7 +13,6 @@ export default function Notice() {
   const handleMenualMenu = () => {
     setNoticeMenu("Menual");
   };
-
   return (
     <div className="flex justify-center">
       <div className="w-1/6 border-2 rounded-lg border-indigo-400 m-5 bg-gray-100 lg:w-1/12">
@@ -36,6 +35,5 @@ export default function Notice() {
     </div>
   );
 }
-
 
 

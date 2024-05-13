@@ -29,11 +29,11 @@ export default function MyInfo() {
         <h3>카테고리</h3>
         <br></br>
         <br></br>
-        <div className="flex flex-col">
-          <button className="">갤러리</button>
-          <button className="">동아리 공지사항</button>
-          <button className="">자유게시판</button>
-          <button className="">질문게시판</button>
+        <div className="flex flex-col items-center">
+          <Link to="/gallery"><button>갤러리</button></Link>
+          <Link to=""><button>동아리 공지사항</button></Link>
+          <Link to=""><button>자유게시판</button></Link>
+          <Link to=""><button>질문게시판</button></Link>
         </div>
       </div>
 
