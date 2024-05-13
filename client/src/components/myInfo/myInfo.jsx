@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 import ChattingModal from "../chattingModal";
 
 export default function MyInfo() {
-  const [chattingDisplay, setChattingDisplay] = useState("Close");
-  const handleCloseChatting = () => {
-    setChattingDisplay("Close");
+  
+  const handleOpenChatting = () => {
+    window.open("/chatting","chatting","width=500, height=500, top=300, left=450")
   };
   return (
     <div>
-      <div className="border-indigo-400 p-2 border-2 rounded-lg m-3 bg-gray-100">
+      <div className="p-2 m-3 bg-gray-100 border-2 border-indigo-400 rounded-lg">
         <h2>내 정보</h2>
         <br></br>
         <br></br>
@@ -17,8 +17,8 @@ export default function MyInfo() {
           <button className="m-2">Club Management</button>
         </Link>
       </div>
-      <div className="border-indigo-400 p-2 border-2 rounded-lg m-3 bg-gray-100">
-        <button onClick={() => setChattingDisplay("Open")}>채팅</button>
+      <div className="p-2 m-3 bg-gray-100 border-2 border-indigo-400 rounded-lg">
+        <button onClick={handleOpenChatting}>채팅</button>
       </div>
       <div className="border-indigo-400 p-2 border-2 rounded-lg ... m-3 bg-gray-100">
         <Link to="/ViewAccountPage">
@@ -36,10 +36,6 @@ export default function MyInfo() {
           <Link to="/questionBoard"><button>질문게시판</button></Link>
         </div>
       </div>
-
-      {chattingDisplay === "Open" && (
-        <ChattingModal handleCloseChatting={handleCloseChatting} />
-      )}
     </div>
   );
 }

@@ -15,6 +15,8 @@ import MyClubPage from "./pages/myClubPage/myClub";
 import ClubManagement from "./pages/myClubPagePost/myClubPagePost";
 import CheckUserInfo from "./pages/login/checkUserInfo";
 import EmailVerified from "./pages/login/emailVerified";
+import ChattingModal from "./components/chattingModal";
+import SearchReceivedUser from "./pages/searchReceivedUser/searchReceivedUser";
 import ClubManagementPage from "./pages/clubManagementPage/clubManagementPage";
 import MyClubPagePost from "./pages/myClubPagePost/myClubPagePost";
 import ViewAccountPage from "./pages/viewAccountPage/viewAccountPage";
@@ -51,13 +53,13 @@ export default function Main() {
           <Route path="clubManagement" element={<ClubManagement />}> {/*여기서 Route가 닫힌다!*/}
           </Route>
         </Route>
-
         <Route path="/vr" element={<Vr/>} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/join" element={<Join />} />
-        <Route path="/getInfo" element={<GetInfo />} />
-        <Route path="/chatting" element={<Chatting />} />
-        <Route path="/myclub" element={<MyClubPage />} />
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/join" element={<Join/>}/>
+        <Route path="/getInfo" element={<GetInfo/>}/>
+        <Route path="/chatting" element={<ChattingModal/>}/>
+        <Route path="/myclub" element={<MyClubPage/>}/>
+        <Route path="/searchreceiveduser" element={<SearchReceivedUser/>}/>
       </Routes>
     </BrowserRouter>
   );
