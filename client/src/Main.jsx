@@ -21,6 +21,7 @@ import ViewAccountPage from "./pages/viewAccountPage/viewAccountPage";
 import Gallery from "./pages/gallery/gallery";
 import Vr from "./pages/VR/vr";
 import ClubNotice from "./pages/clubNotice/clubNotice";
+import FreeBoard from "./pages/freeBoard/freeBoard";
 
 export default function Main() {
   return (
@@ -44,6 +45,7 @@ export default function Main() {
           <Route path="viewAccountPage" element={<ViewAccountPage/>} />
           <Route path="gallery" element={<Gallery />} />
           <Route path="clubNotice" element={<ClubNotice/>}/>
+          <Route path="freeBoard" element={<FreeBoard/>}/>
           <Route path="clubManagement" element={<ClubManagement />}> {/*여기서 Route가 닫힌다!*/}
           </Route>
         </Route>
