@@ -16,7 +16,7 @@ const SearchBar = () => (
         검색
       </button>
       <Link to="/cbCreate" className="p-2 text-white bg-blue-500 rounded-lg hover:bg-blue-700">
-        이벤트 만들기
+        동아리 만들기
       </Link>
     </div>
   </div>
