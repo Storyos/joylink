@@ -38,7 +38,7 @@ const EventGrid = ({ events, currentPage, itemsPerPage }) => {
   return (
     <div className="grid w-full grid-cols-4 gap-6">
       {paginatedEvents.map(event => (
-        <EventItem key={event.id} {...event} />
+        <ClubItem key={event.id} {...event} />
       ))}
     </div>
   );
