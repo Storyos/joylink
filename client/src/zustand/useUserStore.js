@@ -1,8 +1,15 @@
 import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 
-const useUserStore = create((set) => ({
-  user: null, // 초기값은 null로 설정합니다.
-  setUser: (userData) => set({ user: userData }), // 상태를 업데이트하는 함수를 정의합니다.
+const useUserStore = create(persist((set) => ({
+  user: null,
+  setUser: (userData) => set({ user: userData }),
+}), {
+  name: "user-storage",  // 스토리지에 저장될 키 이름
+  getStorage: () => localStorage  // 로컬 스토리지 사용
 }));
 
+
 export default useUserStore;
+
+

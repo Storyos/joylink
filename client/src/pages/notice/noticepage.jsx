@@ -63,5 +63,4 @@ const NoticeList = () => {
     );
   };
   
-  
   export default Notice;
