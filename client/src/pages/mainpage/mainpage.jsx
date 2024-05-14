@@ -27,8 +27,8 @@ export default function Mainpage () {
   }, []);
 
   return (
-    <div>
-      <div className="grid grid-cols-4 gap-4 m-4 overflow-hidden h-[600px] w-[1900px]">
+    <div className="overflow-hidden">
+      <div className="grid grid-cols-4 gap-4 overflow-hidden h-[600px] w-[1900px]">
         <div className="flex flex-col gap-4 rotate-12 translate-x-[-100px] translate-y-[-150px]">
           <img className="scroll-image-up" src="https://picsum.photos/id/235/400/300" alt=""/>
           <img className="scroll-image-up" src="https://picsum.photos/id/235/400/300" alt=""/>

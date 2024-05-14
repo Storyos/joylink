@@ -29,13 +29,17 @@ export default function Header() {
         <div className="flex justify-center pt-20 font-medium">
           {
             isLoggedIn?
-          (<button className="mr-2 text-white rounded hover:text-indigo-800"><Link to="/login">로그아웃</Link></button>)
+          (<>
+          <button className="mr-2 text-white rounded hover:text-indigo-800"><Link to="/login">로그아웃</Link></button>
+          <button className="px-4 py-2 text-white hover:text-indigo-800"><Link to="/mypage">마이페이지</Link></button>
+          </>)
           :
-          (<button className="mr-2 text-white hover:text-indigo-800"><Link to="/login">로그인</Link></button>)
+          (<>
+          <button className="mr-2 text-white hover:text-indigo-800"><Link to="/login">로그인</Link></button>
+          <button className="px-4 py-2 text-white hover:text-indigo-800"><Link to="/join">회원가입</Link></button>
+          </>)
           }
           
-          <button className="px-4 py-2 text-white hover:text-indigo-800"><Link to="/join">회원가입</Link></button>
-          <button className="px-4 py-2 text-white hover:text-indigo-800"><Link to="/getInfo">회원가입 추가정보 받기</Link></button>
         </div>
       </div>
     </header>
