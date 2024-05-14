@@ -48,6 +48,7 @@ export default function Login() {
         });
         if (error) console.log("error :", error);
         else{
+            await fetchUserData();
             console.log(data);
         }
     };
