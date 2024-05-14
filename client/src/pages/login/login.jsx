@@ -82,6 +82,7 @@ export default function Login() {
             await handlelogin();
         }
     }
+    
     const fetchUserData = async () => {
         const { data, error } = await supabase
             .from('users')
