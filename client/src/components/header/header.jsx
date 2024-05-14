@@ -17,16 +17,16 @@ export default function Header() {
     }, []);
 
   return (
-    <header className="bg-indigo-400 mb-10">
+    <header className="mb-10 bg-indigo-400">
       <div className="p-7">
-          <ul className="flex text-3xl font-medium justify-center">
-            <li><Link to="/" className="text-white hover:text-indigo-800 mx-5">JoyLink</Link></li>
-            <li><Link to="/cbSearch" className="text-white hover:text-indigo-800 mx-5">모임찾기</Link></li>
-            <li><Link to="/notice" className="text-white hover:text-indigo-800 mx-5">공지사항</Link></li>
-            <li><Link to="/vr" className="text-white hover:text-indigo-800 mx-5">VR체험관</Link></li>
+          <ul className="flex justify-center text-3xl font-medium">
+            <li><Link to="/" className="mx-5 text-white hover:text-indigo-800">JoyLink</Link></li>
+            <li><Link to="/cbSearch" className="mx-5 text-white hover:text-indigo-800">모임찾기</Link></li>
+            <li><Link to="/notice" className="mx-5 text-white hover:text-indigo-800">공지사항</Link></li>
+            <li><Link to="/vr" className="mx-5 text-white hover:text-indigo-800">VR체험관</Link></li>
           </ul>
 
-        <div className="flex justify-center font-medium pt-20">
+        <div className="flex justify-center pt-20 font-medium">
           {
             isLoggedIn?
           (<button className="mr-2 text-white rounded hover:text-indigo-800"><Link to="/login">로그아웃</Link></button>)

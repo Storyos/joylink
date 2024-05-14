@@ -6,7 +6,7 @@ const useUserStore = create(persist((set) => ({
   setUser: (userData) => set({ user: userData }),
 }), {
   name: "user-storage",  // 스토리지에 저장될 키 이름
-  getStorage: () => localStorage  // 로컬 스토리지 사용
+  getStorage: () => sessionStorage  // 로컬 스토리지 사용
 }));
 
 
