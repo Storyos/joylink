@@ -1,11 +1,12 @@
 import React, { useRef } from "react";
 import { useState, useEffect } from "react";
 import { supabase } from "../App";
+import useUserStore from "../zustand/useUserStore";
 
 export default function ChattingModal() {
 
   // 여기는 나중에 Zustand로 변경할 예정
-  const user_seq = 13
+  const user_seq = useUserStore(state => state.user.user_seq);
   const club_seq = 1
   // messages : 채팅들을 저장하는 곳
   const [messages, setMessages] = useState([]);
@@ -23,7 +24,15 @@ export default function ChattingModal() {
   async function loadInitialMessages() {
     const { data, error } = await supabase
       .from('chats')
-      .select('*')
+      .select(`chat_seq,
+      club_seq,
+      user_seq,
+      chat_time,
+      chat_content,
+      users : user_seq (
+        user_name
+      )
+      `)
       .eq('club_seq', club_seq)
       .order('chat_time', { ascending: true });
 
@@ -100,7 +109,7 @@ export default function ChattingModal() {
                 <div className="flex my-2 ml-4">
                   <div className="bg-[#C0E4FF] w-[30px] h-[30px] inline-block rounded-[10px] mt-2"></div>
                   <div className="inline-block ml-4">
-                    <div>{msg.user_seq}</div>
+                    <div>{msg.users.user_name}</div>
                     <div className="bg-white max-w-[300px] inline-block rounded-[10px] py-1 px-2">{msg.chat_content}</div>
                   </div>
                 </div>
