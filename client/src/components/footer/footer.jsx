@@ -3,8 +3,8 @@
 export default function Footer () {
 
   return (
-    <footer className="bg-indigo-200 mt-10">
-      <div className="font-thin text-xs">
+    <footer className="mt-10 bg-[#E0F4FF] px-[200px] py-4">
+      <div className="font-thin">
         <p>서비스 이용약관 | 개인정보 처리방침 | 서비스 안내</p>
         <p><b>고객센터</b> | 02-123-1234</p>
         <p><b>팀 무궁무진</b> | 부산광역시 남구 용소로 45</p>
