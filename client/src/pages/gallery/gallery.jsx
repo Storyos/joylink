@@ -3,16 +3,15 @@ import { supabase } from '../../App';
 import { useEffect, useState } from "react"
 
 export default function Gallery(){
-  const [imglist, setprintlist] = useState([]);
-  const [imgURL, setimgURL] = useState([]);
+  const [imgURLs, setimgURL] = useState([]);
+
 
   useEffect(()=>{
-    printlist();
+    getAllURLs();
   },[])
 
-  useEffect(()=>{
-    printimg();
-  },[])
+  
+  //bucket에 있는 사진들 리스트를 가져오는 코드
   async function printlist(){
     const { data, error } = await supabase
     .storage
@@ -26,51 +25,33 @@ export default function Gallery(){
     if(error){
       console.log(error);
     }
-    console.log(data);
-    setprintlist(data);
+    return data;
   }
 
-  async function getURLs(name) {
+  async function getURL(name) {
     try {
-      console.log(`${name}`);
         // 이미지 테이블에서 데이터 가져오기  
-      
-    const { data, error } = await supabase.storage.from('testtest').getPublicUrl(`${name}`)
-    
-    console.log('ss',data);
+        const { data, error } = await supabase.storage.from('testtest').getPublicUrl(`${name}`)
+      return data;
         // 가져온 이미지 데이터 배열을 반환
-    return data;
     } catch (error) {
-        console.log("이거 URL: ",name)
         console.error('Error fetching images:', error.message);
         return [];
     }
   }
-  async function printimg(){
-  
+  async function getAllURLs(){
+    const imglist = await printlist();
+    var objectURL=[];  
     for(var i in imglist){
-      const imgURL = await getURLs(imglist[i].name)
-      displayImageFromStorage(imgURL);
+      const imgURL= await getURL(imglist[i].name);
+      const response = await fetch(imgURL);
+      console.log('sss',response);
+      const blob = await response.blob();
+      console.log('ssss',blob);
+      objectURL[i] = URL.createObjectURL(blob)
     }
-  }
-  async function displayImageFromStorage(URL) {
-    // 가져올 이미지의 URL
-    const imageURL = `${URL}`;
-  
-    // 이미지를 가져와서 Blob으로 변환
-    const response = await fetch(imageURL);
-    const blob = await response.blob();
-  
-    // Blob을 URL로 변환하여 이미지를 표시
-    const objectURL = URL.createObjectURL(blob);
-  
-  
-    // 이미지 요소 생성
-    const imageElement = document.createElement('img');
-  
-    // 이미지의 URL 설정
-    imageElement.src = objectURL;
-
+    console.log('다 들고 와졌나요',objectURL);
+    setimgURL(objectURL);
   }
 
   return(
@@ -79,22 +60,20 @@ export default function Gallery(){
       <MyInfo></MyInfo>
     </div>
     <div className="w-1/2 p-6">
-        <div className="flex justify-between items-center mb-4">
+        <div className="flex items-center justify-between mb-4">
           <h1 className="text-xl font-bold">갤러리</h1>
-          <input type="text" id="search" placeholder="갤러리 검색" className=" border-indigo-800 border-solid border-2 px-2 py-1 rounded" />
+          <input type="text" id="search" placeholder="갤러리 검색" className="px-2 py-1 border-2 border-indigo-800 border-solid rounded " />
         </div>
         <hr /><br />
-        <h2 className="text-lg font-semibold mb-4  bg-gray-100">갤러리 목록</h2>
+        <h2 className="mb-4 text-lg font-semibold bg-gray-100">갤러리 목록</h2>
         <div>
-              <ul>
-                {imgURL.map((imgURL) => (
+            <ul>
+            {imgURLs.map((imgURLs) => (
                   <li className="px-2 py-1 mx-4 my-2 border-b-4 border-white">
-                    <Link to="/notice/${notice.id}">
-                    <button onClick={() =>handleNoticeDetail(noticelist)}> {noticelist.title}
-                    </button>
-                    </Link></li>
+                    <img src={imgURLs} alt={imgURLs} />
+                    </li>
                 ))}
-              </ul>
+            </ul>
             </div>
         {/* 여기에 게시글 목록 컴포넌트를 추가 */}
       </div>
