@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 export default function Mainpage () {
 
+  // 스크롤 시 이미지 위아래로 이동하는 기능
   useEffect(() => {
     const handleScroll = () => {
       const imagesUp = document.querySelectorAll('.scroll-image-up');
@@ -27,6 +28,8 @@ export default function Mainpage () {
   }, []);
 
   return (
+    
+    // 스크롤 이미지 부분
     <div className="overflow-hidden">
       <div className="grid grid-cols-4 gap-4 overflow-hidden h-[600px] w-[1900px]">
         <div className="flex flex-col gap-4 rotate-12 translate-x-[-100px] translate-y-[-150px]">
