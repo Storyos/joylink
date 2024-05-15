@@ -9,8 +9,8 @@ export default function Header() {
     useEffect( () => {
         // 페이지 로드 시 로그인 세션 확인
         async function getsession() {
-        const session = await supabase.auth.getUser(); 
-        console.log("session값임 ",session.data.user);
+        const session = await supabase.auth.getSession(); 
+        // console.log("session값임 ",session.data.session.expires_at);
         setIsLoggedIn(session?.data.user != null);  // access_token의 존재 여부로 로그인 상태 결정
       }
       getsession();
