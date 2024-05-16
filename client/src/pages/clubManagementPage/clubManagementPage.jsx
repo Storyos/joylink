@@ -11,35 +11,35 @@ export default function ClubManagementPage() {
 
   return (
     <div>
-      <div className="flex justify-evenly ... m-10 ">
+      <div className="flex justify-center">
         <button 
-          className="bg-sky-500/75 ..." 
+          className="bg-indigo-400 m-5 p-2 rounded-md text-white" 
           onClick={() => handleTabClick('회원 관리')}
         >
           회원 관리
         </button>
         <button 
-          className="bg-sky-500/75 ..." 
+          className="bg-indigo-400 m-5 p-2 rounded-md text-white" 
           onClick={() => handleTabClick('페이지 관리')}
         >
           페이지 관리
         </button>
         <button 
-          className="bg-sky-500/75 ..." 
+          className="bg-indigo-400 m-5 p-2 rounded-md text-white" 
           onClick={() => handleTabClick('장부 관리')}
         >
           장부 관리
         </button>
         <button 
-          className="bg-sky-500/75 ..." 
+          className="bg-indigo-400 m-5 p-2 rounded-md text-white" 
           onClick={() => handleTabClick('가입 방식')}
         >
           가입 방식
         </button>
       </div>
 
-      <div className="flex justify-center ... m-10">
-        {/* 각 버튼에 대한 설정 화면을 보여줌 */}
+      <div className="flex justify-center border border-indigo-800 m-5">
+        {/* 각 버튼에 대한 설정 화면을 보여줍니다 */}
         {activeTab && (
           <div>
             <h1>{activeTab}입니다</h1>

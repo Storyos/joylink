@@ -48,6 +48,7 @@ export default function Login() {
         });
         if (error) console.log("error :", error);
         else{
+            await fetchUserData();
             console.log(data);
         }
     };
@@ -82,24 +83,37 @@ export default function Login() {
             await handlelogin();
         }
     }
-
+    
+    const fetchUserData = async () => {
+        const { data, error } = await supabase
+            .from('users')
+            .select('*')
+            .eq('user_id', useremail)
+            .single()
+            console.log(data);
+        if(error){
+            console.error(error);
+        }else{
+            useUserStore.getState().setUser(data); // zustand에 로그인후 컬럼정보 저장
+            alert("로그인 성공~");
+            const userState = useUserStore.getState(); // 상태를 가져옵니다
+            console.log("상태저장 값:",userState.user); // 테스트용으로 
+            navigate('/');
+        }
+        
+    }
     // 로그인 요청 처리
     const handlelogin = async () => {
         const { data, error } = await supabase.auth.signInWithPassword({
             email: useremail,
             password: userpassword,
         })
-        console.log("여기서 찍히는 값인가?", data);
-        console.log('userpassword :>> ', userpassword);
+        console.log("여기서 찍히는 값인가?", data); // 테스트
         if (error) {
             console.log("에러발생");
             console.error(error);
         } else {
-            useUserStore.getState().setUser(data); // zustand에 로그인후 컬럼정보 저장
-            alert("로그인 성공~");
-            const userState = useUserStore.getState(); // 상태를 가져옵니다
-            console.log(userState.user);
-            navigate('/'); // 로그인 성공시 이동하는 곳
+            await fetchUserData();
         }
     }
     return (
@@ -117,7 +131,6 @@ export default function Login() {
                     <h5 className="mt-2">계정이 없으신가요?</h5>
                     <div className="flex justify-center mt-4">
                         <button onClick={handleGoogleLogin} className="px-4 py-2 mr-2 font-bold text-white bg-red-500 rounded hover:bg-red-600">구글로그인</button>
-                        <button onClick={handleTest1} className="px-4 ,py-2 mr-2 font-bold text-white bg-gray-500 rounded hover:bg-gray-600">TEST Button</button>
                         <button id='join' onClick={handleTest1} className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-600">회원가입</button>
                     </div>
                 </div>
