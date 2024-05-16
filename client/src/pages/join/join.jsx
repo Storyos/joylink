@@ -15,7 +15,6 @@ export default function Join() {
   const [gender, setGender] = useState('');
 
 
-
   // 일반 회원가입
   async function signUp(event) {
     event.preventDefault(); // 폼 제출을 방지
@@ -37,10 +36,13 @@ export default function Join() {
         password: userdata.password,
       }
     )
+    console.log(userdata.email);
     if (error) console.error(error);
-    await insertUser(userdata);
-    // 이메일이 전송되었습니다. 
-    // res.status(201).json({ success: true, message: '회원 가입 중' });
+    else{
+      console.log(data);
+      alert("이메일이 전송되었습니다.");
+      // await insertUser(userdata);
+    }
   }
 
   const insertUser = async (userdata) => {
@@ -94,3 +96,5 @@ export default function Join() {
     </div>
   );
 }
+
+

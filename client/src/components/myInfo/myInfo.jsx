@@ -1,20 +1,41 @@
-import './myInfo.css'
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import ChattingModal from "../chattingModal";
 
-export default function myInfo(){
-
-  return(
-    <div className='myInfo'>
-      <div className='myInfo_myInfoBox'>
+export default function MyInfo() {
+  
+  const handleOpenChatting = () => {
+    window.open("/chatting","chatting","width=500, height=500, top=300, left=450")
+  };
+  return (
+    <div>
+      <div className="p-2 m-3 bg-gray-100 border-2 border-indigo-400 rounded-lg">
         <h2>내 정보</h2>
-        <button>club management</button>
+        <br></br>
+        <br></br>
+        <Link to="/clubManagementPage">
+          <button className="m-2">Club Management</button>
+        </Link>
       </div>
-      <button>채팅</button>
-      <button>장부</button>
-      <div className='myInfo_categoryBox'>
+      <div className="p-2 m-3 bg-gray-100 border-2 border-indigo-400 rounded-lg">
+        <button onClick={handleOpenChatting}>채팅</button>
+      </div>
+      <div className="border-indigo-400 p-2 border-2 rounded-lg ... m-3 bg-gray-100">
+        <Link to="/ViewAccountPage">
+          <button>장부</button>
+        </Link>
+      </div>
+      <div className="border-indigo-400 p-2 border-2 rounded-lg ... m-3 bg-gray-100">
         <h3>카테고리</h3>
-        
+        <br></br>
+        <br></br>
+        <div className="flex flex-col items-center">
+          <Link to="/gallery"><button>갤러리</button></Link>
+          <Link to="/clubNotice"><button>동아리 공지사항</button></Link>
+          <Link to="/freeBoard"><button>자유게시판</button></Link>
+          <Link to="/questionBoard"><button>질문게시판</button></Link>
+        </div>
       </div>
     </div>
-  )
+  );
 }
-

@@ -1,34 +1,39 @@
-import { useState } from "react"
-import NoticeContents from "../../components/noticeContents"
+import { useState } from "react";
+import NoticeContents from "../../components/noticeContents";
 
-export default function Notice () {
-  const [noticeMenu, setNoticeMenu] = useState("Notice")
+export default function Notice() {
+  const [noticeMenu, setNoticeMenu] = useState("Notice");
 
   const handleNoticeMenu = () => {
-    setNoticeMenu("Notice")
-  }
+    setNoticeMenu("Notice");
+  };
   const handleEventMenu = () => {
-    setNoticeMenu("Event")
-  }
+    setNoticeMenu("Event");
+  };
   const handleMenualMenu = () => {
-    setNoticeMenu("Menual")
-  }
-  
+    setNoticeMenu("Menual");
+  };
   return (
-    <>
-      <div className="flex justify-between my-20 mx-60">
-        <div className="flex flex-col w-1/6 min-h-[600px]">
-          <h1 className="py-8 text-3xl font-bold text-center">공지사항</h1>
-          <div className="h-full bg-[#e9e9e9] rounded-lg" >
-            <ul className="my-8 text-center">
-              <il className="block my-6 text-lg"><button onClick={handleNoticeMenu}>공지사항</button></il>
-              <il className="block my-6 text-lg"><button onClick={handleEventMenu}>이벤트</button></il>
-              <il className="block my-6 text-lg"><button onClick={handleMenualMenu}>메뉴얼</button></il>
-            </ul>
-          </div>
-        </div>
-        <NoticeContents menu={noticeMenu}/>
+    <div className="flex justify-center">
+      <div className="w-1/6 m-5 bg-gray-100 border-2 border-indigo-400 rounded-lg lg:w-1/12">
+          <h1 className="flex justify-center m-7">카테고리</h1>
+          <ul className="flex flex-col items-center mt-4">
+            <li className="m-2">
+              <button onClick={handleNoticeMenu}>공지사항</button>
+            </li>
+            <li className="m-2">
+              <button onClick={handleEventMenu}>이벤트</button>
+            </li>
+            <li className="m-2">
+              <button onClick={handleMenualMenu}>메뉴얼</button>
+            </li>
+          </ul> 
+      </div>  
+      <div className="w-3/5 m-5 bg-gray-100 border-2 border-indigo-400 rounded-lg">
+        <NoticeContents menu={noticeMenu} />
       </div>
-    </>
-  )
+    </div>
+  );
 }
+
+
