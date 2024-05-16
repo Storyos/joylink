@@ -20,7 +20,7 @@ const SearchBar = () => (
   </div>
 );
 
-const EventItem = ({ title, imageSrc, description }) => (
+const ClubItem = ({ title, imageSrc, description }) => (
   <div className="flex flex-col items-center w-full h-full p-4 transition-shadow duration-300 bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg">
     <img src={imageSrc} alt={title} className="w-full h-auto mb-4" />
     <div className="font-bold">{title}</div>
@@ -35,7 +35,7 @@ const EventGrid = ({ events, currentPage, itemsPerPage }) => {
   return (
     <div className="grid w-full grid-cols-4 gap-6">
       {paginatedEvents.map(event => (
-        <EventItem key={event.id} {...event} />
+        <ClubItem key={event.id} {...event} />
       ))}
     </div>
   );
