@@ -9,7 +9,7 @@ const SearchBar = () => (
     <div className="flex w-3/4 max-w-2xl">
       <input
         type="text"
-        placeholder="이벤트 검색"
+        placeholder="동아리 검색"
         className="flex-1 p-2 border border-gray-300 rounded-l-lg"
       />
       <button className="p-2 mr-4 text-white bg-indigo-500 rounded-r-lg hover:bg-blue-700">
@@ -89,7 +89,7 @@ function CbSearch() {
       <SearchBar />
       <div className="max-w-[1280px] p-8 mx-auto">
         <div className="p-4 overflow-hidden bg-white rounded shadow">
-          <div className="mb-4 text-xl font-bold">진행 중인 이벤트 ({clublist.length}개)</div>
+          <div className="mb-4 text-xl font-bold">개설된 동아리 ({clublist.length}개)</div>
           <EventGrid clublist={clublist} currentPage={currentPage} itemsPerPage={itemsPerPage} />
         </div>
         <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={handlePageChange} />

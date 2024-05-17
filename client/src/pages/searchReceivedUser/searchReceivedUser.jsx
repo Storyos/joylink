@@ -27,10 +27,23 @@ export default function SearchReceivedUser () {
   },[])
   
   // 유저 이름으로 검색
-  const handleSearchbyUser = () => {
+  const handleSearchbyUser = async () => {
+
+    const { data, error } = await supabase.from('users').select(`
+      user_seq,  
+      user_id,
+      user_name
+    `)
+    if (error) {
+      console.error("받은 사람 select query 에러", error);
+    } else {
+      console.log('받은 데이터', data);
+    }
+    
     const searchName = inputRef.current.value; 
     const searchData = [];
-    userData.forEach ((user) => {
+    
+    data.forEach ((user) => {
       user.user_name.includes(searchName) && searchData.push(user);
     })
     setUserData(searchData);

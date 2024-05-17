@@ -2,14 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { supabase } from '../../App';
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 export default function GetInfo() {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [birth, setBirth] = useState('');
   const [gender, setGender] = useState('');
-
+  let navigate = useNavigate();
   // 회원가입 추가 정보받기
   async function signUp(event) {
     event.preventDefault(); // 폼 제출을 방지
@@ -32,7 +32,7 @@ export default function GetInfo() {
     await insertUser(userdata);
     // 이메일이 전송되었습니다.
   }
-
+  
   const insertUser = async (userdata) => {
     await supabase
       .from('users')
@@ -43,7 +43,8 @@ export default function GetInfo() {
         user_birth: userdata.user_birth,
         user_gender: userdata.user_gender,
       });
-    alert("이메일이 전송되었습니다.");
+      alert("정보가 입력되었습니다.");
+      navigate('/');
   }
 
   return (
