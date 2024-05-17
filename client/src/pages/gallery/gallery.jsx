@@ -41,13 +41,11 @@ export default function Gallery(){
   }
   async function getAllURLs(){
     const imglist = await printlist();
-    var objectURL=[];  
+    var objectURL=[];
     for(var i in imglist){
       const imgURL= await getURL(imglist[i].name);
       const response = await fetch(imgURL);
-      console.log('sss',response);
       const blob = await response.blob();
-      console.log('ssss',blob);
       objectURL[i] = URL.createObjectURL(blob)
     }
     console.log('다 들고 와졌나요',objectURL);
@@ -68,9 +66,9 @@ export default function Gallery(){
         <h2 className="mb-4 text-lg font-semibold bg-gray-100">갤러리 목록</h2>
         <div>
             <ul>
-            {imgURLs.map((imgURLs) => (
+            {imgURLs.map((URL) => (
                   <li className="px-2 py-1 mx-4 my-2 border-b-4 border-white">
-                    <img src={imgURLs} alt={imgURLs} />
+                    <img id="image" src={URL} alt={URL} width="500" height="300"/>
                     </li>
                 ))}
             </ul>
