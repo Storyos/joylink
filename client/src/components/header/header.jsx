@@ -16,14 +16,14 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="bg-indigo-400 mb-10">
+    <header className="mb-10">
       <div className="p-7">
-          <ul className="flex text-3xl font-medium justify-center">
-            <li><Link to="/" className="text-white hover:text-indigo-800 mx-5">JoyLink</Link></li>
-            <li><Link to="/cbSearch" className="text-white hover:text-indigo-800 mx-5">모임찾기</Link></li>
-            <li><Link to="/notice" className="text-white hover:text-indigo-800 mx-5">공지사항</Link></li>
+          <ul className="flex text-lg font-medium justify-center">
+            <li><Link to="/" className="hover:text-indigo-800 mx-5">JoyLink</Link></li>
+            <li><Link to="/cbSearch" className="hover:text-indigo-800 mx-5">모임찾기</Link></li>
+            <li><Link to="/notice" className="hover:text-indigo-800 mx-5">공지사항</Link></li>
             {/* VR체험관 링크에 target="_blank" 추가, 새 창에 vr페이지를 띄울 수 있습니다 */}
-            <li><a href="/vr" className="text-white hover:text-indigo-800 mx-5" target="_blank">VR체험관</a></li>
+            <li><a href="/vr" className="hover:text-indigo-800 mx-5" target="_blank">VR체험관</a></li>
           </ul>
 
         <div className="flex justify-center font-medium pt-20">

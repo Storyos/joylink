@@ -55,14 +55,14 @@ export default function NoticeContents (props) {
   // 공지사항 목록을 표시하는 컴포넌트
   const NoticeList =  () => {
     return (
-      <div className="w-[800px] rounded-[10px] bg-white shadow">
+      <div className="w-[800px] rounded-[10px] border-2">
         {/* 검색창 */}
         <div className="flex justify-end mt-4" >
-          <input className="px-2 py-1 mr-2 bg-gray-100 rounded-md outline-none" type="text" placeholder="게시글 검색"/>
-          <button className="px-2 bg-gray-100 rounded-[5px] hover:bg-[#e9e9e9] mr-4">검색</button>
+          <input className="px-2 py-1 mr-2rounded-md outline-none" type="text" placeholder="게시글 검색"/>
+          <button className="px-2bg-[#FFEED9]  rounded-[5px] hover:bg-[#e9e9e9] mr-4">검색</button>
         </div>
         {/* 공지사항 목록 */}
-        <div className="min-h-[400px] m-4 py-4 rounded-[10px] bg-gray-100">
+        <div className="min-h-[400px] m-4 py-4 rounded-[10px]">
           {/* 메뉴에 따라 다른 목록 표시 */}
           {menu === "Notice" &&
             <div>
@@ -114,7 +114,7 @@ export default function NoticeContents (props) {
   // 세부 정보를 표시하는 컴포넌트
   const NoticeDetail = () => {
     return (
-      <div className="w-[800px] rounded-lg bg-white shadow">
+      <div className="w-[800px] rounded-lg bg-white">
         {/* 세부 정보 제목 */}
         <div className="px-4 py-2 m-4 text-sm bg-gray-100 rounded-lg">
           <h1 className="text-lg font-bold">

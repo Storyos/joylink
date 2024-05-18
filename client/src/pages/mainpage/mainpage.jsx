@@ -26,8 +26,7 @@ export default function Mainpage() {
 
   // 카드만들기
   const [selectedButton, setSelectedButton] = useState(null);
-  const buttons = ["Button 1", "Button 2", "Button 3", "Button 4"];
-
+  const buttons = ["Popular", "레저", "스터디", "여행"];
   const cards = [
     { image: "https://picsum.photos/id/235/400/300", text: "Card 1" },
     { image: "https://picsum.photos/id/236/400/300", text: "Card 2" },
@@ -114,6 +113,8 @@ export default function Mainpage() {
         </div>
       </div>
 
+      <br></br><br></br>
+      <h1 className="flex justify-center">조이링크에서 다양한 모임에 참여하세요!</h1> <br></br><br></br><hr></hr>
       {/* 카드만들기 */}
       <div className="flex justify-center mt-8">
         <div className="space-x-4">
@@ -121,13 +122,14 @@ export default function Mainpage() {
             <button
               key={index}
               onClick={() => handleButtonClick(index)}
+              style={{ fontWeight: selectedButton === index ? "bold" : "normal" }}
             >
               {button}
             </button>
           ))}
         </div>
       </div>
-      <div className="grid grid-cols-3 gap-4 mt-8 justify-center">
+      <div className="grid grid-cols-3 gap-4 mt-8 justify-center m-4">
         {selectedButton !== null &&
           cards
             .filter(
@@ -137,7 +139,7 @@ export default function Mainpage() {
             .map((card, index) => (
               <div
                 key={index}
-                className="bg-gray-200 p-4 rounded shadow-md text-center"
+                className="p-2 rounded text-center shadow-md"
               >
                 <img src={card.image} alt="" className="w-full mb-2" />
                 <p>{card.text}</p>
@@ -147,3 +149,6 @@ export default function Mainpage() {
     </div>
   );
 }
+
+
+

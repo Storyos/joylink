@@ -24,12 +24,11 @@ export default function Mypage () {
   }
 
   return (
-    <div className='bg-gray-100'>
-
+    <div>
       {/* 메인 영역 */}
       <div className='py-24 mx-auto'>
         <div className='flex justify-center'>
-          <div className='w-[120px] rounded-[10px] bg-white shadow '>
+          <div className='w-[120px] rounded-[10px] border-2'>
             <div className='flex flex-col items-center min-h-[500px] py-4'>
               <button className={'font-bold text-[#a9a9a9] my-2 text-sm '+ (mypageMenu === 'userInfo' && 'text-black text-lg')} onClick={() => handleMypageMenu("userInfo")}>내 정보</button>
               <button className={'font-bold text-[#a9a9a9] my-2 text-sm '+ (mypageMenu === 'updateInfo' && 'text-black')} onClick={() => handleMypageMenu("updateInfo")}>정보 수정</button>
@@ -38,7 +37,8 @@ export default function Mypage () {
               <button className={'font-bold text-[#a9a9a9] my-2 text-sm '+ (mypageMenu === 'application' && 'text-black')} onClick={() => handleMypageMenu("application")}>신청 현황</button>
             </div>
           </div>
-          <div className='w-[800px] p-8 ml-10 bg-white shadow rounded-xl'>
+
+          <div className='w-[800px] p-8 ml-10 border-2 rounded-xl'>
             
             {/* 내 정보 */}
             {mypageMenu == "userInfo" &&
