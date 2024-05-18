@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 
-export default function Mainpage() {
+export default function Mainpage () {
+
+  // 스크롤 시 이미지 위아래로 이동하는 기능
   useEffect(() => {
     const handleScroll = () => {
       const imagesUp = document.querySelectorAll(".scroll-image-up");
@@ -41,92 +43,29 @@ export default function Mainpage() {
   };
 
   return (
+    
+    // 스크롤 이미지 부분
     <div className="overflow-hidden">
       <div className="grid grid-cols-4 gap-4 overflow-hidden h-[600px] w-[1900px]">
         <div className="flex flex-col gap-4 rotate-12 translate-x-[-100px] translate-y-[-150px]">
-          <img
-            className="scroll-image-up"
-            src="https://picsum.photos/id/235/400/300"
-            alt=""
-          />
-          <img
-            className="scroll-image-up"
-            src="https://picsum.photos/id/235/400/300"
-            alt=""
-          />
-          <img
-            className="scroll-image-up"
-            src="https://picsum.photos/id/235/400/300"
-            alt=""
-          />
+          <img className="scroll-image-up" src="https://picsum.photos/id/235/400/300" alt=""/>
+          <img className="scroll-image-up" src="https://picsum.photos/id/236/400/300" alt=""/>
+          <img className="scroll-image-up" src="https://picsum.photos/id/237/400/300" alt=""/>
         </div>
         <div className="flex flex-col gap-4 rotate-12 translate-x-[-55px] translate-y-[-300px]">
-          <img
-            className="scroll-image-down"
-            src="https://picsum.photos/id/235/400/300"
-            alt=""
-          />
-          <img
-            className="scroll-image-down"
-            src="https://picsum.photos/id/235/400/300"
-            alt=""
-          />
-          <img
-            className="scroll-image-down"
-            src="https://picsum.photos/id/235/400/300"
-            alt=""
-          />
+          <img className="scroll-image-down" src="https://picsum.photos/id/238/400/300" alt=""/>
+          <img className="scroll-image-down" src="https://picsum.photos/id/239/400/300" alt=""/>
+          <img className="scroll-image-down" src="https://picsum.photos/id/240/400/300" alt=""/>
         </div>
         <div className="flex flex-col gap-4 rotate-12 translate-x-[-75px] translate-y-[-150px]">
-          <img
-            className="scroll-image-up"
-            src="https://picsum.photos/id/235/400/300"
-            alt=""
-          />
-          <img
-            className="scroll-image-up"
-            src="https://picsum.photos/id/235/400/300"
-            alt=""
-          />
-          <img
-            className="scroll-image-up"
-            src="https://picsum.photos/id/235/400/300"
-            alt=""
-          />
+          <img className="scroll-image-up" src="https://picsum.photos/id/241/400/300" alt=""/>
+          <img className="scroll-image-up" src="https://picsum.photos/id/242/400/300" alt=""/>
+          <img className="scroll-image-up" src="https://picsum.photos/id/243/400/300" alt=""/>
         </div>
         <div className="flex flex-col gap-4 rotate-12 translate-x-[-30px] translate-y-[-300px]">
-          <img
-            className="scroll-image-down"
-            src="https://picsum.photos/id/235/400/300"
-            alt=""
-          />
-          <img
-            className="scroll-image-down"
-            src="https://picsum.photos/id/235/400/300"
-            alt=""
-          />
-          <img
-            className="scroll-image-down"
-            src="https://picsum.photos/id/235/400/300"
-            alt=""
-          />
-        </div>
-      </div>
-
-      <br></br><br></br>
-      <h1 className="flex justify-center">조이링크에서 다양한 모임에 참여하세요!</h1> <br></br><br></br><hr></hr>
-      {/* 카드만들기 */}
-      <div className="flex justify-center mt-8">
-        <div className="space-x-4">
-          {buttons.map((button, index) => (
-            <button
-              key={index}
-              onClick={() => handleButtonClick(index)}
-              style={{ fontWeight: selectedButton === index ? "bold" : "normal" }}
-            >
-              {button}
-            </button>
-          ))}
+          <img className="scroll-image-down" src="https://picsum.photos/id/244/400/300" alt=""/>
+          <img className="scroll-image-down" src="https://picsum.photos/id/234/400/300" alt=""/>
+          <img className="scroll-image-down" src="https://picsum.photos/id/233/400/300" alt=""/>
         </div>
       </div>
       <div className="grid grid-cols-3 gap-4 mt-8 justify-center m-4">

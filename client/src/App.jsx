@@ -2,6 +2,7 @@ import { createClient } from '@supabase/supabase-js';
 import Header from './components/header/header';
 import Footer from './components/footer/footer';
 import { Outlet } from 'react-router-dom';
+// import { useEffect } from 'react';
 
 // 환경변수를 사용하여 Superbase URL 및 키 설정
 const supabaseUrl = 'https://vtvkgtqvczyuteenfadw.supabase.co';
@@ -11,6 +12,28 @@ const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 export default function App() {
+    // useEffect(()=>{
+    //     const now = Date.now();
+    //     const lastVisit = sessionStorage.getItem('lastVisit');
+    //     const withinThreshold = lastVisit && (now - lastVisit < 5000);
+
+    //     if( withinThreshold){
+
+    //     }else{
+    //         window.addEventListener('beforeunload',handleBeforeUnload);
+    //     }
+    //     sessionStorage.setItem('lastvisit',now);
+    //     return () => {
+    //         window.removeEventListener('beforeunload',handleBeforeUnload);
+    //     };
+    // },[]);
+
+    // const handleBeforeUnload = (e) => {
+    //     localStorage.clear();
+    //     const message = "Are you sure you want to leave?";
+    //     e.returnValue = message;
+    //     return message;
+    // }
     return (
         <>
             <Header />

@@ -36,7 +36,6 @@ export default function NoticeContents (props) {
     setDetails(false)
   }
   
-  // 페이지 로드 시 공지사항 목록을 가져오는 함수
   useEffect(() => {
     getNoticeList();
   }, [])
