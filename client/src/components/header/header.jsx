@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "../../App";
+import useUserStore from "../../zustand/useUserStore";
 
 export default function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  let navigate= useNavigate();
+  
   // 로그인이 되어있는경우를 check
-    useEffect( () => {
+
+  useEffect(() => {
+    const checkTokenExpiration = () => {
       const tokenDataString = localStorage.getItem('sb-vtvkgtqvczyuteenfadw-auth-token');
       if (tokenDataString) {
         // JSON 문자열을 객체로 변환
@@ -17,28 +21,42 @@ export default function Header() {
     
         // UNIX 타임스탬프를 사람이 읽을 수 있는 형식으로 변환
         const expirationDate = new Date(expiresAt * 1000);
-        const thirtyMinAgo = Date.now()-(30*60*1000);
-        if(expirationDate.getTime()<new Date(thirtyMinAgo).toString()){
-        console.log("토큰이 만료되었습니다.\n 토큰 만료시간 :",expirationDate); 
-        console.log(thirtyMinAgo.toString())
-        setIsLoggedIn(false);
-        }
-        
-        else{
-          console.log("토큰이 자동으로 연장됨\n 토큰 만료시간:",expirationDate);
-          console.log( new Date(Date.now()).toString());
+        const thirtyMinAgo = Date.now() - (30 * 60 * 1000);
+
+        if (expirationDate.getTime() < thirtyMinAgo) {
+          console.log('토큰 만료:', new Date(thirtyMinAgo).toString());
+          setIsLoggedIn(false);
+        } else {
+          console.log('현재 시간:', new Date(Date.now()).toString());
           setIsLoggedIn(true);
           getsession();
         }
-    } else {
+      } else {
         console.log('토큰 데이터가 존재하지 않습니다.');
-    }
-        // 페이지 로드 시 로그인 세션 확인
-        async function getsession() {
-        const session = await supabase.auth.getSession(); 
       }
-    }, []);
+    };
 
+    // 페이지 로드 시 로그인 세션 확인
+    const getsession = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session) {
+        setIsLoggedIn(true);
+      } else {
+        setIsLoggedIn(false);
+      }
+    };
+
+    checkTokenExpiration();
+  }, []);
+  
+  async function handleLogout(){
+    window.localStorage.removeItem('sb-vtvkgtqvczyuteenfadw-auth-token');
+    const {logout} = useUserStore.getState();
+    logout();
+    setIsLoggedIn(false);
+    navigate('/');
+  }
+  
   return (
     <header className="p-6">
       <div className="flex items-center justify-between">
@@ -53,7 +71,7 @@ export default function Header() {
           {
             isLoggedIn?
           (<>
-          <button className="px-2 mx-2 border-2 border-[#87C4FF] rounded-[5px] bg-white hover:bg-[#87C4FF] hover:border-[#87C4FF] text-[#39A7FF] hover:text-white"><Link to="/login">로그아웃</Link></button>
+          <button className="px-2 mx-2 border-2 border-[#87C4FF] rounded-[5px] bg-white hover:bg-[#87C4FF] hover:border-[#87C4FF] text-[#39A7FF] hover:text-white" onClick={handleLogout}>로그아웃</button>
           <button className="px-2 border-2 border-[#87C4FF] rounded-[5px] bg-[#87C4FF] hover:bg-[#39A7FF] hover:border-[#39A7FF] text-white"><Link to="/mypage">마이페이지</Link></button>
           </>)
           :
