@@ -13,7 +13,7 @@ export default function Header() {
         console.log("session값임 ",session.data.user);
         setIsLoggedIn(session?.data.user != null);  // access_token의 존재 여부로 로그인 상태 결정
       }
-      getsession();
+      // getsession();
     }, []);
 
   return (
