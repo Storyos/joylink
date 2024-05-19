@@ -7,13 +7,36 @@ export default function Header() {
 
   // 로그인이 되어있는경우를 check
     useEffect( () => {
+      const tokenDataString = localStorage.getItem('sb-vtvkgtqvczyuteenfadw-auth-token');
+      if (tokenDataString) {
+        // JSON 문자열을 객체로 변환
+        const tokenData = JSON.parse(tokenDataString);
+    
+        // expires_at 값 추출
+        const expiresAt = tokenData.expires_at;
+    
+        // UNIX 타임스탬프를 사람이 읽을 수 있는 형식으로 변환
+        const expirationDate = new Date(expiresAt * 1000);
+        const thirtyMinAgo = Date.now()-(30*60*1000);
+        if(expirationDate.getTime()<new Date(thirtyMinAgo).toString()){
+        console.log("토큰이 만료되었습니다.\n 토큰 만료시간 :",expirationDate); 
+        console.log(thirtyMinAgo.toString())
+        setIsLoggedIn(false);
+        }
+        
+        else{
+          console.log("토큰이 자동으로 연장됨\n 토큰 만료시간:",expirationDate);
+          console.log( new Date(Date.now()).toString());
+          setIsLoggedIn(true);
+          getsession();
+        }
+    } else {
+        console.log('토큰 데이터가 존재하지 않습니다.');
+    }
         // 페이지 로드 시 로그인 세션 확인
         async function getsession() {
-        const session = await supabase.auth.getUser(); 
-        console.log("session값임 ",session.data.user);
-        setIsLoggedIn(session?.data.user != null);  // access_token의 존재 여부로 로그인 상태 결정
+        const session = await supabase.auth.getSession(); 
       }
-      // getsession();
     }, []);
 
   return (
