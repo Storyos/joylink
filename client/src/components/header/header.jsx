@@ -4,56 +4,45 @@ import { supabase } from "../../App";
 import useUserStore from "../../zustand/useUserStore";
 
 export default function Header() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { user, isLoggedIn, setUser, logout } = useUserStore();
   let navigate= useNavigate();
-  
   // 로그인이 되어있는경우를 check
-
   useEffect(() => {
-    const checkTokenExpiration = () => {
+    const checkToken = async () => {
       const tokenDataString = localStorage.getItem('sb-vtvkgtqvczyuteenfadw-auth-token');
       if (tokenDataString) {
-        // JSON 문자열을 객체로 변환
         const tokenData = JSON.parse(tokenDataString);
-    
-        // expires_at 값 추출
         const expiresAt = tokenData.expires_at;
-    
-        // UNIX 타임스탬프를 사람이 읽을 수 있는 형식으로 변환
         const expirationDate = new Date(expiresAt * 1000);
         const thirtyMinAgo = Date.now() - (30 * 60 * 1000);
 
         if (expirationDate.getTime() < thirtyMinAgo) {
           console.log('토큰 만료:', new Date(thirtyMinAgo).toString());
-          setIsLoggedIn(false);
+          handleLogout();
         } else {
           console.log('현재 시간:', new Date(Date.now()).toString());
-          setIsLoggedIn(true);
-          getsession();
+          const { data: { session } } = await supabase.auth.getSession();
+          if (session) {
+            setUser(session.user);
+          } else {
+            setUser(null);
+          }
         }
       } else {
         console.log('토큰 데이터가 존재하지 않습니다.');
+        setUser(null);
       }
     };
 
-    // 페이지 로드 시 로그인 세션 확인
-    const getsession = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (session) {
-        setIsLoggedIn(true);
-      } else {
-        setIsLoggedIn(false);
-      }
-    };
-
-    checkTokenExpiration();
-  }, []);
+    checkToken();
+  }, [setUser]);
   
+    
   async function handleLogout(){
     window.localStorage.removeItem('sb-vtvkgtqvczyuteenfadw-auth-token');
     const {logout} = useUserStore.getState();
     logout();
-    setIsLoggedIn(false);
+    alert('로그아웃 되었습니다.');
     navigate('/');
   }
   
