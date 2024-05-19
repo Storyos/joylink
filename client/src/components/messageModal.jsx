@@ -340,7 +340,7 @@ export default function MessageModal(props) {
                       <div className="flex justify-between w-full mx-2">
                         <div className="flex items-center">
                           <p className='inline-block ml-1 text-center w-28'>{msg.users.user_name}</p>
-                          <a href='#' className='ml-2'>{msg.msg_title}</a>
+                          <button className='ml-2' onClick={() => handleMessageContentsOpen(msg)} >{msg.msg_title}</button>
                         </div>
                         <p className='w-20 text-sm'>{msg.msg_send_time}</p>
                       </div>
