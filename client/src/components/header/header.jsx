@@ -22,11 +22,6 @@ export default function Header() {
         } else {
           console.log('현재 시간:', new Date(Date.now()).toString());
           const { data: { session } } = await supabase.auth.getSession();
-          if (session) {
-            setUser(session.user);
-          } else {
-            setUser(null);
-          }
         }
       } else {
         console.log('토큰 데이터가 존재하지 않습니다.');
