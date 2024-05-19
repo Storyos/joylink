@@ -42,6 +42,7 @@ export default function GetInfo() {
         user_pn: userdata.user_pn,
         user_birth: userdata.user_birth,
         user_gender: userdata.user_gender,
+        user_email_verified: true,
       });
       alert("정보가 입력되었습니다.");
       navigate('/');
