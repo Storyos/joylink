@@ -2,9 +2,12 @@
 import { useState, useTransition } from 'react'
 import { supabase } from '../../App';
 import MessageModal from '../../components/messageModal';
+import useUserStore from "../../zustand/useUserStore";
 
 export default function Mypage () {
     
+  const user_seq = useUserStore(state => state.user);
+  console.log("ssss",user_seq);
 
   // message modal창 열고 닫기
   const [modalDisplay, setModalDisplay] = useState("Close");
@@ -48,23 +51,23 @@ export default function Mypage () {
                 <caption className='mb-8 font-bold'>내 정보</caption>
                 <tr className='border-2 border-[#c9c9c9]'>
                   <th className='border-2 border-[#c9c9c9] text-sm p-2 w-[25%]'>아이디(이메일)</th>
-                  <td className='border-2 border-[#c9c9c9] text-center'>abcd@naver.com</td>
+                  <td className='border-2 border-[#c9c9c9] text-center'>{user_seq.user_id}</td>
                 </tr>
                 <tr className='border-2 border-[#c9c9c9]'>
                   <th className='border-2 border-[#c9c9c9] p-2 text-sm'>이름</th>
-                  <td className='border-2 border-[#c9c9c9] text-center'>1234</td>
+                  <td className='border-2 border-[#c9c9c9] text-center'>{user_seq.user_name}</td>
                 </tr>
                 <tr className='border-2 border-[#c9c9c9]'>
                   <th className='border-2 border-[#c9c9c9] p-2 text-sm'>성별</th>
-                  <td className='border-2 border-[#c9c9c9] text-center'>남</td>
+                  <td className='border-2 border-[#c9c9c9] text-center'>{user_seq.user_gender}</td>
                 </tr>
                 <tr className='border-2 border-[#c9c9c9]'>
                   <th className='border-2 border-[#c9c9c9] p-2 text-sm'>생년월일</th>
-                  <td className='border-2 border-[#c9c9c9] text-center'>12345678</td>
+                  <td className='border-2 border-[#c9c9c9] text-center'>{user_seq.user_birth}</td>
                 </tr>
                 <tr className='border-2 border-[#c9c9c9]'>
                   <th className='border-2 border-[#c9c9c9] p-2 text-sm'>전화번호</th>
-                  <td className='border-2 border-[#c9c9c9] text-center'>010-1234-5678</td>
+                  <td className='border-2 border-[#c9c9c9] text-center'>{user_seq.user_pn}</td>
                 </tr>
                 
               </table>
