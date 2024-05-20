@@ -28,7 +28,6 @@ export default function Header() {
         setUser(null);
       }
     };
-
     checkToken();
   }, [setUser]);
   
