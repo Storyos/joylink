@@ -21,11 +21,11 @@ const SearchBar = () => (
 );
 
 
-const ClubItem = () => (
+const ClubItem = ({title, imageSrc}) => (
   <div className="flex items-center justify-between p-4 border-b border-gray-200 min-h-24">
     {/* Apply styles directly to Link */}
     <Link to="/cbDescription" className="block text-indigo-500 hover:text-blue-700">
-      동아리 정보
+      {title}
     </Link>
     <Link to="/cbJoin" className="p-2 text-white bg-indigo-500 rounded hover:bg-blue-700">
       신청
