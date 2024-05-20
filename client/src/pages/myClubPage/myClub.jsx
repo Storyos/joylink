@@ -6,6 +6,16 @@ import useUserStore from "../../zustand/useUserStore";
 export default function MyClubPage() {
   const user = useUserStore(state => state.user);
   
+  const PostList = () => {
+    return (
+      <div>
+        <div><Link to={"/myClubPagePost"}>게시글1</Link></div>
+        <div><Link to={"/myClubPagePost"}>게시글2</Link></div>
+        <div><Link to={"/myClubPagePost"}>게시글3</Link></div>
+      </div>
+    )
+  }
+
   return (
     <div className="flex justify-center">
       <div>
@@ -19,6 +29,7 @@ export default function MyClubPage() {
         <hr /><br />
         <h2 className="mb-4 text-lg font-semibold bg-gray-100">게시글 목록</h2>
         {/* 여기에 게시글 목록 컴포넌트를 추가 */}
+        <PostList />
       </div>
     </div>
   );

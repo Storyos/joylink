@@ -41,10 +41,9 @@ export default function Join() {
     else{
       console.log(data);
       alert("이메일이 전송되었습니다.");
-      // await insertUser(userdata);
+      await insertUser(userdata);
     }
   }
-
   const insertUser = async (userdata) => {
     await supabase
       .from('users')
@@ -55,7 +54,6 @@ export default function Join() {
         user_birth: userdata.user_birth,
         user_gender: userdata.user_gender,
       })
-    alert("이메일이 전송되었습니다.");
   }
 
 
