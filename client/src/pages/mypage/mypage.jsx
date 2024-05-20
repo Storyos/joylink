@@ -28,6 +28,10 @@ export default function Mypage () {
   // 내가 가입한 동아리 목록 가져오기
   const [myClub,setMyClub]=useState([]);
   
+  
+  // 가입 신청한 동아리 목록 가져오기 
+  const [myjoinClubs,setmyJoinClubs]=useState([]);
+  
   useEffect(()=>{
     
     async function getMyClub(){
@@ -48,6 +52,22 @@ export default function Mypage () {
       }
       setMyClub(data);    
     }
+
+    async function getMyJoinClubs(){
+      const {data,error} = await supabase
+      .from('joinclubs')
+      .select(`
+      club:club_seq (club_nm,club_seq),
+      jc_Rst`)
+      .eq('user_seq',user_seq);
+      console.log('내가 신청했던 club 데이터',data);
+      if(error){
+        console.log('내가 신청한 club 데이터 가져오는데 에러발생',error);
+      }
+      setmyJoinClubs(data);
+      
+    }
+    getMyJoinClubs();
     getMyClub();
   },[])
   
@@ -134,6 +154,13 @@ export default function Mypage () {
                   <td className='border-2 border-[#c9c9c9] text-center min-w-[300px] p-2 text-sm'>{eachclub.club.club_nm}</td>
                   <td className='border-2 border-[#c9c9c9] text-center text-sm'>{eachclub.club_position}</td>
                 </tr>
+                {
+                  myClub.map((eachclub,index)=>(
+                    <tr className='border-2 border-[#c9c9c9]'>
+                  <th className='border-2 border-[#c9c9c9] w-[50px]'>{index+1}</th>
+                  <td className='border-2 border-[#c9c9c9] text-center min-w-[300px] p-2 text-sm'>{eachclub.club.club_nm}</td>
+                  <td className='border-2 border-[#c9c9c9] text-center text-sm'>{eachclub.club_position}</td>
+                </tr>
                   ))}
               </table>
             </div>
@@ -150,13 +177,14 @@ export default function Mypage () {
                   <td className='border-2 border-[#c9c9c9] text-center text-sm'>상태</td>
                 </tr>
                 
-                <tr className='border-2 border-[#c9c9c9]'>
-                  <th className='border-2 border-[#c9c9c9] w-[50px] p-2'>3</th>
-                  <td className='border-2 border-[#c9c9c9] text-center min-w-[300px] text-sm'>동아리3</td>
-                  <td className='border-2 border-[#c9c9c9] text-center text-sm'>2024/05/09</td>
-
+                {
+                  myjoinClubs.map((myjoinClub,index)=>(
+                    <tr className='border-2 border-[#c9c9c9]'>
+                  <th className='border-2 border-[#c9c9c9] w-[50px]'>{index+1}</th>
+                  <td className='border-2 border-[#c9c9c9] text-center min-w-[300px] p-2 text-sm'>{myjoinClub.club.club_nm}</td>
+                  <td className='border-2 border-[#c9c9c9] text-center text-sm'>{myjoinClub.jc_Rst}</td>
                 </tr>
-                
+                  ))}
                 
               </table>
             </div>

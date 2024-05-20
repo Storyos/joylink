@@ -4,6 +4,7 @@ import { supabase } from "../../App";
 import useUserStore from "../../zustand/useUserStore";
 
 export default function Header() {
+  
   const { user, isLoggedIn, setUser, logout } = useUserStore();
   let navigate= useNavigate();
   // 로그인이 되어있는경우를 check
@@ -67,7 +68,20 @@ export default function Header() {
           
         </div>
       </div>
+      <style>
+        {`
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+          <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+          header {
+            font-family: "Black Han Sans", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+          }
+        `}
+      </style>
     </header>
+
   );
 }
 
