@@ -92,9 +92,21 @@ export default function Mainpage() {
           </div>
           <div className="flex flex-col items-center">
             <div className="flex items-center justify-center w-20 h-20 bg-white rounded-full">
-              <img src="/icons/reading.png" alt="독서" className="w-12 h-12" />
+              <img src="/icons/pets.png" alt="반려동물" className="w-12 h-12" />
             </div>
-            <span className="font-roboto">독서</span>
+            <span className="font-roboto">반려동물</span>
+          </div>
+          <div className="flex flex-col items-center">
+            <div className="flex items-center justify-center w-20 h-20 bg-white rounded-full">
+              <img src="/icons/economy.png" alt="경제" className="w-12 h-12" />
+            </div>
+            <span className="font-roboto">경제</span>
+          </div>
+          <div className="flex flex-col items-center">
+            <div className="flex items-center justify-center w-20 h-20 bg-white rounded-full">
+              <img src="/icons/movie.png" alt="영화" className="w-12 h-12" />
+            </div>
+            <span className="font-roboto">영화</span>
           </div>
         </div>
       </div>
