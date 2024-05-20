@@ -3,7 +3,7 @@ import { useEffect, useState, useTransition } from 'react'
 import { supabase } from '../../App';
 import MessageModal from '../../components/messageModal';
 import useUserStore from '../../zustand/useUserStore';
-import { Link } from 'react-router-dom';
+
 export default function Mypage () {
     
   const user_seq = useUserStore(state=> state.user.user_seq);
@@ -96,23 +96,23 @@ export default function Mypage () {
                 <caption className='mb-8 font-bold'>내 정보</caption>
                 <tr className='border-2 border-[#c9c9c9]'>
                   <th className='border-2 border-[#c9c9c9] text-sm p-2 w-[25%]'>아이디(이메일)</th>
-                  <td className='border-2 border-[#c9c9c9] text-center'>{user_seq.user_id}</td>
+                  <td className='border-2 border-[#c9c9c9] text-center'>abcd@naver.com</td>
                 </tr>
                 <tr className='border-2 border-[#c9c9c9]'>
                   <th className='border-2 border-[#c9c9c9] p-2 text-sm'>이름</th>
-                  <td className='border-2 border-[#c9c9c9] text-center'>{user_seq.user_name}</td>
+                  <td className='border-2 border-[#c9c9c9] text-center'>1234</td>
                 </tr>
                 <tr className='border-2 border-[#c9c9c9]'>
                   <th className='border-2 border-[#c9c9c9] p-2 text-sm'>성별</th>
-                  <td className='border-2 border-[#c9c9c9] text-center'>{user_seq.user_gender}</td>
+                  <td className='border-2 border-[#c9c9c9] text-center'>남</td>
                 </tr>
                 <tr className='border-2 border-[#c9c9c9]'>
                   <th className='border-2 border-[#c9c9c9] p-2 text-sm'>생년월일</th>
-                  <td className='border-2 border-[#c9c9c9] text-center'>{user_seq.user_birth}</td>
+                  <td className='border-2 border-[#c9c9c9] text-center'>12345678</td>
                 </tr>
                 <tr className='border-2 border-[#c9c9c9]'>
                   <th className='border-2 border-[#c9c9c9] p-2 text-sm'>전화번호</th>
-                  <td className='border-2 border-[#c9c9c9] text-center'>{user_seq.user_pn}</td>
+                  <td className='border-2 border-[#c9c9c9] text-center'>010-1234-5678</td>
                 </tr>
                 
               </table>
@@ -146,13 +146,6 @@ export default function Mypage () {
                   <th className='border-2 border-[#c9c9c9] w-[50px] p-2'> </th>
                   <td className='border-2 border-[#c9c9c9] text-center min-w-[300px] p-2 text-sm'>동아리 명</td>
                   <td className='border-2 border-[#c9c9c9] text-center text-sm'>가입 날짜</td>
-                  </tr>
-                {
-                  myClub.map((eachclub,index)=>(
-                    <tr className='border-2 border-[#c9c9c9]'>
-                  <th className='border-2 border-[#c9c9c9] w-[50px]'>{index}</th>
-                  <td className='border-2 border-[#c9c9c9] text-center min-w-[300px] p-2 text-sm'>{eachclub.club.club_nm}</td>
-                  <td className='border-2 border-[#c9c9c9] text-center text-sm'>{eachclub.club_position}</td>
                 </tr>
                 {
                   myClub.map((eachclub,index)=>(
