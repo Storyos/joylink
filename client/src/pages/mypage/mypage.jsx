@@ -64,8 +64,7 @@ export default function Mypage () {
       if(error){
         console.log('내가 신청한 club 데이터 가져오는데 에러발생',error);
       }
-      setmyJoinClubs(data);
-      
+      setmyJoinClubs(data); 
     }
     getMyJoinClubs();
     getMyClub();

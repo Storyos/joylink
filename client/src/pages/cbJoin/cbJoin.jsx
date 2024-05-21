@@ -31,7 +31,7 @@ const CbJoin = () => {
   };
 
   return (
-    <>
+    <div className='mt-28'>
       <div className="p-8 mx-auto my-10 bg-white rounded-lg shadow-lg" style={{ maxWidth: '980px' }}>
         <h1 className="text-xl">신청 정보</h1>
         <img src="https://cdn.pixabay.com/photo/2013/11/03/08/05/cheers-204742_1280.jpg" alt="Event Banner" className="w-full h-auto mb-4 rounded-lg" />
@@ -86,7 +86,7 @@ const CbJoin = () => {
 
         </form>
       </div>
-    </>
+    </div>
   );
 };
 
