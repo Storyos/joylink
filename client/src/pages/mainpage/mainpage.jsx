@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "../../App";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapLocationDot } from '@fortawesome/free-solid-svg-icons';
-
+import Banner from "./banner";
 export default function Mainpage() {
   const [selectedCategory, setSelectedCategory] = useState("전체");
   const [boxContents, setBoxContents] = useState([]);
@@ -161,6 +161,7 @@ export default function Mainpage() {
         </div>
       </div>      
       )}
+          <Banner></Banner>
     </div>
   );
 }
