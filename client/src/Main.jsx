@@ -3,7 +3,7 @@ import App from "./App";
 import Mainpage from "./pages/mainpage/mainpage";
 import Mypage from './pages/mypage/mypage';
 import CbJoin from "./pages/cbJoin/cbJoin";
-import CbSearch from './pages/cbSearch/cbsearch';
+import CbSearch from "./pages/cbSearch/cbsearch";
 import CbCreate from "./pages/cbCreate/cbCreate";
 import CbDescription from "./pages/cbDescription/cbDescription";
 import Notice from "./pages/notice/notice";

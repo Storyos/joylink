@@ -37,17 +37,17 @@ function CbCreate() {
 
           {/* 새로운 섹션 추가 */}
           <fieldset className="p-4 mb-6 border">
-            <legend className="mb-4 text-lg font-bold">모임 방법</legend>
+            <legend className="mb-4 text-lg font-bold">모집 방법</legend>
             <div className="mb-4">
               <div className="flex items-center mb-2">
                 <input type="radio" name="recruitmentMethod" value="onOffMix" className="mr-2" />
-                <label className="mr-4">조이링크를 통한 모임</label>
+                <label className="mr-4">온오프믹스를 통한 모집</label>
                 <input type="radio" name="recruitmentMethod" value="externalRecruitment" className="mr-2" />
                 <label>외부 모집</label>
               </div>
               <input type="text" placeholder="접수 가능한 신청페이지 URL을 입력해 주세요" className="w-full p-2 border rounded" />
             </div>
-            <p className="text-sm text-gray-600">조이링크를 통한 모임은 개설 후 외부 모집으로 변경할 수 없어요. 변경이 필요한 경우 고객센터로 문의하세요.</p>
+            <p className="text-sm text-gray-600">온오프믹스를 통한 모집은 개설 후 외부 모집으로 변경할 수 없어요. 변경이 필요한 경우 고객센터로 문의하세요.</p>
           </fieldset>
 
           <fieldset className="p-4 border">
@@ -58,7 +58,7 @@ function CbCreate() {
                 <input type="text" placeholder="예) 개발그룹, 직장인, 1회차 등" className="w-full p-2 border rounded" />
               </div>
               <div>
-                <label className="block mb-1 font-medium">모임 정원</label>
+                <label className="block mb-1 font-medium">모집 정원</label>
                 <input type="number" placeholder="0 명" className="w-full p-2 border rounded" />
               </div>
             </div>
