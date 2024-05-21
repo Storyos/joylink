@@ -81,7 +81,13 @@ export default function Mainpage() {
   };
   return (
     <div>
-      <div className="overflow-hidden">
+      <div className="relative overflow-hidden">
+      <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center text-white">
+          <div className="px-3 py-1 mb-4 text-sm bg-purple-500 rounded-full">Over 3 million ready-to-work creatives!</div>
+          <h1 className="mb-4 text-4xl font-bold md:text-6xl">The world's destination for design</h1>
+          <p className="mb-6 text-lg">Get inspired by the work of millions of top-rated designers & agencies around the world.</p>
+          <button className="px-6 py-2 text-white bg-black rounded-full hover:bg-gray-700">Get started</button>
+        </div>
         <div className="grid grid-cols-4 gap-4 overflow-hidden h-[600px] w-[1900px]">
           <div className="flex flex-col gap-4 rotate-12 translate-x-[-100px] translate-y-[-150px]">
             <img className="scroll-image-up" src="https://picsum.photos/id/235/400/300" alt="" />
