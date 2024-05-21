@@ -9,7 +9,7 @@ export default function MyInfo() {
   };
   return (
     <div>
-      <div className="p-2 m-3 bg-gray-100 border-2 border-indigo-400 rounded-lg">
+      <div className="p-2 m-3 bg-gray-100 border-2 rounded-lg">
         <h2>내 정보</h2>
         <br></br>
         <br></br>
@@ -17,15 +17,15 @@ export default function MyInfo() {
           <button className="m-2">Club Management</button>
         </Link>
       </div>
-      <div className="p-2 m-3 bg-gray-100 border-2 border-indigo-400 rounded-lg">
+      <div className="p-2 m-3 bg-gray-100 border-2 border-2 rounded-lg">
         <button onClick={handleOpenChatting}>채팅</button>
       </div>
-      <div className="border-indigo-400 p-2 border-2 rounded-lg ... m-3 bg-gray-100">
+      <div className="border-2 p-2 rounded-lg ... m-3 bg-gray-100">
         <Link to="/ViewAccountPage">
           <button>장부</button>
         </Link>
       </div>
-      <div className="border-indigo-400 p-2 border-2 rounded-lg ... m-3 bg-gray-100">
+      <div className="border-2 p-2 rounded-lg ... m-3 bg-gray-100">
         <h3>카테고리</h3>
         <br></br>
         <br></br>

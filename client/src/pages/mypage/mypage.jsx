@@ -3,7 +3,7 @@ import { useEffect, useState, useTransition } from 'react'
 import { supabase } from '../../App';
 import MessageModal from '../../components/messageModal';
 import useUserStore from '../../zustand/useUserStore';
-import { Link } from 'react-router-dom';
+
 export default function Mypage () {
     
   const user_seq = useUserStore(state=> state.user.user_seq);
@@ -28,6 +28,10 @@ export default function Mypage () {
   // 내가 가입한 동아리 목록 가져오기
   const [myClub,setMyClub]=useState([]);
   
+  
+  // 가입 신청한 동아리 목록 가져오기 
+  const [myjoinClubs,setmyJoinClubs]=useState([]);
+  
   useEffect(()=>{
     
     async function getMyClub(){
@@ -48,16 +52,31 @@ export default function Mypage () {
       }
       setMyClub(data);    
     }
+
+    async function getMyJoinClubs(){
+      const {data,error} = await supabase
+      .from('joinclubs')
+      .select(`
+      club:club_seq (club_nm,club_seq),
+      jc_Rst`)
+      .eq('user_seq',user_seq);
+      console.log('내가 신청했던 club 데이터',data);
+      if(error){
+        console.log('내가 신청한 club 데이터 가져오는데 에러발생',error);
+      }
+      setmyJoinClubs(data);
+      
+    }
+    getMyJoinClubs();
     getMyClub();
   },[])
   
   return (
-    <div className='bg-gray-100'>
-
+    <div>
       {/* 메인 영역 */}
       <div className='py-24 mx-auto'>
         <div className='flex justify-center'>
-          <div className='w-[120px] rounded-[10px] bg-white shadow '>
+          <div className='w-[120px] rounded-[10px] border-2'>
             <div className='flex flex-col items-center min-h-[500px] py-4'>
               <button className={'font-bold text-[#a9a9a9] my-2 text-sm '+ (mypageMenu === 'userInfo' && 'text-black text-lg')} onClick={() => handleMypageMenu("userInfo")}>내 정보</button>
               <button className={'font-bold text-[#a9a9a9] my-2 text-sm '+ (mypageMenu === 'updateInfo' && 'text-black')} onClick={() => handleMypageMenu("updateInfo")}>정보 수정</button>
@@ -66,7 +85,8 @@ export default function Mypage () {
               <button className={'font-bold text-[#a9a9a9] my-2 text-sm '+ (mypageMenu === 'application' && 'text-black')} onClick={() => handleMypageMenu("application")}>신청 현황</button>
             </div>
           </div>
-          <div className='w-[800px] p-8 ml-10 bg-white shadow rounded-xl'>
+
+          <div className='w-[800px] p-8 ml-10 border-2 rounded-xl'>
             
             {/* 내 정보 */}
             {mypageMenu == "userInfo" &&
@@ -126,11 +146,11 @@ export default function Mypage () {
                   <th className='border-2 border-[#c9c9c9] w-[50px] p-2'> </th>
                   <td className='border-2 border-[#c9c9c9] text-center min-w-[300px] p-2 text-sm'>동아리 명</td>
                   <td className='border-2 border-[#c9c9c9] text-center text-sm'>가입 날짜</td>
-                  </tr>
+                </tr>
                 {
                   myClub.map((eachclub,index)=>(
                     <tr className='border-2 border-[#c9c9c9]'>
-                  <th className='border-2 border-[#c9c9c9] w-[50px]'>{index}</th>
+                  <th className='border-2 border-[#c9c9c9] w-[50px]'>{index+1}</th>
                   <td className='border-2 border-[#c9c9c9] text-center min-w-[300px] p-2 text-sm'>{eachclub.club.club_nm}</td>
                   <td className='border-2 border-[#c9c9c9] text-center text-sm'>{eachclub.club_position}</td>
                 </tr>
@@ -150,13 +170,14 @@ export default function Mypage () {
                   <td className='border-2 border-[#c9c9c9] text-center text-sm'>상태</td>
                 </tr>
                 
-                <tr className='border-2 border-[#c9c9c9]'>
-                  <th className='border-2 border-[#c9c9c9] w-[50px] p-2'>3</th>
-                  <td className='border-2 border-[#c9c9c9] text-center min-w-[300px] text-sm'>동아리3</td>
-                  <td className='border-2 border-[#c9c9c9] text-center text-sm'>2024/05/09</td>
-
+                {
+                  myjoinClubs.map((myjoinClub,index)=>(
+                    <tr className='border-2 border-[#c9c9c9]'>
+                  <th className='border-2 border-[#c9c9c9] w-[50px]'>{index+1}</th>
+                  <td className='border-2 border-[#c9c9c9] text-center min-w-[300px] p-2 text-sm'>{myjoinClub.club.club_nm}</td>
+                  <td className='border-2 border-[#c9c9c9] text-center text-sm'>{myjoinClub.jc_Rst}</td>
                 </tr>
-                
+                  ))}
                 
               </table>
             </div>
