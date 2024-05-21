@@ -38,7 +38,7 @@ function CbCreate() {
 
   return (
     <>
-      <section className="p-20 mx-auto max-w-screen-2xl bg-f3f4f6">
+      <section className="p-20 mx-auto mt-28 max-w-screen-2xl bg-f3f4f6">
         <div className='max-w-screen-2xl'>
           <fieldset className="p-4 mb-6 border">
             <legend className="mb-4 text-lg font-bold">모임 만들기</legend>

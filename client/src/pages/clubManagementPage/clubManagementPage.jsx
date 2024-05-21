@@ -11,7 +11,7 @@ export default function ClubManagementPage() {
 
   return (
     <div>
-      <div className="flex justify-center">
+      <div className="flex justify-center mt-28">
         <button 
           className="bg-indigo-400 m-5 p-2 rounded-md text-white" 
           onClick={() => handleTabClick('회원 관리')}
