@@ -78,47 +78,69 @@ export default function Mainpage() {
 
   const handleButtonClick = (index) => {
     setSelectedButton(index);
-  };  return (
+  }; return (
     <div>
-      <div className="flex flex-col items-center justify-center p-16 text-center bg-white">
-        {/* <div className="px-3 py-1 mb-4 text-sm bg-purple-500 rounded-full">
-          백만명이 선택 할 서비스!
-        </div> */}
-        <h1 className="mb-4 text-4xl font-bold md:text-6xl">
-        모임의 시작, 조이링크
-        </h1>
-        <p className="mb-6 text-lg">
-        당신의 모임을 쉽고 빠르게 시작하고, 새로운 인연을 만들어 보세요.
-        </p>
-        <button className="px-6 py-2 text-white bg-black rounded-full hover:bg-gray-700">
-          지금 시작하기
-        </button>
-      </div>
-      
-      <div className="overflow-hidden ">
-        <div className="grid grid-cols-4 gap-4 overflow-hidden h-[600px] w-[1900px]">
-          <div className="flex flex-col gap-4 rotate-12 translate-x-[-100px] translate-y-[-150px]">
-            <img className="scroll-image-up" src="https://picsum.photos/id/235/400/300" alt="" />
-            <img className="scroll-image-up" src="https://picsum.photos/id/236/400/300" alt="" />
-            <img className="scroll-image-up" src="https://picsum.photos/id/237/400/300" alt="" />
+      <div>
+        <div className="relative flex flex-col items-center justify-center p-16 text-center bg-white bg-opacity-60 backdrop-filter backdrop-blur-lg">
+          <div className="absolute inset-0 bg-center bg-cover filter blur-sm opacity-60" style={{ backgroundImage: "url('/assets/clubpic.jpg')" }}></div>
+          <div className="relative z-10 p-10 bg-white bg-opacity-20 rounded-xl backdrop-filter backdrop-blur-lg">
+            <h1 className="mb-4 text-4xl font-bold text-black md:text-6xl">
+              모임의 시작, 조이링크
+            </h1>
+            <p className="mb-6 text-lg text-black">
+              당신의 모임을 쉽고 빠르게 시작하고, 새로운 인연을 만들어 보세요.
+            </p>
+            <button className="px-6 py-2 text-white bg-black rounded-full hover:bg-gray-700">
+              지금 시작하기
+            </button>
           </div>
-          <div className="flex flex-col gap-4 rotate-12 translate-x-[-55px] translate-y-[-300px]">
-            <img className="scroll-image-down" src="https://picsum.photos/id/238/400/300" alt="" />
-            <img className="scroll-image-down" src="https://picsum.photos/id/239/400/300" alt="" />
-            <img className="scroll-image-down" src="https://picsum.photos/id/240/400/300" alt="" />
+        </div>
+
+        <div className="flex items-center justify-center my-24 bg-gray-100 h-96">
+          <div className="text-center">
+            <h2 className="text-4xl font-bold text-gray-800">
+              블록체인을 통한 투명한 장부 관리가 가능한 모임 플랫폼
+            </h2>
+            <p className="mt-4 text-2xl text-gray-600">
+              이제껏 경험하지 못한 안전하고 편리한 모임 관리 서비스,<br />
+              저희와 함께라면 당신의 모임이 더욱 새로워질 거예요.
+            </p>
           </div>
-          <div className="flex flex-col gap-4 rotate-12 translate-x-[-75px] translate-y-[-150px]">
-            <img className="scroll-image-up" src="https://picsum.photos/id/241/400/300" alt="" />
-            <img className="scroll-image-up" src="https://picsum.photos/id/242/400/300" alt="" />
-            <img className="scroll-image-up" src="https://picsum.photos/id/243/400/300" alt="" />
-          </div>
-          <div className="flex flex-col gap-4 rotate-12 translate-x-[-30px] translate-y-[-300px]">
-            <img className="scroll-image-down" src="https://picsum.photos/id/244/400/300" alt="" />
-            <img className="scroll-image-down" src="https://picsum.photos/id/234/400/300" alt="" />
-            <img className="scroll-image-down" src="https://picsum.photos/id/233/400/300" alt="" />
+        </div>
+
+
+
+        <div className="overflow-hidden ">
+          <div className="grid grid-cols-4 gap-4 overflow-hidden h-[700px] w-[1900px]">
+            <div className="flex flex-col gap-4 rotate-12 translate-x-[-100px] translate-y-[-150px]">
+              <img className="scroll-image-up" src="./assets/main3.png" alt="" />
+              <img className="scroll-image-up" src="./assets/main7.jpg" alt="" />
+              <img className="scroll-image-up" src="./assets/main5.jpg" alt="" />
+              <img className="scroll-image-up" src="./assets/main2.jpg" alt="" />
+            </div>
+            <div className="flex flex-col gap-4 rotate-12 translate-x-[-20px] translate-y-[-480px]">
+              <img className="scroll-image-down" src="./assets/main6.jpg" alt="" />
+              <img className="scroll-image-down" src="./assets/main4.jpg" alt="" />
+              <img className="scroll-image-down" src="./assets/main5.jpg" alt="" />
+              <img className="scroll-image-down" src="./assets/main3.png" alt="" />
+              <img className="scroll-image-down" src="./assets/main6.jpg" alt="" />
+            </div>
+            <div className="flex flex-col gap-4 rotate-12 translate-x-[-75px] translate-y-[-150px]">
+              <img className="scroll-image-up" src="./assets/main1.jpg" alt="" />
+              <img className="scroll-image-up" src="./assets/main2.jpg" alt="" />
+              <img className="scroll-image-up" src="./assets/main3.png" alt="" />
+              <img className="scroll-image-up" src="./assets/main5.jpg" alt="" />
+            </div>
+            <div className="flex flex-col gap-4 rotate-12 translate-x-[-30px] translate-y-[-300px]">
+              <img className="scroll-image-down" src="./assets/main6.jpg" alt="" />
+              <img className="scroll-image-down" src="./assets/main5.jpg" alt="" />
+              <img className="scroll-image-down" src="./assets/main7.jpg" alt="" />
+              <img className="scroll-image-down" src="./assets/main4.jpg" alt="" />
+            </div>
           </div>
         </div>
       </div>
+
 
       <div className="p-6 bg-blue-100">
         <div className="container mx-auto">
@@ -135,9 +157,8 @@ export default function Mainpage() {
                 className="flex flex-col items-center cursor-pointer"
                 onClick={() => setSelectedCategory(category.name)}
               >
-                <div className={`flex items-center justify-center w-20 h-20 rounded-full ${
-                  selectedCategory === category.name ? "bg-gray-700" : "bg-white"
-                }`}>
+                <div className={`flex items-center justify-center w-20 h-20 rounded-full ${selectedCategory === category.name ? "bg-gray-700" : "bg-white"
+                  }`}>
                   <img
                     src={category.icon}
                     alt={category.name}
@@ -153,12 +174,12 @@ export default function Mainpage() {
 
       {selectedCategory && (
         <div className="p-6 mb-8 ">
-          <h2 className="mb-4 text-xl font-bold">{selectedCategory=='전체'?'전체':`${selectedCategory}관련 모임`}</h2>
+          <h2 className="mb-4 text-xl font-bold">{selectedCategory == '전체' ? '전체' : `${selectedCategory}관련 모임`}</h2>
           <div className="grid grid-cols-1 gap-4 mx-4 md:grid-cols-2 lg:grid-cols-3">
             {boxContents.map((card, index) => (
-              <div key={index} className="p-4 bg-white rounded shadow">
+              <div key={index} className="p-3 bg-white rounded shadow">
                 <div className="mb-2 text-gray-500">{card.club_ctg}</div>
-                <h3 className="mb-2 text-lg font-semibold">{card.club_nm}</h3>
+                <h3 className="p-2 mb-2 text-3xl font-semibold">{card.club_nm}</h3>
                 <p className="mb-2">{card.club_desc}</p>
 
                 <div className="mt-4 text-blue-500">
