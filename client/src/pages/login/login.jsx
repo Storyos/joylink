@@ -46,11 +46,7 @@ export default function Login() {
                 redirectTo:'http://localhost:3000/checkUserInfo'
             }
         });
-        if (error) console.log("error :", error);
-        else{
-            await fetchUserData();
-            console.log(data);
-        }
+        if (error) console.log("구글 OAUTH에서 발생한에러 :", error);
     };
 
 
@@ -67,6 +63,7 @@ export default function Login() {
             console.error('Error fetching data:', error);
         }
     }
+    
     // 이메일 인증여부 체크
     const handleverifyemail = async () => {
         const { data, error } = await supabase
@@ -90,9 +87,10 @@ export default function Login() {
             .select('*')
             .eq('user_id', useremail)
             .single()
-            console.log(data);
+            
         if(error){
-            console.error(error);
+            console.error("fetch user에서 발생한 에러 ",error);
+
         }else{
             useUserStore.getState().setUser(data); // zustand에 로그인후 컬럼정보 저장
             alert("로그인 성공~");
@@ -131,7 +129,7 @@ export default function Login() {
                     <h5 className="mt-2">계정이 없으신가요?</h5>
                     <div className="flex justify-center mt-4">
                         <button onClick={handleGoogleLogin} className="px-4 py-2 mr-2 font-bold text-white bg-red-500 rounded hover:bg-red-600">구글로그인</button>
-                        <button id='join' onClick={handleTest1} className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-600">회원가입</button>
+                        <button id='join' onClick={()=>{navigate('/join')}} className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-600">회원가입</button>
                     </div>
                 </div>
             </div >

@@ -3,7 +3,7 @@
 export default function Footer () {
 
   return (
-    <footer className="mt-10 bg-[#E0F4FF] px-[200px] py-4">
+    <footer className="mt-10 bg-blue-100 px-[200px] py-4">
       <div className="font-thin">
         <p>서비스 이용약관 | 개인정보 처리방침 | 서비스 안내</p>
         <p><b>고객센터</b> | 02-123-1234</p>

@@ -1,21 +1,47 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "../../App";
+import useUserStore from "../../zustand/useUserStore";
 
 export default function Header() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  
+  const { user, isLoggedIn, setUser, logout } = useUserStore();
+  let navigate= useNavigate();
   // 로그인이 되어있는경우를 check
-    useEffect( () => {
-        // 페이지 로드 시 로그인 세션 확인
-        async function getsession() {
-        const session = await supabase.auth.getUser(); 
-        console.log("session값임 ",session.data.user);
-        setIsLoggedIn(session?.data.user != null);  // access_token의 존재 여부로 로그인 상태 결정
-      }
-      getsession();
-    }, []);
+  useEffect(() => {
+    const checkToken = async () => {
+      const tokenDataString = localStorage.getItem('sb-vtvkgtqvczyuteenfadw-auth-token');
+      if (tokenDataString) {
+        const tokenData = JSON.parse(tokenDataString);
+        const expiresAt = tokenData.expires_at;
+        const expirationDate = new Date(expiresAt * 1000);
+        const thirtyMinAgo = Date.now() - (30 * 60 * 1000);
 
+        if (expirationDate.getTime() < thirtyMinAgo) {
+          console.log('토큰 만료:', new Date(thirtyMinAgo).toString());
+          handleLogout();
+        } else {
+          console.log('현재 시간:', new Date(Date.now()).toString());
+          const { data: { session } } = await supabase.auth.getSession();
+        }
+      } else {
+        console.log('토큰 데이터가 존재하지 않습니다.');
+        setUser(null);
+      }
+    };
+
+    checkToken();
+  }, [setUser]);
+  
+    
+  async function handleLogout(){
+    window.localStorage.removeItem('sb-vtvkgtqvczyuteenfadw-auth-token');
+    const {logout} = useUserStore.getState();
+    logout();
+    alert('로그아웃 되었습니다.');
+    navigate('/');
+  }
+  
   return (
     <header className="p-6">
       <div className="flex items-center justify-between">
@@ -30,7 +56,7 @@ export default function Header() {
           {
             isLoggedIn?
           (<>
-          <button className="px-2 mx-2 border-2 border-[#87C4FF] rounded-[5px] bg-white hover:bg-[#87C4FF] hover:border-[#87C4FF] text-[#39A7FF] hover:text-white"><Link to="/login">로그아웃</Link></button>
+          <button className="px-2 mx-2 border-2 border-[#87C4FF] rounded-[5px] bg-white hover:bg-[#87C4FF] hover:border-[#87C4FF] text-[#39A7FF] hover:text-white" onClick={handleLogout}>로그아웃</button>
           <button className="px-2 border-2 border-[#87C4FF] rounded-[5px] bg-[#87C4FF] hover:bg-[#39A7FF] hover:border-[#39A7FF] text-white"><Link to="/mypage">마이페이지</Link></button>
           </>)
           :
@@ -42,7 +68,9 @@ export default function Header() {
           
         </div>
       </div>
+      
     </header>
+
   );
 }
 
