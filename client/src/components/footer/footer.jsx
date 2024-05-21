@@ -6,7 +6,6 @@ export default function Footer() {
           <img src="/icons/joylink_blue_logo.png" alt="Joylink" className="h-8 mb-4" />
           <ul>
             <li><a href="#" className="hover:underline">Company</a></li>
-            <li><a href="#" className="hover:underline">Games</a></li>
             <li><a href="#" className="hover:underline">Story</a></li>
             <li><a href="#" className="hover:underline">Careers</a></li>
           </ul>
@@ -33,7 +32,7 @@ export default function Footer() {
       <div className="pt-4 mt-4 text-sm border-t border-gray-700">
         <div className="flex items-center justify-between">
           <div className="mx-auto text-center">
-            <p>㈜JOYLINK 대표이사 김범규</p>
+            <p>㈜JOYLINK 대표이사</p>
             <p>© All rights reserved to JOYLINK 2024</p>
           </div>
           <div className="flex mx-4 space-x-4">
