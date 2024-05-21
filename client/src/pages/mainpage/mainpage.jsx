@@ -60,9 +60,25 @@ export default function Mainpage() {
 
     window.addEventListener('scroll', handleScroll);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  // 카드만들기
+  const [selectedButton, setSelectedButton] = useState(null);
+  const buttons = ["Popular", "레저", "스터디", "여행"];
+  const cards = [
+    { image: "https://picsum.photos/id/235/400/300", text: "Card 1" },
+    { image: "https://picsum.photos/id/236/400/300", text: "Card 2" },
+    { image: "https://picsum.photos/id/237/400/300", text: "Card 3" },
+    { image: "https://picsum.photos/id/238/400/300", text: "Card 4" },
+    { image: "https://picsum.photos/id/239/400/300", text: "Card 5" },
+    { image: "https://picsum.photos/id/240/400/300", text: "Card 6" },
+  ];
+
+  const handleButtonClick = (index) => {
+    setSelectedButton(index);
+  };
 
   return (
     <div>
