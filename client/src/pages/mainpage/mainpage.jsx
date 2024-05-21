@@ -141,7 +141,7 @@ export default function Mainpage() {
 
       {selectedCategory && (
         <div className="p-6">
-          <h2 className="mb-4 text-xl font-bold">{selectedCategory} 카테고리의 카드박스</h2>
+          <h2 className="mb-4 text-xl font-bold">{selectedCategory}관련 모임</h2>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
             {boxcontents.map((card, index) => (
               <div key={index} className="p-4 bg-white rounded shadow">
