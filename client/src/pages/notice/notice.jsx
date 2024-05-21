@@ -14,7 +14,7 @@ export default function Notice() {
     setNoticeMenu("Menual");
   };
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center mt-28">
       <div className="w-1/6 m-5 border-2 rounded-lg lg:w-1/12">
           <h1 className="flex justify-center m-7">카테고리</h1>
           <ul className="flex flex-col items-center mt-4">

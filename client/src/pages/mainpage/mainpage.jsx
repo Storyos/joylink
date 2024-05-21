@@ -81,7 +81,7 @@ export default function Mainpage() {
   const handleButtonClick = (index) => {
     setSelectedButton(index);
   }; return (
-    <div className="font-custom">
+    <div className="font-custom mt-28">
       <div>
         <div className="relative flex flex-col items-center justify-center p-16 text-center bg-white bg-opacity-60 backdrop-filter backdrop-blur-lg">
           <div className="absolute inset-0 bg-center bg-cover filter blur-sm opacity-60" style={{ backgroundImage: "url('/assets/clubpic.jpg')" }}></div>

@@ -3,7 +3,7 @@ import React from 'react';
 
 function CbDescription() {
   return (
-    <div className="flex flex-col items-center bg-gray-100">
+    <div className="flex flex-col items-center bg-gray-100 mt-28">
       {/* Section: club.summary */}
       <section className="w-[1280px] bg-white mb-10 p-[25px_30px_20px] rounded-lg shadow-lg">
         <div className="flex h-[320px]">
