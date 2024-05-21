@@ -12,6 +12,8 @@ export default function Vr() {
       <a-scene className="aframe-scene">
         <a-entity gltf-model={`url(${tent})`} 
         position="0 0 -5"></a-entity>
+        <a-entity gltf-model={`url(${tent})`} 
+        position="0 0 -1"></a-entity>
       </a-scene>
     </div>
   );
