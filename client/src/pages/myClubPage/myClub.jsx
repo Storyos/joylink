@@ -22,7 +22,7 @@ export default function MyClubPage() {
         <MyInfo/> {/* 사이드바 */}
       </div>
       <div className="w-1/2 p-6">
-        <div className="flex items-center justify-between m-6">
+        <div className="flex items-center justify-between my-6">
           <h1 className="text-xl font-bold">게시글</h1>
           <input type="text" id="search" placeholder="게시글 검색" className="px-2 py-1 border rounded " />
         </div>
