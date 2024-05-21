@@ -1,8 +1,51 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ChattingModal from "../chattingModal";
+import useUserStore from "../../zustand/useUserStore";
+import { supabase } from "../../App";
 
 export default function MyInfo() {
+  const [club_position,setClubPosition]=useState("게스트");
+  const [my_comments,setMyComments]=useState("0");
+  const [my_posts,setMyPosts]=useState("0");
+  const {user} = useUserStore();
+
+  useEffect(()=>{
+    
+    async function getClubPosition() {
+      const {data, error} = await supabase
+      .from('members')
+      .select('club_position')
+      .eq('user_seq',user.user_seq)
+      .single();
+      if(data){
+        setClubPosition(data.club_position);
+      }
+    }
+
+    async function getComments() {
+      let { count, error } = await supabase
+    .from('comments')
+    .select('*', { count: 'exact' })
+    .eq('user_seq', user.user_seq)
+    if(count){
+      setMyComments(count);
+    }
+    }
+    async function getPosts() {
+      let {count, error} = await supabase
+      .from('posts')
+      .select('*',{count:'exact'})
+      .eq('user_seq',user.user_seq)
+      if(count){
+        setMyPosts(count);
+      }
+    }
+    getClubPosition();
+    getComments();
+    getPosts();
+  },[])
+  
   const handleOpenChatting = () => {
     window.open(
       "/chatting",
@@ -11,14 +54,14 @@ export default function MyInfo() {
     );
   };
   return (
-    <div className="border rounded-xl p-5 m-12">
+    <div className="p-5 m-12 border rounded-xl">
       <div className="p-1 m-2">
         <h2 className="text-lg">내 정보</h2>
         <br></br>
-        <div className="text-sm space-y-1">
-          <h3>회원등급 : 평민</h3>
-          <h3>게시글 수 : 10</h3>
-          <h3>댓글 수 : 10</h3>
+        <div className="space-y-1 text-sm">
+          <h3>회원등급 : {club_position}</h3>
+          <h3>게시글 수 : {my_posts}</h3>
+          <h3>댓글 수 : {my_comments}</h3>
         </div>
         <br></br>
       </div>
