@@ -1,14 +1,13 @@
 
-import { useState, useTransition } from 'react'
+import { useEffect, useState, useTransition } from 'react'
 import { supabase } from '../../App';
 import MessageModal from '../../components/messageModal';
-import useUserStore from "../../zustand/useUserStore";
+import useUserStore from '../../zustand/useUserStore';
 
 export default function Mypage () {
     
-  const user_seq = useUserStore(state => state.user);
-  console.log("ssss",user_seq);
-
+  const user_seq = useUserStore(state=> state.user.user_seq);
+  
   // message modal창 열고 닫기
   const [modalDisplay, setModalDisplay] = useState("Close");
   const handleOpenMessage = () => {
@@ -26,13 +25,58 @@ export default function Mypage () {
     setMypageMenu(`${menu}`)
   }
 
-  return (
-    <div className='bg-gray-100'>
+  // 내가 가입한 동아리 목록 가져오기
+  const [myClub,setMyClub]=useState([]);
+  
+  
+  // 가입 신청한 동아리 목록 가져오기 
+  const [myjoinClubs,setmyJoinClubs]=useState([]);
+  
+  useEffect(()=>{
+    
+    async function getMyClub(){
+      
+      const { data, error } = await supabase
+    .from('members')
+    .select(`
+      club:club_seq (club_nm, club_seq),
+      user_seq,
+      club_position
+    `)
+    .eq('user_seq', user_seq)
+    .eq('mem_st',"가입중");
+    
+      console.log("club데이터",data);
+      if(error){
+        console.log("club 데이터 가져오는데 에러발생",error);
+      }
+      setMyClub(data);    
+    }
 
+    async function getMyJoinClubs(){
+      const {data,error} = await supabase
+      .from('joinclubs')
+      .select(`
+      club:club_seq (club_nm,club_seq),
+      jc_Rst`)
+      .eq('user_seq',user_seq);
+      console.log('내가 신청했던 club 데이터',data);
+      if(error){
+        console.log('내가 신청한 club 데이터 가져오는데 에러발생',error);
+      }
+      setmyJoinClubs(data);
+      
+    }
+    getMyJoinClubs();
+    getMyClub();
+  },[])
+  
+  return (
+    <div>
       {/* 메인 영역 */}
       <div className='py-24 mx-auto'>
         <div className='flex justify-center'>
-          <div className='w-[120px] rounded-[10px] bg-white shadow '>
+          <div className='w-[120px] rounded-[10px] border-2'>
             <div className='flex flex-col items-center min-h-[500px] py-4'>
               <button className={'font-bold text-[#a9a9a9] my-2 text-sm '+ (mypageMenu === 'userInfo' && 'text-black text-lg')} onClick={() => handleMypageMenu("userInfo")}>내 정보</button>
               <button className={'font-bold text-[#a9a9a9] my-2 text-sm '+ (mypageMenu === 'updateInfo' && 'text-black')} onClick={() => handleMypageMenu("updateInfo")}>정보 수정</button>
@@ -41,7 +85,8 @@ export default function Mypage () {
               <button className={'font-bold text-[#a9a9a9] my-2 text-sm '+ (mypageMenu === 'application' && 'text-black')} onClick={() => handleMypageMenu("application")}>신청 현황</button>
             </div>
           </div>
-          <div className='w-[800px] p-8 ml-10 bg-white shadow rounded-xl'>
+
+          <div className='w-[800px] p-8 ml-10 border-2 rounded-xl'>
             
             {/* 내 정보 */}
             {mypageMenu == "userInfo" &&
@@ -51,23 +96,23 @@ export default function Mypage () {
                 <caption className='mb-8 font-bold'>내 정보</caption>
                 <tr className='border-2 border-[#c9c9c9]'>
                   <th className='border-2 border-[#c9c9c9] text-sm p-2 w-[25%]'>아이디(이메일)</th>
-                  <td className='border-2 border-[#c9c9c9] text-center'>{user_seq.user_id}</td>
+                  <td className='border-2 border-[#c9c9c9] text-center'>abcd@naver.com</td>
                 </tr>
                 <tr className='border-2 border-[#c9c9c9]'>
                   <th className='border-2 border-[#c9c9c9] p-2 text-sm'>이름</th>
-                  <td className='border-2 border-[#c9c9c9] text-center'>{user_seq.user_name}</td>
+                  <td className='border-2 border-[#c9c9c9] text-center'>1234</td>
                 </tr>
                 <tr className='border-2 border-[#c9c9c9]'>
                   <th className='border-2 border-[#c9c9c9] p-2 text-sm'>성별</th>
-                  <td className='border-2 border-[#c9c9c9] text-center'>{user_seq.user_gender}</td>
+                  <td className='border-2 border-[#c9c9c9] text-center'>남</td>
                 </tr>
                 <tr className='border-2 border-[#c9c9c9]'>
                   <th className='border-2 border-[#c9c9c9] p-2 text-sm'>생년월일</th>
-                  <td className='border-2 border-[#c9c9c9] text-center'>{user_seq.user_birth}</td>
+                  <td className='border-2 border-[#c9c9c9] text-center'>12345678</td>
                 </tr>
                 <tr className='border-2 border-[#c9c9c9]'>
                   <th className='border-2 border-[#c9c9c9] p-2 text-sm'>전화번호</th>
-                  <td className='border-2 border-[#c9c9c9] text-center'>{user_seq.user_pn}</td>
+                  <td className='border-2 border-[#c9c9c9] text-center'>010-1234-5678</td>
                 </tr>
                 
               </table>
@@ -102,24 +147,14 @@ export default function Mypage () {
                   <td className='border-2 border-[#c9c9c9] text-center min-w-[300px] p-2 text-sm'>동아리 명</td>
                   <td className='border-2 border-[#c9c9c9] text-center text-sm'>가입 날짜</td>
                 </tr>
-                <tr className='border-2 border-[#c9c9c9]'>
-                  <th className='border-2 border-[#c9c9c9] w-[50px] p-2'>1</th>
-                  <td className='border-2 border-[#c9c9c9] text-center min-w-[300px] text-sm'>동아리1</td>
-                  <td className='border-2 border-[#c9c9c9] text-center text-sm'>2024/05/07</td>
-
+                {
+                  myClub.map((eachclub,index)=>(
+                    <tr className='border-2 border-[#c9c9c9]'>
+                  <th className='border-2 border-[#c9c9c9] w-[50px]'>{index+1}</th>
+                  <td className='border-2 border-[#c9c9c9] text-center min-w-[300px] p-2 text-sm'>{eachclub.club.club_nm}</td>
+                  <td className='border-2 border-[#c9c9c9] text-center text-sm'>{eachclub.club_position}</td>
                 </tr>
-                <tr className='border-2 border-[#c9c9c9]'>
-                  <th className='border-2 border-[#c9c9c9] w-[50px] p-2'>2</th>
-                  <td className='border-2 border-[#c9c9c9] text-center min-w-[300px] text-sm'>동아리2</td>
-                  <td className='border-2 border-[#c9c9c9] text-center text-sm'>2024/05/08</td>
-
-                </tr>
-                <tr className='border-2 border-[#c9c9c9]'>
-                  <th className='border-2 border-[#c9c9c9] w-[50px] p-2'>3</th>
-                  <td className='border-2 border-[#c9c9c9] text-center min-w-[300px] text-sm'>동아리3</td>
-                  <td className='border-2 border-[#c9c9c9] text-center text-sm'>2024/05/09</td>
-
-                </tr>
+                  ))}
               </table>
             </div>
             }
@@ -132,23 +167,18 @@ export default function Mypage () {
                 <tr className='border-2 border-[#c9c9c9]'>
                   <th className='border-2 border-[#c9c9c9] w-[50px]'> </th>
                   <td className='border-2 border-[#c9c9c9] text-center min-w-[300px] p-2 text-sm'>동아리 명</td>
-                  <td className='border-2 border-[#c9c9c9] text-center text-sm'>신청 현황</td>
+                  <td className='border-2 border-[#c9c9c9] text-center text-sm'>상태</td>
                 </tr>
-                <tr className='border-2 border-[#c9c9c9]'>
-                  <th className='border-2 border-[#c9c9c9] w-[50px]'>1</th>
-                  <td className='border-2 border-[#c9c9c9] text-center min-w-[300px] p-2 text-sm'>동아리1</td>
-                  <td className='border-2 border-[#c9c9c9] text-center text-sm'>신청 중</td>
+                
+                {
+                  myjoinClubs.map((myjoinClub,index)=>(
+                    <tr className='border-2 border-[#c9c9c9]'>
+                  <th className='border-2 border-[#c9c9c9] w-[50px]'>{index+1}</th>
+                  <td className='border-2 border-[#c9c9c9] text-center min-w-[300px] p-2 text-sm'>{myjoinClub.club.club_nm}</td>
+                  <td className='border-2 border-[#c9c9c9] text-center text-sm'>{myjoinClub.jc_Rst}</td>
                 </tr>
-                <tr className='border-2 border-[#c9c9c9]'>
-                  <th className='border-2 border-[#c9c9c9] w-[50px]'>2</th>
-                  <td className='border-2 border-[#c9c9c9] text-center min-w-[300px] p-2 text-sm'>동아리2</td>
-                  <td className='border-2 border-[#c9c9c9] text-center text-sm'>가입 완료</td>
-                </tr>
-                <tr className='border-2 border-[#c9c9c9]'>
-                  <th className='border-2 border-[#c9c9c9] w-[50px]'>3</th>
-                  <td className='border-2 border-[#c9c9c9] text-center min-w-[300px] p-2 text-sm'>동아리3</td>
-                  <td className='border-2 border-[#c9c9c9] text-center text-sm'>신청 취소</td>
-                </tr>
+                  ))}
+                
               </table>
             </div>
             }
