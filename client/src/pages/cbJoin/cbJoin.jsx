@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import AgreeInfo from '../../components/layouts/agreeinfo';
 
 const CbJoin = () => {
   const [formData, setFormData] = useState({
@@ -17,7 +18,16 @@ const CbJoin = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
-    // This is where you would handle the form submission, such as sending data to a server.
+   
+  };
+
+  // 주소 검색 창 열기
+  const openAddressSearch = () => {
+    new window.daum.Postcode({
+      oncomplete: function(data) {
+        setFormData({ ...formData, 주소: data.address });
+      }
+    }).open();
   };
 
   return (
@@ -51,14 +61,20 @@ const CbJoin = () => {
           </div>
           <div>
             <label htmlFor="address" className="block text-sm font-medium text-gray-700">주소</label>
-            <input type="text" id="address" name="주소" onChange={handleChange}
-              className="block w-full p-2 mt-1 border border-gray-400 rounded-md shadow-sm" />
+            <div className="flex space-x-2">
+              <input type="text" id="address" name="주소" value={formData.주소} onChange={handleChange}
+                className="flex-1 p-2 mt-1 border border-gray-400 rounded-md shadow-sm" />
+              <button type="button" onClick={openAddressSearch} className="px-4 py-2 mt-1 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">
+                주소 검색
+              </button>
+            </div>
           </div>
           <div>
             <label htmlFor="additionalInfo" className="block text-sm font-medium text-gray-700">자기소개</label>
             <textarea id="additionalInfo" name="자기소개" rows="3" onChange={handleChange}
               className="block w-full p-2 mt-1 border border-gray-400 rounded-md shadow-sm"></textarea>
           </div>
+          <AgreeInfo/>
           <div className="flex justify-between">
             <button type="submit" className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">
               Submit
@@ -67,12 +83,11 @@ const CbJoin = () => {
               Reset
             </button>
           </div>
+
         </form>
       </div>
     </>
   );
 };
-
-
 
 export default CbJoin;

@@ -5,9 +5,35 @@ import Button from '@mui/material/Button';
 
 function CbCreate() {
   const [showModal, setShowModal] = useState(false);
+  const [formData, setFormData] = useState({
+    제목: '',
+    소개: '',
+    태그: '',
+    그룹명: '',
+    정원: 0,
+    비용: '',
+    시작일: '',
+    종료일: '',
+    장소명: '',
+    주소: '',
+    상세주소: ''
+  });
 
   const handleCreate = () => {
     setShowModal(true);
+  };
+
+  // 주소 검색 창 열기
+  const openAddressSearch = () => {
+    new window.daum.Postcode({
+      oncomplete: function(data) {
+        setFormData({ ...formData, 주소: data.address });
+      }
+    }).open();
+  };
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   return (
@@ -18,9 +44,30 @@ function CbCreate() {
             <legend className="mb-4 text-lg font-bold">모임 만들기</legend>
             <div className="flex justify-between mb-4 space-x-4">
               <div className="flex-grow">
-                <input type="text" placeholder="제목을 입력하세요 (100자 이내)" className="w-full mb-4 input" />
-                <input type="text" placeholder="이벤트를 간단하게 소개하세요 (100자 이내)" className="w-full mb-4 input" />
-                <input type="text" placeholder="태그 (예: #온오프믹스, #스타트업, #창업)" className="w-full input" />
+                <input 
+                  type="text" 
+                  name="제목" 
+                  placeholder="제목을 입력하세요 (100자 이내)" 
+                  className="w-full mb-4 input" 
+                  value={formData.제목}
+                  onChange={handleChange}
+                />
+                <input 
+                  type="text" 
+                  name="소개" 
+                  placeholder="이벤트를 간단하게 소개하세요 (100자 이내)" 
+                  className="w-full mb-4 input" 
+                  value={formData.소개}
+                  onChange={handleChange}
+                />
+                <input 
+                  type="text" 
+                  name="태그" 
+                  placeholder="태그 (예: #온오프믹스, #스타트업, #창업)" 
+                  className="w-full input" 
+                  value={formData.태그}
+                  onChange={handleChange}
+                />
               </div>
               <div className="w-48">
                 <img src="/path/to/your/image.jpg" alt="Event" className="w-full h-auto" />
@@ -55,30 +102,63 @@ function CbCreate() {
             <div className="grid grid-cols-2 gap-4 mb-4">
               <div>
                 <label className="block mb-1 font-medium">그룹명</label>
-                <input type="text" placeholder="예) 개발그룹, 직장인, 1회차 등" className="w-full p-2 border rounded" />
+                <input 
+                  type="text" 
+                  name="그룹명" 
+                  placeholder="예) 개발그룹, 직장인, 1회차 등" 
+                  className="w-full p-2 border rounded" 
+                  value={formData.그룹명}
+                  onChange={handleChange}
+                />
               </div>
               <div>
                 <label className="block mb-1 font-medium">모임 정원</label>
-                <input type="number" placeholder="0 명" className="w-full p-2 border rounded" />
+                <input 
+                  type="number" 
+                  name="정원" 
+                  placeholder="0 명" 
+                  className="w-full p-2 border rounded" 
+                  value={formData.정원}
+                  onChange={handleChange}
+                />
               </div>
             </div>
             <div className="mb-4">
               <label className="block mb-1 font-medium">비용 설정</label>
               <div className="flex items-center space-x-4">
                 <label>
-                  <input type="radio" name="costSetting" value="free" className="mr-2" /> 무료 그룹
+                  <input type="radio" name="비용" value="free" className="mr-2" onChange={handleChange} /> 무료 그룹
                 </label>
                 <label>
-                  <input type="radio" name="costSetting" value="paid" className="mr-2" /> 참가비가 있는 유료 그룹
+                  <input type="radio" name="비용" value="paid" className="mr-2" onChange={handleChange} /> 참가비가 있는 유료 그룹
                 </label>
-                <input type="number" placeholder="0 원" className="w-1/2 p-2 border rounded" />
+                <input 
+                  type="number" 
+                  name="비용" 
+                  placeholder="0 원" 
+                  className="w-1/2 p-2 border rounded" 
+                  value={formData.비용}
+                  onChange={handleChange}
+                />
               </div>
             </div>
             <div className="mb-4">
               <label className="block mb-1 font-medium">기간 설정</label>
               <div className="grid grid-cols-2 gap-4">
-                <input type="date" className="w-full p-2 border rounded" />
-                <input type="date" className="w-full p-2 border rounded" />
+                <input 
+                  type="date" 
+                  name="시작일" 
+                  className="w-full p-2 border rounded" 
+                  value={formData.시작일}
+                  onChange={handleChange}
+                />
+                <input 
+                  type="date" 
+                  name="종료일" 
+                  className="w-full p-2 border rounded" 
+                  value={formData.종료일}
+                  onChange={handleChange}
+                />
               </div>
             </div>
             <div className="mb-4">
@@ -94,8 +174,27 @@ function CbCreate() {
                   <input type="radio" name="onOfflineSetting" value="noPlace" className="mr-2" /> 장소 없음
                 </label>
               </div>
-              <input type="text" placeholder="장소명을 입력해 주세요" className="w-full p-2 mt-2 border rounded" />
-              <input type="text" placeholder="상세주소를 입력해 주세요" className="w-full p-2 mt-2 border rounded" />
+              <div className="flex items-center mt-2 space-x-2">
+                <input 
+                  type="text" 
+                  name="주소" 
+                  placeholder="장소명을 입력해 주세요" 
+                  className="w-full p-2 border rounded" 
+                  value={formData.주소}
+                  onChange={handleChange}
+                />
+                <button type="button" onClick={openAddressSearch} className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">
+                   검색
+                </button>
+              </div>
+              <input 
+                type="text" 
+                name="상세주소" 
+                placeholder="상세주소를 입력해 주세요" 
+                className="w-full p-2 mt-2 border rounded" 
+                value={formData.상세주소}
+                onChange={handleChange}
+              />
             </div>
             <button className="px-4 py-2 mt-4 text-white bg-green-500 rounded hover:bg-green-600">+ 그룹 추가</button>
           </fieldset>
@@ -111,4 +210,4 @@ function CbCreate() {
   );
 }
 
-export default CbCreate;
+export default CbCreate
