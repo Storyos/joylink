@@ -3,6 +3,8 @@ import { supabase } from "../../App";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapLocationDot } from '@fortawesome/free-solid-svg-icons';
 import Banner from "./banner";
+import '../../index.css';
+
 export default function Mainpage() {
   const [selectedCategory, setSelectedCategory] = useState("전체");
   const [boxContents, setBoxContents] = useState([]);
@@ -79,7 +81,7 @@ export default function Mainpage() {
   const handleButtonClick = (index) => {
     setSelectedButton(index);
   }; return (
-    <div>
+    <div className="font-custom">
       <div>
         <div className="relative flex flex-col items-center justify-center p-16 text-center bg-white bg-opacity-60 backdrop-filter backdrop-blur-lg">
           <div className="absolute inset-0 bg-center bg-cover filter blur-sm opacity-60" style={{ backgroundImage: "url('/assets/clubpic.jpg')" }}></div>
@@ -96,12 +98,12 @@ export default function Mainpage() {
           </div>
         </div>
 
-        <div className="flex items-center justify-center my-24 bg-gray-100 h-96">
+        <div className="flex items-center justify-center my-24 bg-blue-100 h-96">
           <div className="text-center">
             <h2 className="text-4xl font-bold text-gray-800">
               블록체인을 통한 투명한 장부 관리가 가능한 모임 플랫폼
             </h2>
-            <p className="mt-4 text-2xl text-gray-600">
+            <p className="mt-4 text-2xl text-gray-600 ">
               이제껏 경험하지 못한 안전하고 편리한 모임 관리 서비스,<br />
               저희와 함께라면 당신의 모임이 더욱 새로워질 거예요.
             </p>
