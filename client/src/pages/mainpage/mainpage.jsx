@@ -112,7 +112,7 @@ export default function Mainpage() {
 
 
 
-        <div className="overflow-hidden ">
+        <div className="m-4 overflow-hidden">
           <div className="grid grid-cols-4 gap-4 overflow-hidden h-[700px] w-[1900px]">
             <div className="flex flex-col gap-4 rotate-12 translate-x-[-100px] translate-y-[-150px]">
               <img className="scroll-image-up" src="./assets/main3.png" alt="" />
@@ -147,7 +147,7 @@ export default function Mainpage() {
       <div className="p-6 bg-blue-100">
         <div className="container mx-auto">
           <div className="flex items-center justify-between mx-4">
-            <span className="text-lg font-bold">조이링크에서 다양한 동아리들을 만나보세요!</span>
+            <span className="text-2xl font-bold">조이링크에서 다양한 동아리들을 만나보세요!</span>
             <input type="text" placeholder="검색창" className="px-4 py-2 border rounded" />
           </div>
         </div>
