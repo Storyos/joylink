@@ -17,7 +17,7 @@ export default function MyClubPage() {
   }
 
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center mt-28">
       <div>
         <MyInfo/> {/* 사이드바 */}
       </div>
