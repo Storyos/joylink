@@ -78,16 +78,24 @@ export default function Mainpage() {
 
   const handleButtonClick = (index) => {
     setSelectedButton(index);
-  };
-  return (
+  };  return (
     <div>
-      <div className="relative overflow-hidden">
-      <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center text-white">
-          <div className="px-3 py-1 mb-4 text-sm bg-purple-500 rounded-full">Over 3 million ready-to-work creatives!</div>
-          <h1 className="mb-4 text-4xl font-bold md:text-6xl">The world's destination for design</h1>
-          <p className="mb-6 text-lg">Get inspired by the work of millions of top-rated designers & agencies around the world.</p>
-          <button className="px-6 py-2 text-white bg-black rounded-full hover:bg-gray-700">Get started</button>
-        </div>
+      <div className="flex flex-col items-center justify-center p-16 text-center bg-white">
+        {/* <div className="px-3 py-1 mb-4 text-sm bg-purple-500 rounded-full">
+          백만명이 선택 할 서비스!
+        </div> */}
+        <h1 className="mb-4 text-4xl font-bold md:text-6xl">
+        모임의 시작, 조이링크
+        </h1>
+        <p className="mb-6 text-lg">
+        당신의 모임을 쉽고 빠르게 시작하고, 새로운 인연을 만들어 보세요.
+        </p>
+        <button className="px-6 py-2 text-white bg-black rounded-full hover:bg-gray-700">
+          지금 시작하기
+        </button>
+      </div>
+      
+      <div className="overflow-hidden ">
         <div className="grid grid-cols-4 gap-4 overflow-hidden h-[600px] w-[1900px]">
           <div className="flex flex-col gap-4 rotate-12 translate-x-[-100px] translate-y-[-150px]">
             <img className="scroll-image-up" src="https://picsum.photos/id/235/400/300" alt="" />
@@ -119,7 +127,7 @@ export default function Mainpage() {
             <input type="text" placeholder="검색창" className="px-4 py-2 border rounded" />
           </div>
         </div>
-        <div className="flex justify-center mt-6 ">
+        <div className="flex justify-center mt-6">
           <div className="flex space-x-8">
             {categories.map((category, index) => (
               <div
@@ -144,30 +152,31 @@ export default function Mainpage() {
       </div>
 
       {selectedCategory && (
-        <div className="p-6">
-        <h2 className="mb-4 text-xl font-bold">{selectedCategory==="전체"?"전체":`${selectedCategory} 관련 모임`}</h2>
-        <div className="grid grid-cols-1 gap-4 mx-4 md:grid-cols-2 lg:grid-cols-3">
-          {boxContents.map((card, index) => (
-            <div key={index} className="p-4 mx-4 bg-white rounded shadow">
-              <div className="mb-2 text-gray-500">{card.club_ctg}</div>
-              <h3 className="mb-2 text-lg font-semibold">{card.club_nm}</h3>
-              <p className="mb-2">{card.club_desc}</p>
-      
-              <div className="mt-4 text-blue-500">
-                <FontAwesomeIcon icon={faMapLocationDot} className="inline-block w-4 h-4 mr-1" />
-                <span>{card.club_loc}</span>
+        <div className="p-6 mb-8 ">
+          <h2 className="mb-4 text-xl font-bold">{selectedCategory=='전체'?'전체':`${selectedCategory}관련 모임`}</h2>
+          <div className="grid grid-cols-1 gap-4 mx-4 md:grid-cols-2 lg:grid-cols-3">
+            {boxContents.map((card, index) => (
+              <div key={index} className="p-4 bg-white rounded shadow">
+                <div className="mb-2 text-gray-500">{card.club_ctg}</div>
+                <h3 className="mb-2 text-lg font-semibold">{card.club_nm}</h3>
+                <p className="mb-2">{card.club_desc}</p>
+
+                <div className="mt-4 text-blue-500">
+                  <FontAwesomeIcon icon={faMapLocationDot} className="inline-block w-4 h-4 mr-1" />
+                  <span>{card.club_loc}</span>
+                </div>
               </div>
-            </div>
-          ))}
-          {boxContents.length === 5 && (
-            <div className="flex items-center justify-center p-4 mx-4 bg-white rounded shadow">
-              <h3 className="text-lg font-semibold">더 많은 모임 보기</h3>
-            </div>
-          )}
+            ))}
+            {boxContents.length === 5 && (
+              <div className="flex items-center justify-center p-4 bg-white rounded shadow">
+                <h3 className="text-lg font-semibold">더 많은 모임 보기</h3>
+              </div>
+            )}
+          </div>
         </div>
-      </div>      
       )}
-          <Banner></Banner>
+
+      <Banner /> {/* 배너 컴포넌트를 여기 추가 */}
     </div>
   );
 }
