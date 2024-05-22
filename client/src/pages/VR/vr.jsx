@@ -6,6 +6,7 @@ import "aframe-extras"
 
 export default function Vr() {
   const tent = "/tent.glb"
+  const sakura ="/sakura.glb"
   
   const cherryBlossomImgPath = "/cherry_blossom.png";
   const grassImgPath ="/grass.jpg";
@@ -27,7 +28,7 @@ export default function Vr() {
         {/* 벚꽃나무 (왼쪽) */}
         {CountCherryBlossom.map((_, index)=>(
           <a-image src={cherryBlossomImgPath} 
-          position={`-9 5.5 ${3-(index*9)}`} 
+          position={`-14 5.3 ${3-(index*9)}`} 
           width="9" 
           height="9"
           rotation="0 90 0">
@@ -37,7 +38,7 @@ export default function Vr() {
         {/* 벚꽃나무 (오른쪽) */}
         {CountCherryBlossom.map((_, index)=>(
           <a-image src={cherryBlossomImgPath} 
-          position={`9 5.5 ${3-(index*9)}`} 
+          position={`14 5.3 ${3-(index*9)}`} 
           width="9" 
           height="9"
           rotation="0 -90 0">
@@ -74,6 +75,18 @@ export default function Vr() {
         {tentline.map((_, index)=>(
           <a-entity gltf-model={`url(${tent})`} 
           position={`6 1 ${5-(index*4)}`}></a-entity>
+        ))}
+        {CountCherryBlossom.map((_, index)=>(
+          <a-entity gltf-model={`url(${sakura})`} 
+          position={`-11 0.8 ${8-(index*8)}`}
+          scale="0.5 0.5 0.5"
+          rotation={`0 ${60*index}  0`}></a-entity>
+        ))}
+        {CountCherryBlossom.map((_, index)=>(
+          <a-entity gltf-model={`url(${sakura})`} 
+          position={`11 0.8 ${8-(index*8)}`}
+          scale="0.5 0.5 0.5"
+          rotation={`0 ${60*index}  0`}></a-entity>
         ))}
       </a-scene>
     </div>
