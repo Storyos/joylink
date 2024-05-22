@@ -69,7 +69,7 @@ export default function Gallery() {
           <ul className="flex flex-wrap">
             {imgURLs.map((url, index) => (
               <li key={index} className="w-1/2 p-5">
-                <img src={url} alt={`Image ${index}`}className="max-w-full" 
+                <img src={url} alt={`Image ${index}`}className="max-w-full rounded-lg" 
                 style={{ maxWidth: 'calc(100% - 0.5rem)' }}/>
               </li>
             ))}

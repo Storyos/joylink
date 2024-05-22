@@ -2,12 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* * {
-    font-family: "Gowun Dodum", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-} */
-
 /* 헤더는 다른 폰트를 적용한다 */
 header, header * {
     font-family: "Do Hyeon", sans-serif;
@@ -15,12 +9,6 @@ header, header * {
     font-style: normal;
 }
 
-/* .category-icon {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-   */
 @font-face {
     font-family: 'Freesentation';
     src: url('../public/fonts/Freesentation-1Thin.ttf') format('truetype');
@@ -83,3 +71,4 @@ header, header * {
     font-weight: 900;
     font-style: normal;
 }
+
