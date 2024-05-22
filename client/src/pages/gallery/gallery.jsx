@@ -19,7 +19,6 @@ export default function Gallery() {
         offset: 0,
         sortBy: { column: 'name', order: 'asc' },
       })
-
     if (error) {
       console.log(error);
     }
@@ -36,7 +35,6 @@ export default function Gallery() {
       console.error('Error getting public URL:', error.message);
       return null;
     }
-
     console.log('Retrieved URL:', data.publicUrl); // 경로 확인을 위한 로깅 추가
     return data.publicUrl;
   }
@@ -51,28 +49,28 @@ export default function Gallery() {
         objectURLs.push(imgURL);
       }
     }
-
     console.log('모든 이미지 URL:', objectURLs);
     setImgURLs(objectURLs);
   }
 
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center mt-28">
       <div>
         <MyInfo />
       </div>
       <div className="w-1/2 p-6">
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between my-4">
           <h1 className="text-xl font-bold">갤러리</h1>
-          <input type="text" id="search" placeholder="갤러리 검색" className="px-2 py-1 border-2 border-indigo-800 border-solid rounded" />
+          <input type="text" id="search" placeholder="갤러리 검색" className="px-2 py-1 border rounded" />
         </div>
         <hr /><br />
-        <h2 className="mb-4 text-lg font-semibold bg-gray-100">갤러리 목록</h2>
+        <h2 className="text-lg font-semibold my-6">갤러리 목록</h2>
         <div>
-          <ul>
+          <ul className="flex flex-wrap">
             {imgURLs.map((url, index) => (
-              <li key={index} className="px-2 py-1 mx-4 my-2 border-b-4 border-white">
-                <img src={url} alt={`Image ${index}`} />
+              <li key={index} className="w-1/2 p-5">
+                <img src={url} alt={`Image ${index}`}className="max-w-full" 
+                style={{ maxWidth: 'calc(100% - 0.5rem)' }}/>
               </li>
             ))}
           </ul>
@@ -81,3 +79,5 @@ export default function Gallery() {
     </div>
   )
 }
+
+

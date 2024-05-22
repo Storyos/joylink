@@ -5,7 +5,7 @@ import { supabase } from '../../App';
 
 
 const SearchBar = () => (
-  <div className="flex items-center justify-center p-4">
+  <div className="flex items-center justify-center p-4 mt-28 ">
     <div className="flex w-3/4 max-w-2xl">
       <input
         type="text"

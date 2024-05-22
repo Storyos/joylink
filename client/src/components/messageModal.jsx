@@ -532,7 +532,7 @@ export default function MessageModal(props) {
     }
   return (
     <>
-      <div id="mypage_message" className='fixed inset-0 p-4 m-auto bg-white border border-black border-solid' style={{ width: '650px', height: '650px' }} >
+      <div id="mypage_message" className='fixed inset-0 p-4 m-auto bg-white border border-black border-solid mt-28' style={{ width: '650px', height: '600px' }} >
         <h1 className='mb-4' >쪽지</h1>
 
         {messageWriteBtn == "List" && messageContentsBtn == "List" &&
