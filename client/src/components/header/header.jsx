@@ -29,7 +29,7 @@ export default function Header() {
         }
       } else {
         console.log("토큰 데이터가 존재하지 않습니다.");
-        setUser(null);
+        logout();
       }
     };
     checkToken();

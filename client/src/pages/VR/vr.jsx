@@ -1,10 +1,12 @@
 import React, { useEffect, useRef } from "react";
 import "aframe";
 import "aframe-particle-system-component";
+import "aframe-extras"
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader';
 
 export default function Vr() {
-  const glbFilePath = "/doll_ringo_ani__physics_test.glb";
+  const tent = "/tent.glb"
+  const sakura ="/sakura.glb"
   
   const cherryBlossomImgPath = "/cherry_blossom.png";
   const grassImgPath ="/grass.jpg";
@@ -12,7 +14,7 @@ export default function Vr() {
   
   const CountCherryBlossom = Array.from({length: 6}, () => 0); // 벚꽃나무 이미지 좌우 6세트 배열로 표현
   const CountGrass = Array.from({length: 9}, () => 0); // 풀밭 이미지 9세트 배열로 표현
-  
+  const tentline = Array.from({length: 13}, () => 0);  
   
   const FbxModel = ({ url, position, scale, rotation }) => {
     const modelRef = useRef();
@@ -54,7 +56,7 @@ export default function Vr() {
         {/* 벚꽃나무 (왼쪽) */}
         {CountCherryBlossom.map((_, index)=>(
           <a-image src={cherryBlossomImgPath} 
-          position={`-9 5.5 ${3-(index*9)}`} 
+          position={`-14 5.3 ${3-(index*9)}`} 
           width="9" 
           height="9"
           rotation="0 90 0">
@@ -64,7 +66,7 @@ export default function Vr() {
         {/* 벚꽃나무 (오른쪽) */}
         {CountCherryBlossom.map((_, index)=>(
           <a-image src={cherryBlossomImgPath} 
-          position={`9 5.5 ${3-(index*9)}`} 
+          position={`14 5.3 ${3-(index*9)}`} 
           width="9" 
           height="9"
           rotation="0 -90 0">
@@ -94,10 +96,27 @@ export default function Vr() {
             </a-image>
           </>
         ))}
-        
+        {tentline.map((_, index)=>(
+          <a-entity gltf-model={`url(${tent})`} 
+          position={`-6 1 ${5-(index*4)}`}></a-entity>
+        ))}
+        {tentline.map((_, index)=>(
+          <a-entity gltf-model={`url(${tent})`} 
+          position={`6 1 ${5-(index*4)}`}></a-entity>
+        ))}
+        {CountCherryBlossom.map((_, index)=>(
+          <a-entity gltf-model={`url(${sakura})`} 
+          position={`-11 0.8 ${8-(index*8)}`}
+          scale="0.5 0.5 0.5"
+          rotation={`0 ${60*index}  0`}></a-entity>
+        ))}
+        {CountCherryBlossom.map((_, index)=>(
+          <a-entity gltf-model={`url(${sakura})`} 
+          position={`11 0.8 ${8-(index*8)}`}
+          scale="0.5 0.5 0.5"
+          rotation={`0 ${60*index}  0`}></a-entity>
+        ))}
       </a-scene>
     </div>
   );
 }
-
-
