@@ -44,7 +44,7 @@ export default function Header() {
   }
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 p-6 bg-white">
+    <header className="fixed top-0 left-0 right-0 z-50 p-6 bg-white font-custom">
       <div className="flex flex-row items-center justify-between">
         <ul className="flex items-center my-2 md:ml-[100px]">
           <li className="mx-5">

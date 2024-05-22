@@ -84,7 +84,7 @@ export default function Mainpage() {
     <div className="font-custom mt-28">
       <div>
         <div className="relative flex flex-col items-center justify-center p-16 text-center bg-white bg-opacity-60 backdrop-filter backdrop-blur-lg">
-          <div className="absolute inset-0 bg-center bg-cover filter blur-sm opacity-60" style={{ backgroundImage: "url('/assets/clubpic.jpg')" }}></div>
+          <div className="absolute inset-0 bg-center bg-cover filter opcaity-60" style={{ backgroundImage: "url('/assets/clubpic.jpg')" }}></div>
           <div className="relative z-10 p-10 bg-white bg-opacity-20 rounded-xl backdrop-filter backdrop-blur-lg">
             <h1 className="mb-4 text-4xl font-bold text-black md:text-6xl">
               모임의 시작, 조이링크
