@@ -48,20 +48,14 @@ export default function Login() {
         });
         if (error) console.log("구글 OAUTH에서 발생한에러 :", error);
     };
-
-
-    // 테스트 요청 처리
-    const handleTest1 = async () => {
-        try {
-            const response = await fetch('http://localhost:3001/login', {
-                method: 'GET'
-            });
-            const data = await response.json(); // JSON 형태로 데이터 변환
-            setTestData(data);
-            console.log(data);
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
+    const handleKakaoLogin = async () => {
+        const {data, error} = await supabase.auth.signInWithOAuth({
+            provider:"kakao",
+            options: {
+                redirectTo: 'http://localhost:3000/checkUserInfo'
+            }
+        });
+        if(error) console.log("KAKAO OAUTH 에러",error);
     }
 
     // 이메일 인증여부 체크
@@ -129,13 +123,15 @@ export default function Login() {
                         <input
                             type="text"
                             className="w-full px-4 py-2 mb-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
-                            placeholder="E-mail Address" value={email ? email : email} onChange={(e) => setEmail(e.target.value)}
+                            placeholder="E-mail Address"
+                            value={email ? email : useremail}
+                            onChange={(e) => setEmail(e.target.value)}
                         />
                         <input
                             type="password"
                             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
                             placeholder="Password"
-                            onChange={(e) => setPassword(e.target.value)} 
+                            onChange={(e) => setPassword(e.target.value)}
                         />
                         <div className="mt-2 text-right">
                             <a href="#" className="text-sm text-blue-500 hover:underline">비밀번호를 잊어버리셨나요?</a>
@@ -144,37 +140,20 @@ export default function Login() {
                     <button onClick={handleverifyemail} className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none">
                         로그인
                     </button>
-                    <button onClick={handleGoogleLogin} className="w-full px-4 py-2 mt-1 font-bold text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none">
+                    <button onClick={handleGoogleLogin} className="flex items-center justify-center w-full px-4 py-2 mt-1 font-bold text-gray-600 bg-white border border-gray-300 rounded-lg shadow-md hover:bg-gray-100 focus:outline-none">
+                        <img src="/icons/google_logo.png" alt="Google logo" className="w-6 h-6 mr-3"></img>
                         Google로 로그인하기
                     </button>
+                    <button onClick={handleKakaoLogin} className="flex items-center justify-center w-full px-4 py-2 mt-1 font-bold text-gray-600 bg-yellow-400 border border-gray-300 rounded-lg shadow-md hover:bg-yellow-300 focus:outline-none">
+                        <img src="/icons/kakao_login_logo.png" alt="Google logo" className="w-6 h-6 mr-3"></img>
+                        KAKAO로 로그인하기
+                    </button>
                     <div className="mt-4 text-center">
-                        <p className="text-sm text-gray-600">계정이 없으신가요? <a href="#" className="text-blue-500 hover:underline">회원가입</a></p>
+                        <p className="text-sm text-gray-600">계정이 없으신가요? <Link to="/signup" className="text-blue-500 hover:underline">회원가입</Link></p>
                     </div>
                 </div>
             </div>
         </div>
-
-
-        // <div className="flex items-center justify-center h-screen">
-        //     <div className='boxGroup'>
-        //         <div className="p-4 bg-gray-100 rounded-lg loginBox">
-        //             <div className="mb-4 inputBox">
-        //                 <input type="text" className="w-full px-4 py-2 border border-gray-300 rounded inputField focus:outline-none focus:border-blue-500" placeholder="아이디" value={email ? email : email} onChange={(e) => setEmail(e.target.value)} />
-        //                 <input type="password" className="w-full px-4 py-2 mt-2 border border-gray-300 rounded inputField focus:outline-none focus:border-blue-500" placeholder="비밀번호" onChange={(e) => setPassword(e.target.value)} />
-        //             </div>
-        //             <button className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded loginButton hover:bg-blue-600" onClick={handleverifyemail}>로그인</button>
-        //         </div>
-        //         <div className="mt-4 text-center findBox">
-        //             <button id='findId' className="text-blue-500 hover:underline">아이디/비밀번호 찾기</button>
-        //             <h5 className="mt-2">계정이 없으신가요?</h5>
-        //             <div className="flex justify-center mt-4">
-        //                 <button onClick={handleGoogleLogin} className="px-4 py-2 mr-2 font-bold text-white bg-red-500 rounded hover:bg-red-600">구글로그인</button>
-        //                 <button id='join' onClick={()=>{navigate('/join')}} className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-600">회원가입</button>
-        //             </div>
-        //         </div>
-        //     </div >
-        // </div >
     );
 }
-
 
