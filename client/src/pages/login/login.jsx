@@ -116,7 +116,7 @@ export default function Login() {
             <div className="flex items-center justify-center w-1/2 bg-white">
                 <div className="w-full max-w-md p-6">
                     <div className="mb-8 text-center">
-                        <img src="/icons/joylink_blue_logo.png" alt="Logo" className="w-20 mx-auto mb-4" />
+                        <a href="/"><img src="/icons/joylink_blue_logo.png"  alt="Logo" className="w-1/2 mx-auto mb-4" /></a>
                         <h2 className="text-2xl font-bold text-gray-700">Login</h2>
                     </div>
                     <div className="mb-4">

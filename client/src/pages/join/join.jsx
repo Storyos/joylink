@@ -64,10 +64,10 @@ export default function Join() {
       </div>
       <div className="flex items-center justify-center w-1/2 bg-white">
         <div className="w-full max-w-md p-6">
-          <div className="mb-8 text-center">
-            <img  src="/icons/joylink_blue_logo.png" alt="Logo" className="w-20 mx-auto mb-4" />
-            <h2 className="text-2xl font-bold text-gray-700">Sign Up</h2>
-          </div>
+        <div className="mb-8 text-center">
+                        <a href="/"><img src="/icons/joylink_blue_logo.png"  alt="Logo" className="w-1/2 mx-auto mb-4" /></a>
+                        <h2 className="text-2xl font-bold text-gray-700">Join</h2>
+                    </div>
           <form className="px-8 pt-6 pb-8 mb-4 bg-white rounded shadow-md">
             <div className="mb-4">
               <input
