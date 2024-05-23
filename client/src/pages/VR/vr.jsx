@@ -4,7 +4,7 @@ import "aframe-particle-system-component";
 import "aframe-extras";
 
 export default function Vr() {
-  const tent = "/tent.glb";
+  const tent = "Commercial_Tent_4x4_Meters.glb"
   const sakura ="/sakura_tree.glb";
   const grassImgPath ="/grass.jpg";
   const easel = "/easel.glb";
@@ -14,7 +14,7 @@ export default function Vr() {
   const CountCherryBlossom = Array.from({length: 10}, () => 0); // 벚꽃나무 이미지 좌우 10세트 배열로 표현
   const CountGrass = Array.from({length: 13}, () => 0); // 풀밭 이미지 13세트 배열로 표현
   const CountStone = Array.from({length: 4}, () => 0);
-  const tentline = Array.from({length: 13}, () => 0);  
+  const tentline = Array.from({length: 5}, () => 0);  
 
   return (
     <div>
@@ -66,13 +66,15 @@ export default function Vr() {
         {/* 동아리 부스 */}
         {tentline.map((_, index)=>(
           <a-entity gltf-model={`url(${tent})`} 
-          position={`-8 0 ${5-(index*6)}`}
-          scale="1.2 1.2 1.2"></a-entity>
+          position={`-8 0 ${2-(index*15)}`}
+          scale="1.2 1.2 1.2"
+          rotation="0 -90 0"></a-entity>
         ))}
         {tentline.map((_, index)=>(
           <a-entity gltf-model={`url(${tent})`} 
-          position={`8 0 ${5-(index*6)}`}
-          scale="1.2 1.2 1.2"></a-entity>
+          position={`8 0 ${2-(index*15)}`}
+          scale="1.2 1.2 1.2"
+          rotation="0 -90 0"></a-entity>
         ))}
         
         {/* 이젤 */}
@@ -80,7 +82,7 @@ export default function Vr() {
           <a-entity id="easel" 
                   gltf-model={`url(${easel})`}
                   scale = "0.3 0.3 0.3"
-                  position={`-5 0 ${3.5-(index*6)}`}
+                  position={`-5 0 ${-2-(index*15)}`}
                   rotation="0 -90 0" >
           </a-entity>
         ))}
@@ -88,7 +90,7 @@ export default function Vr() {
           <a-entity id="easel" 
                   gltf-model={`url(${easel})`}
                   scale = "0.3 0.3 0.3"
-                  position={`5 0 ${6.5-(index*6)}`}
+                  position={`5 0 ${6.5-(index*15)}`}
                   rotation="0 90 0" >
           </a-entity>
         ))}

@@ -111,7 +111,7 @@ export default function Login() {
     return (
         <div className="flex h-screen">
             <div className="w-1/2 h-full">
-                <img src="/assets/main7.jpg" alt="Image" className="object-cover w-full h-full" />
+                <img src="/assets/1057.jpg" alt="Image" className="object-cover w-full h-full" />
             </div>
             <div className="flex items-center justify-center w-1/2 bg-white">
                 <div className="w-full max-w-md p-6">
