@@ -97,9 +97,9 @@ export default function Vr() {
         
         {/* 포스터 */}
         <a-image src={poster} 
-                    position={`-5 1 3.5`}
-                    width="0.7" 
-                    height="1"
+                    position={`-5 1 -2`}
+                    width="0.84" 
+                    height="1.2"
                     rotation="-15 90 0">
         </a-image>
         
