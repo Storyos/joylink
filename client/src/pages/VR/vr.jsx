@@ -1,18 +1,18 @@
 import React, { useEffect, useRef } from "react";
 import "aframe";
 import "aframe-particle-system-component";
-import "aframe-extras"
+import "aframe-extras";
 
 export default function Vr() {
   const tent = "Commercial_Tent_4x4_Meters.glb"
-  const sakura ="/sakura_tree.glb"
-  
-  const cherryBlossomImgPath = "/cherry_blossom.png";
+  const sakura ="/sakura_tree.glb";
   const grassImgPath ="/grass.jpg";
-  const floor = "/stones.jpg";
-  
+  const easel = "/easel.glb";
+  const stone = "/stone_ground.glb";
+
   const CountCherryBlossom = Array.from({length: 10}, () => 0); // 벚꽃나무 이미지 좌우 10세트 배열로 표현
   const CountGrass = Array.from({length: 13}, () => 0); // 풀밭 이미지 13세트 배열로 표현
+  const CountStone = Array.from({length: 4}, () => 0);
   const tentline = Array.from({length: 5}, () => 0);  
 
   return (
@@ -79,7 +79,7 @@ export default function Vr() {
         {/* 이젤 */}
         {tentline.map((_, index)=>(
           <a-entity id="easel" 
-                  gltf-model="url(easel.glb)"
+                  gltf-model={`url(${easel})`}
                   scale = "0.3 0.3 0.3"
                   position={`-5 0 ${-2-(index*15)}`}
                   rotation="0 -90 0" >
@@ -87,7 +87,7 @@ export default function Vr() {
         ))}
         {tentline.map((_, index)=>(
           <a-entity id="easel" 
-                  gltf-model="url(easel.glb)"
+                  gltf-model={`url(${easel})`}
                   scale = "0.3 0.3 0.3"
                   position={`5 0 ${6.5-(index*15)}`}
                   rotation="0 90 0" >
@@ -107,6 +107,23 @@ export default function Vr() {
           scale="30 30 30"
           rotation={`0 ${60*index}  0`}></a-entity>
         ))}
+        
+        {/* 돌바닥 */}
+        {CountStone.map((_, index) => (
+          <>
+            <a-entity gltf-model={`url(${stone})`} 
+                      position={`-5.35 -0.6 ${-2.2-(19.84*index)}`}
+                      scale="2.7 2.5 2.5"
+                      rotation="0 0 0">
+            </a-entity>
+            <a-entity gltf-model={`url(${stone})`} 
+                      position={`5.4 -0.6 ${-2.6-(19.84*index)}`}
+                      scale="2.7 2.5 2.5"
+                      rotation="0 180 0">
+            </a-entity>
+          </>
+        ))}
+          
       </a-scene>
     </div>
   );
