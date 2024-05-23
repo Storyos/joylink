@@ -9,6 +9,7 @@ export default function Vr() {
   const grassImgPath ="/grass.jpg";
   const easel = "/easel.glb";
   const stone = "/stone_ground.glb";
+  const poster = "/example_poster.png";
 
   const CountCherryBlossom = Array.from({length: 10}, () => 0); // 벚꽃나무 이미지 좌우 10세트 배열로 표현
   const CountGrass = Array.from({length: 13}, () => 0); // 풀밭 이미지 13세트 배열로 표현
@@ -91,6 +92,14 @@ export default function Vr() {
                   rotation="0 90 0" >
           </a-entity>
         ))}
+        
+        {/* 포스터 */}
+        <a-image src={poster} 
+                    position={`-5 1 3.5`}
+                    width="0.7" 
+                    height="1"
+                    rotation="-15 90 0">
+        </a-image>
         
         {/* 벚꽃나무 */}
         {CountCherryBlossom.map((_, index)=>(
