@@ -111,7 +111,7 @@ export default function Login() {
     return (
         <div className="flex h-screen">
             <div className="w-1/2 h-full">
-                <img src="/assets/main7.jpg" alt="Image" className="object-cover w-full h-full" />
+                <img src="/assets/login_test2.jpg" alt="Image" className="object-cover w-full h-full" />
             </div>
             <div className="flex items-center justify-center w-1/2 bg-white">
                 <div className="w-full max-w-md p-6">
@@ -149,7 +149,7 @@ export default function Login() {
                         KAKAO로 로그인하기
                     </button>
                     <div className="mt-4 text-center">
-                        <p className="text-sm text-gray-600">계정이 없으신가요? <Link to="/signup" className="text-blue-500 hover:underline">회원가입</Link></p>
+                        <p className="text-sm text-gray-600">계정이 없으신가요? <Link to="/join" className="text-blue-500 hover:underline">회원가입</Link></p>
                     </div>
                 </div>
             </div>
