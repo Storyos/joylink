@@ -84,7 +84,7 @@
     height: 1px; /* 밑줄의 높이를 설정합니다. */
     background-color: currentColor; /* 현재 텍스트의 색상과 동일한 색을 사용합니다. */
     opacity: 0; /* 초기에는 보이지 않도록 설정합니다. */
-    transition: width 0.5s ease; /* 천천히 나타나는 효과를 추가합니다. */
+    transition: width 0.7s ease; /* 천천히 나타나는 효과를 추가합니다. */
 }
 
 .btn:hover::after {

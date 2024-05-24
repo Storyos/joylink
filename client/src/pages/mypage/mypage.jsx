@@ -90,7 +90,6 @@ export default function Mypage() {
     <div>
       {/* 메인 영역 */}
       <div className="mt-48 mb-20">
-        <WaveHR></WaveHR> {/*가로 물결 hr를 넣는 컴포넌트*/}
         <div className="flex mt-32">
           <div className="w-64 text-2xl mx-20 mt-4 ml-36">
             <div className="flex flex-col space-y-4">
@@ -124,35 +123,35 @@ export default function Mypage() {
             </div>
           </div>
 
-          <div className="w-[1000px]">
+          <div className="w-[1600px]">
             {/* 내 정보 */}
             {mypageMenu == "userInfo" && (
-              <div class="bg-blue-100 border rounded-xl p-8 w-96 mx-auto">
-                <div className="mb-4 flex justify-center">
+              <div class="bg-blue-100 border rounded-xl p-8 w-1/2 mx-auto">
+                <div className="mb-4 flex justify-left">
                   <img
                     src="https://picsum.photos/200"
-                    className="rounded-full w-24 h-24 mb-8"
+                    className="rounded-xl w-32 h-32 mb-8"
                   />
                 </div>
-                <h2 class="text-2xl font-bold mb-8">회원 정보</h2>
-                <div class="grid grid-cols-1 gap-4">
-                  <div class="grid grid-cols-2 gap-8">
+              
+                <div class="grid grid-cols-2 gap-4">
+                  <div class="grid grid-cols-1">
                     <h3 class="text-lg font-semibold mb-2">아이디</h3>
                     <p class="text-gray-700">abcd@naver.com</p>
                   </div>
-                  <div class="grid grid-cols-2 gap-8">
+                  <div class="grid grid-cols-1">
                     <h3 class="text-lg font-semibold mb-2">이름</h3>
                     <p class="text-gray-700">박기재</p>
                   </div>
-                  <div class="grid grid-cols-2 gap-8">
+                  <div class="grid grid-cols-1">
                     <h3 class="text-lg font-semibold mb-2">성별</h3>
                     <p class="text-gray-700">남자</p>
                   </div>
-                  <div class="grid grid-cols-2 gap-8">
+                  <div class="grid grid-cols-1">
                     <h3 class="text-lg font-semibold mb-2">생년월일</h3>
                     <p class="text-gray-700">20000901</p>
                   </div>
-                  <div class="grid grid-cols-2 gap-8">
+                  <div class="grid grid-cols-1">
                     <h3 class="text-lg font-semibold mb-2">전화번호</h3>
                     <p class="text-gray-700">1234-1234</p>
                   </div>
