@@ -76,7 +76,8 @@ export default function Vr() {
   const easel = "/easel.glb";
   const stone = "/stone_ground.glb";
   const poster = "/example_poster.png";
-
+  const arcitechture1 = "/arcitechture1.png";
+  const arcitechture2 = "/arcitechture2.png"; 
   const CountCherryBlossom = Array.from({length: 10}, () => 0); // 벚꽃나무 이미지 좌우 10세트 배열로 표현
   const CountGrass = Array.from({length: 13}, () => 0); // 풀밭 이미지 13세트 배열로 표현
   const CountStone = Array.from({length: 4}, () => 0);
@@ -89,16 +90,30 @@ export default function Vr() {
 
         {/* 카메라 */}
         <a-camera 
-        jump = "height: 1; duration: 400"
+        jump = "height: 0.5; duration: 400"
         boundary-constraint="minX: -10; maxX: 10; minZ: -70; maxZ: 7"
-        position="0 1.6 0"
+        position="0 1.6 7"
         look-controls="enabled:true" 
-        wasd-controls="acceleration: 30">
+        wasd-controls="acceleration: 60">
         </a-camera>
 
         {/* 하늘 */}
         <a-sky color="#9CCEFF"></a-sky>
         
+        {/* 건물 */}
+        
+        <a-image src={arcitechture1}
+                    position={`-50 50 -45`}
+                    width="300" 
+                    height="100"
+                    rotation="0 90 0">
+        </a-image>
+        <a-image src={arcitechture2}
+                    position={`50 50 -45`}
+                    width="300" 
+                    height="100"
+                    rotation="0 -90 0">
+        </a-image>
         {/* 풀밭 이미지 */}
         {CountGrass.map((_, index)=>(
           <> 
