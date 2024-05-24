@@ -71,8 +71,8 @@ AFRAME.registerComponent('jump', {
 
 export default function Vr() {
   
-  const table ="folding_table.glb"
-  const tent = "/vr_src/Commercial_Tent_4x4_Meters.glb"
+  const table ="/vr_src/folding_table.glb";
+  const tent = "/vr_src/Commercial_Tent_4x4_Meters.glb";
   const sakura ="/vr_src/sakura_tree.glb";
   const grassImgPath ="/vr_src/grass.jpg";
   const easel = "/vr_src/easel.glb";
@@ -80,6 +80,8 @@ export default function Vr() {
   const poster = "/vr_src/example_poster.png";
   const arcitechture1 = "/vr_src/arcitechture1.png";
   const arcitechture2 = "/vr_src/arcitechture2.png"; 
+  const monopoly = "vr_src/monopoly.glb";
+  const boardGame = "vr_src/board_game.glb";
   
   const CountCherryBlossom = Array.from({length: 23}, () => 0);
   const CountGrassX = Array.from({length: 30}, () => 0);
@@ -105,8 +107,19 @@ export default function Vr() {
         {/* 하늘 */}
         <a-sky color="#9CCEFF"></a-sky>
         
+        {/* 보드게임 */}
+        <a-entity gltf-model={`url(${monopoly})`} 
+                  position={`8.8 1 3.5`}
+                  scale="0.001 0.001 0.001"
+                  rotation="0 -90 0">
+        </a-entity>
+        <a-entity gltf-model={`url(${boardGame})`} 
+                  position={`8.5 1.2 6`}
+                  scale="0.5 0.5 0.5"
+                  rotation="0 0 0">
+        </a-entity>
+
         {/* 건물 이미지*/}
-        
         <a-image src={arcitechture1}
                     position={`-50 50 -45`}
                     width="300" 
@@ -114,9 +127,9 @@ export default function Vr() {
                     rotation="0 90 0">
         </a-image>
         <a-image src={arcitechture2}
-                    position={`50 50 -45`}
-                    width="300" 
-                    height="100"
+                    position={`50 40 -45`}
+                    width="240" 
+                    height="80"
                     rotation="0 -90 0">
         </a-image>
         
