@@ -4,6 +4,8 @@ import "aframe-particle-system-component";
 import "aframe-extras";
 
 export default function Vr() {
+  
+  
   const tent = "Commercial_Tent_4x4_Meters.glb"
   const sakura ="/sakura_tree.glb";
   const grassImgPath ="/grass.jpg";
@@ -15,13 +17,18 @@ export default function Vr() {
   const CountStone = Array.from({length: 4}, () => 0);
   const tentline = Array.from({length: 5}, () => 0);  
 
+
   return (
     <div>
       <h1>vr 페이지 입니다</h1>
       <a-scene className="aframe-scene">
 
         {/* 움직이는 속도 조절하기 -> acceleration 값 조절*/}
-        <a-entity camera look-controls wasd-controls={{acceleration: 10}} position="0 1.6 0"></a-entity>
+        <a-entity
+        camera 
+        look-controls 
+        wasd-controls={{acceleration: -5}} 
+        position="0 1.6 0"></a-entity>
 
         {/* 하늘 */}
         <a-sky color="#9CCEFF"></a-sky>
