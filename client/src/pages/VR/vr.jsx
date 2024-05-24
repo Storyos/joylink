@@ -70,6 +70,8 @@ AFRAME.registerComponent('jump', {
 });
 
 export default function Vr() {
+  
+  
   const tent = "Commercial_Tent_4x4_Meters.glb"
   const sakura ="/sakura_tree.glb";
   const grassImgPath ="/grass.jpg";
@@ -78,10 +80,11 @@ export default function Vr() {
   const poster = "/example_poster.png";
   const arcitechture1 = "/arcitechture1.png";
   const arcitechture2 = "/arcitechture2.png"; 
-  const CountCherryBlossom = Array.from({length: 10}, () => 0); // 벚꽃나무 이미지 좌우 10세트 배열로 표현
-  const CountGrass = Array.from({length: 13}, () => 0); // 풀밭 이미지 13세트 배열로 표현
-  const CountStone = Array.from({length: 4}, () => 0);
+  const CountCherryBlossom = Array.from({length: 25}, () => 0); // 벚꽃나무 이미지 좌우 10세트 배열로 표현
+  const CountGrass = Array.from({length: 25}, () => 0); // 풀밭 이미지 13세트 배열로 표현
+  const CountStone = Array.from({length: 9}, () => 0);
   const tentline = Array.from({length: 5}, () => 0);
+
 
   return (
     <div>
@@ -118,31 +121,31 @@ export default function Vr() {
         {CountGrass.map((_, index)=>(
           <> 
             <a-image src={grassImgPath} 
-                    position={`0 0 ${4.5-(6*index)}`}
+                    position={`0 0 ${60-(6*index)}`}
                     width="6" 
                     height="6"
                     rotation="90 90 0">
             </a-image>
             <a-image src={grassImgPath} 
-                    position={`6 0 ${4.5-(6*index)}`}
+                    position={`6 0 ${60-(6*index)}`}
                     width="6" 
                     height="6"
                     rotation="90 90 0">
             </a-image>
             <a-image src={grassImgPath} 
-                    position={`-6 0 ${4.5-(6*index)}`} 
+                    position={`-6 0 ${60-(6*index)}`} 
                     width="6" 
                     height="6"
                     rotation="90 90 0">
             </a-image>
             <a-image src={grassImgPath} 
-                    position={`12 0 ${4.5-(6*index)}`}
+                    position={`12 0 ${60-(6*index)}`}
                     width="6" 
                     height="6"
                     rotation="90 90 0">
             </a-image>
             <a-image src={grassImgPath} 
-                    position={`-12 0 ${4.5-(6*index)}`} 
+                    position={`-12 0 ${60-(6*index)}`} 
                     width="6" 
                     height="6"
                     rotation="90 90 0">
@@ -193,13 +196,13 @@ export default function Vr() {
         {/* 벚꽃나무 */}
         {CountCherryBlossom.map((_, index)=>(
           <a-entity gltf-model={`url(${sakura})`} 
-          position={`-12 0 ${6-(index*8)}`}
+          position={`-12 0 ${60-(index*8)}`}
           scale="30 30 30"
           rotation={`0 ${60*index}  0`}></a-entity>
         ))}
         {CountCherryBlossom.map((_, index)=>(
           <a-entity gltf-model={`url(${sakura})`} 
-          position={`12 0 ${6-(index*8)}`}
+          position={`12 0 ${60-(index*8)}`}
           scale="30 30 30"
           rotation={`0 ${60*index}  0`}></a-entity>
         ))}
@@ -208,12 +211,12 @@ export default function Vr() {
         {CountStone.map((_, index) => (
           <>
             <a-entity gltf-model={`url(${stone})`} 
-                      position={`-5.35 -0.6 ${-2.2-(19.84*index)}`}
+                      position={`-5.35 -0.6 ${60.3-(19.84*index)}`}
                       scale="2.7 2.5 2.5"
                       rotation="0 0 0">
             </a-entity>
             <a-entity gltf-model={`url(${stone})`} 
-                      position={`5.4 -0.6 ${-2.6-(19.84*index)}`}
+                      position={`5.4 -0.6 ${60-(19.84*index)}`}
                       scale="2.7 2.5 2.5"
                       rotation="0 180 0">
             </a-entity>
