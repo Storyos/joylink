@@ -72,15 +72,18 @@ AFRAME.registerComponent('jump', {
 export default function Vr() {
   
   const table ="folding_table.glb"
-  const tent = "Commercial_Tent_4x4_Meters.glb"
-  const sakura ="/sakura_tree.glb";
-  const grassImgPath ="/grass.jpg";
-  const easel = "/easel.glb";
-  const stone = "/stone_ground.glb";
-  const poster = "/example_poster.png";
-
-  const CountCherryBlossom = Array.from({length: 25}, () => 0); // 벚꽃나무 이미지 좌우 10세트 배열로 표현
-  const CountGrass = Array.from({length: 25}, () => 0); // 풀밭 이미지 13세트 배열로 표현
+  const tent = "/vr_src/Commercial_Tent_4x4_Meters.glb"
+  const sakura ="/vr_src/sakura_tree.glb";
+  const grassImgPath ="/vr_src/grass.jpg";
+  const easel = "/vr_src/easel.glb";
+  const stone = "/vr_src/stone_ground.glb";
+  const poster = "/vr_src/example_poster.png";
+  const arcitechture1 = "/vr_src/arcitechture1.png";
+  const arcitechture2 = "/vr_src/arcitechture2.png"; 
+  
+  const CountCherryBlossom = Array.from({length: 23}, () => 0);
+  const CountGrassX = Array.from({length: 30}, () => 0);
+  const CountGrassZ = Array.from({length: 17}, () => 0);
   const CountStone = Array.from({length: 9}, () => 0);
   const tentline = Array.from({length: 5}, () => 0);
 
@@ -92,50 +95,41 @@ export default function Vr() {
 
         {/* 카메라 */}
         <a-camera 
-        jump = "height: 1; duration: 400"
+        jump = "height: 0.5; duration: 400"
         boundary-constraint="minX: -10; maxX: 10; minZ: -70; maxZ: 7"
         position="0 1.6 7"
         look-controls="enabled:true" 
-        wasd-controls="acceleration: 30">
+        wasd-controls="acceleration: 20">
         </a-camera>
 
         {/* 하늘 */}
         <a-sky color="#9CCEFF"></a-sky>
         
+        {/* 건물 이미지*/}
+        
+        <a-image src={arcitechture1}
+                    position={`-50 50 -45`}
+                    width="300" 
+                    height="100"
+                    rotation="0 90 0">
+        </a-image>
+        <a-image src={arcitechture2}
+                    position={`50 50 -45`}
+                    width="300" 
+                    height="100"
+                    rotation="0 -90 0">
+        </a-image>
+        
         {/* 풀밭 이미지 */}
-        {CountGrass.map((_, index)=>(
-          <> 
+        {CountGrassX.map((_, XIndex)=>(
+          CountGrassZ.map((_, ZIndex)=>(
             <a-image src={grassImgPath} 
-                    position={`0 0 ${60-(6*index)}`}
+                    position={`${-48+(6*ZIndex)} 0 ${60-(6*XIndex)}`} 
                     width="6" 
                     height="6"
                     rotation="90 90 0">
             </a-image>
-            <a-image src={grassImgPath} 
-                    position={`6 0 ${60-(6*index)}`}
-                    width="6" 
-                    height="6"
-                    rotation="90 90 0">
-            </a-image>
-            <a-image src={grassImgPath} 
-                    position={`-6 0 ${60-(6*index)}`} 
-                    width="6" 
-                    height="6"
-                    rotation="90 90 0">
-            </a-image>
-            <a-image src={grassImgPath} 
-                    position={`12 0 ${60-(6*index)}`}
-                    width="6" 
-                    height="6"
-                    rotation="90 90 0">
-            </a-image>
-            <a-image src={grassImgPath} 
-                    position={`-12 0 ${60-(6*index)}`} 
-                    width="6" 
-                    height="6"
-                    rotation="90 90 0">
-            </a-image>
-          </>
+          ))
         ))}
         
         {/* 동아리 부스 */}
