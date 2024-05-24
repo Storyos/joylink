@@ -8,10 +8,10 @@ export default function MyClubPage() {
 
   return (
     <div className="mt-28">
-      <h1 className="text-center text-7xl mt-60 mb-16" id="myClub_heading" style={{ fontFamily: '"Dancing Script", sans-serif' }}>
+      <h1 className="text-center text-6xl mt-40 mb-16" id="myClub_heading" style={{ fontFamily: '"Dancing Script", sans-serif' }}>
         The #1 job board for<br></br> graphic design jobs
       </h1>
-      <h3 className="text-center text-xl text-gray-500 mb-60">
+      <h3 className="text-center text-xl text-gray-500 mb-20">
         Life's journey thrives on exploration, the ultimate way to connect with<br></br>
         opportunities and discover new horizons globally.
       </h3>
