@@ -22,10 +22,12 @@ export default function Gallery() {
     if (error) {
       console.log(error);
     }
+    console.log("프린트리스트됨?",data);
     return data;
   }
 
   async function getURL(name) {
+    console.log("name값:",name);
     const { data, error } = await supabase
       .storage
       .from('testtest')
@@ -64,7 +66,7 @@ export default function Gallery() {
           <input type="text" id="search" placeholder="갤러리 검색" className="px-2 py-1 border rounded" />
         </div>
         <hr /><br />
-        <h2 className="text-lg font-semibold my-6">갤러리 목록</h2>
+        <h2 className="my-6 text-lg font-semibold">갤러리 목록</h2>
         <div>
           <ul className="flex flex-wrap">
             {imgURLs.map((url, index) => (
