@@ -71,7 +71,7 @@ AFRAME.registerComponent('jump', {
 
 export default function Vr() {
   
-  
+  const table ="folding_table.glb"
   const tent = "Commercial_Tent_4x4_Meters.glb"
   const sakura ="/sakura_tree.glb";
   const grassImgPath ="/grass.jpg";
@@ -207,7 +207,32 @@ export default function Vr() {
             </a-entity>
           </>
         ))}
-          
+        {tentline.map((_, index)=>(
+          <>
+          <a-entity gltf-model={`url(${table})`} 
+          position={`9 0.5 ${4.5-(index*15)}`}
+          scale="2.5 1.1 2.8"
+          rotation="0 90 0"
+          ></a-entity> 
+          <a-entity gltf-model={`url(${table})`} 
+          position={`9 0.5 ${-0.5-(index*15)}`}
+          scale="2.5 1.1 2.8"
+          rotation="0 90 0"
+          ></a-entity></>
+        ))} 
+        {tentline.map((_, index)=>(
+          <>
+          <a-entity gltf-model={`url(${table})`} 
+          position={`-9 0.5 ${4.5-(index*15)}`}
+          scale="2.5 1.1 2.8"
+          rotation="0 90 0"
+          ></a-entity> 
+          <a-entity gltf-model={`url(${table})`} 
+          position={`-9 0.5 ${-0.5-(index*15)}`}
+          scale="2.5 1.1 2.8"
+          rotation="0 90 0"
+          ></a-entity></>
+        ))} 
       </a-scene>
     </div>
   );
