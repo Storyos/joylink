@@ -5,7 +5,7 @@ import useUserStore from "../../zustand/useUserStore";
 
 export default function Mypage() {
 
-  const userData = useUserStore((state)=> state.user);
+  const userData = useUserStore((state) => state.user);
   const user_seq = userData.user_seq;
   // message modal창 열고 닫기
   const [modalDisplay, setModalDisplay] = useState("Close");
@@ -88,7 +88,7 @@ export default function Mypage() {
   );
 
   return (
-    <div>
+    <div className="font-custom">
       {/* 메인 영역 */}
       <div className="mt-48 mb-20">
         <div className="flex mt-32">
@@ -127,14 +127,14 @@ export default function Mypage() {
           <div className="w-[1600px]">
             {/* 내 정보 */}
             {mypageMenu == "userInfo" && (
-              <div class="bg-blue-100 border rounded-xl p-8 w-1/2 mx-auto">
+              <div class="bg-blue-100 border rounded-xl p-8 w-3/4 mx-auto">
                 <div className="flex mb-4 justify-left">
                   <img
                     src="https://picsum.photos/200"
                     className="w-32 h-32 mb-8 rounded-xl"
                   />
                 </div>
-              
+
                 <div class="grid grid-cols-2 gap-4">
                   <div class="grid grid-cols-1">
                     <h3 class="text-lg font-semibold mb-2">아이디</h3>

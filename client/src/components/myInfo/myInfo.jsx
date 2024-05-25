@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useUserStore from "../../zustand/useUserStore";
 import { supabase } from "../../App";
 
@@ -8,6 +8,18 @@ export default function MyInfo() {
   const [my_comments, setMyComments] = useState("0");
   const [my_posts, setMyPosts] = useState("0");
   const { user } = useUserStore(); // zustand 상태관리
+  const navigate = useNavigate(); // useNavigate 훅 초기화
+
+  const handleClubManagementClick = () => {
+    // club_position 검증
+    const isManager = club_position === "임원";
+
+    if (isManager) {
+      navigate("/clubManagementPage"); // 검증 성공 시 페이지 이동
+    } else {
+      alert("이 페이지에 접근할 권한이 없습니다."); // 검증 실패 시 경고 메시지
+    }
+  };
 
   useEffect(() => {
     async function getClubPosition() {
@@ -42,13 +54,13 @@ export default function MyInfo() {
     getClubPosition();
     getComments();
     getPosts();
-  }, []);
+  }, [user.user_seq]);
 
   const handleOpenChatting = () => {
     window.open(
       "/chatting",
       "chatting",
-      "width=500, height=500, top=300, left=450"
+      "width=500, height=600, top=300, left=450"
     );
   };
 
@@ -67,9 +79,9 @@ export default function MyInfo() {
 
       <div className="border-t"></div>
       <div className="p-1 my-6">
-        <Link to="/clubManagementPage">
-          <button className="m-1">Club Management</button>
-        </Link>
+        <button className="m-1" onClick={handleClubManagementClick}>
+          Club Management
+        </button>
       </div>
 
       <div className="border-t"></div>
@@ -86,7 +98,7 @@ export default function MyInfo() {
         </Link>
       </div>
 
-      <div className="border-t my-6"></div>
+      <div className="my-6 border-t"></div>
 
       <div className="p-1">
         <h3>카테고리</h3>
