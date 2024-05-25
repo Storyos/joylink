@@ -34,7 +34,7 @@ const CbJoin = () => {
     <div className='mt-28'>
       <div className="p-8 mx-auto my-10 bg-white rounded-lg shadow-lg" style={{ maxWidth: '980px' }}>
         <h1 className="text-xl">신청 정보</h1>
-        <img src="https://cdn.pixabay.com/photo/2013/11/03/08/05/cheers-204742_1280.jpg" alt="Event Banner" className="w-full h-auto mb-4 rounded-lg" />
+        <img src="./assets/cbsearch/drinks.jpg" alt="Event Banner" className="w-full h-auto mb-4 rounded-lg" />
         <form onSubmit={handleSubmit} className="space-y-4">
           <h2 className="text-xl font-semibold text-gray-800">지식의 바다속으로 수영해봐요. 독서모임</h2>
           <div className="text-lg font-semibold">신청자 정보 입력</div>
