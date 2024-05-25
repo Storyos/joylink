@@ -2,6 +2,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const {subscribeToInserts} = require('./services/supabaseService');
+const { checkBalance } = require('./services/checkBalance');
 
 const app = express();
 
@@ -10,6 +11,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 
+checkBalance();
 subscribeToInserts();
 
 module.exports = app;

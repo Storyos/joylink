@@ -1,10 +1,18 @@
 const dbConnect = require('../config/dbConnect');
 const supabase = dbConnect();
 const crypto = require('crypto');
+const {storeHashOnBlockchain} = require('./storeHashOnBlockchain');
 
-const handleInserts = (payload) => {
+const handleInserts = async (payload) => {
     console.log('Insert received! : ', payload);
-    generateHash(payload);
+    const hash = generateHash(payload);
+    console.log('Generated hash:', hash);
+    try {
+        await storeHashOnBlockchain(hash);
+        console.log('Hash stored on blockchain successfully.');
+    } catch (error) {
+        console.error('Error storing hash on blockchain:', error);
+    }
 };
 
 const generateHash = (data) => {
