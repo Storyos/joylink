@@ -4,8 +4,9 @@ import MessageModal from "../../components/messageModal";
 import useUserStore from "../../zustand/useUserStore";
 
 export default function Mypage() {
-  const user_seq = useUserStore((state) => state.user.user_seq);
 
+  const userData = useUserStore((state)=> state.user);
+  const user_seq = userData.user_seq;
   // message modal창 열고 닫기
   const [modalDisplay, setModalDisplay] = useState("Close");
   const handleOpenMessage = () => {
@@ -91,7 +92,7 @@ export default function Mypage() {
       {/* 메인 영역 */}
       <div className="mt-48 mb-20">
         <div className="flex mt-32">
-          <div className="w-64 text-2xl mx-20 mt-4 ml-36">
+          <div className="w-64 mx-20 mt-4 text-2xl ml-36">
             <div className="flex flex-col space-y-4">
               <button
                 className="text-left btn"
@@ -127,33 +128,33 @@ export default function Mypage() {
             {/* 내 정보 */}
             {mypageMenu == "userInfo" && (
               <div class="bg-blue-100 border rounded-xl p-8 w-1/2 mx-auto">
-                <div className="mb-4 flex justify-left">
+                <div className="flex mb-4 justify-left">
                   <img
                     src="https://picsum.photos/200"
-                    className="rounded-xl w-32 h-32 mb-8"
+                    className="w-32 h-32 mb-8 rounded-xl"
                   />
                 </div>
               
                 <div class="grid grid-cols-2 gap-4">
                   <div class="grid grid-cols-1">
                     <h3 class="text-lg font-semibold mb-2">아이디</h3>
-                    <p class="text-gray-700">abcd@naver.com</p>
+                    <p class="text-gray-700">{userData.user_id}</p>
                   </div>
                   <div class="grid grid-cols-1">
                     <h3 class="text-lg font-semibold mb-2">이름</h3>
-                    <p class="text-gray-700">박기재</p>
+                    <p class="text-gray-700">{userData.user_name}</p>
                   </div>
                   <div class="grid grid-cols-1">
                     <h3 class="text-lg font-semibold mb-2">성별</h3>
-                    <p class="text-gray-700">남자</p>
+                    <p class="text-gray-700">{userData.user_gender}</p>
                   </div>
                   <div class="grid grid-cols-1">
                     <h3 class="text-lg font-semibold mb-2">생년월일</h3>
-                    <p class="text-gray-700">20000901</p>
+                    <p class="text-gray-700">{userData.user_birth}</p>
                   </div>
                   <div class="grid grid-cols-1">
                     <h3 class="text-lg font-semibold mb-2">전화번호</h3>
-                    <p class="text-gray-700">1234-1234</p>
+                    <p class="text-gray-700">{userData.user_pn}</p>
                   </div>
                 </div>
               </div>
