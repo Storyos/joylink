@@ -1,58 +1,69 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import ChattingModal from "../chattingModal";
+import { Link, useNavigate } from "react-router-dom";
 import useUserStore from "../../zustand/useUserStore";
 import { supabase } from "../../App";
 
 export default function MyInfo() {
-  const [club_position,setClubPosition]=useState("게스트");
-  const [my_comments,setMyComments]=useState("0");
-  const [my_posts,setMyPosts]=useState("0");
-  const {user} = useUserStore();
+  const [club_position, setClubPosition] = useState("게스트");
+  const [my_comments, setMyComments] = useState("0");
+  const [my_posts, setMyPosts] = useState("0");
+  const { user } = useUserStore(); // zustand 상태관리
+  const navigate = useNavigate(); // useNavigate 훅 초기화
 
-  useEffect(()=>{
-    
+  const handleClubManagementClick = () => {
+    // club_position 검증
+    const isManager = club_position === "임원";
+
+    if (isManager) {
+      navigate("/clubManagementPage"); // 검증 성공 시 페이지 이동
+    } else {
+      alert("이 페이지에 접근할 권한이 없습니다."); // 검증 실패 시 경고 메시지
+    }
+  };
+
+  useEffect(() => {
     async function getClubPosition() {
-      const {data, error} = await supabase
-      .from('members')
-      .select('club_position')
-      .eq('user_seq',user.user_seq)
-      .single();
-      if(data){
+      const { data, error } = await supabase
+        .from("members") // 멤버 테이블에서
+        .select("club_position") // 해당 속성을 가져옴
+        .eq("user_seq", user.user_seq) // 찾는 조건
+        .single();
+      if (data) {
         setClubPosition(data.club_position);
       }
     }
 
     async function getComments() {
       let { count, error } = await supabase
-    .from('comments')
-    .select('*', { count: 'exact' })
-    .eq('user_seq', user.user_seq)
-    if(count){
-      setMyComments(count);
-    }
+        .from("comments") // 댓글 테이블에서
+        .select("*", { count: "exact" })
+        .eq("user_seq", user.user_seq);
+      if (count) {
+        setMyComments(count);
+      }
     }
     async function getPosts() {
-      let {count, error} = await supabase
-      .from('posts')
-      .select('*',{count:'exact'})
-      .eq('user_seq',user.user_seq)
-      if(count){
+      let { count, error } = await supabase
+        .from("posts") // 포스트 테이블에서
+        .select("*", { count: "exact" })
+        .eq("user_seq", user.user_seq);
+      if (count) {
         setMyPosts(count);
       }
     }
     getClubPosition();
     getComments();
     getPosts();
-  },[])
-  
+  }, [user.user_seq]);
+
   const handleOpenChatting = () => {
     window.open(
       "/chatting",
       "chatting",
-      "width=500, height=500, top=300, left=450"
+      "width=500, height=600, top=300, left=450"
     );
   };
+
   return (
     <div className="p-5 m-12 border rounded-xl">
       <div className="p-1 m-2">
@@ -67,32 +78,32 @@ export default function MyInfo() {
       </div>
 
       <div className="border-t"></div>
-      <div className="p-1 m-2">
-        <Link to="/clubManagementPage">
-          <button className="m-1">Club Management</button>
-        </Link>
+      <div className="p-1 my-6">
+        <button className="m-1" onClick={handleClubManagementClick}>
+          Club Management
+        </button>
       </div>
 
       <div className="border-t"></div>
 
-      <div className="p-1 m-3">
+      <div className="p-1 my-6">
         <button onClick={handleOpenChatting}>채팅</button>
       </div>
 
       <div className="border-t"></div>
 
-      <div className="p-1 m-3">
+      <div className="p-1 my-6">
         <Link to="/ViewAccountPage">
           <button>장부</button>
         </Link>
       </div>
 
-      <div className="border-t"></div>
+      <div className="my-6 border-t"></div>
 
-      <div className="p-1 m-3">
+      <div className="p-1">
         <h3>카테고리</h3>
         <br></br>
-        <div className="flex flex-col items-center space-y-2">
+        <div className="flex flex-col space-y-2 text-gray-600">
           <Link to="/gallery">
             <button>갤러리</button>
           </Link>

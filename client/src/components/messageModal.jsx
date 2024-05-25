@@ -1,5 +1,6 @@
 import { useEffect, useState, useTransition, useRef } from "react";
 import { supabase } from '../App';
+import useUserStore from "../zustand/useUserStore";
 
 export default function MessageModal(props) {
   // 메시지 모달창 닫기
@@ -12,6 +13,7 @@ export default function MessageModal(props) {
   const [receiver, setReceiver] = useState("");
   const [content, setContent] = useState("");
   const [searchbyTitle, setSerachByTitle] = useState("");
+  const user_seq = useUserStore((state)=>(state.user.user_seq));
 
   // 받은 쪽지, 보낸 쪽지 list 변수
   const [receivedMessage, setReceivedMessage] = useState([]);
@@ -124,7 +126,7 @@ export default function MessageModal(props) {
       users : msg_snd_seq (
         user_name
       )
-    `).eq(`msg_rcv_seq`, 13)
+    `).eq(`msg_rcv_seq`, user_seq)
       .eq(`rcv_deleted`, false)
 
     if (error) {
@@ -165,7 +167,7 @@ export default function MessageModal(props) {
       users : msg_rcv_seq (
         user_name
       )
-    `).eq(`msg_snd_seq`, 13)
+    `).eq(`msg_snd_seq`, user_seq)
       .eq(`snd_deleted`, false)
     if (error) {
       console.error("보낸쪽지 select query 에러");
@@ -199,7 +201,7 @@ export default function MessageModal(props) {
       users : msg_snd_seq (
         user_name
       )
-    `).eq(`msg_rcv_seq`, 13)
+    `).eq(`msg_rcv_seq`, user_seq)
       .eq(`rcv_deleted`, false)
 
     if (error) {
@@ -228,7 +230,7 @@ export default function MessageModal(props) {
       users : msg_snd_seq (
         user_name
       )
-    `).eq(`msg_rcv_seq`, 13)
+    `).eq(`msg_rcv_seq`, user_seq)
         .eq(`rcv_deleted`, false)
         .like('msg_title', `%${currentInputValue}%`);
       console.log("데이터", data);
@@ -246,7 +248,7 @@ export default function MessageModal(props) {
       users : msg_rcv_seq (
         user_name
       )
-    `).eq(`msg_snd_seq`, 13)
+    `).eq(`msg_snd_seq`, user_seq)
         .eq(`snd_deleted`, false)
         .like('msg_title', `%${currentInputValue}%`);
       console.log("데이터", data);
@@ -281,7 +283,7 @@ export default function MessageModal(props) {
       'msg_title': title,
       'msg_body': content,
       'msg_rcv_seq': receiver,
-      'msg_snd_seq': 13
+      'msg_snd_seq': user_seq
     })
 
     // 전송쪽 다시 초기화
@@ -532,7 +534,7 @@ export default function MessageModal(props) {
     }
   return (
     <>
-      <div id="mypage_message" className='fixed inset-0 p-4 m-auto bg-white border border-black border-solid' style={{ width: '650px', height: '650px' }} >
+      <div id="mypage_message" className='fixed inset-0 p-4 m-auto bg-white border border-black border-solid mt-28' style={{ width: '650px', height: '600px' }} >
         <h1 className='mb-4' >쪽지</h1>
 
         {messageWriteBtn == "List" && messageContentsBtn == "List" &&

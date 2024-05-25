@@ -29,7 +29,7 @@ export default function Header() {
         }
       } else {
         console.log("토큰 데이터가 존재하지 않습니다.");
-        setUser(null);
+        logout();
       }
     };
     checkToken();
@@ -44,7 +44,7 @@ export default function Header() {
   }
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 p-6 bg-white">
+    <header className="fixed top-0 left-0 right-0 z-50 p-6 bg-white border-b border-gray-300 font-custom">
       <div className="flex flex-row items-center justify-between">
         <ul className="flex items-center my-2 md:ml-[100px]">
           <li className="mx-5">
@@ -94,9 +94,6 @@ export default function Header() {
           )}
         </div>
       </div>
-      
     </header>
   );
 }
-
-

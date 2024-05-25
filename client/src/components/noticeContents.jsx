@@ -14,6 +14,13 @@ export default function NoticeContents (props) {
   const [noticelist, setNoticeList] = useState([]);
   const [noticebody, setNoticeBody] = useState([]);
   
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const month = date.getMonth() + 1; // Months are zero-based
+    const day = date.getDate();
+    return `${month}/${day}`;
+  };
+  
   // 메뉴가 변경될 때 세부 정보 페이지를 닫음
   useEffect(() => {
     setDetails(false);
@@ -56,28 +63,55 @@ export default function NoticeContents (props) {
     return (
       <div className="w-[800px] rounded-[10px] border-2">
         {/* 검색창 */}
-        <div className="flex justify-end mt-4" >
-          <input className="px-2 py-1 mr-2rounded-md outline-none" type="text" placeholder="게시글 검색"/>
-          <button className="px-2bg-[#FFEED9]  rounded-[5px] hover:bg-[#e9e9e9] mr-4">검색</button>
+        <div className="flex justify-end mt-4">
+          <input className="px-2 py-1 mr-2 rounded-md outline-none" type="text" placeholder="게시글 검색" />
+          <button className="px-2 bg-[#FFEED9] rounded-[5px] hover:bg-[#e9e9e9] mr-4">검색</button>
         </div>
+  
         {/* 공지사항 목록 */}
         <div className="min-h-[400px] m-4 py-4 rounded-[10px]">
           {/* 메뉴에 따라 다른 목록 표시 */}
-          {menu === "Notice" &&
-            <div>
-              <ul>
-                {/* 공지사항 목록 매핑 */}
+          {menu==="Notice"&&
+          <div>
+            <table className="w-full text-center border-collapse">
+              <thead>
+                <tr>
+                  <th className="py-2 border-b-2">번호</th>
+                  <th className="py-2 border-b-2">구분</th>
+                  <th className="py-2 border-b-2">제목</th>
+                  <th className="py-2 border-b-2">작성자</th>
+                  <th className="py-2 border-b-2">등록일</th>
+                  <th className="py-2 border-b-2">조회수</th>
+                </tr>
+              </thead>
+              <tbody>
                 {noticelist.map((notice, index) => (
-                  <li className="px-2 py-1 mx-4 my-2 border-b-4 border-white" key={index}>
-                    <Link to={`/notice/${notice.id}`}>
-                      <button onClick={() => handleNoticeDetail(notice)}>{notice.title}</button>
-                    </Link>
-                  </li>
+                  <tr key={index} className="border-b">
+                    <td className="py-2">{notice.id}</td>
+                    <td className="py-2">{notice.category}</td>
+                    <td className="py-2">
+                      <Link to={`/notice/${notice.id}`}>
+                        <button onClick={() => handleNoticeDetail(notice)}>{notice.title}</button>
+                      </Link>
+                    </td>
+                    <td className="py-2">운영자</td>
+                    <td className="py-2">{formatDate(notice.notice_time)}</td>
+                    <td className="py-2">{notice.views}</td>
+                  </tr>
                 ))}
-              </ul>
+              </tbody>
+            </table>
+  
+            {/* Pagination */}
+            <div className="flex justify-center mt-4">
+              <button className="px-2 py-1 mx-1 border">1</button>
+              <button className="px-2 py-1 mx-1 border">2</button>
+              <button className="px-2 py-1 mx-1 border">3</button>
+              <button className="px-2 py-1 mx-1 border">4</button>
+              <button className="px-2 py-1 mx-1 border">5</button>
             </div>
+          </div>
           }
-          
           {/* 이벤트 목록 */}
           {menu === "Event" &&
             <ul>
@@ -107,7 +141,8 @@ export default function NoticeContents (props) {
           }
         </div>
       </div>
-    )
+      
+    );
   }
 
   // 세부 정보를 표시하는 컴포넌트

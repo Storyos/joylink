@@ -1,198 +1,297 @@
+import { useEffect, useState, useTransition } from "react";
+import { supabase } from "../../App";
+import MessageModal from "../../components/messageModal";
+import useUserStore from "../../zustand/useUserStore";
 
-import { useEffect, useState, useTransition } from 'react'
-import { supabase } from '../../App';
-import MessageModal from '../../components/messageModal';
-import useUserStore from '../../zustand/useUserStore';
+export default function Mypage() {
 
-export default function Mypage () {
-    
-  const user_seq = useUserStore(state=> state.user.user_seq);
-  
+  const userData = useUserStore((state) => state.user);
+  const user_seq = userData.user_seq;
   // message modal창 열고 닫기
   const [modalDisplay, setModalDisplay] = useState("Close");
   const handleOpenMessage = () => {
-    console.log("모달창 여는중..")
+    console.log("모달창 여는중..");
     setModalDisplay("Open");
-  }
+  };
 
-  const handleCloseMessage =  () => {
+  const handleCloseMessage = () => {
     setModalDisplay("Close");
-  }
+  };
 
   // mypage 메뉴
-  const [mypageMenu, setMypageMenu] = useState("userInfo")
+  const [mypageMenu, setMypageMenu] = useState("userInfo"); // 디폴트는 내 정보 페이지
   const handleMypageMenu = (menu) => {
-    setMypageMenu(`${menu}`)
-  }
+    setMypageMenu(`${menu}`);
+  };
 
   // 내가 가입한 동아리 목록 가져오기
-  const [myClub,setMyClub]=useState([]);
-  
-  
-  // 가입 신청한 동아리 목록 가져오기 
-  const [myjoinClubs,setmyJoinClubs]=useState([]);
-  
-  useEffect(()=>{
-    
-    async function getMyClub(){
-      
+  const [myClub, setMyClub] = useState([]);
+
+  // 가입 신청한 동아리 목록 가져오기
+  const [myjoinClubs, setmyJoinClubs] = useState([]);
+
+  useEffect(() => {
+    async function getMyClub() {
       const { data, error } = await supabase
-    .from('members')
-    .select(`
+        .from("members")
+        .select(
+          `
       club:club_seq (club_nm, club_seq),
       user_seq,
       club_position
-    `)
-    .eq('user_seq', user_seq)
-    .eq('mem_st',"가입중");
-    
-      console.log("club데이터",data);
-      if(error){
-        console.log("club 데이터 가져오는데 에러발생",error);
+    `
+        )
+        .eq("user_seq", user_seq)
+        .eq("mem_st", "가입중");
+
+      console.log("club데이터", data);
+      if (error) {
+        console.log("club 데이터 가져오는데 에러발생", error);
       }
-      setMyClub(data);    
+      setMyClub(data);
     }
 
-    async function getMyJoinClubs(){
-      const {data,error} = await supabase
-      .from('joinclubs')
-      .select(`
+    async function getMyJoinClubs() {
+      const { data, error } = await supabase
+        .from("joinclubs")
+        .select(
+          `
       club:club_seq (club_nm,club_seq),
-      jc_Rst`)
-      .eq('user_seq',user_seq);
-      console.log('내가 신청했던 club 데이터',data);
-      if(error){
-        console.log('내가 신청한 club 데이터 가져오는데 에러발생',error);
+      jc_Rst`
+        )
+        .eq("user_seq", user_seq);
+      console.log("내가 신청했던 club 데이터", data);
+      if (error) {
+        console.log("내가 신청한 club 데이터 가져오는데 에러발생", error);
       }
-      setmyJoinClubs(data); 
+      setmyJoinClubs(data);
     }
     getMyJoinClubs();
     getMyClub();
-  },[])
-  
+  }, []);
+
+  const WaveHR = () => (
+    <div className="w-full overflow-hidden">
+      <svg
+        className="w-full h-12"
+        viewBox="0 0 1200 60"
+        preserveAspectRatio="none"
+      >
+        <path
+          d="M0,30 Q300,60 600,30 T1200,30"
+          fill="none"
+          stroke="black"
+          strokeWidth="1"
+        />
+      </svg>
+    </div>
+  );
+
   return (
-    <div>
+    <div className="font-custom">
       {/* 메인 영역 */}
-      <div className='py-24 mx-auto'>
-        <div className='flex justify-center'>
-          <div className='w-[120px] rounded-[10px] border-2'>
-            <div className='flex flex-col items-center min-h-[500px] py-4'>
-              <button className={'font-bold text-[#a9a9a9] my-2 text-sm '+ (mypageMenu === 'userInfo' && 'text-black text-lg')} onClick={() => handleMypageMenu("userInfo")}>내 정보</button>
-              <button className={'font-bold text-[#a9a9a9] my-2 text-sm '+ (mypageMenu === 'updateInfo' && 'text-black')} onClick={() => handleMypageMenu("updateInfo")}>정보 수정</button>
-              <button className={'font-bold text-[#a9a9a9] my-2 text-sm '+ (mypageMenu === 'myclub' && 'text-black')} onClick={() => handleMypageMenu("myclub")}>내 동아리</button>
-              <button className='font-bold text-[#a9a9a9] my-2 text-sm ' onClick={handleOpenMessage}>쪽지</button>
-              <button className={'font-bold text-[#a9a9a9] my-2 text-sm '+ (mypageMenu === 'application' && 'text-black')} onClick={() => handleMypageMenu("application")}>신청 현황</button>
+      <div className="mt-48 mb-20">
+        <div className="flex mt-32">
+          <div className="w-64 mx-20 mt-4 text-2xl ml-36">
+            <div className="flex flex-col space-y-4">
+              <button
+                className="text-left btn"
+                onClick={() => handleMypageMenu("userInfo")}
+              >
+                내 정보
+              </button>
+              <button
+                className="text-left btn"
+                onClick={() => handleMypageMenu("updateInfo")}
+              >
+                내 정보수정
+              </button>
+              <button
+                className="text-left btn"
+                onClick={() => handleMypageMenu("myclub")}
+              >
+                내 동아리
+              </button>
+              <button className="text-left btn" onClick={handleOpenMessage}>
+                쪽지
+              </button>
+              <button
+                className="text-left btn"
+                onClick={() => handleMypageMenu("application")}
+              >
+                신청 현황
+              </button>
             </div>
           </div>
 
-          <div className='w-[800px] p-8 ml-10 border-2 rounded-xl'>
-            
+          <div className="w-[1600px]">
             {/* 내 정보 */}
-            {mypageMenu == "userInfo" &&
-            <div className='flex justify-center'>
-              <table className='w-[70%]'>
+            {mypageMenu == "userInfo" && (
+              <div class="bg-blue-100 border rounded-xl p-8 w-3/4 mx-auto">
+                <div className="flex mb-4 justify-left">
+                  <img
+                    src="https://picsum.photos/200"
+                    className="w-32 h-32 mb-8 rounded-xl"
+                  />
+                </div>
 
-                <caption className='mb-8 font-bold'>내 정보</caption>
-                <tr className='border-2 border-[#c9c9c9]'>
-                  <th className='border-2 border-[#c9c9c9] text-sm p-2 w-[25%]'>아이디(이메일)</th>
-                  <td className='border-2 border-[#c9c9c9] text-center'>abcd@naver.com</td>
-                </tr>
-                <tr className='border-2 border-[#c9c9c9]'>
-                  <th className='border-2 border-[#c9c9c9] p-2 text-sm'>이름</th>
-                  <td className='border-2 border-[#c9c9c9] text-center'>1234</td>
-                </tr>
-                <tr className='border-2 border-[#c9c9c9]'>
-                  <th className='border-2 border-[#c9c9c9] p-2 text-sm'>성별</th>
-                  <td className='border-2 border-[#c9c9c9] text-center'>남</td>
-                </tr>
-                <tr className='border-2 border-[#c9c9c9]'>
-                  <th className='border-2 border-[#c9c9c9] p-2 text-sm'>생년월일</th>
-                  <td className='border-2 border-[#c9c9c9] text-center'>12345678</td>
-                </tr>
-                <tr className='border-2 border-[#c9c9c9]'>
-                  <th className='border-2 border-[#c9c9c9] p-2 text-sm'>전화번호</th>
-                  <td className='border-2 border-[#c9c9c9] text-center'>010-1234-5678</td>
-                </tr>
-                
-              </table>
-            </div>
-            }
-            
-            {/* 정보 수정 */}
-            {mypageMenu == "updateInfo" && 
-            <div className='flex justify-center '>
-              <div className='w-[70%]'>
-                <p className='mb-8 font-bold text-center'>정보 수정</p>
-                <ul>
-                  <li><label htmlFor="" className='text-sm text-[#a9a9a9]'>아이디(이메일) <input type="text" className='w-full p-1 px-2 text-black bg-gray-100 rounded' defaultValue={"아이디"}/></label></li>
-                  <li><label htmlFor="" className='text-sm text-[#a9a9a9]'>비밀번호 <input type="text" className='w-full p-1 px-2 text-black bg-gray-100 rounded' defaultValue={"비밀번호"}/></label></li>
-                  <li><label htmlFor="" className='text-sm text-[#a9a9a9]'>이름 <input type="text" className='w-full p-1 px-2 text-black bg-gray-100 rounded' defaultValue={"이름"}/></label></li>
-                  <li><label htmlFor="" className='text-sm text-[#a9a9a9]'>전화번호 <input type="text" className='w-full p-1 px-2 text-black bg-gray-100 rounded' defaultValue={"전화번호"}/></label></li>
-                </ul>
-                <div className='flex justify-end'>
-                  <button className='bg-gray-100 p-1 px-2 mt-2 rounded-[5px] hover:bg-[#e9e9e9]'>수정</button>
+                <div class="grid grid-cols-2 gap-4">
+                  <div class="grid grid-cols-1">
+                    <h3 class="text-lg font-semibold mb-2">아이디</h3>
+                    <p class="text-gray-700">{userData.user_id}</p>
+                  </div>
+                  <div class="grid grid-cols-1">
+                    <h3 class="text-lg font-semibold mb-2">이름</h3>
+                    <p class="text-gray-700">{userData.user_name}</p>
+                  </div>
+                  <div class="grid grid-cols-1">
+                    <h3 class="text-lg font-semibold mb-2">성별</h3>
+                    <p class="text-gray-700">{userData.user_gender}</p>
+                  </div>
+                  <div class="grid grid-cols-1">
+                    <h3 class="text-lg font-semibold mb-2">생년월일</h3>
+                    <p class="text-gray-700">{userData.user_birth}</p>
+                  </div>
+                  <div class="grid grid-cols-1">
+                    <h3 class="text-lg font-semibold mb-2">전화번호</h3>
+                    <p class="text-gray-700">{userData.user_pn}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-            }
+            )}
+            {/* 정보 수정 */}
+            {mypageMenu == "updateInfo" && (
+              <div className="flex justify-center ">
+                <div className="w-[70%]">
+                  <p className="mb-8 font-bold text-center">정보 수정</p>
+                  <ul>
+                    <li>
+                      <label htmlFor="" className="text-sm text-[#a9a9a9]">
+                        아이디(이메일){" "}
+                        <input
+                          type="text"
+                          className="w-full p-1 px-2 text-black bg-gray-100 rounded"
+                          defaultValue={"아이디"}
+                        />
+                      </label>
+                    </li>
+                    <li>
+                      <label htmlFor="" className="text-sm text-[#a9a9a9]">
+                        비밀번호{" "}
+                        <input
+                          type="text"
+                          className="w-full p-1 px-2 text-black bg-gray-100 rounded"
+                          defaultValue={"비밀번호"}
+                        />
+                      </label>
+                    </li>
+                    <li>
+                      <label htmlFor="" className="text-sm text-[#a9a9a9]">
+                        이름{" "}
+                        <input
+                          type="text"
+                          className="w-full p-1 px-2 text-black bg-gray-100 rounded"
+                          defaultValue={"이름"}
+                        />
+                      </label>
+                    </li>
+                    <li>
+                      <label htmlFor="" className="text-sm text-[#a9a9a9]">
+                        전화번호{" "}
+                        <input
+                          type="text"
+                          className="w-full p-1 px-2 text-black bg-gray-100 rounded"
+                          defaultValue={"전화번호"}
+                        />
+                      </label>
+                    </li>
+                  </ul>
+                  <div className="flex justify-end">
+                    <button className="bg-gray-100 p-1 px-2 mt-2 rounded-[5px] hover:bg-[#e9e9e9]">
+                      수정
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* 내 동아리 */}
-            {mypageMenu == "myclub" && 
-            <div className='flex justify-center'>
-              <table className='w-[70%]'>
-                <caption className='mb-8 font-bold'>내가 가입한 동아리</caption>
-                <tr className='border-2 border-[#c9c9c9]'>
-                  <th className='border-2 border-[#c9c9c9] w-[50px] p-2'> </th>
-                  <td className='border-2 border-[#c9c9c9] text-center min-w-[300px] p-2 text-sm'>동아리 명</td>
-                  <td className='border-2 border-[#c9c9c9] text-center text-sm'>가입 날짜</td>
-                </tr>
-                {
-                  myClub.map((eachclub,index)=>(
-                    <tr className='border-2 border-[#c9c9c9]'>
-                  <th className='border-2 border-[#c9c9c9] w-[50px]'>{index+1}</th>
-                  <td className='border-2 border-[#c9c9c9] text-center min-w-[300px] p-2 text-sm'>{eachclub.club.club_nm}</td>
-                  <td className='border-2 border-[#c9c9c9] text-center text-sm'>{eachclub.club_position}</td>
-                </tr>
+            {mypageMenu == "myclub" && (
+              <div className="flex justify-center">
+                <table className="w-[70%]">
+                  <caption className="mb-8 font-bold">
+                    내가 가입한 동아리
+                  </caption>
+                  <tr className="border-2 border-[#c9c9c9]">
+                    <th className="border-2 border-[#c9c9c9] w-[50px] p-2">
+                      {" "}
+                    </th>
+                    <td className="border-2 border-[#c9c9c9] text-center min-w-[300px] p-2 text-sm">
+                      동아리 명
+                    </td>
+                    <td className="border-2 border-[#c9c9c9] text-center text-sm">
+                      가입 날짜
+                    </td>
+                  </tr>
+                  {myClub.map((eachclub, index) => (
+                    <tr className="border-2 border-[#c9c9c9]">
+                      <th className="border-2 border-[#c9c9c9] w-[50px]">
+                        {index + 1}
+                      </th>
+                      <td className="border-2 border-[#c9c9c9] text-center min-w-[300px] p-2 text-sm">
+                        {eachclub.club.club_nm}
+                      </td>
+                      <td className="border-2 border-[#c9c9c9] text-center text-sm">
+                        {eachclub.club_position}
+                      </td>
+                    </tr>
                   ))}
-              </table>
-            </div>
-            }
+                </table>
+              </div>
+            )}
 
             {/* 신청 현황 */}
-            {mypageMenu == "application" && 
-            <div className='flex justify-center'>
-              <table className='w-[70%]'>
-                <caption className='mb-8 font-bold'>신청 중인 동아리</caption>
-                <tr className='border-2 border-[#c9c9c9]'>
-                  <th className='border-2 border-[#c9c9c9] w-[50px]'> </th>
-                  <td className='border-2 border-[#c9c9c9] text-center min-w-[300px] p-2 text-sm'>동아리 명</td>
-                  <td className='border-2 border-[#c9c9c9] text-center text-sm'>상태</td>
-                </tr>
-                
-                {
-                  myjoinClubs.map((myjoinClub,index)=>(
-                    <tr className='border-2 border-[#c9c9c9]'>
-                  <th className='border-2 border-[#c9c9c9] w-[50px]'>{index+1}</th>
-                  <td className='border-2 border-[#c9c9c9] text-center min-w-[300px] p-2 text-sm'>{myjoinClub.club.club_nm}</td>
-                  <td className='border-2 border-[#c9c9c9] text-center text-sm'>{myjoinClub.jc_Rst}</td>
-                </tr>
-                  ))}
-                
-              </table>
-            </div>
-            }
-            
-            
+            {mypageMenu == "application" && (
+              <div className="flex justify-center">
+                <table className="w-[70%]">
+                  <caption className="mb-8 font-bold">신청 중인 동아리</caption>
+                  <tr className="border-2 border-[#c9c9c9]">
+                    <th className="border-2 border-[#c9c9c9] w-[50px]"> </th>
+                    <td className="border-2 border-[#c9c9c9] text-center min-w-[300px] p-2 text-sm">
+                      동아리 명
+                    </td>
+                    <td className="border-2 border-[#c9c9c9] text-center text-sm">
+                      상태
+                    </td>
+                  </tr>
 
+                  {myjoinClubs.map((myjoinClub, index) => (
+                    <tr className="border-2 border-[#c9c9c9]">
+                      <th className="border-2 border-[#c9c9c9] w-[50px]">
+                        {index + 1}
+                      </th>
+                      <td className="border-2 border-[#c9c9c9] text-center min-w-[300px] p-2 text-sm">
+                        {myjoinClub.club.club_nm}
+                      </td>
+                      <td className="border-2 border-[#c9c9c9] text-center text-sm">
+                        {myjoinClub.jc_Rst}
+                      </td>
+                    </tr>
+                  ))}
+                </table>
+              </div>
+            )}
           </div>
         </div>
-      </div> 
-      
-      {/* 쪽지 modal box */}
-      {modalDisplay == "Open" &&
-        <MessageModal handleCloseMessage={handleCloseMessage} handleOpenMessage={handleOpenMessage} />
-      }
+      </div>
 
+      {/* 쪽지 modal box */}
+      {modalDisplay == "Open" && (
+        <MessageModal
+          handleCloseMessage={handleCloseMessage}
+          handleOpenMessage={handleOpenMessage}
+        />
+      )}
     </div>
-  )
+  );
 }
