@@ -71,13 +71,15 @@ AFRAME.registerComponent('jump', {
 
 export default function Vr() {
   
-  const table ="/vr_src/folding_table.glb";
-  const tent = "/vr_src/Commercial_Tent_4x4_Meters.glb";
+  const footballtable="/vr_src/football_table.glb"
+  const table ="/vr_src/folding_table.glb"
+  const tent = "/vr_src/Commercial_Tent_4x4_Meters.glb"
   const sakura ="/vr_src/sakura_tree.glb";
   const grassImgPath ="/vr_src/grass.jpg";
   const easel = "/vr_src/easel.glb";
   const stone = "/vr_src/stone_ground.glb";
-  const poster = "/vr_src/example_poster.png";
+  const footballposter = "/vr_src/footballclub.png";
+  const ball = "/vr_src/Football.glb"
   const arcitechture1 = "/vr_src/arcitechture1.png";
   const arcitechture2 = "/vr_src/arcitechture2.png"; 
   
@@ -212,14 +214,6 @@ export default function Vr() {
           </a-entity>
         ))}
         
-        {/* 포스터 */}
-        <a-image src={poster} 
-                    position={`-5.05 1.05 -2`}
-                    width="0.84" 
-                    height="1.2"
-                    rotation="-15 90 0">
-        </a-image>
-        
         {/* 벚꽃나무 */}
         {CountCherryBlossom.map((_, index)=>(
           <a-entity gltf-model={`url(${sakura})`} 
@@ -274,7 +268,25 @@ export default function Vr() {
           scale="2.5 1.1 2.8"
           rotation="0 90 0"
           ></a-entity></>
-        ))} 
+        ))}
+        {/*축구 동아리*/}
+        {/* 축구 동아리 포스터 */}
+        <a-image src={footballposter} 
+                    position={`-5 1 -2`}
+                    width="0.84" 
+                    height="1.2"
+                    rotation="-15 90 0">
+        </a-image>
+        {/* 축구게임테이블 */}
+        <a-entity gltf-model={`url(${footballtable})`} 
+          position={`-5 0.7 0`}
+          scale="0.02 0.02 0.02"
+          rotation="0 -90 0"></a-entity>
+        {/* 축구공 */}
+        <a-entity gltf-model={`url(${ball})`} 
+        position={`-5 0.2 3`}
+        // scale="0.003 0.003 0.003"
+        rotation="0 -90 0"></a-entity>
       </a-scene>
     </div>
   );
