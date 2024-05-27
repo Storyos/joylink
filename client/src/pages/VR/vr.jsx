@@ -69,6 +69,19 @@ AFRAME.registerComponent('jump', {
   }
 });
 
+AFRAME.registerComponent('link-to', {
+  schema: {
+    url: { type: 'string' }
+  },
+  init: function () {
+    this.el.addEventListener('click', (event) => {
+      event.stopPropagation();
+      event.preventDefault();
+      window.location.href = this.data.url;
+    });
+  }
+});
+
 export default function Vr() {
   
   const footballtable="/vr_src/football_table.glb"
@@ -83,13 +96,20 @@ export default function Vr() {
   const arcitechture1 = "/vr_src/arcitechture1.png";
   const arcitechture2 = "/vr_src/arcitechture2.png"; 
   
+  const applicationForm = "/vr_src/application_form.png";
   const monopoly = "vr_src/monopoly.glb";
   const boardgame = "vr_src/boardgame.glb";
   const books1 = "vr_src/books1.glb";
   const books2 = "vr_src/books2.glb";
+  const picture1 = "vr_src/picture1.glb";
+  const picture2 = "vr_src/picture2.glb";
+  const camera = "vr_src/camera.glb";
+  const box = "vr_src/box.glb";
   
   const boardgamePoster = "vr_src/boardgame_poster.png";
   const readingPoster = "vr_src/reading_poster.png";
+  const picturePoster = "vr_src/picture_poster.png";
+  const bandPoster = "vr_src/band_poster.png";
   
   const CountCherryBlossom = Array.from({length: 23}, () => 0);
   const CountGrassX = Array.from({length: 30}, () => 0);
@@ -107,11 +127,14 @@ export default function Vr() {
         <a-camera 
         jump = "height: 0.5; duration: 400"
         boundary-constraint="minX: -10; maxX: 10; minZ: -70; maxZ: 7"
-        position="0 1.6 7"
+        position="0 1.6 -25"
         look-controls="enabled:true" 
         wasd-controls="acceleration: 20">
         </a-camera>
 
+        {/* 마우스 커서 */}
+        <a-entity cursor="fuse: false; rayOrigin: mouse"></a-entity>
+        
         {/* 하늘 */}
         <a-sky color="#9CCEFF"></a-sky>
         
@@ -126,6 +149,13 @@ export default function Vr() {
                   scale="0.5 0.5 0.5"
                   rotation="0 0 0">
         </a-entity>
+        <a-image src={applicationForm}
+                    position={`8.8 1 -0.5`}
+                    width="0.84" 
+                    height="1.2"
+                    rotation="-90 -90 0"
+                    link-to="url: /cbDescription">
+        </a-image>
 
         {/* 보드게임 포스터 */}
         <a-image src={boardgamePoster}
@@ -146,10 +176,71 @@ export default function Vr() {
                   scale="0.1 0.1 0.1"
                   rotation="0 0 0">
         </a-entity>
+        <a-image src={applicationForm}
+                    position={`8.8 1 -15.5`}
+                    width="0.84" 
+                    height="1.2"
+                    rotation="-90 -90 0"
+                    link-to="url: /cbDescription">
+        </a-image>
 
         {/* 독서 포스터 */}
         <a-image src={readingPoster}
                     position={`5.05 1.05 -8.5`}
+                    width="0.84" 
+                    height="1.2"
+                    rotation="-15 -90 0">
+        </a-image>
+
+        {/* 사진 동아리 */}
+        <a-entity gltf-model={`url(${picture1})`} 
+                  position={`8.55 1.25 -24.5`}
+                  scale="0.3 0.3 0.3"
+                  rotation="-15 -90 0">
+        </a-entity>
+        <a-entity gltf-model={`url(${picture2})`} 
+                  position={`8.55 1.4 -25.5`}
+                  scale="2 2 2"
+                  rotation="-30 0 0">
+        </a-entity>
+        <a-entity gltf-model={`url(${camera})`} 
+                  position={`8.5 1.1 -26.5`}
+                  scale="0.5 0.5 0.5"
+                  rotation="0 150 0">
+        </a-entity>
+        <a-entity gltf-model={`url(${box})`} 
+                  position={`9 1 -25`}
+                  scale="1.5 1.5 1.5"
+                  rotation="0 -90 0">
+        </a-entity>
+        <a-image src={applicationForm}
+                    position={`8.8 1 -30.5`}
+                    width="0.84" 
+                    height="1.2"
+                    rotation="-90 -90 0"
+                    link-to="url: /cbDescription">
+        </a-image>
+
+        {/* 사진 포스터 */}
+        <a-image src={picturePoster}
+                    position={`5.05 1.05 -23.5`}
+                    width="0.84" 
+                    height="1.2"
+                    rotation="-15 -90 0">
+        </a-image>
+
+        {/* 밴드 동아리 */}
+        <a-image src={applicationForm}
+                    position={`8.8 1 -45.5`}
+                    width="0.84" 
+                    height="1.2"
+                    rotation="-90 -90 0"
+                    link-to="url: /cbDescription">
+        </a-image>
+
+        {/* 밴드 포스터 */}
+        <a-image src={bandPoster}
+                    position={`5.05 1.05 -38.5`}
                     width="0.84" 
                     height="1.2"
                     rotation="-15 -90 0">
