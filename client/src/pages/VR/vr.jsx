@@ -80,8 +80,14 @@ export default function Vr() {
   const poster = "/vr_src/example_poster.png";
   const arcitechture1 = "/vr_src/arcitechture1.png";
   const arcitechture2 = "/vr_src/arcitechture2.png"; 
+  
   const monopoly = "vr_src/monopoly.glb";
-  const boardGame = "vr_src/board_game.glb";
+  const boardgame = "vr_src/boardgame.glb";
+  const books1 = "vr_src/books1.glb";
+  const books2 = "vr_src/books2.glb";
+  
+  const boardgamePoster = "vr_src/boardgame_poster.png";
+  const readingPoster = "vr_src/reading_poster.png";
   
   const CountCherryBlossom = Array.from({length: 23}, () => 0);
   const CountGrassX = Array.from({length: 30}, () => 0);
@@ -107,18 +113,47 @@ export default function Vr() {
         {/* 하늘 */}
         <a-sky color="#9CCEFF"></a-sky>
         
-        {/* 보드게임 */}
+        {/* 보드게임 동아리 */}
         <a-entity gltf-model={`url(${monopoly})`} 
                   position={`8.8 1 3.5`}
                   scale="0.001 0.001 0.001"
                   rotation="0 -90 0">
         </a-entity>
-        <a-entity gltf-model={`url(${boardGame})`} 
+        <a-entity gltf-model={`url(${boardgame})`} 
                   position={`8.5 1.2 6`}
                   scale="0.5 0.5 0.5"
                   rotation="0 0 0">
         </a-entity>
 
+        {/* 보드게임 포스터 */}
+        <a-image src={boardgamePoster}
+                    position={`5.05 1.05 6.5`}
+                    width="0.84" 
+                    height="1.2"
+                    rotation="-15 -90 0">
+        </a-image>
+        
+        {/* 독서 동아리 */}
+        <a-entity gltf-model={`url(${books1})`} 
+                  position={`8.8 1 -10`}
+                  scale="1 1 1"
+                  rotation="0 180 0">
+        </a-entity>
+        <a-entity gltf-model={`url(${books2})`} 
+                  position={`8.5 1 -11.5`}
+                  scale="0.1 0.1 0.1"
+                  rotation="0 0 0">
+        </a-entity>
+
+        {/* 독서 포스터 */}
+        <a-image src={readingPoster}
+                    position={`5.05 1.05 -8.5`}
+                    width="0.84" 
+                    height="1.2"
+                    rotation="-15 -90 0">
+        </a-image>
+
+        
         {/* 건물 이미지*/}
         <a-image src={arcitechture1}
                     position={`-50 50 -45`}
@@ -179,7 +214,7 @@ export default function Vr() {
         
         {/* 포스터 */}
         <a-image src={poster} 
-                    position={`-5 1 -2`}
+                    position={`-5.05 1.05 -2`}
                     width="0.84" 
                     height="1.2"
                     rotation="-15 90 0">
