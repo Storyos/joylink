@@ -65,7 +65,7 @@ export default function MyInfo() {
   };
 
   return (
-    <div className="p-5 m-12 border rounded-xl">
+    <div className="p-5 m-12 border rounded-xl font-custom">
       <div className="p-1 m-2">
         <h2 className="text-lg">내 정보</h2>
         <br></br>
