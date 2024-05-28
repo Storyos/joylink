@@ -3,6 +3,7 @@ import "aframe";
 import "aframe-particle-system-component";
 import "aframe-extras";
 import AFRAME from 'aframe';
+import ClubModels from "../../components/clubModels";
 
 // 카메라 이동 범위 제한하는 컴포넌트 등록
 AFRAME.registerComponent('boundary-constraint', {
@@ -69,34 +70,36 @@ AFRAME.registerComponent('jump', {
   }
 });
 
+AFRAME.registerComponent('link-to', {
+  schema: {
+    url: { type: 'string' }
+  },
+  init: function () {
+    this.el.addEventListener('click', (event) => {
+      event.stopPropagation();
+      event.preventDefault();
+      window.location.href = this.data.url;
+    });
+  }
+});
+
 export default function Vr() {
   
-  const footballtable="/vr_src/football_table.glb"
   const table ="/vr_src/folding_table.glb"
   const tent = "/vr_src/Commercial_Tent_4x4_Meters.glb"
   const sakura ="/vr_src/sakura_tree.glb";
   const grassImgPath ="/vr_src/grass.jpg";
   const easel = "/vr_src/easel.glb";
   const stone = "/vr_src/stone_ground.glb";
-  const footballposter = "/vr_src/footballclub.png";
-  const ball = "/vr_src/Football.glb"
   const arcitechture1 = "/vr_src/arcitechture1.png";
   const arcitechture2 = "/vr_src/arcitechture2.png"; 
   
-  const monopoly = "vr_src/monopoly.glb";
-  const boardgame = "vr_src/boardgame.glb";
-  const books1 = "vr_src/books1.glb";
-  const books2 = "vr_src/books2.glb";
-  
-  const boardgamePoster = "vr_src/boardgame_poster.png";
-  const readingPoster = "vr_src/reading_poster.png";
-  
+
   const CountCherryBlossom = Array.from({length: 23}, () => 0);
   const CountGrassX = Array.from({length: 30}, () => 0);
   const CountGrassZ = Array.from({length: 17}, () => 0);
   const CountStone = Array.from({length: 9}, () => 0);
   const tentline = Array.from({length: 5}, () => 0);
-
 
   return (
     <div>
@@ -107,54 +110,16 @@ export default function Vr() {
         <a-camera 
         jump = "height: 0.5; duration: 400"
         boundary-constraint="minX: -10; maxX: 10; minZ: -70; maxZ: 7"
-        position="0 1.6 7"
+        position="0 1.6 -30"
         look-controls="enabled:true" 
         wasd-controls="acceleration: 20">
         </a-camera>
 
+        {/* 마우스 커서 */}
+        <a-entity cursor="fuse: false; rayOrigin: mouse"></a-entity>
+        
         {/* 하늘 */}
         <a-sky color="#9CCEFF"></a-sky>
-        
-        {/* 보드게임 동아리 */}
-        <a-entity gltf-model={`url(${monopoly})`} 
-                  position={`8.8 1 3.5`}
-                  scale="0.001 0.001 0.001"
-                  rotation="0 -90 0">
-        </a-entity>
-        <a-entity gltf-model={`url(${boardgame})`} 
-                  position={`8.5 1.2 6`}
-                  scale="0.5 0.5 0.5"
-                  rotation="0 0 0">
-        </a-entity>
-
-        {/* 보드게임 포스터 */}
-        <a-image src={boardgamePoster}
-                    position={`5.05 1.05 6.5`}
-                    width="0.84" 
-                    height="1.2"
-                    rotation="-15 -90 0">
-        </a-image>
-        
-        {/* 독서 동아리 */}
-        <a-entity gltf-model={`url(${books1})`} 
-                  position={`8.8 1 -10`}
-                  scale="1 1 1"
-                  rotation="0 180 0">
-        </a-entity>
-        <a-entity gltf-model={`url(${books2})`} 
-                  position={`8.5 1 -11.5`}
-                  scale="0.1 0.1 0.1"
-                  rotation="0 0 0">
-        </a-entity>
-
-        {/* 독서 포스터 */}
-        <a-image src={readingPoster}
-                    position={`5.05 1.05 -8.5`}
-                    width="0.84" 
-                    height="1.2"
-                    rotation="-15 -90 0">
-        </a-image>
-
         
         {/* 건물 이미지*/}
         <a-image src={arcitechture1}
@@ -269,24 +234,34 @@ export default function Vr() {
           rotation="0 90 0"
           ></a-entity></>
         ))}
-        {/*축구 동아리*/}
-        {/* 축구 동아리 포스터 */}
-        <a-image src={footballposter} 
-                    position={`-5 1 -2`}
-                    width="0.84" 
-                    height="1.2"
-                    rotation="-15 90 0">
-        </a-image>
-        {/* 축구게임테이블 */}
-        <a-entity gltf-model={`url(${footballtable})`} 
-          position={`-5 0.7 0`}
-          scale="0.02 0.02 0.02"
-          rotation="0 -90 0"></a-entity>
-        {/* 축구공 */}
-        <a-entity gltf-model={`url(${ball})`} 
-        position={`-5 0.2 3`}
-        // scale="0.003 0.003 0.003"
-        rotation="0 -90 0"></a-entity>
+        
+        {/* 보드게임 동아리 */}
+        <ClubModels category="boardgame" index={0}/>
+        
+        {/* 독서 동아리 */}
+        <ClubModels category="reading" index={1}/>
+        
+        {/* 사진 동아리 */}
+        <ClubModels category="photography" index={2}/>
+        
+        {/* 밴드 동아리 */}
+        <ClubModels category="band" index={3}/>
+
+        {/* 축구 동아리 */}
+        <ClubModels category="football" index={0}/>
+
+        {/* 로봇 제어 계측 동아리 */}
+        <ClubModels category="mechanic" index={1}/>
+
+        {/* 술 동아리 */}
+        <ClubModels category="alcohol" index={2}/>
+        
+        {/* 등산 동아리 */}
+        <ClubModels category="climbing" index={4}/>
+        
+        {/* 여행 동아리 */}
+        <ClubModels category="traver" index={4}/>
+
       </a-scene>
     </div>
   );
