@@ -71,7 +71,7 @@ AFRAME.registerComponent('jump', {
 
 export default function Vr() {
   
-  const footballtable="/vr_src/football_table.glb"
+  const footballtable="/vr_src/football_Gambling.glb"
   const table ="/vr_src/folding_table.glb"
   const tent = "/vr_src/Commercial_Tent_4x4_Meters.glb"
   const sakura ="/vr_src/sakura_tree.glb";
@@ -79,14 +79,18 @@ export default function Vr() {
   const easel = "/vr_src/easel.glb";
   const stone = "/vr_src/stone_ground.glb";
   const footballposter = "/vr_src/footballclub.png";
-  const ball = "/vr_src/Football.glb"
+  const ball = "/vr_src/football.glb"
   const arcitechture1 = "/vr_src/arcitechture1.png";
   const arcitechture2 = "/vr_src/arcitechture2.png"; 
-  
+  const trophy = "/vr_src/trophy.glb"
   const monopoly = "vr_src/monopoly.glb";
   const boardgame = "vr_src/boardgame.glb";
   const books1 = "vr_src/books1.glb";
   const books2 = "vr_src/books2.glb";
+  const footballshoes = "vr_src/football_shoes.glb"
+  const football_set="vr_src/football_set.glb"
+  const soccer_uniform = "vr_src/soccer_uniform.glb"
+  const cone = "vr_src/cone.glb"
   
   const boardgamePoster = "vr_src/boardgame_poster.png";
   const readingPoster = "vr_src/reading_poster.png";
@@ -279,13 +283,36 @@ export default function Vr() {
         </a-image>
         {/* 축구게임테이블 */}
         <a-entity gltf-model={`url(${footballtable})`} 
-          position={`-5 0.7 0`}
-          scale="0.02 0.02 0.02"
+          position={`-5 0.6 0`}
+          scale="0.3 0.3 0.3"
           rotation="0 -90 0"></a-entity>
         {/* 축구공 */}
         <a-entity gltf-model={`url(${ball})`} 
-        position={`-5 0.2 3`}
-        // scale="0.003 0.003 0.003"
+        position={`-5 0.2 2`}
+        scale="1.5 1.5 1.5"
+        rotation="0 -90 0"></a-entity>
+        {/* 트로피 */}
+        <a-entity gltf-model={`url(${trophy})`} 
+        position={`-9 1 0`}
+        scale="0.3 0.3 0.3"
+        rotation="0 -90 0"></a-entity>
+        <a-entity gltf-model={`url(${trophy})`} 
+        position={`-9 1 -0.5`}
+        scale="0.3 0.3 0.3"
+        rotation="0 -90 0"></a-entity>
+        <a-entity gltf-model={`url(${footballshoes})`} 
+        position={`-6 0.5 1`}
+        scale="1.5 1.5 1.5"
+        rotation="0 -90 0"></a-entity>
+        <a-entity gltf-model={`url(${football_set})`} 
+        position={`-6 0.5 -4`}
+        rotation="0 90 0"></a-entity>
+        <a-entity gltf-model={`url(${soccer_uniform})`} 
+        position={`-9 1.2 -2`}
+        rotation="0 180 0"></a-entity>
+        <a-entity gltf-model={`url(${cone})`} 
+        position={`-6 0.2 1.7`}
+        scale="0.1 0.1 0.1"
         rotation="0 -90 0"></a-entity>
       </a-scene>
     </div>
