@@ -22,6 +22,7 @@ export default function ClubModels ({ category, index }) {
   const bandPoster = "vr_src/band_poster.png";
   const boardgamePoster = "vr_src/boardgame_poster.png";
   const climbingPoster = "vr_src/climbing_poster.png";
+  const traverPoster = "vr_src/traver_poster.png";
   
   return (
     <>
@@ -187,6 +188,26 @@ export default function ClubModels ({ category, index }) {
                     width="0.84" 
                     height="1.2"
                     rotation="-15 -90 0">
+        </a-image>
+      </>
+    }
+
+    {/* 여행 동아리 */}
+    {category === "traver" && 
+      <>
+        {/* 텐트, 그릴, 지도 넣기 */}
+        <a-image src={applicationForm}
+                    position={`-8.8 1 ${4.5-(15*index)}`}
+                    width="0.84" 
+                    height="1.2"
+                    rotation="-90 90 0"
+                    link-to="url: /cbDescription">
+        </a-image>
+        <a-image src={traverPoster}
+                    position={`-5.05 1.05 ${-2-(15*index)}`}
+                    width="0.84" 
+                    height="1.2"
+                    rotation="-15 90 0">
         </a-image>
       </>
     }
