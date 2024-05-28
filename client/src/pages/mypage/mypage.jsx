@@ -115,7 +115,7 @@ export default function Mypage() {
           </div>
           <VerticalLine></VerticalLine>
 
-          <div className="w-[1600px]">
+          <div className="w-[1500px]">
             {/* 내 정보 */}
             {mypageMenu == "userInfo" && (
               <div class="bg-blue-100 border rounded-xl p-8 w-3/4 mx-auto">
@@ -152,7 +152,7 @@ export default function Mypage() {
             {/* 정보 수정 */}
             {mypageMenu == "updateInfo" && (
               <div className="flex justify-center">
-                <div className="w-[70%] border rounded-xl p-5">
+                <div className="w-[70%] p-5 border rounded-xl">
                   <p className="mb-8 font-bold text-2xl text-center">정보 수정</p>
                   <ul className="text-center space-y-6">
                     <li>
@@ -207,9 +207,9 @@ export default function Mypage() {
 
             {/* 내 동아리 */}
             {mypageMenu == "myclub" && (
-              <div className="flex justify-center">
+              <div className="flex justify-center p-5">
                 <table className="w-[70%]">
-                  <caption className="mb-8 font-bold">
+                  <caption className="mb-8 font-bold text-2xl">
                     내가 가입한 동아리
                   </caption>
                   <tr className="border border-[#c9c9c9]">
@@ -242,28 +242,28 @@ export default function Mypage() {
 
             {/* 신청 현황 */}
             {mypageMenu == "application" && (
-              <div className="flex justify-center">
+              <div className="flex justify-center m-5">
                 <table className="w-[70%]">
-                  <caption className="mb-8 font-bold">신청 중인 동아리</caption>
-                  <tr className="border-2 border-[#c9c9c9]">
-                    <th className="border-2 border-[#c9c9c9] w-[50px]"> </th>
-                    <td className="border-2 border-[#c9c9c9] text-center min-w-[300px] p-2 text-sm">
+                  <caption className="mb-8 font-bold text-2xl">신청 중인 동아리</caption>
+                  <tr className="border border-[#c9c9c9]">
+                    <th className="border border-[#c9c9c9] w-[50px]"> </th>
+                    <td className="border border-[#c9c9c9] text-center min-w-[300px] p-2 text-sm">
                       동아리 명
                     </td>
-                    <td className="border-2 border-[#c9c9c9] text-center text-sm">
+                    <td className="border border-[#c9c9c9] text-center text-sm">
                       상태
                     </td>
                   </tr>
 
                   {myjoinClubs.map((myjoinClub, index) => (
-                    <tr className="border-2 border-[#c9c9c9]">
-                      <th className="border-2 border-[#c9c9c9] w-[50px]">
+                    <tr className="border border-[#c9c9c9]">
+                      <th className="border border-[#c9c9c9] w-[50px]">
                         {index + 1}
                       </th>
-                      <td className="border-2 border-[#c9c9c9] text-center min-w-[300px] p-2 text-sm">
+                      <td className="border border-[#c9c9c9] text-center min-w-[300px] p-2 text-sm">
                         {myjoinClub.club.club_nm}
                       </td>
-                      <td className="border-2 border-[#c9c9c9] text-center text-sm">
+                      <td className="border border-[#c9c9c9] text-center text-sm">
                         {myjoinClub.jc_Rst}
                       </td>
                     </tr>
@@ -285,3 +285,4 @@ export default function Mypage() {
     </div>
   );
 }
+
