@@ -16,7 +16,6 @@ export default function ClubModels ({ category, index }) {
   const backpack = "vr_src/backpack.glb";
   const hat = "vr_src/hat.glb";
   const mountain = "vr_src/mountain.glb";
-
   const readingPoster = "vr_src/reading_poster.png";
   const photographyPoster = "vr_src/photography_poster.png";
   const bandPoster = "vr_src/band_poster.png";
@@ -24,6 +23,26 @@ export default function ClubModels ({ category, index }) {
   const climbingPoster = "vr_src/climbing_poster.png";
   const traverPoster = "vr_src/traver_poster.png";
   
+  // 축구동아리 소스
+  const footballshoes = "vr_src/football_club/football_shoes.glb"
+  const football_set="vr_src/football_club/football_set.glb"
+  const soccer_uniform = "vr_src/football_club/soccer_uniform.glb"
+  const cone = "vr_src/football_club/cone.glb"
+  const trophy = "/vr_src/football_club/trophy.glb"
+  const footballposter = "/vr_src/football_club/footballclub.png";
+  const ball = "/vr_src/football_club/football.glb"
+  const footballtable="/vr_src/football_club/football_Gambling.glb"
+  //로봇제어계측 동아리
+  const mechanic_arm = "vr_src/mechanic_club/mechanic_arm.glb"
+  const drone = "vr_src/mechanic_club/drone.glb"
+  const drone2 = "vr_src/mechanic_club/drone2.glb"
+  const tool_box = "vr_src/mechanic_club/tool_box.glb"
+  const controller = "vr_src/mechanic_club/controller.glb"
+  const highrowposter = "vr_src/mechanic_club/highrow.jpg"
+  //술 동아리
+  const alcohol_set = "vr_src/alcohol/bottle_set_alcohol.glb"
+  const wine = "vr_src/alcohol/wine.glb"
+
   return (
     <>
 
