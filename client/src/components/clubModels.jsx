@@ -231,6 +231,95 @@ export default function ClubModels ({ category, index }) {
       </>
     }
 
+    {category === "football" &&
+      <>
+        {/* 축구 동아리 포스터 */}
+        <a-image src={footballposter} 
+                    position={`-5 1 ${-2-(15*index)}`}
+                    width="0.84" 
+                    height="1.2"
+                    rotation="-15 90 0">
+        </a-image>
+        {/* 축구게임테이블 */}
+        <a-entity gltf-model={`url(${footballtable})`} 
+          position={`-5 0.6 ${0-(15*index)}`}
+          scale="0.3 0.3 0.3"
+          rotation="0 -90 0"></a-entity>
+        {/* 축구공 */}
+        <a-entity gltf-model={`url(${ball})`} 
+        position={`-5 0.2 ${2-(15*index)}`}
+        scale="1.5 1.5 1.5"
+        rotation="0 -90 0"></a-entity>
+        {/* 트로피 */}
+        <a-entity gltf-model={`url(${trophy})`} 
+        position={`-9 1 ${0-(15*index)}`}
+        scale="0.3 0.3 0.3"
+        rotation="0 -90 0"></a-entity>
+        <a-entity gltf-model={`url(${trophy})`} 
+        position={`-9 1 ${-0.5-(15*index)}`}
+        scale="0.3 0.3 0.3"
+        rotation="0 -90 0"></a-entity>
+        <a-entity gltf-model={`url(${footballshoes})`} 
+        position={`-6 0.5 ${1-(15*index)}`}
+        scale="1.5 1.5 1.5"
+        rotation="0 -90 0"></a-entity>
+        <a-entity gltf-model={`url(${football_set})`} 
+        position={`-6 0.5 ${-4-(15*index)}`}
+        rotation="0 90 0"></a-entity>
+        <a-entity gltf-model={`url(${soccer_uniform})`} 
+        position={`-9 1.2 ${-2-(15*index)}`}
+        rotation="0 180 0"></a-entity>
+        <a-entity gltf-model={`url(${cone})`} 
+        position={`-6 0.2 ${1.7-(15*index)}`}
+        scale="0.1 0.1 0.1"
+        rotation="0 -90 0"></a-entity>
+      </>
+    }
+
+    {category === "mechanic"&&
+      <>
+        {/* 로봇 동아리 포스터 */}
+        <a-image  src={highrowposter} 
+                  position={`-5 1 ${-2-(15*index)}`}
+                  width="0.84" 
+                  height="1.2"
+                  rotation="-15 90 0">
+        </a-image>
+        {/*로봇팔*/}
+        <a-entity gltf-model={`url(${mechanic_arm})`} 
+                  position={`-9.5 1 ${-0.5-(15*index)}`}
+                  scale="0.3 0.3 0.3"
+                  rotation="0 -90 0"></a-entity>
+        {/*드론*/}
+        <a-entity gltf-model={`url(${drone})`} 
+                  position={`-8.5 1 ${-0.5-(15*index)}`}
+                  scale="0.4 0.4 0.4"
+                  rotation="0 -90 0"></a-entity>
+        {/*드론2*/}
+        <a-entity gltf-model={`url(${drone2})`} 
+                  position={`-8.6 1.2 ${0-(15*index)}`}
+                  scale="0.025 0.025 0.025"
+                  rotation="0 -90 0"></a-entity>
+                  {/* 축구게임테이블 */}
+        <a-entity gltf-model={`url(${tool_box})`} 
+                  position={`-7.3 -1.6 ${-4.8-(15*index)}`}
+                  scale="0.7 0.7 0.7"></a-entity>
+        <a-entity gltf-model={`url(${controller})`} 
+                  position={`-8 1 -13`}></a-entity>
+      </>
+    }
+    {category === "alcohol" &&
+      <>
+        <a-entity gltf-model={`url(${alcohol_set})`} 
+                  position={`-5 1 ${0.3-(15*index)}`}
+                  scale = "0.015 0.015 0.015"
+                  rotation ="0 -90 0"></a-entity>
+        <a-entity gltf-model={`url(${wine})`} 
+                  position={`-9 1 ${0-(15*index)}`}
+                  scale = "0.03 0.03 0.03"
+                  rotation ="0 -90 0"></a-entity>
+      </>
+    }
     </>
   ) 
 }
