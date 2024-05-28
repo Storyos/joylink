@@ -13,27 +13,39 @@ export default function Notice() {
   const handleMenualMenu = () => {
     setNoticeMenu("Menual");
   };
+
+  const VerticalLine = () => {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="border-r border-gray-400 h-full"></div>
+      </div>
+    );
+  };
+
   return (
-    <div className="flex justify-center mt-28">
-      <div className="w-1/6 m-5 border-2 rounded-lg lg:w-1/12">
-          <h1 className="flex justify-center m-7">카테고리</h1>
-          <ul className="flex flex-col items-center mt-4">
-            <li className="m-2">
-              <button onClick={handleNoticeMenu}>공지사항</button>
-            </li>
-            <li className="m-2">
-              <button onClick={handleEventMenu}>이벤트</button>
-            </li>
-            <li className="m-2">
-              <button onClick={handleMenualMenu}>메뉴얼</button>
-            </li>
-          </ul> 
-      </div>  
-      <div className="w-3/5 m-5 rounded-lg">
+    <div className="flex mt-48 font-custom">
+      <div className="w-64 mt-4 ml-36 text-2xl">
+
+        <div className="flex flex-col space-y-4">
+          <h1 className="mb-8">카테고리</h1>
+
+          <button onClick={handleNoticeMenu} className="text-left btn">
+            공지사항
+          </button>
+
+          <button onClick={handleEventMenu} className="text-left btn">
+            이벤트
+          </button>
+
+          <button onClick={handleMenualMenu} className="text-left btn">
+            메뉴얼
+          </button>
+        </div>
+      </div>
+      <VerticalLine></VerticalLine>
+      <div className=" m-5 rounded-lg">
         <NoticeContents menu={noticeMenu} />
       </div>
     </div>
   );
 }
-
-
