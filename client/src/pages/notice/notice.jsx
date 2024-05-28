@@ -13,9 +13,18 @@ export default function Notice() {
   const handleMenualMenu = () => {
     setNoticeMenu("Menual");
   };
+
+  const VerticalLine = () => {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="border-r border-gray-400 h-full"></div>
+      </div>
+    );
+  };
+
   return (
     <div className="flex mt-48 font-custom">
-      <div className="w-64 mx-20 mt-4 ml-36 text-2xl">
+      <div className="w-64 mt-4 ml-36 text-2xl">
 
         <div className="flex flex-col space-y-4">
           <h1 className="mb-8">카테고리</h1>
@@ -33,7 +42,8 @@ export default function Notice() {
           </button>
         </div>
       </div>
-      <div className="w-3/5 m-5 rounded-lg">
+      <VerticalLine></VerticalLine>
+      <div className=" m-5 rounded-lg">
         <NoticeContents menu={noticeMenu} />
       </div>
     </div>
