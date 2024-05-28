@@ -82,7 +82,7 @@ export default function Mypage() {
       {/* 메인 영역 */}
       <div className="mt-48 mb-20">
         <div className="flex mt-32">
-          <div className="w-64 mx-20 mt-4 text-2xl ml-36">
+          <div className="w-64 mx-20 mt-4 ml-36 text-2xl">
             <div className="flex flex-col space-y-4">
               <button
                 className="text-left btn"

@@ -61,7 +61,7 @@ export default function NoticeContents (props) {
   // 공지사항 목록을 표시하는 컴포넌트
   const NoticeList =  () => {
     return (
-      <div className="w-[800px] rounded-[10px] border-2">
+      <div className="w-[800px] rounded-[10px] border">
         {/* 검색창 */}
         <div className="flex justify-end mt-4">
           <input className="px-2 py-1 mr-2 rounded-md outline-none" type="text" placeholder="게시글 검색" />
@@ -145,6 +145,8 @@ export default function NoticeContents (props) {
     );
   }
 
+
+
   // 세부 정보를 표시하는 컴포넌트
   const NoticeDetail = () => {
     return (
@@ -174,6 +176,8 @@ export default function NoticeContents (props) {
       </div>
     )
   }
+
+  
   
   // 세부 정보 페이지 또는 목록 페이지를 표시하는 컴포넌트
   return (
