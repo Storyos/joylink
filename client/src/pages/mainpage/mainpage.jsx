@@ -267,7 +267,7 @@ export default function Mainpage() {
               ? "전체"
               : `${selectedCategory}관련 모임`}
           </h2>
-          <div className="grid grid-cols-1 gap-4 mx-4 md:grid-cols-2 lg:grid-cols-3 mx-28">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 mx-28">
             {boxContents.map((card, index) => (
               <div key={index} className="p-3 bg-white rounded shadow">
                 <div className="mb-2 text-gray-500">{card.club_ctg}</div>
