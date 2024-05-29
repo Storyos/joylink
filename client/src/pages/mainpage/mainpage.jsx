@@ -4,11 +4,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapLocationDot } from '@fortawesome/free-solid-svg-icons';
 import Banner from "./banner";
 import '../../index.css';
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Mainpage() {
   const [selectedCategory, setSelectedCategory] = useState("전체");
   const [boxContents, setBoxContents] = useState([]);
-
+  const navigate = useNavigate();
   const categories = [
     { name: "전체", icon: "/icons/all.png" },
     { name: "스포츠", icon: "/icons/sports.png" },
@@ -92,9 +93,11 @@ export default function Mainpage() {
             <p className="mb-6 text-lg text-black">
               당신의 모임을 쉽고 빠르게 시작하고, 새로운 인연을 만들어 보세요.
             </p>
-            <button className="px-6 py-2 text-white bg-black rounded-full hover:bg-gray-700">
-              지금 시작하기
-            </button>
+            <Link to = '/join'>
+              <button className="px-6 py-2 text-white bg-black rounded-full hover:bg-gray-700">
+                지금 시작하기
+              </button>
+            </Link>
           </div>
         </div>
 
