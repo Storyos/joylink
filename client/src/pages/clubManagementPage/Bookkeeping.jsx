@@ -24,6 +24,7 @@ export default function Bookkeeping() {
         const { data, error } = await supabase
             .from('Transferinfos')
             .select('*')
+            .eq('state','allowed')
             .order('transfer_date', { ascending: false });
         if (error) {
             console.error('Error fetching transactions:', error);
