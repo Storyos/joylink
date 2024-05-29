@@ -258,6 +258,9 @@ export default function Vr() {
         
         {/* 등산 동아리 */}
         <ClubModels category="climbing" index={4}/>
+
+        {/* 여행 동아리 */}
+        <ClubModels category="stock" index={3}/>
         
         {/* 여행 동아리 */}
         <ClubModels category="traver" index={4}/>

@@ -42,6 +42,13 @@ export default function ClubModels ({ category, index }) {
   //술 동아리
   const alcohol_set = "vr_src/alcohol/bottle_set_alcohol.glb"
   const wine = "vr_src/alcohol/wine.glb"
+  const oak = "vr_src/alcohol/oak.glb"
+  const certificate = "vr_src/alcohol/certificate.glb"
+  const alcoholposter = "vr_src/alcohol/alcoholposter.jpg"
+  //주식 동아리
+  const chart = "vr_src/stockclub/chart.glb"
+  const boxes = "vr_src/stockclub/boxes.glb"
+  const file = "vr_src/stockclub/file.glb"
 
   return (
     <>
@@ -300,7 +307,7 @@ export default function ClubModels ({ category, index }) {
                   position={`-8.6 1.2 ${0-(15*index)}`}
                   scale="0.025 0.025 0.025"
                   rotation="0 -90 0"></a-entity>
-                  {/* 축구게임테이블 */}
+        
         <a-entity gltf-model={`url(${tool_box})`} 
                   position={`-7.3 -1.6 ${-4.8-(15*index)}`}
                   scale="0.7 0.7 0.7"></a-entity>
@@ -308,16 +315,61 @@ export default function ClubModels ({ category, index }) {
                   position={`-8 1 -13`}></a-entity>
       </>
     }
+    {/* 술동아리 */}
     {category === "alcohol" &&
       <>
+      {/* 술 동아리 포스터 */}
+        <a-image  src={alcoholposter} 
+                  position={`-5 1 ${-2-(15*index)}`}
+                  width="0.84" 
+                  height="1.2"
+                  rotation="-15 90 0"></a-image>
+        {/* 술테이블 */}
         <a-entity gltf-model={`url(${alcohol_set})`} 
                   position={`-5 1 ${0.3-(15*index)}`}
                   scale = "0.015 0.015 0.015"
                   rotation ="0 -90 0"></a-entity>
+        {/* 와인 */}
         <a-entity gltf-model={`url(${wine})`} 
-                  position={`-9 1 ${0-(15*index)}`}
+                  position={`-8.4 1 ${0-(15*index)}`}
                   scale = "0.03 0.03 0.03"
-                  rotation ="0 -90 0"></a-entity>
+                  rotation ="0 90 0"></a-entity>
+        {/* 오크통 */}
+        <a-entity gltf-model={`url(${oak})`} 
+                  position={`-8.1 1.6 ${-2-(15*index)}`}
+                  scale="0.4 0.4 0.4"
+                  rotation="0 90 0"></a-entity>
+        {/* 자격증 */}
+        <a-entity gltf-model={`url(${certificate})`}
+                  position={`-9 1 ${-0.5-(15*index)}`}
+                  scale = "0.0015 0.0015 0.0015"
+                  rotation ="-20 90 0"></a-entity>
+      </>
+    }
+    {/* 주식동아리 */}
+    {category === "stock" &&
+      <>
+        {/* 주식 동아리 포스터 */}
+        <a-image  src={alcoholposter} 
+                  position={`-5 1 ${-2-(15*index)}`}
+                  width="0.84" 
+                  height="1.2"
+                  rotation="-15 90 0"></a-image>
+        {/* 차트 */}
+        <a-entity gltf-model={`url(${chart})`}
+                  position={`-9.3 1.7 ${-0.5-(15*index)}`}
+                  rotation ="0 90 0"
+                  scale = "1.8 1.45 1.5"></a-entity>
+        {/* 서류박스 */}
+        <a-entity gltf-model={`url(${boxes})`} 
+                  position={`-5 0 ${0.3-(15*index)}`}
+                  rotation ="0 -90 0"
+                  scale ="1.3 1.2 1.2"></a-entity>
+        {/* 서류 */}
+        <a-entity gltf-model={`url(${file})`} 
+                  position={`-8.4 1 ${0-(15*index)}`}
+                  scale = "0.3 0.3 0.3"
+                  rotation ="0 90 0"></a-entity>
       </>
     }
     </>
