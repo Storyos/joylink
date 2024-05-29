@@ -301,6 +301,12 @@ export default function ClubModels ({ category, index }) {
                     width="4.8px"
                     rotation="0 90 0">
         </a-image>
+        <a-image src={footballbenner} 
+                    position={`-5.4 2.6 ${4.45-(15*index)}`}
+                    height="0.7px"
+                    width="4.8px"
+                    rotation="0 90 0">
+        </a-image>
         {/* 축구 동아리 포스터 */}
         <a-image src={footballposter} 
                     position={`-5 1 ${-2-(15*index)}`}
