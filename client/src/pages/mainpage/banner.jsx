@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Banner() {
   return (
-    <div className="flex items-center justify-between p-6 mx-20 my-8 mt-6 bg-gray-800 rounded-lg">
+    <div className="flex items-center justify-between p-6 mx-32 my-8 mt-6 bg-gray-800 rounded-lg">
       <div className="flex items-center mx-auto space-x-4">
         <img src="/icons/joylink_blue_logo.png" alt="Joylink" className="h-16 mx-6 mb-4" />
         <div className="text-center">
