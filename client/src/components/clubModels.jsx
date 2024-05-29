@@ -2,27 +2,44 @@ export default function ClubModels ({ category, index }) {
 
   const applicationForm = "/vr_src/application_form.png";
 
-  const books1 = "vr_src/books1.glb";
-  const books2 = "vr_src/books2.glb";
-  const picture1 = "vr_src/picture1.glb";
-  const picture2 = "vr_src/picture2.glb";
-  const camera = "vr_src/camera.glb";
-  const box = "vr_src/box.glb";
-  const microphone = "vr_src/microphone.glb";
-  const guitar = "vr_src/guitar.glb";
-  const drum = "vr_src/drum.glb";
-  const monopoly = "vr_src/monopoly.glb";
-  const boardgame = "vr_src/boardgame.glb";
-  const backpack = "vr_src/backpack.glb";
-  const hat = "vr_src/hat.glb";
-  const mountain = "vr_src/mountain.glb";
-  const readingPoster = "vr_src/reading_poster.png";
-  const photographyPoster = "vr_src/photography_poster.png";
-  const bandPoster = "vr_src/band_poster.png";
-  const boardgamePoster = "vr_src/boardgame_poster.png";
-  const climbingPoster = "vr_src/climbing_poster.png";
-  const traverPoster = "vr_src/traver_poster.png";
-  
+  // 보드게임 동아리
+  const monopoly = "vr_src/boardgame_club/monopoly.glb";
+  const boardgame = "vr_src/boardgame_club/boardgame.glb";
+  const boardgamePoster = "vr_src/boardgame_club/boardgame_poster.png";
+
+  // 독서 동아리
+  const books1 = "vr_src/reading_club/books1.glb";
+  const books2 = "vr_src/reading_club/books2.glb";
+  const readingPoster = "vr_src/reading_club/reading_poster.png";
+
+  // 사진 동아리
+  const picture1 = "vr_src/photography_club/picture1.glb";
+  const picture2 = "vr_src/photography_club/picture2.glb";
+  const camera = "vr_src/photography_club/camera.glb";
+  const box = "vr_src/photography_club/box.glb";
+  const photographyPoster = "vr_src/photography_club/photography_poster.png";
+
+  // 밴드 동아리
+  const microphone = "vr_src/band_club/microphone.glb";
+  const guitar = "vr_src/band_club/guitar.glb";
+  const drum = "vr_src/band_club/drum.glb";
+  const bandPoster = "vr_src/band_club/band_poster.png";
+
+  // 등산 동아리
+  const backpack = "vr_src/climbing_club/backpack.glb";
+  const hat = "vr_src/climbing_club/hat.glb";
+  const mountain = "vr_src/climbing_club/mountain.glb";
+  const water = "vr_src/climbing_club/water.glb";
+  const climbingPoster = "vr_src/climbing_club/climbing_poster.png";
+
+  // 여행 동아리
+  const traverTent = "vr_src/traver_club/traver_tent.glb";
+  const grill = "vr_src/traver_club/grill.glb";
+  const map = "vr_src/traver_club/korean_map.png";
+  const steak1 = "vr_src/traver_club/steak1.glb";
+  const steak2 = "vr_src/traver_club/steak2.glb";
+  const traverPoster = "vr_src/traver_club/traver_poster.png";
+
   // 축구동아리 소스
   const footballshoes = "vr_src/football_club/football_shoes.glb"
   const football_set="vr_src/football_club/football_set.glb"
@@ -195,6 +212,11 @@ export default function ClubModels ({ category, index }) {
                   scale="0.0005 0.0005 0.0005"
                   rotation="0 -90 0">
         </a-entity>
+        <a-entity gltf-model={`url(${water})`} 
+                  position={`9.2 1 ${6.2-(15*index)}`}
+                  scale="2 2 2"
+                  rotation="0 0 0">
+        </a-entity>
         <a-image src={applicationForm}
                     position={`8.8 1 ${-0.5-(15*index)}`}
                     width="0.84" 
@@ -214,7 +236,37 @@ export default function ClubModels ({ category, index }) {
     {/* 여행 동아리 */}
     {category === "traver" && 
       <>
-        {/* 텐트, 그릴, 지도 넣기 */}
+        <a-entity gltf-model={`url(${traverTent})`} 
+                  position={`-7 0.8 ${1-(15*index)}`}
+                  scale="1 1 1"
+                  rotation="0 0 0">
+        </a-entity>
+        <a-entity gltf-model={`url(${grill})`} 
+                  position={`-7.2 0.2 ${-2-(15*index)}`}
+                  scale="0.008 0.008 0.008"
+                  rotation="0 0 0">
+        </a-entity>
+        <a-entity gltf-model={`url(${water})`} 
+                  position={`-9 1 ${0.5-(15*index)}`}
+                  scale="2 2 2"
+                  rotation="0 0 0">
+        </a-entity>
+        <a-entity gltf-model={`url(${steak1})`} 
+                  position={`-8.3 1 ${-1.5-(15*index)}`}
+                  scale="1.5 1.5 1.5"
+                  rotation="0 0 0">
+        </a-entity>
+        <a-entity gltf-model={`url(${steak2})`} 
+                  position={`-8.3 1 ${-1-(15*index)}`}
+                  scale="0.05 0.05 0.05"
+                  rotation="-35 0 0">
+        </a-entity>
+        <a-image src={map}
+                    position={`-8.8 0.95 ${0.5-(15*index)}`}
+                    width="0.84"
+                    height="1.2"
+                    rotation="-90 90 0">
+        </a-image>
         <a-image src={applicationForm}
                     position={`-8.8 1 ${4.5-(15*index)}`}
                     width="0.84" 

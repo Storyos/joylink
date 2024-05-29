@@ -110,7 +110,7 @@ export default function Vr() {
         <a-camera 
         jump = "height: 0.5; duration: 400"
         boundary-constraint="minX: -10; maxX: 10; minZ: -70; maxZ: 7"
-        position="0 1.6 -30"
+        position="0 1.6 -60"
         look-controls="enabled:true" 
         wasd-controls="acceleration: 20">
         </a-camera>
@@ -247,6 +247,9 @@ export default function Vr() {
         {/* 밴드 동아리 */}
         <ClubModels category="band" index={3}/>
 
+        {/* 등산 동아리 */}
+        <ClubModels category="climbing" index={4}/>
+
         {/* 축구 동아리 */}
         <ClubModels category="football" index={0}/>
 
@@ -255,9 +258,6 @@ export default function Vr() {
 
         {/* 술 동아리 */}
         <ClubModels category="alcohol" index={2}/>
-        
-        {/* 등산 동아리 */}
-        <ClubModels category="climbing" index={4}/>
         
         {/* 여행 동아리 */}
         <ClubModels category="traver" index={4}/>
