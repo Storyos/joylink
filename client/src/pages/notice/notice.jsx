@@ -16,18 +16,18 @@ export default function Notice() {
 
   const VerticalLine = () => {
     return (
-      <div className="flex justify-center items-center h-screen">
-        <div className="border-r border-gray-400 h-full"></div>
+      <div className="flex items-center justify-center h-screen">
+        <div className="h-full border-r border-gray-400"></div>
       </div>
     );
   };
 
   return (
     <div className="flex mt-48 font-custom">
-      <div className="w-64 mt-4 ml-36 text-2xl">
+      <div className="w-64 mt-4 text-2xl ml-36">
 
         <div className="flex flex-col space-y-4">
-          <h1 className="mb-8">카테고리</h1>
+          <h1 className="mb-8 font-extrabold">카테고리</h1>
 
           <button onClick={handleNoticeMenu} className="text-left btn">
             공지사항
@@ -43,7 +43,7 @@ export default function Notice() {
         </div>
       </div>
       <VerticalLine></VerticalLine>
-      <div className=" m-5 rounded-lg">
+      <div className="m-5 rounded-lg ">
         <NoticeContents menu={noticeMenu} />
       </div>
     </div>

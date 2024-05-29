@@ -2,7 +2,7 @@ import { useEffect, useState, useTransition } from "react";
 import { supabase } from "../../App";
 import MessageModal from "../../components/messageModal";
 import useUserStore from "../../zustand/useUserStore";
-
+import { Link } from "react-router-dom";
 export default function Mypage() {
   const userData = useUserStore((state) => state.user);
   const user_seq = userData.user_seq;
@@ -11,6 +11,12 @@ export default function Mypage() {
   const handleOpenMessage = () => {
     console.log("모달창 여는중..");
     setModalDisplay("Open");
+  };
+
+  const formatDate = (dateString) => {
+    const options = { month: '2-digit', day: '2-digit' };
+    const date = new Date(dateString);
+    return date.toLocaleString('ko-KR', options).replace(',', '');
   };
 
   const handleCloseMessage = () => {
@@ -31,8 +37,8 @@ export default function Mypage() {
 
   const VerticalLine = () => {
     return (
-      <div className="flex justify-center items-center h-screen">
-        <div className="border-r border-gray-400 h-full"></div>
+      <div className="flex items-center justify-center h-screen">
+        <div className="h-full border-r border-gray-400"></div>
       </div>
     );
   };
@@ -43,6 +49,7 @@ export default function Mypage() {
         .from("members")
         .select(
           `
+      mem_date,
       club:club_seq (club_nm, club_seq),
       user_seq,
       club_position
@@ -82,7 +89,7 @@ export default function Mypage() {
       {/* 메인 영역 */}
       <div className="mt-48 mb-20">
         <div className="flex mt-32">
-          <div className="w-64 mx-20 mt-4 ml-36 text-2xl">
+          <div className="w-64 mx-20 mt-4 text-2xl ml-36">
             <div className="flex flex-col space-y-4">
               <button
                 className="text-left btn"
@@ -149,51 +156,54 @@ export default function Mypage() {
                 </div>
               </div>
             )}
-            {/* 정보 수정 */}
-            {mypageMenu == "updateInfo" && (
+            {/* 내 정보 수정 */}{mypageMenu === "updateInfo" && (
               <div className="flex justify-center">
                 <div className="w-[70%] p-5 border rounded-xl">
-                  <p className="mb-8 font-bold text-2xl text-center">정보 수정</p>
-                  <ul className="text-center space-y-6">
-                    <li>
-                      <label htmlFor="" className="text-md text-[#a9a9a9]">
-                        아이디(이메일){" "}
-                        <input
-                          type="text"
-                          className=" p-1 px-2 text-black bg-gray-100 rounded text-xl ml-3"
-                          defaultValue={"아이디"}
-                        />
+                  <p className="mb-8 text-2xl font-bold text-center">정보 수정</p>
+                  <ul className="space-y-6 text-center">
+                    <li className="flex items-center justify-between">
+                      <label htmlFor="email" className="text-md text-[#a9a9a9]">
+                        아이디(이메일)
                       </label>
+                      <input
+                        type="text"
+                        id="email"
+                        className="p-1 px-2 text-black bg-gray-100 rounded text-xl ml-3 w-[70%]"
+                        defaultValue={userData.user_id}
+                      />
                     </li>
-                    <li>
-                      <label htmlFor="" className="text-md text-[#a9a9a9]">
-                        비밀번호{" "}
-                        <input
-                          type="text"
-                          className=" p-1 px-2 text-black bg-gray-100 rounded text-xl ml-3"
-                          defaultValue={"비밀번호"}
-                        />
+                    <li className="flex items-center justify-between">
+                      <label htmlFor="password" className="text-md text-[#a9a9a9]">
+                        비밀번호
                       </label>
+                      <input
+                        type="password"
+                        id="password"
+                        className="p-1 px-2 text-black bg-gray-100 rounded text-xl ml-3 w-[70%]"
+                        defaultValue={"비밀번호"}
+                      />
                     </li>
-                    <li>
-                      <label htmlFor="" className="text-md text-[#a9a9a9]">
-                        이름{" "}
-                        <input
-                          type="text"
-                          className=" p-1 px-2 text-black bg-gray-100 rounded text-xl ml-3"
-                          defaultValue={"이름"}
-                        />
+                    <li className="flex items-center justify-between">
+                      <label htmlFor="name" className="text-md text-[#a9a9a9]">
+                        이름
                       </label>
+                      <input
+                        type="text"
+                        id="name"
+                        className="p-1 px-2 text-black bg-gray-100 rounded text-xl ml-3 w-[70%]"
+                        defaultValue={userData.user_name}
+                      />
                     </li>
-                    <li>
-                      <label htmlFor="" className="text-md text-[#a9a9a9]">
-                        전화번호{" "}
-                        <input
-                          type="text"
-                          className=" p-1 px-2 text-black bg-gray-100 rounded text-xl ml-3"
-                          defaultValue={"전화번호"}
-                        />
+                    <li className="flex items-center justify-between">
+                      <label htmlFor="phone" className="text-md text-[#a9a9a9]">
+                        전화번호
                       </label>
+                      <input
+                        type="text"
+                        id="phone"
+                        className="p-1 px-2 text-black bg-gray-100 rounded text-xl ml-3 w-[70%]"
+                        defaultValue={userData.user_pn}
+                      />
                     </li>
                   </ul>
                   <div className="flex justify-end">
@@ -205,34 +215,43 @@ export default function Mypage() {
               </div>
             )}
 
+
+
+
             {/* 내 동아리 */}
             {mypageMenu == "myclub" && (
               <div className="flex justify-center p-5">
                 <table className="w-[70%]">
-                  <caption className="mb-8 font-bold text-2xl">
+                  <caption className="mb-8 text-2xl font-bold">
                     내가 가입한 동아리
                   </caption>
                   <tr className="border border-[#c9c9c9]">
                     <th className="border border-[#c9c9c9] w-[50px] p-2">
-                      {" "}
+                      {"번호"}
                     </th>
                     <td className="border border-[#c9c9c9] text-center min-w-[300px] p-2 text-sm">
                       동아리 명
+                    </td>
+                    <td className="border border-[#c9c9c9] text-center text-sm">
+                      직책
                     </td>
                     <td className="border border-[#c9c9c9] text-center text-sm">
                       가입 날짜
                     </td>
                   </tr>
                   {myClub.map((eachclub, index) => (
-                    <tr className="border border-[#c9c9c9]">
-                      <th className="border border-[#c9c9c9] w-[50px]">
-                        {index + 1}
-                      </th>
+                    <tr className="border border-[#c9c9c9]" key={index}>
+                      <th className="border border-[#c9c9c9] w-[50px]">{index + 1}</th>
                       <td className="border border-[#c9c9c9] text-center min-w-[300px] p-2 text-sm">
-                        {eachclub.club.club_nm}
+                        <Link to={`/myClubPage?${eachclub.club_seq}`} className=" hover:underline">
+                          {eachclub.club.club_nm}
+                        </Link>
                       </td>
                       <td className="border border-[#c9c9c9] text-center text-sm">
                         {eachclub.club_position}
+                      </td>
+                      <td className="border border-[#c9c9c9] text-center text-sm">
+                        {formatDate(eachclub.mem_date)}
                       </td>
                     </tr>
                   ))}
@@ -244,7 +263,7 @@ export default function Mypage() {
             {mypageMenu == "application" && (
               <div className="flex justify-center m-5">
                 <table className="w-[70%]">
-                  <caption className="mb-8 font-bold text-2xl">신청 중인 동아리</caption>
+                  <caption className="mb-8 text-2xl font-bold">신청 중인 동아리</caption>
                   <tr className="border border-[#c9c9c9]">
                     <th className="border border-[#c9c9c9] w-[50px]"> </th>
                     <td className="border border-[#c9c9c9] text-center min-w-[300px] p-2 text-sm">
