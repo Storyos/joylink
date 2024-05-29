@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "../../App";
 import useUserStore from "../../zustand/useUserStore"; // 상태관리를 위해
+import Notifications from "../../pages/mainpage/notification";
 
 export default function Header() {
   const { user, isLoggedIn, setUser, logout } = useUserStore();
   let navigate = useNavigate();
+
   // 로그인이 되어있는경우를 check
   useEffect(() => {
     const checkToken = async () => {
@@ -69,9 +71,10 @@ export default function Header() {
           </li>
         </ul>
 
-        <div className="flex md:mr-[100px]">
+        <div className="flex items-center md:mr-[100px]">
           {isLoggedIn ? (
             <>
+              <Notifications /> {/* 알림 아이콘 컴포넌트 추가 */}
               <button
                 className="w-[90px] px-2 md:mx-2 border-2 border-[#87C4FF] rounded-[5px] bg-white hover:bg-[#87C4FF] hover:border-[#87C4FF] text-[#39A7FF] hover:text-white"
                 onClick={handleLogout}
