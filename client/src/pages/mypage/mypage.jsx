@@ -156,17 +156,17 @@ export default function Mypage() {
                   <p className="mb-8 font-bold text-2xl text-center">정보 수정</p>
                   <ul className="text-center space-y-6">
                     <li>
-                      <label htmlFor="" className="text-md text-[#a9a9a9]">
+                      <label htmlFor="" className="text-md text-[#a9a9a9] text-left">
                         아이디(이메일){" "}
                         <input
                           type="text"
-                          className=" p-1 px-2 text-black bg-gray-100 rounded text-xl ml-3"
+                          className=" p-1 px-2 text-black bg-gray-100 rounded text-xl ml-3 mr-14"
                           defaultValue={"아이디"}
                         />
                       </label>
                     </li>
                     <li>
-                      <label htmlFor="" className="text-md text-[#a9a9a9]">
+                      <label htmlFor="" className="text-md text-[#a9a9a9] mr-5">
                         비밀번호{" "}
                         <input
                           type="text"
@@ -186,7 +186,7 @@ export default function Mypage() {
                       </label>
                     </li>
                     <li>
-                      <label htmlFor="" className="text-md text-[#a9a9a9]">
+                      <label htmlFor="" className="text-md text-[#a9a9a9] mr-5">
                         전화번호{" "}
                         <input
                           type="text"

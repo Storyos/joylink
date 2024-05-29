@@ -32,7 +32,6 @@ export default function MyInfo() {
         setClubPosition(data.club_position);
       }
     }
-
     async function getComments() {
       let { count, error } = await supabase
         .from("comments") // 댓글 테이블에서
