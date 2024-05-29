@@ -5,10 +5,20 @@ import useUserStore from '../../zustand/useUserStore';
 export default function Notification() {
     const [notifications, setNotifications] = useState([]);
     const [showNotifications, setShowNotifications] = useState(false);
-    const user_seq = useUserStore().user_seq;
+    const user_seq = useUserStore().user.user_seq;
     useEffect(() => {
+        async function notificationSubscription() {
+            await supabase
+                .channel('room3')
+                .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'notifications', filter: `user_seq=eq.${user_seq}` }, handlesubscribe)
+                .subscribe();
+        }
+        notificationSubscription();
         fetchNotifications();
     }, []);
+    const handlesubscribe = () => {
+        fetchNotifications();
+    }
 
     const fetchNotifications = async () => {
         const { data, error } = await supabase
@@ -16,7 +26,7 @@ export default function Notification() {
             .select('*')
             .order('created_at', { ascending: false })
             .eq('read', false)
-            .eq('user_seq',user_seq);
+            .eq('user_seq', user_seq);
         if (error) {
             console.error('Error fetching notifications:', error);
         } else {
@@ -35,16 +45,19 @@ export default function Notification() {
                     user_seq: user_seq
                 }
             ]);
-        const { _, error } = await supabase
+        const { data, error } = await supabase
             .from('notifications')
-            .update('read', true)
-            .eq('transfer_id', transactionId);
+            .update({read: true})
+            .eq('transfer_id', transactionId)
+            .eq('user_seq',user_seq);
         if (error) {
             console.error("알림 읽음 처리 에러발생", error);
         }
-        else fetchNotifications();
-        console.log("처리하였습니다.");
-        
+        else {
+            alert("승인하였습니다.");
+            fetchNotifications();
+            console.log("처리하였습니다.");
+        }
     };
 
     return (

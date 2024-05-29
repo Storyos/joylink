@@ -74,7 +74,6 @@ export default function Header() {
         <div className="flex items-center md:mr-[100px]">
           {isLoggedIn ? (
             <>
-              <Notifications /> {/* 알림 아이콘 컴포넌트 추가 */}
               <button
                 className="w-[90px] px-2 md:mx-2 border-2 border-[#87C4FF] rounded-[5px] bg-white hover:bg-[#87C4FF] hover:border-[#87C4FF] text-[#39A7FF] hover:text-white"
                 onClick={handleLogout}
@@ -84,6 +83,8 @@ export default function Header() {
               <button className="w-[90px] px-2 md:mx-2 border-2 border-[#87C4FF] rounded-[5px] bg-[#87C4FF] hover:bg-[#39A7FF] hover:border-[#39A7FF] text-white">
                 <Link to="/mypage">마이페이지</Link>
               </button>
+              <Notifications /> {/* 알림 아이콘 컴포넌트 추가 */}
+
             </>
           ) : (
             <>
