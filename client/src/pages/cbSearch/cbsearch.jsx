@@ -43,7 +43,7 @@ function CbSearch() {
   };
 
   return (
-    <div className="min-h-screen m-0 bg-gray-100">
+    <div className="min-h-screen m-0 bg-gray-100 font-custom">
       <SearchBar />
       <div className="max-w-screen-xl p-6 mx-auto">
         {/* <div className="p-4 m-0 overflow-hidden bg-white rounded shadow"> */}
