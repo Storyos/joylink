@@ -60,7 +60,7 @@ export default function NoticeContents (props) {
   // 공지사항 목록을 표시하는 컴포넌트
   const NoticeList =  () => {
     return (
-      <div className="w-[1200px]">
+      <div className="w-[1150px]">
         {/* 검색창 */}
         <div className="flex justify-end mt-4">
           <input className="px-4 py-1 mr-2 rounded-md outline-none" type="text" placeholder="게시글 검색" />
@@ -101,7 +101,7 @@ export default function NoticeContents (props) {
               </tbody>
             </table>
   
-            {/* Pagination */}
+            {/* 페이지 버튼 */}
             <div className="flex justify-center mt-12">
               <button className="px-2 py-1 mx-1 border">1</button>
               <button className="px-2 py-1 mx-1 border">2</button>
@@ -111,6 +111,7 @@ export default function NoticeContents (props) {
             </div>
           </div>
           }
+
           {/* 이벤트 목록 */}
           {menu === "Event" &&
             <ul>

@@ -24,7 +24,7 @@ export default function Notice() {
 
   return (
     <div className="flex mt-48 font-custom">
-      <div className="w-64 mt-4 ml-36 text-2xl">
+      <div className="w-48 mt-4 ml-36 text-2xl">
 
         <div className="flex flex-col space-y-4">
           <h1 className="mb-8">카테고리</h1>
@@ -43,7 +43,7 @@ export default function Notice() {
         </div>
       </div>
       <VerticalLine></VerticalLine>
-      <div className=" m-5 rounded-lg">
+      <div className=" m-5 rounded-lg ml-20">
         <NoticeContents menu={noticeMenu} />
       </div>
     </div>
