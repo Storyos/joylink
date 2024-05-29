@@ -3,6 +3,7 @@ import "aframe";
 import "aframe-particle-system-component";
 import "aframe-extras";
 import AFRAME from 'aframe';
+import ClubModels from "../../components/clubModels";
 
 // 카메라 이동 범위 제한하는 컴포넌트 등록
 AFRAME.registerComponent('boundary-constraint', {
@@ -69,24 +70,36 @@ AFRAME.registerComponent('jump', {
   }
 });
 
+AFRAME.registerComponent('link-to', {
+  schema: {
+    url: { type: 'string' }
+  },
+  init: function () {
+    this.el.addEventListener('click', (event) => {
+      event.stopPropagation();
+      event.preventDefault();
+      window.location.href = this.data.url;
+    });
+  }
+});
+
 export default function Vr() {
   
-  const table ="folding_table.glb"
+  const table ="/vr_src/folding_table.glb"
   const tent = "/vr_src/Commercial_Tent_4x4_Meters.glb"
   const sakura ="/vr_src/sakura_tree.glb";
   const grassImgPath ="/vr_src/grass.jpg";
   const easel = "/vr_src/easel.glb";
   const stone = "/vr_src/stone_ground.glb";
-  const poster = "/vr_src/example_poster.png";
   const arcitechture1 = "/vr_src/arcitechture1.png";
   const arcitechture2 = "/vr_src/arcitechture2.png"; 
   
+
   const CountCherryBlossom = Array.from({length: 23}, () => 0);
   const CountGrassX = Array.from({length: 30}, () => 0);
   const CountGrassZ = Array.from({length: 17}, () => 0);
   const CountStone = Array.from({length: 9}, () => 0);
   const tentline = Array.from({length: 5}, () => 0);
-
 
   return (
     <div>
@@ -97,16 +110,18 @@ export default function Vr() {
         <a-camera 
         jump = "height: 0.5; duration: 400"
         boundary-constraint="minX: -10; maxX: 10; minZ: -70; maxZ: 7"
-        position="0 1.6 7"
+        position="0 1.6 -30"
         look-controls="enabled:true" 
         wasd-controls="acceleration: 20">
         </a-camera>
 
+        {/* 마우스 커서 */}
+        <a-entity cursor="fuse: false; rayOrigin: mouse"></a-entity>
+        
         {/* 하늘 */}
         <a-sky color="#9CCEFF"></a-sky>
         
         {/* 건물 이미지*/}
-        
         <a-image src={arcitechture1}
                     position={`-50 50 -45`}
                     width="300" 
@@ -114,9 +129,9 @@ export default function Vr() {
                     rotation="0 90 0">
         </a-image>
         <a-image src={arcitechture2}
-                    position={`50 50 -45`}
-                    width="300" 
-                    height="100"
+                    position={`50 40 -45`}
+                    width="240" 
+                    height="80"
                     rotation="0 -90 0">
         </a-image>
         
@@ -163,14 +178,6 @@ export default function Vr() {
                   rotation="0 90 0" >
           </a-entity>
         ))}
-        
-        {/* 포스터 */}
-        <a-image src={poster} 
-                    position={`-5 1 -2`}
-                    width="0.84" 
-                    height="1.2"
-                    rotation="-15 90 0">
-        </a-image>
         
         {/* 벚꽃나무 */}
         {CountCherryBlossom.map((_, index)=>(
@@ -226,7 +233,35 @@ export default function Vr() {
           scale="2.5 1.1 2.8"
           rotation="0 90 0"
           ></a-entity></>
-        ))} 
+        ))}
+        
+        {/* 보드게임 동아리 */}
+        <ClubModels category="boardgame" index={0}/>
+        
+        {/* 독서 동아리 */}
+        <ClubModels category="reading" index={1}/>
+        
+        {/* 사진 동아리 */}
+        <ClubModels category="photography" index={2}/>
+        
+        {/* 밴드 동아리 */}
+        <ClubModels category="band" index={3}/>
+
+        {/* 축구 동아리 */}
+        <ClubModels category="football" index={0}/>
+
+        {/* 로봇 제어 계측 동아리 */}
+        <ClubModels category="mechanic" index={1}/>
+
+        {/* 술 동아리 */}
+        <ClubModels category="alcohol" index={2}/>
+        
+        {/* 등산 동아리 */}
+        <ClubModels category="climbing" index={4}/>
+        
+        {/* 여행 동아리 */}
+        <ClubModels category="traver" index={4}/>
+
       </a-scene>
     </div>
   );
