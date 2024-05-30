@@ -83,6 +83,11 @@ export default function ClubModels ({ category, index }) {
   const stockposter = "vr_src/stockclub/stockposter.jpg"
   const stockbanner = "vr_src/stockclub/stockbanner.png"
   const stockbanner2 = "vr_src/stockclub/stockbanner2.png"
+  //사람 오브젝트
+  const soccerman = "vr_src/people/soccerman.glb"
+  const soccerman2 = "vr_src/people/soccerman2.glb"
+  const korean = "vr_src/people/korean.glb"
+  const korean2 = "vr_src/people/korean2.glb"
 
   return (
     <>
@@ -588,6 +593,24 @@ export default function ClubModels ({ category, index }) {
                     link-to="url: /cbDescription">
         </a-image>
       </>
+    }
+    {category === "people" &&
+    <>
+      <a-entity gltf-model={`url(${soccerman})`}
+                  position={`-5.5 0 0 `}
+                  rotation ="0 90 0"></a-entity>
+      <a-entity gltf-model={`url(${soccerman2})`}
+                  position={`-4.5 0 0 `}
+                  rotation ="0 -90 0"></a-entity>
+      <a-entity gltf-model={`url(${korean})`}
+                  position={`-3 0.05 -18 `}
+                  rotation ="0 20 0"
+                  scale="0.7 0.7 0.7"></a-entity>
+      <a-entity gltf-model={`url(${korean2})`}
+                  position={`-7 0.05 -10 `}
+                  rotation ="0 20 0"
+                  scale="0.7 0.7 0.7"></a-entity>
+    </>
     }
     </>
   ) 
