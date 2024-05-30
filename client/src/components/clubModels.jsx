@@ -6,11 +6,13 @@ export default function ClubModels ({ category, index }) {
   const monopoly = "vr_src/boardgame_club/monopoly.glb";
   const boardgame = "vr_src/boardgame_club/boardgame.glb";
   const boardgamePoster = "vr_src/boardgame_club/boardgame_poster.png";
+  const boardgameBanner = "vr_src/boardgame_club/boardgame_banner.png";
 
   // 독서 동아리
   const books1 = "vr_src/reading_club/books1.glb";
   const books2 = "vr_src/reading_club/books2.glb";
   const readingPoster = "vr_src/reading_club/reading_poster.png";
+  const readingBanner = "vr_src/reading_club/reading_banner.png";
 
   // 사진 동아리
   const picture1 = "vr_src/photography_club/picture1.glb";
@@ -18,12 +20,14 @@ export default function ClubModels ({ category, index }) {
   const camera = "vr_src/photography_club/camera.glb";
   const box = "vr_src/photography_club/box.glb";
   const photographyPoster = "vr_src/photography_club/photography_poster.png";
+  const photographyBanner = "vr_src/photography_club/photography_banner.png";
 
   // 밴드 동아리
   const microphone = "vr_src/band_club/microphone.glb";
   const guitar = "vr_src/band_club/guitar.glb";
   const drum = "vr_src/band_club/drum.glb";
   const bandPoster = "vr_src/band_club/band_poster.png";
+  const bandBanner = "vr_src/band_club/band_banner.jpg";
 
   // 등산 동아리
   const backpack = "vr_src/climbing_club/backpack.glb";
@@ -31,14 +35,16 @@ export default function ClubModels ({ category, index }) {
   const mountain = "vr_src/climbing_club/mountain.glb";
   const water = "vr_src/climbing_club/water.glb";
   const climbingPoster = "vr_src/climbing_club/climbing_poster.png";
+  const climbingBanner = "vr_src/climbing_club/climbing_banner.png";
 
   // 여행 동아리
-  const traverTent = "vr_src/traver_club/traver_tent.glb";
-  const grill = "vr_src/traver_club/grill.glb";
-  const map = "vr_src/traver_club/korean_map.png";
-  const steak1 = "vr_src/traver_club/steak1.glb";
-  const steak2 = "vr_src/traver_club/steak2.glb";
-  const traverPoster = "vr_src/traver_club/traver_poster.png";
+  const travelTent = "vr_src/traveling_club/travel_tent.glb";
+  const grill = "vr_src/traveling_club/grill.glb";
+  const map = "vr_src/traveling_club/korean_map.png";
+  const steak1 = "vr_src/traveling_club/steak1.glb";
+  const steak2 = "vr_src/traveling_club/steak2.glb";
+  const travelPoster = "vr_src/traveling_club/travel_poster.png";
+  const travelBanner = "vr_src/traveling_club/travel_banner.png";
 
   // 축구동아리 소스
   const footballshoes = "vr_src/football_club/football_shoes.glb"
@@ -97,6 +103,18 @@ export default function ClubModels ({ category, index }) {
               height="1.2"
               rotation="-15 -90 0">
       </a-image>
+      <a-image src={boardgameBanner} 
+                    position={`5.4 2.6 ${-0.4-(15*index)}`}
+                    height="0.7px"
+                    width="4.8px"
+                    rotation="0 -90 0">
+      </a-image>
+      <a-image src={boardgameBanner} 
+                    position={`5.4 2.6 ${4.45-(15*index)}`}
+                    height="0.7px"
+                    width="4.8px"
+                    rotation="0 -90 0">
+      </a-image>
     </>
     }
 
@@ -125,6 +143,18 @@ export default function ClubModels ({ category, index }) {
                     width="0.84" 
                     height="1.2"
                     rotation="-15 -90 0">
+      </a-image>
+      <a-image src={readingBanner} 
+                    position={`5.4 2.6 ${-0.4-(15*index)}`}
+                    height="0.7px"
+                    width="4.8px"
+                    rotation="0 -90 0">
+      </a-image>
+      <a-image src={readingBanner} 
+                    position={`5.4 2.6 ${4.45-(15*index)}`}
+                    height="0.7px"
+                    width="4.8px"
+                    rotation="0 -90 0">
       </a-image>
     </>
     }
@@ -165,6 +195,18 @@ export default function ClubModels ({ category, index }) {
                   height="1.2"
                   rotation="-15 -90 0">
       </a-image>
+      <a-image src={photographyBanner} 
+                    position={`5.4 2.6 ${-0.4-(15*index)}`}
+                    height="0.7px"
+                    width="4.8px"
+                    rotation="0 -90 0">
+      </a-image>
+      <a-image src={photographyBanner} 
+                    position={`5.4 2.6 ${4.45-(15*index)}`}
+                    height="0.7px"
+                    width="4.8px"
+                    rotation="0 -90 0">
+      </a-image>
     </>
     }
 
@@ -198,6 +240,18 @@ export default function ClubModels ({ category, index }) {
                     width="0.84" 
                     height="1.2"
                     rotation="-15 -90 0">
+        </a-image>
+        <a-image src={bandBanner} 
+                      position={`5.4 2.6 ${-0.4-(15*index)}`}
+                      height="0.7px"
+                      width="4.8px"
+                      rotation="0 -90 0">
+        </a-image>
+        <a-image src={bandBanner} 
+                      position={`5.4 2.6 ${4.45-(15*index)}`}
+                      height="0.7px"
+                      width="4.8px"
+                      rotation="0 -90 0">
         </a-image>
       </>
     }
@@ -238,13 +292,25 @@ export default function ClubModels ({ category, index }) {
                     height="1.2"
                     rotation="-15 -90 0">
         </a-image>
+        <a-image src={climbingBanner} 
+                      position={`5.4 2.6 ${-0.4-(15*index)}`}
+                      height="0.7px"
+                      width="4.8px"
+                      rotation="0 -90 0">
+        </a-image>
+        <a-image src={climbingBanner} 
+                      position={`5.4 2.6 ${4.45-(15*index)}`}
+                      height="0.7px"
+                      width="4.8px"
+                      rotation="0 -90 0">
+        </a-image>
       </>
     }
 
     {/* 여행 동아리 */}
     {category === "traver" && 
       <>
-        <a-entity gltf-model={`url(${traverTent})`} 
+        <a-entity gltf-model={`url(${travelTent})`} 
                   position={`-7 0.8 ${1-(15*index)}`}
                   scale="1 1 1"
                   rotation="0 0 0">
@@ -282,11 +348,23 @@ export default function ClubModels ({ category, index }) {
                     rotation="-90 90 0"
                     link-to="url: /cbDescription">
         </a-image>
-        <a-image src={traverPoster}
+        <a-image src={travelPoster}
                     position={`-5.05 1.05 ${-2-(15*index)}`}
                     width="0.84" 
                     height="1.2"
                     rotation="-15 90 0">
+        </a-image>
+        <a-image src={travelBanner} 
+                      position={`-5.4 2.6 ${-0.4-(15*index)}`}
+                      height="0.7px"
+                      width="4.8px"
+                      rotation="0 90 0">
+        </a-image>
+        <a-image src={travelBanner} 
+                      position={`-5.4 2.6 ${4.45-(15*index)}`}
+                      height="0.7px"
+                      width="4.8px"
+                      rotation="0 90 0">
         </a-image>
       </>
     }
@@ -345,6 +423,13 @@ export default function ClubModels ({ category, index }) {
         position={`-6 0.2 ${1.7-(15*index)}`}
         scale="0.1 0.1 0.1"
         rotation="0 -90 0"></a-entity>
+        <a-image src={applicationForm}
+                    position={`-8.8 1 ${4.5-(15*index)}`}
+                    width="0.84" 
+                    height="1.2"
+                    rotation="-90 90 0"
+                    link-to="url: /cbDescription">
+        </a-image>
       </>
     }
     {/* 로봇제어계측 동아리 */}
@@ -378,6 +463,13 @@ export default function ClubModels ({ category, index }) {
                   scale="0.7 0.7 0.7"></a-entity>
         <a-entity gltf-model={`url(${controller})`} 
                   position={`-8 1 -13`}></a-entity>
+        <a-image src={applicationForm}
+                position={`-8.8 1 ${4.5-(15*index)}`}
+                width="0.84" 
+                height="1.2"
+                rotation="-90 90 0"
+                link-to="url: /cbDescription">
+        </a-image>
       </>
     }
     {/* 술동아리 */}
@@ -409,6 +501,13 @@ export default function ClubModels ({ category, index }) {
                   position={`-9 1 ${-0.5-(15*index)}`}
                   scale = "0.0015 0.0015 0.0015"
                   rotation ="-20 90 0"></a-entity>
+        <a-image src={applicationForm}
+                    position={`-8.8 1 ${4.5-(15*index)}`}
+                    width="0.84" 
+                    height="1.2"
+                    rotation="-90 90 0"
+                    link-to="url: /cbDescription">
+        </a-image>
       </>
     }
     {/* 주식동아리 */}
@@ -435,6 +534,13 @@ export default function ClubModels ({ category, index }) {
                   position={`-8.4 1 ${0-(15*index)}`}
                   scale = "0.3 0.3 0.3"
                   rotation ="0 90 0"></a-entity>
+        <a-image src={applicationForm}
+                    position={`-8.8 1 ${4.5-(15*index)}`}
+                    width="0.84" 
+                    height="1.2"
+                    rotation="-90 90 0"
+                    link-to="url: /cbDescription">
+        </a-image>
       </>
     }
     </>
