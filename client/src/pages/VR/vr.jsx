@@ -264,7 +264,9 @@ export default function Vr() {
         
         {/* 여행 동아리 */}
         <ClubModels category="traver" index={4}/>
-
+        
+        {/*사람오브젝트*/}
+        <ClubModels category="people"/>
       </a-scene>
     </div>
   );
