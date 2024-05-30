@@ -57,8 +57,8 @@ export default function SearchReceivedUser () {
   };
 
   // 유저 선택 시 팝업창 닫으면서 MessageModal로 데이터 보내기
-  const handleClickUser = (userName, userId) => {
-    window.opener.postMessage({username: userName, userId: userId});
+  const handleClickUser = (userName, userId,user_seq) => {
+    window.opener.postMessage({username: userName, userId: userId,reciever_seq: user_seq});
     window.close();
   }
 
@@ -80,7 +80,7 @@ export default function SearchReceivedUser () {
             </tr>
             {userData.map((user, index) => (
               <tr key={index}>
-                <td className="border-2"><button className="hover:bg-[#e9e9e9] px-1" onClick={()=>{handleClickUser(user.user_name, user.user_id)}}>{user.user_name}</button></td>
+                <td className="border-2"><button className="hover:bg-[#e9e9e9] px-1" onClick={()=>{handleClickUser(user.user_name, user.user_id, user.user_seq)}}>{user.user_name}</button></td>
                 <td className="border-2">{user.user_id}</td>
               </tr>
             ))}
