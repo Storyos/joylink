@@ -39,6 +39,7 @@ export default function ClubModels ({ category, index }) {
   const steak1 = "vr_src/traver_club/steak1.glb";
   const steak2 = "vr_src/traver_club/steak2.glb";
   const traverPoster = "vr_src/traver_club/traver_poster.png";
+  const travelbanner="vr_src/traver_club/travelbanner.png"
 
   // 축구동아리 소스
   const footballshoes = "vr_src/football_club/football_shoes.glb"
@@ -73,6 +74,8 @@ export default function ClubModels ({ category, index }) {
   const boxes = "vr_src/stockclub/boxes.glb"
   const file = "vr_src/stockclub/file.glb"
   const stockposter = "vr_src/stockclub/stockposter.jpg"
+  const stockbanner = "vr_src/stockclub/stockbanner.png"
+  const stockbanner2 = "vr_src/stockclub/stockbanner2.png"
 
   return (
     <>
@@ -250,7 +253,7 @@ export default function ClubModels ({ category, index }) {
     {/* 여행 동아리 */}
     {category === "traver" && 
       <>
-        <a-image src={footballbenner} 
+        <a-image src={travelbanner} 
                     position={`-5.4 2.6 ${-0.4-(15*index)}`}
                     height="0.7px"
                     width="4.8px"
@@ -456,13 +459,13 @@ export default function ClubModels ({ category, index }) {
     {/* 주식동아리 */}
     {category === "stock" &&
       <>
-        <a-image src={footballbenner} 
+        <a-image src={stockbanner} 
                     position={`-5.4 2.6 ${-0.4-(15*index)}`}
                     height="0.7px"
                     width="4.8px"
                     rotation="0 90 0">
         </a-image>
-        <a-image src={footballbenner} 
+        <a-image src={stockbanner2} 
                     position={`-5.4 2.6 ${4.45-(15*index)}`}
                     height="0.7px"
                     width="4.8px"
