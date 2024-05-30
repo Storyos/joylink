@@ -7,12 +7,14 @@ export default function ClubModels ({ category, index }) {
   const boardgame = "vr_src/boardgame_club/boardgame.glb";
   const boardgamePoster = "vr_src/boardgame_club/boardgame_poster.png";
   const boardgameBanner = "vr_src/boardgame_club/boardgame_banner.png";
+  const boardgameBanner2 = "vr_src/boardgame_club/boardgame_banner2.png";
 
   // 독서 동아리
   const books1 = "vr_src/reading_club/books1.glb";
   const books2 = "vr_src/reading_club/books2.glb";
   const readingPoster = "vr_src/reading_club/reading_poster.png";
   const readingBanner = "vr_src/reading_club/reading_banner.png";
+  const readingBanner2 = "vr_src/reading_club/reading_banner2.png";
 
   // 사진 동아리
   const picture1 = "vr_src/photography_club/picture1.glb";
@@ -21,6 +23,7 @@ export default function ClubModels ({ category, index }) {
   const box = "vr_src/photography_club/box.glb";
   const photographyPoster = "vr_src/photography_club/photography_poster.png";
   const photographyBanner = "vr_src/photography_club/photography_banner.png";
+  const photographyBanner2 = "vr_src/photography_club/photography_banner2.png";
 
   // 밴드 동아리
   const microphone = "vr_src/band_club/microphone.glb";
@@ -28,6 +31,7 @@ export default function ClubModels ({ category, index }) {
   const drum = "vr_src/band_club/drum.glb";
   const bandPoster = "vr_src/band_club/band_poster.png";
   const bandBanner = "vr_src/band_club/band_banner.jpg";
+  const bandBanner2 = "vr_src/band_club/band_banner2.png";
 
   // 등산 동아리
   const backpack = "vr_src/climbing_club/backpack.glb";
@@ -45,6 +49,7 @@ export default function ClubModels ({ category, index }) {
   const steak2 = "vr_src/traveling_club/steak2.glb";
   const travelPoster = "vr_src/traveling_club/travel_poster.png";
   const travelBanner = "vr_src/traveling_club/travel_banner.png";
+  const travelBanner2 = "vr_src/traveling_club/travel_banner2.png";
 
   // 축구동아리 소스
   const footballshoes = "vr_src/football_club/football_shoes.glb"
@@ -117,7 +122,7 @@ export default function ClubModels ({ category, index }) {
                     width="4.8px"
                     rotation="0 -90 0">
       </a-image>
-      <a-image src={boardgameBanner} 
+      <a-image src={boardgameBanner2} 
                     position={`5.4 2.6 ${4.45-(15*index)}`}
                     height="0.7px"
                     width="4.8px"
@@ -158,7 +163,7 @@ export default function ClubModels ({ category, index }) {
                     width="4.8px"
                     rotation="0 -90 0">
       </a-image>
-      <a-image src={readingBanner} 
+      <a-image src={readingBanner2} 
                     position={`5.4 2.6 ${4.45-(15*index)}`}
                     height="0.7px"
                     width="4.8px"
@@ -209,7 +214,7 @@ export default function ClubModels ({ category, index }) {
                     width="4.8px"
                     rotation="0 -90 0">
       </a-image>
-      <a-image src={photographyBanner} 
+      <a-image src={photographyBanner2} 
                     position={`5.4 2.6 ${4.45-(15*index)}`}
                     height="0.7px"
                     width="4.8px"
@@ -255,7 +260,7 @@ export default function ClubModels ({ category, index }) {
                       width="4.8px"
                       rotation="0 -90 0">
         </a-image>
-        <a-image src={bandBanner} 
+        <a-image src={bandBanner2} 
                       position={`5.4 2.6 ${4.45-(15*index)}`}
                       height="0.7px"
                       width="4.8px"
@@ -368,7 +373,7 @@ export default function ClubModels ({ category, index }) {
                       width="4.8px"
                       rotation="0 90 0">
         </a-image>
-        <a-image src={travelBanner} 
+        <a-image src={travelBanner2} 
                       position={`-5.4 2.6 ${4.45-(15*index)}`}
                       height="0.7px"
                       width="4.8px"
