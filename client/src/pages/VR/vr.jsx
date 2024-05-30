@@ -93,7 +93,14 @@ export default function Vr() {
   const stone = "/vr_src/stone_ground.glb";
   const arcitechture1 = "/vr_src/arcitechture1.png";
   const arcitechture2 = "/vr_src/arcitechture2.png"; 
-  
+  const person1 = "vr_src/people/person1.glb";
+  const person2 = "vr_src/people/person2.glb";
+  const person3 = "vr_src/people/person3.glb";
+  const person4 = "vr_src/people/person4.glb";
+  const person5 = "vr_src/people/person5.glb";
+  const person6 = "vr_src/people/person6.glb";
+  const person7 = "vr_src/people/person7.glb";
+  const person8 = "vr_src/people/person8.glb";
 
   const CountCherryBlossom = Array.from({length: 23}, () => 0);
   const CountGrassX = Array.from({length: 30}, () => 0);
@@ -234,21 +241,63 @@ export default function Vr() {
           rotation="0 90 0"
           ></a-entity></>
         ))}
+
+        {/* 사람들 */}
+        <a-entity gltf-model={person1}
+                  position="3 0 -3"
+                  scale="1 1 1"
+                  rotation="0 0 0">
+        </a-entity>
+        <a-entity gltf-model={person2}
+                  position="3 0 -5"
+                  scale="1 1 1"
+                  rotation="0 0 0">
+        </a-entity>
+        <a-entity gltf-model={person5}
+                  position="-6 1 -45"
+                  scale="1 1 1"
+                  rotation="0 -90 0">
+        </a-entity>
+        <a-entity gltf-model={person6}
+                  position="5 1 0"
+                  scale="1 1 1"
+                  rotation="-20 45 0">
+        </a-entity>
+        <a-entity gltf-model={person3}
+                  position="3 0.1 -40"
+                  scale="1 1 1"
+                  rotation="0 90 0">
+        </a-entity>
+        <a-entity gltf-model={person4}
+                  position="-4 1 -47"
+                  scale="1 1 1"
+                  rotation="-15 -90 0">
+        </a-entity>
+        <a-entity gltf-model={person7}
+                  position="4 0.1 -25"
+                  scale="1 1 1"
+                  rotation="-15 90 0">
+        </a-entity>
+        <a-entity gltf-model={person8}
+                  position="-3 1 -9"
+                  scale="1 1 1"
+                  rotation="-15 0 0">
+        </a-entity>
         
         {/* 보드게임 동아리 */}
-        <ClubModels category="boardgame" index={0}/>
+        <ClubModels category="boardgame" index={1}/>
 
         {/* 축구 동아리 */}
         <ClubModels category="football" index={0}/>
         
         {/* 독서 동아리 */}
-        <ClubModels category="reading" index={1}/>
+        <ClubModels category="reading" index={2}/>
         
         {/* 사진 동아리 */}
-        <ClubModels category="photography" index={2}/>
+        <ClubModels category="photography" index={3}/>
         
         {/* 밴드 동아리 */}
-        <ClubModels category="band" index={3}/>
+        <ClubModels category="band" index={0}/>
 
         {/* 주식 동아리 */}
         <ClubModels category="stock" index={3}/>
