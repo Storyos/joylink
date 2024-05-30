@@ -31,6 +31,7 @@ export default function ClubModels ({ category, index }) {
   const mountain = "vr_src/climbing_club/mountain.glb";
   const water = "vr_src/climbing_club/water.glb";
   const climbingPoster = "vr_src/climbing_club/climbing_poster.png";
+  const climbingbanner = "vr_src/climbing_club/climbingbanner.png";
 
   // 여행 동아리
   const traverTent = "vr_src/traver_club/traver_tent.glb";
