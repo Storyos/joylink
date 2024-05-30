@@ -118,33 +118,39 @@ export default function Mypage() {
           <div className="w-[1500px]">
             {/* 내 정보 */}
             {mypageMenu == "userInfo" && (
-              <div class="bg-blue-100 border rounded-xl p-8 w-3/4 mx-auto">
-                <div className="flex mb-4 justify-left">
-                  <img
-                    src="https://picsum.photos/200"
-                    className="w-40 h-40 mb-8 rounded-xl"
-                  />
+              <div className="flex-col ml-60 w-[820px] pt-10  border rounded-3xl bg-blue-50">
+                <img
+                  src="https://picsum.photos/200"
+                  className="w-40 h-40 mb-8 rounded-full ml-16"
+                />
+                <h1 className="absolute top-[240px] right-[300px] text-4xl"  style={{ fontFamily: '"Dancing Script", sans-serif' }}>Life is what you make of it-!</h1>
+                <div className="absolute right-[350px]
+                top-[350px]">
+                  <button  className="w-[120px] h-[40px] px-2 border border-[#87C4FF] bg-white hover:bg-[#87C4FF] hover:border-[#87C4FF] text-[#39A7FF] hover:text-white mr-10 rounded-xl text-xl"> 프로필 수정</button>
+                  <button  className="w-[120px] h-[40px] px-2 border border-[#87C4FF] bg-white hover:bg-[#87C4FF] hover:border-[#87C4FF] text-[#39A7FF] hover:text-white rounded-xl text-xl"> 내정보 수정</button>
                 </div>
-                <div class="grid grid-cols-2 gap-4">
-                  <div class="grid grid-cols-1">
-                    <h3 class="text-2xl font-semibold mb-2">아이디</h3>
-                    <p class="text-gray-700 text-xl">{userData.user_id}</p>
-                  </div>
-                  <div class="grid grid-cols-1">
-                    <h3 class="text-2xl font-semibold mb-2">이름</h3>
-                    <p class="text-gray-700 text-xl">{userData.user_name}</p>
-                  </div>
-                  <div class="grid grid-cols-1">
-                    <h3 class="text-2xl font-semibold mb-2">성별</h3>
-                    <p class="text-gray-700 text-xl">{userData.user_gender}</p>
-                  </div>
-                  <div class="grid grid-cols-1">
-                    <h3 class="text-2xl font-semibold mb-2">생년월일</h3>
-                    <p class="text-gray-700 text-xl">{userData.user_birth}</p>
-                  </div>
-                  <div class="grid grid-cols-1">
-                    <h3 class="text-2xl font-semibold mb-2">전화번호</h3>
-                    <p class="text-gray-700 text-xl">{userData.user_pn}</p>
+                <div className="flex border-t w-[820px] h-[250px] bg-slate-50"> 
+                  <div class="grid grid-cols-2 gap-x-36 ml-12 mt-12">
+                    <div class="flex gap-x-8">
+                      <h3 class="text-2xl font-semibold">아이디</h3>
+                      <p class="text-gray-700 text-xl ml-4">{userData.user_id}</p>
+                    </div>
+                    <div class="flex gap-x-8">
+                      <h3 class="text-2xl font-semibold">이름</h3>
+                      <p class="text-gray-700 text-xl ml-8">{userData.user_name}</p>
+                    </div>
+                    <div class="flex gap-x-8">
+                      <h3 class="text-2xl font-semibold">성별</h3>
+                      <p class="text-gray-700 text-xl ml-8">{userData.user_gender}</p>
+                    </div>
+                    <div class="flex gap-x-8">
+                      <h3 class="text-2xl font-semibold">생년월일</h3>
+                      <p class="text-gray-700 text-xl">{userData.user_birth}</p>
+                    </div>
+                    <div class="flex gap-x-8">
+                      <h3 class="text-2xl font-semibold">전화번호</h3>
+                      <p class="text-gray-700 text-xl">{userData.user_pn}</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -153,10 +159,15 @@ export default function Mypage() {
             {mypageMenu == "updateInfo" && (
               <div className="flex justify-center">
                 <div className="w-[70%] p-5 border rounded-xl">
-                  <p className="mb-8 font-bold text-2xl text-center">정보 수정</p>
+                  <p className="mb-8 font-bold text-2xl text-center">
+                    정보 수정
+                  </p>
                   <ul className="text-center space-y-6">
                     <li>
-                      <label htmlFor="" className="text-md text-[#a9a9a9] text-left">
+                      <label
+                        htmlFor=""
+                        className="text-md text-[#a9a9a9] text-left"
+                      >
                         아이디(이메일){" "}
                         <input
                           type="text"
@@ -213,9 +224,7 @@ export default function Mypage() {
                     내가 가입한 동아리
                   </caption>
                   <tr className="border border-[#c9c9c9]">
-                    <th className="border border-[#c9c9c9] w-[50px] p-2">
-                      {" "}
-                    </th>
+                    <th className="border border-[#c9c9c9] w-[50px] p-2"> </th>
                     <td className="border border-[#c9c9c9] text-center min-w-[300px] p-2 text-sm">
                       동아리 명
                     </td>
@@ -244,7 +253,9 @@ export default function Mypage() {
             {mypageMenu == "application" && (
               <div className="flex justify-center m-5">
                 <table className="w-[70%]">
-                  <caption className="mb-8 font-bold text-2xl">신청 중인 동아리</caption>
+                  <caption className="mb-8 font-bold text-2xl">
+                    신청 중인 동아리
+                  </caption>
                   <tr className="border border-[#c9c9c9]">
                     <th className="border border-[#c9c9c9] w-[50px]"> </th>
                     <td className="border border-[#c9c9c9] text-center min-w-[300px] p-2 text-sm">
@@ -285,4 +296,3 @@ export default function Mypage() {
     </div>
   );
 }
-
