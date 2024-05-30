@@ -92,6 +92,8 @@ export default function ClubModels ({ category, index }) {
   const soccerman2 = "vr_src/people/soccerman2.glb"
   const korean = "vr_src/people/korean.glb"
   const korean2 = "vr_src/people/korean2.glb"
+  const person1 = "vr_src/people/person1.glb";
+  const person2 = "vr_src/people/person2.glb";
   const person3 = "vr_src/people/person3.glb";
   const person4 = "vr_src/people/person4.glb";
   const person5 = "vr_src/people/person5.glb";
@@ -622,36 +624,46 @@ export default function ClubModels ({ category, index }) {
                   position={`-7 0.05 -10 `}
                   rotation ="0 20 0"
                   scale="0.7 0.7 0.7"></a-entity>
-        <a-entity gltf-model={person3}
-                  position="3 0.1 -40"
-                  scale="1 1 1"
-                  rotation="0 90 0">
-        </a-entity>
-        <a-entity gltf-model={person4}
-                  position="-4 1 -47"
-                  scale="1 1 1"
-                  rotation="-15 -90 0">
-        </a-entity>
-        <a-entity gltf-model={person5}
-                  position="-6 1 -45"
-                  scale="1 1 1"
-                  rotation="0 -90 0">
-        </a-entity>
-        <a-entity gltf-model={person6}
-                  position="5 1 0"
-                  scale="1 1 1"
-                  rotation="-20 45 0">
-        </a-entity>
-        <a-entity gltf-model={person7}
-                  position="4 0.1 -25"
-                  scale="1 1 1"
-                  rotation="-15 90 0">
-        </a-entity>
-        <a-entity gltf-model={person8}
-                  position="3 1 -60"
-                  scale="1 1 1"
-                  rotation="-15 90 0">
-        </a-entity>
+      <a-entity gltf-model={person1}
+                position="-6.5 0.1 -61"
+                scale="0.025 0.025 0.025"
+                rotation="0 -135 0">
+      </a-entity>
+      <a-entity gltf-model={person2}
+                position="5 0.1 -10"
+                scale="0.01 0.01 0.01"
+                rotation="0 0 0">
+      </a-entity>
+      <a-entity gltf-model={person3}
+                position="3 0.1 -40"
+                scale="1 1 1"
+                rotation="0 90 0">
+      </a-entity>
+      <a-entity gltf-model={person4}
+                position="-4 1 -47"
+                scale="1 1 1"
+                rotation="-15 -90 0">
+      </a-entity>
+      <a-entity gltf-model={person5}
+                position="-6 1 -45"
+                scale="1 1 1"
+                rotation="0 -90 0">
+      </a-entity>
+      <a-entity gltf-model={person6}
+                position="5 1 0"
+                scale="1 1 1"
+                rotation="-20 45 0">
+      </a-entity>
+      <a-entity gltf-model={person7}
+                position="4 0.1 -25"
+                scale="1 1 1"
+                rotation="-15 90 0">
+      </a-entity>
+      <a-entity gltf-model={person8}
+                position="3 1 -60"
+                scale="1 1 1"
+                rotation="-15 90 0">
+      </a-entity>
     </>
     }
     </>
