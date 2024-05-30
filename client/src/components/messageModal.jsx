@@ -282,7 +282,7 @@ export default function MessageModal(props) {
     const { data, error } = await supabase.from('messages').insert({
       'msg_title': title,
       'msg_body': content,
-      'msg_rcv_seq': receiver,
+      'msg_rcv_seq': selectedUserSeq,
       'msg_snd_seq': user_seq
     })
 
@@ -292,7 +292,7 @@ export default function MessageModal(props) {
     setReceiver("");
 
     if (error) {
-      console.error(error);
+      console.error("메시지 전송에러",error);
     }
     console.log(data);
     alert("쪽지 전송이 완료되었습니다.")
@@ -344,7 +344,7 @@ export default function MessageModal(props) {
                           <p className='inline-block ml-1 text-center w-28'>{msg.users.user_name}</p>
                           <button className='ml-2' onClick={() => handleMessageContentsOpen(msg)} >{msg.msg_title}</button>
                         </div>
-                        <p className='w-20 text-sm'>{msg.msg_send_time}</p>
+                        <p className='w-20 text-sm'>{formatDate(msg.msg_send_time)}</p>
                       </div>
                     </div>
                   ))
@@ -380,7 +380,7 @@ export default function MessageModal(props) {
                           <p className='inline-block ml-1 text-center w-28'>{msg.users.user_name}</p>
                           <button className='ml-2' onClick={() => handleMessageContentsOpen(msg)}>{msg.msg_title}</button>
                         </div>
-                        <p className='w-20 text-sm'>{msg.msg_send_time}</p>
+                        <p className='text-sm w-30'>{formatDate(msg.msg_send_time)}</p>
                       </div>
                     </div>
                   ))
@@ -406,6 +406,11 @@ export default function MessageModal(props) {
       </>
     )
   }
+  const formatDate = (dateString) => {
+    const options = { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
+    const date = new Date(dateString);
+    return date.toLocaleString('ko-KR', options).replace(',', '');
+};
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
       handleSearchbyTitle();
@@ -452,16 +457,18 @@ export default function MessageModal(props) {
   // 팝업창에서 들고 온 검색 데이터 저장
   const [selectedUserName, setSelectedUserName] = useState("");
   const [selectedUserId, setSelectedUserId] = useState("");
-  
+  const [selectedUserSeq,setSelectedUserSeq] = useState("");
   // 팝업창에서 메시지를 받아옴
   const handleMessageFromPopUp = (event) => {
     const username = event.data.username;
     const userId = event.data.userId;
+    const receiveduser_seq = event.data.reciever_seq;
     console.log(username);
     console.log(userId);
     if (event.data.username !== undefined) {
       setSelectedUserName(username);
-      setSelectedUserId(userId);      
+      setSelectedUserId(userId);
+      setSelectedUserSeq(receiveduser_seq);      
     }
   };
   
@@ -477,31 +484,47 @@ export default function MessageModal(props) {
     return (
       <>
         <div id='message_write' className='p-1 border-2'>
-
           <div>
             <div className='py-2'>
               <label htmlFor="message_write_title"><p className='inline-block text-center w-28'>제목</p></label>
-              <input id='message_write_title' type="text" className='border-2 w-[450px]' onChange={() => handleTitleChange} />
+              <input
+                id='message_write_title'
+                type="text"
+                className='border-2 w-[450px]'
+                value={title}
+                onChange={handleTitleChange}
+              />
             </div>
             <div className='py-2'>
-              <label htmlFor="message_write_receiver"><p className='inline-block text-center w-28 hover:bg-[#e9e9e9]' onClick={handleSearchReceivedUser}>받는 사람</p></label>
-              <input id='message_write_receiver' type="text" className='border-2 w-[450px]' disabled value={selectedUserName && `${selectedUserName}(${selectedUserId})`} />
+              <label htmlFor="message_write_receiver">
+                <p className='inline-block text-center w-28 hover:bg-[#e9e9e9]' onClick={handleSearchReceivedUser}>받는 사람</p>
+              </label>
+              <input
+                id='message_write_receiver'
+                type="text"
+                className='border-2 w-[450px]'
+                disabled
+                value={receiver}
+              />
             </div>
             <div className='flex py-2 '>
               <label htmlFor="message_write_content"><p className='inline-block text-center w-28'>내용</p></label>
-              <textarea id="message_write_content" className='border-2 resize-none w-[450px] h-[300px]' onChange={() => handleContentChange}></textarea>
+              <textarea
+                id="message_write_content"
+                className='border-2 resize-none w-[450px] h-[300px]'
+                value={content}
+                onChange={handleContentChange}
+              ></textarea>
             </div>
           </div>
-
           <div className='flex justify-end'>
             <button className='p-1 px-3 mr-1 border-2 hover:bg-[#e9e9e9]' onClick={handleMessageSend}>전송</button>
-            <button className='p-1 px-3 border-2 hover:bg-[#e9e9e9]' onClick={handleMessageWrite}>목록</button>
+            <button className='p-1 px-3 border-2 hover:bg-[#e9e9e9]' onClick={handleCloseMessage}>목록</button>
           </div>
-
         </div>
       </>
-    )
-  }
+    );
+  };
 
     // 쪽지 상세 내용 화면
     const MessageContents = (props) => {

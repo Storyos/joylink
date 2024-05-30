@@ -15,7 +15,7 @@ const EventGrid = ({ clublist, currentPage, itemsPerPage }) => {
         
             title={club.club_nm}
             location={club.club_loc}
-            imageSrc={`assets/cbsearch/${index}.jpg`} // Correct relative path to the image
+            imageSrc={`https://vtvkgtqvczyuteenfadw.supabase.co/storage/v1/object/public/club_image/${club.club_seq-1}.jpg`} // Correct relative path to the image
           />
         ))}
       </div>

@@ -85,17 +85,15 @@ AFRAME.registerComponent('link-to', {
 
 export default function Vr() {
   
-  const footballtable="/vr_src/football_table.glb"
   const table ="/vr_src/folding_table.glb"
   const tent = "/vr_src/Commercial_Tent_4x4_Meters.glb"
   const sakura ="/vr_src/sakura_tree.glb";
   const grassImgPath ="/vr_src/grass.jpg";
   const easel = "/vr_src/easel.glb";
   const stone = "/vr_src/stone_ground.glb";
-  const footballposter = "/vr_src/footballclub.png";
-  const ball = "/vr_src/Football.glb"
   const arcitechture1 = "/vr_src/arcitechture1.png";
   const arcitechture2 = "/vr_src/arcitechture2.png"; 
+  
 
   const CountCherryBlossom = Array.from({length: 23}, () => 0);
   const CountGrassX = Array.from({length: 30}, () => 0);
@@ -112,7 +110,7 @@ export default function Vr() {
         <a-camera 
         jump = "height: 0.5; duration: 400"
         boundary-constraint="minX: -10; maxX: 10; minZ: -70; maxZ: 7"
-        position="0 1.6 7"
+        position="0 1.6 6"
         look-controls="enabled:true" 
         wasd-controls="acceleration: 20">
         </a-camera>
@@ -236,37 +234,39 @@ export default function Vr() {
           rotation="0 90 0"
           ></a-entity></>
         ))}
-        {/*축구 동아리*/}
-        {/* 축구 동아리 포스터 */}
-        <a-image src={footballposter} 
-                    position={`-5 1 -2`}
-                    width="0.84" 
-                    height="1.2"
-                    rotation="-15 90 0">
-        </a-image>
-        {/* 축구게임테이블 */}
-        <a-entity gltf-model={`url(${footballtable})`} 
-          position={`-5 0.7 0`}
-          scale="0.02 0.02 0.02"
-          rotation="0 -90 0"></a-entity>
-        {/* 축구공 */}
-        <a-entity gltf-model={`url(${ball})`} 
-        position={`-5 0.2 3`}
-        // scale="0.003 0.003 0.003"
-        rotation="0 -90 0"></a-entity>
-
+        
         {/* 보드게임 동아리 */}
         <ClubModels category="boardgame" index={0}/>
+
+        {/* 축구 동아리 */}
+        <ClubModels category="football" index={0}/>
         
         {/* 독서 동아리 */}
         <ClubModels category="reading" index={1}/>
         
         {/* 사진 동아리 */}
         <ClubModels category="photography" index={2}/>
-
+        
         {/* 밴드 동아리 */}
         <ClubModels category="band" index={3}/>
+
+        {/* 주식 동아리 */}
+        <ClubModels category="stock" index={3}/>
+
+        {/* 등산 동아리 */}
+        <ClubModels category="climbing" index={4}/>
+
+        {/* 로봇 제어 계측 동아리 */}
+        <ClubModels category="mechanic" index={1}/>
+
+        {/* 술 동아리 */}
+        <ClubModels category="alcohol" index={2}/>
         
+        {/* 여행 동아리 */}
+        <ClubModels category="traver" index={4}/>
+        
+        {/*사람오브젝트*/}
+        <ClubModels category="people"/>
       </a-scene>
     </div>
   );

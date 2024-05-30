@@ -22,6 +22,12 @@ export default function MyInfo() {
   };
 
   useEffect(() => {
+    if (!user) {
+      alert("로그인이 필요한 서비스 입니다.");
+      navigate('/');
+      return;
+    }
+
     async function getClubPosition() {
       const { data, error } = await supabase
         .from("members") // 멤버 테이블에서
@@ -41,6 +47,7 @@ export default function MyInfo() {
         setMyComments(count);
       }
     }
+
     async function getPosts() {
       let { count, error } = await supabase
         .from("posts") // 포스트 테이블에서
@@ -50,10 +57,11 @@ export default function MyInfo() {
         setMyPosts(count);
       }
     }
+
     getClubPosition();
     getComments();
     getPosts();
-  }, [user.user_seq]);
+  }, [user, navigate]);
 
   const handleOpenChatting = () => {
     window.open(
@@ -66,7 +74,7 @@ export default function MyInfo() {
   return (
     <div className="p-5 m-12 border rounded-xl font-custom">
       <div className="p-1 m-2">
-        <h2 className="text-lg">내 정보</h2>
+        <h2 className="text-lg font-extrabold">내 정보</h2>
         <br></br>
         <div className="space-y-1 text-sm">
           <h3>회원등급 : {club_position}</h3>
@@ -77,21 +85,21 @@ export default function MyInfo() {
       </div>
 
       <div className="border-t"></div>
-      <div className="p-1 my-6">
+      <div className="p-1 my-6 font-bold">
         <button className="m-1" onClick={handleClubManagementClick}>
-          Club Management
+          모임 관리 ( 관리자 기능 )
         </button>
       </div>
 
       <div className="border-t"></div>
 
-      <div className="p-1 my-6">
+      <div className="p-1 my-6 font-bold">
         <button onClick={handleOpenChatting}>채팅</button>
       </div>
 
       <div className="border-t"></div>
 
-      <div className="p-1 my-6">
+      <div className="p-1 my-6 font-bold">
         <Link to="/ViewAccountPage">
           <button>장부</button>
         </Link>
@@ -100,7 +108,7 @@ export default function MyInfo() {
       <div className="my-6 border-t"></div>
 
       <div className="p-1">
-        <h3>카테고리</h3>
+        <div className="font-bold">카테고리</div>
         <br></br>
         <div className="flex flex-col space-y-2 text-gray-600">
           <Link to="/gallery">

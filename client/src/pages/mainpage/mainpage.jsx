@@ -3,13 +3,13 @@ import { supabase } from "../../App";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapLocationDot } from "@fortawesome/free-solid-svg-icons";
 import Banner from "./banner";
-import "../../index.css";
-import { Link, Element, animateScroll as scroll } from 'react-scroll'; // 스크롤 효과를 주기위해서
+import '../../index.css';
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Mainpage() {
   const [selectedCategory, setSelectedCategory] = useState("전체");
   const [boxContents, setBoxContents] = useState([]);
-
+  const navigate = useNavigate();
   const categories = [
     { name: "전체", icon: "/icons/all.png" },
     { name: "스포츠", icon: "/icons/sports.png" },
@@ -86,22 +86,20 @@ export default function Mainpage() {
   return (
     <div className="font-custom mt-28">
       <div>
-          <div className="relative flex flex-col items-center justify-center p-16 text-center bg-white bg-opacity-60 backdrop-filter backdrop-blur-lg">
-            <div
-              className="absolute inset-0 bg-center bg-cover filter opcaity-60 mt-24"
-              style={{ backgroundImage: "url('/assets/mainpage.jpg')" }}
-            ></div>
-            <div className="relative z-10 p-10 bg-white bg-opacity-20 rounded-xl backdrop-filter backdrop-blur-lg">
-              <h1 className="mb-4 text-4xl font-bold text-black md:text-6xl">
-                모임의 시작, 조이링크
-              </h1>
-              <p className="mb-6 text-lg text-black">
-                당신의 모임을 쉽고 빠르게 시작하고, 새로운 인연을 만들어 보세요.
-              </p>
+        <div className="relative flex flex-col items-center justify-center p-16 text-center bg-white bg-opacity-60 backdrop-filter backdrop-blur-lg">
+          <div className="absolute inset-0 bg-center bg-cover filter opcaity-60" style={{ backgroundImage: "url('/assets/mainpage.jpg')" }}></div>
+          <div className="relative z-10 p-10 bg-white bg-opacity-20 rounded-xl backdrop-filter backdrop-blur-lg">
+            <h1 className="mb-4 text-4xl font-bold text-black md:text-6xl">
+              모임의 시작, 조이링크
+            </h1>
+            <p className="mb-6 text-lg text-black">
+              당신의 모임을 쉽고 빠르게 시작하고, 새로운 인연을 만들어 보세요.
+            </p>
+            <Link to = '/join'>
               <button className="px-6 py-2 text-white bg-black rounded-full hover:bg-gray-700">
                 지금 시작하기
               </button>
-            </div>
+            </Link>
           </div>
 
     
@@ -295,6 +293,6 @@ export default function Mainpage() {
       )}
       <Banner /> {/* 배너 컴포넌트를 여기 추가 */}
     </div>
+    </div>
   );
-}
-
+  }
