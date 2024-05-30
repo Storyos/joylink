@@ -93,7 +93,6 @@ export default function Vr() {
   const stone = "/vr_src/stone_ground.glb";
   const arcitechture1 = "/vr_src/arcitechture1.png";
   const arcitechture2 = "/vr_src/arcitechture2.png"; 
-  
 
   const CountCherryBlossom = Array.from({length: 23}, () => 0);
   const CountGrassX = Array.from({length: 30}, () => 0);
@@ -234,21 +233,22 @@ export default function Vr() {
           rotation="0 90 0"
           ></a-entity></>
         ))}
+
         
         {/* 보드게임 동아리 */}
-        <ClubModels category="boardgame" index={0}/>
+        <ClubModels category="boardgame" index={1}/>
 
         {/* 축구 동아리 */}
         <ClubModels category="football" index={0}/>
         
         {/* 독서 동아리 */}
-        <ClubModels category="reading" index={1}/>
+        <ClubModels category="reading" index={2}/>
         
         {/* 사진 동아리 */}
-        <ClubModels category="photography" index={2}/>
+        <ClubModels category="photography" index={3}/>
         
         {/* 밴드 동아리 */}
-        <ClubModels category="band" index={3}/>
+        <ClubModels category="band" index={0}/>
 
         {/* 주식 동아리 */}
         <ClubModels category="stock" index={3}/>
