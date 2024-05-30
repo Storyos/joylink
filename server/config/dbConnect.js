@@ -5,7 +5,6 @@ dotenv.config();
 
 const supabaseUrl = 'https://vtvkgtqvczyuteenfadw.supabase.co';
 const supabaseKey = process.env.SUPABASE_KEY;
-
 const dbConnect = () => {
     try {
         const supabase = createClient(supabaseUrl, supabaseKey);
