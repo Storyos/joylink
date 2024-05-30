@@ -1,7 +1,7 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
-const {subscribeToInserts} = require('./services/supabaseService');
+const {subscribeToInserts, subscribeApprovals} = require('./services/supabaseService');
 const { checkBalance } = require('./services/checkBalance');
 
 const app = express();
@@ -13,5 +13,5 @@ app.use(cookieParser());
 
 checkBalance();
 subscribeToInserts();
-
+subscribeApprovals();
 module.exports = app;
