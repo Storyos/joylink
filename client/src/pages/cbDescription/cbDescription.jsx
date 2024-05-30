@@ -50,7 +50,7 @@ function CbDescription() {
       </section>
 
       {/* Section: club.detail */}
-      <section className="w-[1280px] bg-white p-4 rounded-lg shadow-lg">
+      <section className="w-[1280px] bg-white p-4 rounded-lg shadow-lg mb-5">
         {/* Menu Tabs */}
         <ul className="tap.menu flex border-b mb-4">
           <li className="pb-2 mr-4 text-blue-500 border-b-2 border-blue-500 cursor-pointer">상세정보</li>

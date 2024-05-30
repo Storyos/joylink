@@ -4,8 +4,8 @@ import './index.css' // tailwindcss 적용을 위한 css 파일
 import Main from "./Main";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-    <React.StrictMode>
+    // <React.StrictMode>
       <Main></Main>
-    </React.StrictMode>
+    // </React.StrictMode>
 )
 

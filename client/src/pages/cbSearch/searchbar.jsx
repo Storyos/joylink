@@ -7,28 +7,35 @@ const SearchBar = () => (
       <div className="flex flex-wrap items-stretch items-center justify-between w-full space-x-2">
         <select className="w-full p-2 border border-gray-300 rounded-md sm:w-auto">
           <option value="">카테고리</option>
-          <option value="type1">유형1</option>
-          <option value="type2">유형2</option>
+          <option value="type1">예술,미술</option>
+          <option value="type2">스포츠</option>
+          <option value="type3">학술</option>
+          <option value="type4">반려동물</option>
+          <option value="type5">경제</option>
+          <option value="type6">영화</option>
         </select>
         <select className="w-full p-2 border border-gray-300 rounded-md sm:w-auto">
           <option value="">지역</option>
-          <option value="region1">지역1</option>
-          <option value="region2">지역2</option>
+          <option value="region1">서울</option>
+          <option value="region2">경기</option>
+          <option value="region3">강원</option>
+          <option value="region4">대구/경북</option>
+          <option value="region5">부산/경남</option>
+          <option value="region6">광주/전남</option>
+          <option value="region2">전북</option>
+          <option value="region2">제주</option>
+          <option value="region2">충청</option>
+          
         </select>
         <select className="w-full p-2 border border-gray-300 rounded-md sm:w-auto">
-          <option value="">시간/비용</option>
-          <option value="time1">시간1</option>
-          <option value="time2">시간2</option>
+          <option value="">시간</option>
+          <option value="time1">정기</option>
+          <option value="time2">비정기</option>
         </select>
-        <select className="w-full p-2 border border-gray-300 rounded-md sm:w-auto">
-          <option value="">태그영역</option>
-          <option value="tag1">태그1</option>
-          <option value="tag2">태그2</option>
-        </select>
-        <select className="w-full p-2 border border-gray-300 rounded-md sm:w-auto">
-          <option value="">이벤트기간</option>
-          <option value="event1">이벤트1</option>
-          <option value="event2">이벤트2</option>
+  <select className="w-full p-2 border border-gray-300 rounded-md sm:w-auto">
+          <option value="">회비여부</option>
+          <option value="event1">정기납부</option>
+          <option value="event2">없음</option>
         </select>
         <div className="flex items-center w-full h-full p-2 border border-gray-300 rounded-md sm:flex-1">
           <input
