@@ -22,6 +22,12 @@ export default function MyInfo() {
   };
 
   useEffect(() => {
+    if (!user) {
+      alert("로그인이 필요한 서비스 입니다.");
+      navigate('/');
+      return;
+    }
+
     async function getClubPosition() {
       const { data, error } = await supabase
         .from("members") // 멤버 테이블에서
@@ -42,6 +48,7 @@ export default function MyInfo() {
         setMyComments(count);
       }
     }
+
     async function getPosts() {
       let { count, error } = await supabase
         .from("posts") // 포스트 테이블에서
@@ -51,10 +58,11 @@ export default function MyInfo() {
         setMyPosts(count);
       }
     }
+
     getClubPosition();
     getComments();
     getPosts();
-  }, [user.user_seq]);
+  }, [user, navigate]);
 
   const handleOpenChatting = () => {
     window.open(

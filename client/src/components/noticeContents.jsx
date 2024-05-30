@@ -113,30 +113,62 @@ export default function NoticeContents (props) {
           }
           {/* 이벤트 목록 */}
           {menu === "Event" &&
-            <ul>
-              <li className="px-2 py-1 mx-4 my-2 border-b-4 border-white">
-                <Link to="/notice/${event.id}">
-                  <button onClick={handleDetails}>이벤트1</button>
-                </Link>
-              </li>
-              <li className="px-2 py-1 mx-4 my-2 border-b-4 border-white">
-                <Link to="/notice/${event.id}">
-                  <button onClick={handleDetails}>이벤트2</button>
-                </Link>
-              </li>
-            </ul>
+            <div>
+            <table className="w-full text-center border-collapse">
+              <thead>
+                <tr>
+                  <th className="py-2 border-b-2">번호</th>
+                  <th className="py-2 border-b-2">구분</th>
+                  <th className="py-2 border-b-2">제목</th>
+                  <th className="py-2 border-b-2">작성자</th>
+                  <th className="py-2 border-b-2">등록일</th>
+                  <th className="py-2 border-b-2">조회수</th>
+                </tr>
+              </thead>
+              <tbody>
+                  
+              </tbody>
+            </table>
+  
+            {/* Pagination */}
+            <div className="flex justify-center mt-12">
+              <button className="px-2 py-1 mx-1 border">1</button>
+              <button className="px-2 py-1 mx-1 border">2</button>
+              <button className="px-2 py-1 mx-1 border">3</button>
+              <button className="px-2 py-1 mx-1 border">4</button>
+              <button className="px-2 py-1 mx-1 border">5</button>
+            </div>
+          </div>
           }
           
           {/* 메뉴얼 목록 */}
           {menu === "Menual" && 
-            <ul>
-              <li className="px-2 py-1 mx-4 my-2 border-b-4 border-white">
-                <button onClick={handleDetails}>메뉴얼1</button>
-              </li>
-              <li className="px-2 py-1 mx-4 my-2 border-b-4 border-white">
-                <button onClick={handleDetails}>메뉴얼2</button>
-              </li>
-            </ul>
+            <div>
+            <table className="w-full text-center border-collapse">
+              <thead>
+                <tr>
+                  <th className="py-2 border-b-2">번호</th>
+                  <th className="py-2 border-b-2">구분</th>
+                  <th className="py-2 border-b-2">제목</th>
+                  <th className="py-2 border-b-2">작성자</th>
+                  <th className="py-2 border-b-2">등록일</th>
+                  <th className="py-2 border-b-2">조회수</th>
+                </tr>
+              </thead>
+              <tbody>
+                  
+              </tbody>
+            </table>
+  
+            {/* Pagination */}
+            <div className="flex justify-center mt-12">
+              <button className="px-2 py-1 mx-1 border">1</button>
+              <button className="px-2 py-1 mx-1 border">2</button>
+              <button className="px-2 py-1 mx-1 border">3</button>
+              <button className="px-2 py-1 mx-1 border">4</button>
+              <button className="px-2 py-1 mx-1 border">5</button>
+            </div>
+          </div>
           }
         </div>
       </div>
