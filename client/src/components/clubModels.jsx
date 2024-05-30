@@ -56,6 +56,7 @@ export default function ClubModels ({ category, index }) {
   const ball = "/vr_src/football_club/football.glb"
   const footballtable="/vr_src/football_club/football_Gambling.glb"
   const footballbenner="vr_src/football_club/footballbenner.png"
+  const footballbenner2="vr_src/football_club/footballbenner2.png"
   //로봇제어계측 동아리
   const mechanic_arm = "vr_src/mechanic_club/mechanic_arm.glb"
   const drone = "vr_src/mechanic_club/drone.glb"
@@ -63,16 +64,23 @@ export default function ClubModels ({ category, index }) {
   const tool_box = "vr_src/mechanic_club/tool_box.glb"
   const controller = "vr_src/mechanic_club/controller.glb"
   const highrowposter = "vr_src/mechanic_club/highrow.jpg"
+  const highrowbanner = "vr_src/mechanic_club/highrowbanner.png"
+  const highrowbanner2 = "vr_src/mechanic_club/highrowbanner2.png"
   //술 동아리
   const alcohol_set = "vr_src/alcohol/bottle_set_alcohol.glb"
   const wine = "vr_src/alcohol/wine.glb"
   const oak = "vr_src/alcohol/oak.glb"
   const certificate = "vr_src/alcohol/certificate.glb"
   const alcoholposter = "vr_src/alcohol/alcoholposter.jpg"
+  const alcoholbanner = "vr_src/alcohol/alcoholbanner.png"
+  const alcoholbanner2 = "vr_src/alcohol/alcoholbanner2.png"
   //주식 동아리
   const chart = "vr_src/stockclub/chart.glb"
   const boxes = "vr_src/stockclub/boxes.glb"
   const file = "vr_src/stockclub/file.glb"
+  const stockposter = "vr_src/stockclub/stockposter.jpg"
+  const stockbanner = "vr_src/stockclub/stockbanner.png"
+  const stockbanner2 = "vr_src/stockclub/stockbanner2.png"
 
   return (
     <>
@@ -373,13 +381,13 @@ export default function ClubModels ({ category, index }) {
     {category === "football" &&
       <>
       {/* 축구동아리 베너 */}
-      <a-image src={footballbenner} 
+        <a-image src={footballbenner} 
                     position={`-5.4 2.6 ${-0.4-(15*index)}`}
                     height="0.7px"
                     width="4.8px"
                     rotation="0 90 0">
         </a-image>
-        <a-image src={footballbenner} 
+        <a-image src={footballbenner2} 
                     position={`-5.4 2.6 ${4.45-(15*index)}`}
                     height="0.7px"
                     width="4.8px"
@@ -435,6 +443,18 @@ export default function ClubModels ({ category, index }) {
     {/* 로봇제어계측 동아리 */}
     {category === "mechanic"&&
       <>
+        <a-image src={highrowbanner} 
+                    position={`-5.4 2.6 ${-0.4-(15*index)}`}
+                    height="0.7px"
+                    width="4.8px"
+                    rotation="0 90 0">
+        </a-image>
+        <a-image src={highrowbanner2} 
+                    position={`-5.4 2.6 ${4.45-(15*index)}`}
+                    height="0.7px"
+                    width="4.8px"
+                    rotation="0 90 0">
+        </a-image>
         {/* 로봇 동아리 포스터 */}
         <a-image  src={highrowposter} 
                   position={`-5 1 ${-2-(15*index)}`}
@@ -475,6 +495,18 @@ export default function ClubModels ({ category, index }) {
     {/* 술동아리 */}
     {category === "alcohol" &&
       <>
+        <a-image src={alcoholbanner} 
+                    position={`-5.4 2.6 ${-0.4-(15*index)}`}
+                    height="0.7px"
+                    width="4.8px"
+                    rotation="0 90 0">
+        </a-image>
+        <a-image src={alcoholbanner2} 
+                    position={`-5.4 2.6 ${4.45-(15*index)}`}
+                    height="0.7px"
+                    width="4.8px"
+                    rotation="0 90 0">
+        </a-image>
       {/* 술 동아리 포스터 */}
         <a-image  src={alcoholposter} 
                   position={`-5 1 ${-2-(15*index)}`}
@@ -513,8 +545,20 @@ export default function ClubModels ({ category, index }) {
     {/* 주식동아리 */}
     {category === "stock" &&
       <>
+        <a-image src={stockbanner} 
+                    position={`-5.4 2.6 ${-0.4-(15*index)}`}
+                    height="0.7px"
+                    width="4.8px"
+                    rotation="0 90 0">
+        </a-image>
+        <a-image src={stockbanner2} 
+                    position={`-5.4 2.6 ${4.45-(15*index)}`}
+                    height="0.7px"
+                    width="4.8px"
+                    rotation="0 90 0">
+        </a-image>
         {/* 주식 동아리 포스터 */}
-        <a-image  src={alcoholposter} 
+        <a-image  src={stockposter} 
                   position={`-5 1 ${-2-(15*index)}`}
                   width="0.84" 
                   height="1.2"
