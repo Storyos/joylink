@@ -236,19 +236,19 @@ export default function Vr() {
 
         
         {/* 보드게임 동아리 */}
-        <ClubModels category="boardgame" index={1}/>
+        <ClubModels category="boardgame" index={0}/>
 
         {/* 축구 동아리 */}
         <ClubModels category="football" index={0}/>
         
         {/* 독서 동아리 */}
-        <ClubModels category="reading" index={2}/>
+        <ClubModels category="reading" index={1}/>
         
         {/* 사진 동아리 */}
         <ClubModels category="photography" index={3}/>
         
         {/* 밴드 동아리 */}
-        <ClubModels category="band" index={0}/>
+        <ClubModels category="band" index={2}/>
 
         {/* 주식 동아리 */}
         <ClubModels category="stock" index={3}/>
