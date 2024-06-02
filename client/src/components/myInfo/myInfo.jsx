@@ -87,7 +87,7 @@ export default function MyInfo() {
       <div className="border-t"></div>
       <div className="p-1 my-6 font-bold">
         <button className="m-1" onClick={handleClubManagementClick}>
-          모임 관리 ( 관리자 기능 )
+          관리 (관리자 기능)
         </button>
       </div>
 
