@@ -32,6 +32,8 @@ export default function ClubModels ({ category, index }) {
   const bandPoster = "vr_src/band_club/band_poster.png";
   const bandBanner = "vr_src/band_club/band_banner.jpg";
   const bandBanner2 = "vr_src/band_club/band_banner2.png";
+  const speaker = "vr_src/band_club/audio_speaker.glb";
+  const mixer = "vr_src/band_club/audio_mixer.glb";
 
   // 등산 동아리
   const backpack = "vr_src/climbing_club/backpack.glb";
@@ -256,6 +258,21 @@ export default function ClubModels ({ category, index }) {
         <a-entity gltf-model={`url(${drum})`} 
                   position={`6 0.1 ${3.5-(15*index)}`}
                   scale="1 1 1"
+                  rotation="0 -90 0">
+        </a-entity>
+        <a-entity gltf-model={`url(${speaker})`} 
+                  position={`9 1.0 ${4.5-(15*index)}`}
+                  scale="3 3 3"
+                  rotation="0 -90 0">
+        </a-entity>
+        <a-entity gltf-model={`url(${speaker})`} 
+                  position={`9 1.0 ${2.5-(15*index)}`}
+                  scale="3 3 3"
+                  rotation="0 -90 0">
+        </a-entity>
+        <a-entity gltf-model={`url(${mixer})`} 
+                  position={`9 1.0 ${3.5-(15*index)}`}
+                  scale="3 3 3"
                   rotation="0 -90 0">
         </a-entity>
         <a-image src={applicationForm}
