@@ -1,6 +1,7 @@
 import MyInfo from "../../components/myInfo/myInfo";
 import { supabase } from '../../App';
 import { useEffect, useState } from "react"
+import CocktailHeader from "../../components/cocktailHeader"
 
 export default function Gallery() {
   const [imgURLs, setImgURLs] = useState([]);
@@ -56,15 +57,8 @@ export default function Gallery() {
   }
 
   return (
-    <div className="mt-28">
-      <h1 className="mt-40 mb-16 text-6xl text-center" id="myClub_heading" style={{ fontFamily: '"Dancing Script", sans-serif' }}>
-        The #1 job board for<br></br> graphic design jobs
-      </h1>
-      <h3 className="mb-20 text-xl text-center text-gray-500">
-        Life's journey thrives on exploration, the ultimate way to connect with<br></br>
-        opportunities and discover new horizons globally.
-      </h3>
-
+    <div className="mt-32">
+      <CocktailHeader></CocktailHeader>
       <div className="flex justify-center">
         <div className="mb-16">
           <MyInfo />

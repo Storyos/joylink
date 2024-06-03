@@ -1,23 +1,11 @@
 import React from "react";
 import MyInfo from "../../components/myInfo/myInfo";
+import CocktailHeader from "../../components/cocktailHeader";
 
 export default function FreeBoard() {
   return (
-    <div className="mt-28">
-      <h1
-        className="text-center text-6xl mt-40 mb-16"
-        id="myClub_heading"
-        style={{ fontFamily: '"Dancing Script", sans-serif' }}
-      >
-        sex on the beach
-        <br /> Margarita
-      </h1>
-      <h3 className="text-center text-xl text-gray-500 mb-20">
-        Life's journey thrives on exploration, the ultimate way to connect with
-        <br />
-        Negroni, Whiskey Sour, Cosmopolitan
-      </h3>
-
+    <div className="mt-32">
+      <CocktailHeader/>
       <div className="flex justify-center">
         <div className="mb-16">
           <MyInfo />
