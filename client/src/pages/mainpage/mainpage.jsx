@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../../App";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMapLocationDot } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMapLocationDot } from '@fortawesome/free-solid-svg-icons';
 import Banner from "./banner";
 import '../../index.css';
 import { Link, useNavigate } from "react-router-dom";
@@ -22,19 +22,19 @@ export default function Mainpage() {
 
   useEffect(() => {
     async function getCategoryContents() {
-      if (selectedCategory === "전체") {
+      if (selectedCategory === '전체') {
         const { data, error } = await supabase
-          .from("clubs")
+          .from('clubs')
           .select(`club_ctg,club_nm,club_loc,club_desc`)
-          .order("club_seq", { ascending: false })
+          .order('club_seq', { ascending: false })
           .limit(5);
         setBoxContents(data);
         console.log("받은 카테고리값", data);
       } else {
         const { data, error } = await supabase
-          .from("clubs")
+          .from('clubs')
           .select(`club_ctg,club_nm,club_loc,club_desc`)
-          .eq("club_ctg", selectedCategory)
+          .eq('club_ctg', selectedCategory)
           .limit(5);
         setBoxContents(data);
         console.log("받은 카테고리값", data);
@@ -45,23 +45,23 @@ export default function Mainpage() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const imagesUp = document.querySelectorAll(".scroll-image-up");
-      const imagesDown = document.querySelectorAll(".scroll-image-down");
+      const imagesUp = document.querySelectorAll('.scroll-image-up');
+      const imagesDown = document.querySelectorAll('.scroll-image-down');
 
-      imagesUp.forEach((image) => {
+      imagesUp.forEach(image => {
         const scrollY = window.scrollY;
         const translateY = -scrollY / 2;
         image.style.transform = `translateY(${translateY}px)`;
       });
 
-      imagesDown.forEach((image) => {
+      imagesDown.forEach(image => {
         const scrollY = window.scrollY;
         const translateY = scrollY / 2;
         image.style.transform = `translateY(${translateY}px)`;
       });
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -81,9 +81,7 @@ export default function Mainpage() {
 
   const handleButtonClick = (index) => {
     setSelectedButton(index);
-  };
-
-  return (
+  }; return (
     <div className="font-custom mt-28">
       <div>
         <div className="relative flex flex-col items-center justify-center p-16 text-center bg-white bg-opacity-60 backdrop-filter backdrop-blur-lg">
@@ -101,134 +99,61 @@ export default function Mainpage() {
               </button>
             </Link>
           </div>
+        </div>
 
-    
-          <div className="flex items-center justify-center my-24 bg-blue-100 h-96">
-            <div className="text-center">
-              <h2 className="text-4xl font-bold text-gray-800">
-                블록체인을 통한 투명한 장부 관리가 가능한 모임 플랫폼
-              </h2>
-              <p className="mt-4 text-2xl text-gray-600 ">
-                이제껏 경험하지 못한 안전하고 편리한 모임 관리 서비스,
-                <br />
-                저희와 함께라면 당신의 모임이 더욱 새로워질 거예요.
-              </p>
-            </div>
+        <div className="flex items-center justify-center my-24 bg-blue-100 h-96">
+          <div className="text-center">
+            <h2 className="text-4xl font-bold text-gray-800">
+              블록체인을 통한 투명한 장부 관리가 가능한 모임 플랫폼
+            </h2>
+            <p className="mt-4 text-2xl text-gray-600 ">
+              이제껏 경험하지 못한 안전하고 편리한 모임 관리 서비스,<br />
+              저희와 함께라면 당신의 모임이 더욱 새로워질 거예요.
+            </p>
           </div>
-      
+        </div>
+
+
 
         <div className="m-4 overflow-hidden">
           <div className="grid grid-cols-4 gap-4 overflow-hidden h-[700px] w-[1900px]">
             <div className="flex flex-col gap-4 rotate-12 translate-x-[-100px] translate-y-[-150px]">
-              <img
-                className="scroll-image-up"
-                src="./assets/main3.png"
-                alt=""
-              />
-              <img
-                className="scroll-image-up"
-                src="./assets/main7.jpg"
-                alt=""
-              />
-              <img
-                className="scroll-image-up"
-                src="./assets/main5.jpg"
-                alt=""
-              />
-              <img
-                className="scroll-image-up"
-                src="./assets/main2.jpg"
-                alt=""
-              />
+              <img className="scroll-image-up" src="./assets/main3.png" alt="" />
+              <img className="scroll-image-up" src="./assets/main7.jpg" alt="" />
+              <img className="scroll-image-up" src="./assets/main5.jpg" alt="" />
+              <img className="scroll-image-up" src="./assets/main2.jpg" alt="" />
             </div>
             <div className="flex flex-col gap-4 rotate-12 translate-x-[-20px] translate-y-[-480px]">
-              <img
-                className="scroll-image-down"
-                src="./assets/main6.jpg"
-                alt=""
-              />
-              <img
-                className="scroll-image-down"
-                src="./assets/main4.jpg"
-                alt=""
-              />
-              <img
-                className="scroll-image-down"
-                src="./assets/main5.jpg"
-                alt=""
-              />
-              <img
-                className="scroll-image-down"
-                src="./assets/main3.png"
-                alt=""
-              />
-              <img
-                className="scroll-image-down"
-                src="./assets/main6.jpg"
-                alt=""
-              />
+              <img className="scroll-image-down" src="./assets/main6.jpg" alt="" />
+              <img className="scroll-image-down" src="./assets/main4.jpg" alt="" />
+              <img className="scroll-image-down" src="./assets/main5.jpg" alt="" />
+              <img className="scroll-image-down" src="./assets/main3.png" alt="" />
+              <img className="scroll-image-down" src="./assets/main6.jpg" alt="" />
             </div>
             <div className="flex flex-col gap-4 rotate-12 translate-x-[-75px] translate-y-[-150px]">
-              <img
-                className="scroll-image-up"
-                src="./assets/main1.jpg"
-                alt=""
-              />
-              <img
-                className="scroll-image-up"
-                src="./assets/main2.jpg"
-                alt=""
-              />
-              <img
-                className="scroll-image-up"
-                src="./assets/main3.png"
-                alt=""
-              />
-              <img
-                className="scroll-image-up"
-                src="./assets/main5.jpg"
-                alt=""
-              />
+              <img className="scroll-image-up" src="./assets/main1.jpg" alt="" />
+              <img className="scroll-image-up" src="./assets/main2.jpg" alt="" />
+              <img className="scroll-image-up" src="./assets/main3.png" alt="" />
+              <img className="scroll-image-up" src="./assets/main5.jpg" alt="" />
             </div>
             <div className="flex flex-col gap-4 rotate-12 translate-x-[-30px] translate-y-[-300px]">
-              <img
-                className="scroll-image-down"
-                src="./assets/main6.jpg"
-                alt=""
-              />
-              <img
-                className="scroll-image-down"
-                src="./assets/main5.jpg"
-                alt=""
-              />
-              <img
-                className="scroll-image-down"
-                src="./assets/main7.jpg"
-                alt=""
-              />
-              <img
-                className="scroll-image-down"
-                src="./assets/main4.jpg"
-                alt=""
-              />
+              <img className="scroll-image-down" src="./assets/main6.jpg" alt="" />
+              <img className="scroll-image-down" src="./assets/main5.jpg" alt="" />
+              <img className="scroll-image-down" src="./assets/main7.jpg" alt="" />
+              <img className="scroll-image-down" src="./assets/main4.jpg" alt="" />
             </div>
           </div>
         </div>
       </div>
+
+
       <div className="p-6 bg-blue-100 mt-24">
         <div className="container mx-auto">
           <div className="flex items-center justify-between mx-4">
-            <span className="text-2xl font-bold">
-              조이링크에서 다양한 동아리들을 만나보세요!
-            </span>
-            <input
-              type="text"
-              placeholder="검색창"
-              className="px-4 py-2 border rounded"
-            />
+            <span className="text-2xl font-bold">조이링크에서 다양한 동아리들을 만나보세요!</span>
+            <input type="text" placeholder="검색창" className="px-4 py-2 border rounded" />
           </div>
         </div>
-
         <div className="flex justify-center mt-6">
           <div className="flex space-x-8">
             {categories.map((category, index) => (
@@ -237,19 +162,12 @@ export default function Mainpage() {
                 className="flex flex-col items-center cursor-pointer"
                 onClick={() => setSelectedCategory(category.name)}
               >
-                <div
-                  className={`flex items-center justify-center w-20 h-20 rounded-full ${
-                    selectedCategory === category.name
-                      ? "bg-gray-700"
-                      : "bg-white"
-                  }`}
-                >
+                <div className={`flex items-center justify-center w-20 h-20 rounded-full ${selectedCategory === category.name ? "bg-gray-700" : "bg-white"
+                  }`}>
                   <img
                     src={category.icon}
                     alt={category.name}
-                    className={`w-12 h-12 ${
-                      selectedCategory === category.name ? "invert" : ""
-                    }`}
+                    className={`w-12 h-12 ${selectedCategory === category.name ? "invert" : ""}`}
                   />
                 </div>
                 <span>{category.name}</span>
@@ -258,27 +176,19 @@ export default function Mainpage() {
           </div>
         </div>
       </div>
+
       {selectedCategory && (
         <div className="p-6 mb-8 ">
-          <h2 className="mb-4 text-xl font-bold ml-28 my-4">
-            {selectedCategory == "전체"
-              ? "전체"
-              : `${selectedCategory}관련 모임`}
-          </h2>
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 mx-28 mb-12">
+          <h2 className="mb-4 text-xl font-bold mx-24">{selectedCategory == '전체' ? '전체' : `${selectedCategory}관련 모임`}</h2>
+          <div className="grid grid-cols-1 gap-4 mx-28 md:grid-cols-2 lg:grid-cols-3 mb-24">
             {boxContents.map((card, index) => (
               <div key={index} className="p-3 bg-white rounded shadow">
                 <div className="mb-2 text-gray-500">{card.club_ctg}</div>
-                <h3 className="p-2 mb-2 text-3xl font-semibold">
-                  {card.club_nm}
-                </h3>
+                <h3 className="p-2 mb-2 text-3xl font-semibold">{card.club_nm}</h3>
                 <p className="mb-2">{card.club_desc}</p>
 
                 <div className="mt-4 text-blue-500">
-                  <FontAwesomeIcon
-                    icon={faMapLocationDot}
-                    className="inline-block w-4 h-4 mr-1"
-                  />
+                  <FontAwesomeIcon icon={faMapLocationDot} className="inline-block w-4 h-4 mr-1" />
                   <span>{card.club_loc}</span>
                 </div>
               </div>
@@ -291,8 +201,8 @@ export default function Mainpage() {
           </div>
         </div>
       )}
-      <Banner /> {/* 배너 컴포넌트를 여기 추가 */}
-    </div>
+
+      <Banner/> {/* 배너 컴포넌트를 여기 추가 */}
     </div>
   );
-  }
+}
