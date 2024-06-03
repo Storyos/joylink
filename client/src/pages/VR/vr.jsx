@@ -103,6 +103,8 @@ export default function Vr() {
   return (
     <div>
       <h1>vr 페이지 입니다</h1>
+      <h1>vr 페이지 입니다</h1>
+      <h1>vr 페이지 입니다</h1>
       <a-scene className="aframe-scene">
 
         {/* 카메라 */}
