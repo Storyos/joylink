@@ -280,7 +280,7 @@ export default function ClubModels ({ category, index }) {
                     width="0.84" 
                     height="1.2"
                     rotation="-90 -90 0"
-                    link-to="url: /cbDescription">
+                    link-to="url: /cbDescription_2">
         </a-image>
         <a-image src={bandPoster}
                     position={`5.05 1.05 ${6.5-(15*index)}`}
@@ -475,7 +475,7 @@ export default function ClubModels ({ category, index }) {
                     width="0.84" 
                     height="1.2"
                     rotation="-90 90 0"
-                    link-to="url: /cbDescription">
+                    link-to="url: /cbDescription_1">
         </a-image>
       </>
     }

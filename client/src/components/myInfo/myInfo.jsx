@@ -68,7 +68,7 @@ export default function MyInfo() {
     window.open(
       "/chatting",
       "chatting",
-      "width=500, height=600, top=300, left=450"
+      "width=445, height=490, top=300, left=450"
     );
   };
 
