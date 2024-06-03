@@ -12,6 +12,7 @@
         "@headlessui/react": "^2.0.3",
         "@mui/material": "^5.15.16",
         "@mui/styled-engine-sc": "^6.0.0-alpha.18",
+        "@react-aria/interactions": "^3.21.3",
         "@supabase/supabase-js": "^2.42.0",
         "@testing-library/jest-dom": "^5.17.0",
         "@testing-library/react": "^13.4.0",
