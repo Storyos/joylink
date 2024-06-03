@@ -81,12 +81,12 @@ export default function ChattingModal() {
   };
 
   return (
-    <div className="fixed rounded-[10px] w-[450px] h-[500px] inset-0 m-auto bg-[#e9e9e9] shadow-lg">
+    <div className="fixed w-[450px] h-[500px] inset-0 m-auto bg-[#e9e9e9] pb-2">
       <div className="relative w-full h-full">
         <div className="mt-2 text-center">채팅</div>
-        <button className="absolute text-[#a9a9a9] right-4 top-0">X</button>
+        {/* <button className="absolute text-[#a9a9a9] right-4 top-0">X</button> */}
 
-        <div className="absolute flex flex-col w-[420px] h-[400px] overflow-auto">
+        <div className="absolute flex flex-col w-[450px] h-[400px] overflow-auto pb-4">
           {messages.map((msg, index) => {
             const imgURL = `https://vtvkgtqvczyuteenfadw.supabase.co/storage/v1/object/public/profile_image/img/${msg.user_seq}.jpg`;
             const imgError = imgErrors[msg.user_seq];
@@ -112,7 +112,7 @@ export default function ChattingModal() {
           <div ref={messagesEndRef} />
         </div>
 
-        <div className="absolute bottom-0 rounded-b-[10px] bg-white">
+        <div className="absolute bottom-0 bg-white">
           <form onSubmit={sendMessage}>
             <input type="text" value={input} onChange={(e) => setInput(e.target.value)} rows={3} className="w-[450px] resize-none outline-none pt-2 px-2" placeholder="채팅 입력"></input>
             <div className="text-end">
