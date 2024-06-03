@@ -32,6 +32,8 @@ export default function ClubModels ({ category, index }) {
   const bandPoster = "vr_src/band_club/band_poster.png";
   const bandBanner = "vr_src/band_club/band_banner.jpg";
   const bandBanner2 = "vr_src/band_club/band_banner2.png";
+  const speaker = "vr_src/band_club/audio_speaker.glb";
+  const mixer = "vr_src/band_club/audio_mixer.glb";
 
   // 등산 동아리
   const backpack = "vr_src/climbing_club/backpack.glb";
@@ -92,6 +94,9 @@ export default function ClubModels ({ category, index }) {
   const soccerman2 = "vr_src/people/soccerman2.glb"
   const korean = "vr_src/people/korean.glb"
   const korean2 = "vr_src/people/korean2.glb"
+  const korean3 = "vr_src/people/korean3.glb"
+  const korean4 = "vr_src/people/korean4.glb"
+  const korean5 = "vr_src/people/korean5.glb"
   const person1 = "vr_src/people/person1.glb";
   const person2 = "vr_src/people/person2.glb";
   const person3 = "vr_src/people/person3.glb";
@@ -253,6 +258,21 @@ export default function ClubModels ({ category, index }) {
         <a-entity gltf-model={`url(${drum})`} 
                   position={`6 0.1 ${3.5-(15*index)}`}
                   scale="1 1 1"
+                  rotation="0 -90 0">
+        </a-entity>
+        <a-entity gltf-model={`url(${speaker})`} 
+                  position={`9 1.0 ${4.5-(15*index)}`}
+                  scale="3 3 3"
+                  rotation="0 -90 0">
+        </a-entity>
+        <a-entity gltf-model={`url(${speaker})`} 
+                  position={`9 1.0 ${2.5-(15*index)}`}
+                  scale="3 3 3"
+                  rotation="0 -90 0">
+        </a-entity>
+        <a-entity gltf-model={`url(${mixer})`} 
+                  position={`9 1.0 ${3.5-(15*index)}`}
+                  scale="3 3 3"
                   rotation="0 -90 0">
         </a-entity>
         <a-image src={applicationForm}
@@ -623,6 +643,18 @@ export default function ClubModels ({ category, index }) {
       <a-entity gltf-model={`url(${korean2})`}
                   position={`-7 0.05 -10 `}
                   rotation ="0 20 0"
+                  scale="0.7 0.7 0.7"></a-entity>
+      <a-entity gltf-model={`url(${korean3})`}
+                  position={`-5 0.05 -12 `}
+                  rotation ="0 -90 0"
+                  scale="0.7 0.7 0.7"></a-entity>
+      <a-entity gltf-model={`url(${korean4})`}
+                  position={`-4.5 0.05 -11 `}
+                  rotation ="0 -60 0"
+                  scale="1 1 1"></a-entity>
+      <a-entity gltf-model={`url(${korean5})`}
+                  position={`-6 0.05 -29.5 `}
+                  rotation ="0 -60 0"
                   scale="0.7 0.7 0.7"></a-entity>
       <a-entity gltf-model={person1}
                 position="-6.5 0.1 -61"

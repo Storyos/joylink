@@ -6,6 +6,8 @@ import CbJoin from "./pages/cbJoin/cbJoin";
 import CbSearch from "./pages/cbSearch/cbsearch";
 import CbCreate from "./pages/cbCreate/cbCreate";
 import CbDescription from "./pages/cbDescription/cbDescription";
+import CbDescription_1 from "./pages/cbDescription/cbDescription_1";
+import cbDescription_2 from "./pages/cbDescription/cbDescription_2";
 import Notice from "./pages/notice/notice";
 import Login from './pages/login/login';
 import Join from './pages/join/join';
@@ -26,7 +28,7 @@ import ClubNotice from "./pages/clubNotice/clubNotice";
 import FreeBoard from "./pages/freeBoard/freeBoard";
 import QuestionBoard from "./pages/questionBoard/questionBoard";
 import Test from "./pages/test"
-
+import CbDescription_2 from "./pages/cbDescription/cbDescription_2";
 export default function Main() {
   return (
     <BrowserRouter>
@@ -40,6 +42,8 @@ export default function Main() {
           <Route path="cbCreate" element={<CbCreate />} /> 
           <Route path="notice" element={<Notice />} />
           <Route path="cbDescription" element={<CbDescription />} />
+          <Route path="cbDescription_1" element={<CbDescription_1 />} />
+          <Route path="cbDescription_2" element={<CbDescription_2 />} />
           <Route path="cbJoin" element={<CbJoin />} />
           <Route path="notice/:noticeId" element={<Notice />} />
           <Route path="event/:eventId" element={<Notice />} />
