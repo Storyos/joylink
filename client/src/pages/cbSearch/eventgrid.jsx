@@ -12,7 +12,6 @@ const EventGrid = ({ clublist, currentPage, itemsPerPage }) => {
       <div className="grid grid-cols-4 gap-6 w-full max-w-[1280px]">
         {paginatedEvents.map((club,index) => (
           <ClubItem 
-        
             title={club.club_nm}
             location={club.club_loc}
             imageSrc={`https://vtvkgtqvczyuteenfadw.supabase.co/storage/v1/object/public/club_image/${club.club_seq-1}.jpg`} // Correct relative path to the image
