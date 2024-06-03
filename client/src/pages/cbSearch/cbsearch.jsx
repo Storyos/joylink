@@ -45,16 +45,16 @@ function CbSearch() {
   return (
     <div className="min-h-screen m-0 font-custom">
       <SearchBar />
-      <div className="max-w-screen-xl p-6 mx-auto">
+      <div className="max-w-screen-xl p-6 mx-auto mt-12">
         {/* <div className="p-4 m-0 overflow-hidden bg-white rounded shadow"> */}
           <div className="mb-4 text-xl font-bold">개설된 모임 ({clublist.length}개)</div>
           <EventGrid clublist={clublist} currentPage={currentPage} itemsPerPage={itemsPerPage} />
         {/* </div> */}
-        <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={handlePageChange} />
+        <br></br><br></br><br></br>
+        <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={handlePageChange}/>
       </div>
     </div>
   );
 }
 
 export default CbSearch;
-
