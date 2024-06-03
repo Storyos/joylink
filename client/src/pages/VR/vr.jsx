@@ -70,6 +70,7 @@ AFRAME.registerComponent('jump', {
   }
 });
 
+// 신청서 클릭시 동아리 소개 페이지 팝업
 AFRAME.registerComponent('link-to', {
   schema: {
     url: { type: 'string' }
@@ -78,7 +79,8 @@ AFRAME.registerComponent('link-to', {
     this.el.addEventListener('click', (event) => {
       event.stopPropagation();
       event.preventDefault();
-      window.location.href = this.data.url;
+      // window.location.href = this.data.url;
+      window.open(`${this.data.url}`)
     });
   }
 });
@@ -102,6 +104,8 @@ export default function Vr() {
 
   return (
     <div>
+      <h1>vr 페이지 입니다</h1>
+      <h1>vr 페이지 입니다</h1>
       <h1>vr 페이지 입니다</h1>
       <a-scene className="aframe-scene">
 
