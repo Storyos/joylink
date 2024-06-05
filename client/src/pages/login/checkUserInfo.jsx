@@ -35,7 +35,7 @@ export default function CheckUserInfo() {
             console.error("fetch user에서 발생한 에러 ",error);
         }else{
             useUserStore.getState().setUser(data); // zustand에 로그인후 컬럼정보 저장
-            alert("로그인 성공~");
+            // alert("로그인 되었습니다");
             const userState = useUserStore.getState(); // 상태를 가져옵니다
             console.log("상태저장 값:",userState.user); // 테스트용으로 
             navigate('/');
