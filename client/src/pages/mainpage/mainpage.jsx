@@ -147,7 +147,7 @@ export default function Mainpage() {
       </div>
 
 
-      <div className="p-6 bg-blue-100 mt-24">
+      <div className="p-6 mt-24 bg-blue-100">
         <div className="container mx-auto">
           <div className="flex items-center justify-between mx-4">
             <span className="text-2xl font-bold">조이링크에서 다양한 동아리들을 만나보세요!</span>
@@ -179,8 +179,8 @@ export default function Mainpage() {
 
       {selectedCategory && (
         <div className="p-6 mb-8 ">
-          <h2 className="mb-4 text-xl font-bold mx-24">{selectedCategory == '전체' ? '전체' : `${selectedCategory}관련 모임`}</h2>
-          <div className="grid grid-cols-1 gap-4 mx-28 md:grid-cols-2 lg:grid-cols-3 mb-24">
+          <h2 className="mx-24 mb-4 text-xl font-bold">{selectedCategory == '전체' ? '전체' : `${selectedCategory}관련 모임`}</h2>
+          <div className="grid grid-cols-1 gap-4 mb-24 mx-28 md:grid-cols-2 lg:grid-cols-3">
             {boxContents.map((card, index) => (
               <div key={index} className="p-3 bg-white rounded shadow">
                 <div className="mb-2 text-gray-500">{card.club_ctg}</div>
@@ -195,7 +195,7 @@ export default function Mainpage() {
             ))}
             {boxContents.length === 5 && (
               <div className="flex items-center justify-center p-4 bg-white rounded shadow">
-                <h3 className="text-lg font-semibold">더 많은 모임 보기</h3>
+                <Link to ="/cbSearch"><h3 className="text-lg font-semibold">더 많은 모임 보기</h3></Link>
               </div>
             )}
           </div>
