@@ -27,7 +27,6 @@ import Vr from "./pages/VR/vr";
 import ClubNotice from "./pages/clubNotice/clubNotice";
 import FreeBoard from "./pages/freeBoard/freeBoard";
 import QuestionBoard from "./pages/questionBoard/questionBoard";
-import Test from "./pages/test"
 import CbDescription_2 from "./pages/cbDescription/cbDescription_2";
 export default function Main() {
   return (
@@ -55,7 +54,6 @@ export default function Main() {
           <Route path="clubNotice" element={<ClubNotice/>}/>
           <Route path="freeBoard" element={<FreeBoard/>}/>
           <Route path="questionBoard" element={<QuestionBoard/>}/>
-          <Route path="test" element={<Test/>}/>
           <Route path="clubManagement" element={<ClubManagement />}> {/*여기서 Route가 닫힌다!*/}
           </Route>
         </Route>
