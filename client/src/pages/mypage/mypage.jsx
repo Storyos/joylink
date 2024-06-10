@@ -14,9 +14,9 @@ export default function Mypage() {
   };
 
   const formatDate = (dateString) => {
-    const options = { month: '2-digit', day: '2-digit' };
+    const options = { month: "2-digit", day: "2-digit" };
     const date = new Date(dateString);
-    return date.toLocaleString('ko-KR', options).replace(',', '');
+    return date.toLocaleString("ko-KR", options).replace(",", "");
   };
 
   const handleCloseMessage = () => {
@@ -130,25 +130,41 @@ export default function Mypage() {
                   src="https://picsum.photos/200"
                   className="w-40 h-40 mb-8 rounded-full ml-16"
                 />
-                <h1 className="absolute top-[240px] right-[300px] text-4xl"  style={{ fontFamily: '"Dancing Script", sans-serif' }}>Life is what you make of it-!</h1>
-                <div className="absolute right-[350px]
-                top-[350px]">
-                  <button  className="w-[120px] h-[40px] px-2 border border-[#87C4FF] bg-white hover:bg-[#87C4FF] hover:border-[#87C4FF] text-[#39A7FF] hover:text-white mr-10 rounded-xl text-xl"> 프로필 수정</button>
-                  <button  className="w-[120px] h-[40px] px-2 border border-[#87C4FF] bg-white hover:bg-[#87C4FF] hover:border-[#87C4FF] text-[#39A7FF] hover:text-white rounded-xl text-xl"> 내정보 수정</button>
+                <h1 className="absolute top-[240px] right-[350px] text-2xl">
+                  Life is what you make of it-!
+                </h1>
+                <div
+                  className="absolute right-[350px]
+                top-[350px]"
+                >
+                  <button className="w-[120px] h-[40px] px-2 border border-[#87C4FF] bg-white hover:bg-[#87C4FF] hover:border-[#87C4FF] text-[#39A7FF] hover:text-white mr-10 rounded-xl text-xl">
+                    {" "}
+                    프로필 수정
+                  </button>
+                  <button className="w-[120px] h-[40px] px-2 border border-[#87C4FF] bg-white hover:bg-[#87C4FF] hover:border-[#87C4FF] text-[#39A7FF] hover:text-white rounded-xl text-xl">
+                    {" "}
+                    내정보 수정
+                  </button>
                 </div>
-                <div className="flex border-t w-[820px] h-[250px] bg-slate-50"> 
+                <div className="flex border-t w-[820px] h-[250px] bg-slate-50">
                   <div class="grid grid-cols-2 gap-x-36 ml-12 mt-12">
                     <div class="flex gap-x-8">
                       <h3 class="text-2xl font-semibold">아이디</h3>
-                      <p class="text-gray-700 text-xl ml-4">{userData.user_id}</p>
+                      <p class="text-gray-700 text-xl ml-4">
+                        {userData.user_id}
+                      </p>
                     </div>
                     <div class="flex gap-x-8">
                       <h3 class="text-2xl font-semibold">이름</h3>
-                      <p class="text-gray-700 text-xl ml-8">{userData.user_name}</p>
+                      <p class="text-gray-700 text-xl ml-8">
+                        {userData.user_name}
+                      </p>
                     </div>
                     <div class="flex gap-x-8">
                       <h3 class="text-2xl font-semibold">성별</h3>
-                      <p class="text-gray-700 text-xl ml-8">{userData.user_gender}</p>
+                      <p class="text-gray-700 text-xl ml-8">
+                        {userData.user_gender}
+                      </p>
                     </div>
                     <div class="flex gap-x-8">
                       <h3 class="text-2xl font-semibold">생년월일</h3>
@@ -162,24 +178,17 @@ export default function Mypage() {
                 </div>
               </div>
             )}
-            {/* 내 정보 수정 */}{mypageMenu === "updateInfo" && (
+            {/* 내 정보 수정 */}
+            {mypageMenu === "updateInfo" && (
               <div className="flex justify-center">
                 <div className="w-[70%] p-5 border rounded-xl">
-                  <p className="mb-8 font-bold text-2xl text-center">
+                  <p className="mb-8 text-2xl font-bold text-center">
                     정보 수정
                   </p>
-                  <ul className="text-center space-y-6">
-                    <li>
-                      <label
-                        htmlFor=""
-                        className="text-md text-[#a9a9a9] text-left"
-                      >
-                        아이디(이메일){" "}
-                        <input
-                          type="text"
-                          className=" p-1 px-2 text-black bg-gray-100 rounded text-xl ml-3 mr-14"
-                          defaultValue={"아이디"}
-                        />
+                  <ul className="space-y-6 text-center">
+                    <li className="flex items-center justify-between">
+                      <label htmlFor="email" className="text-md text-[#a9a9a9]">
+                        아이디(이메일)
                       </label>
                       <input
                         type="text"
@@ -188,14 +197,12 @@ export default function Mypage() {
                         defaultValue={userData.user_id}
                       />
                     </li>
-                    <li>
-                      <label htmlFor="" className="text-md text-[#a9a9a9] mr-5">
-                        비밀번호{" "}
-                        <input
-                          type="text"
-                          className=" p-1 px-2 text-black bg-gray-100 rounded text-xl ml-3"
-                          defaultValue={"비밀번호"}
-                        />
+                    <li className="flex items-center justify-between">
+                      <label
+                        htmlFor="password"
+                        className="text-md text-[#a9a9a9]"
+                      >
+                        비밀번호
                       </label>
                       <input
                         type="password"
@@ -215,14 +222,9 @@ export default function Mypage() {
                         defaultValue={userData.user_name}
                       />
                     </li>
-                    <li>
-                      <label htmlFor="" className="text-md text-[#a9a9a9] mr-5">
-                        전화번호{" "}
-                        <input
-                          type="text"
-                          className=" p-1 px-2 text-black bg-gray-100 rounded text-xl ml-3"
-                          defaultValue={"전화번호"}
-                        />
+                    <li className="flex items-center justify-between">
+                      <label htmlFor="phone" className="text-md text-[#a9a9a9]">
+                        전화번호
                       </label>
                       <input
                         type="text"
@@ -240,9 +242,6 @@ export default function Mypage() {
                 </div>
               </div>
             )}
-
-
-
 
             {/* 내 동아리 */}
             {mypageMenu == "myclub" && (
@@ -265,9 +264,14 @@ export default function Mypage() {
                   </tr>
                   {myClub.map((eachclub, index) => (
                     <tr className="border border-[#c9c9c9]" key={index}>
-                      <th className="border border-[#c9c9c9] w-[50px]">{index + 1}</th>
+                      <th className="border border-[#c9c9c9] w-[50px]">
+                        {index + 1}
+                      </th>
                       <td className="border border-[#c9c9c9] text-center min-w-[300px] p-2 text-sm">
-                        <Link to={`/myClubPage?${eachclub.club_seq}`} className=" hover:underline">
+                        <Link
+                          to={`/myClubPage?${eachclub.club_seq}`}
+                          className=" hover:underline"
+                        >
                           {eachclub.club.club_nm}
                         </Link>
                       </td>

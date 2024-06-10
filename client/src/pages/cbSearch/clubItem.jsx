@@ -12,7 +12,7 @@ const ClubItem = ({ index,title, imageSrc, location, isFree, date }) => {
   };
 
   return (
-    <div className="relative flex flex-col items-center h-full p-4 border border-gray-200 rounded-lg shadow-lg">
+    <div className="relative flex flex-col items-center h-full p-4 border border-gray-200 rounded-lg">
       <div className="absolute top-6 right-6">
         <button onClick={toggleLike} className="focus:outline-none">
           <FontAwesomeIcon icon={liked ? solidHeart : regularHeart} className={`text-2xl ${liked ? 'text-red-500' : 'text-gray-500'}`} />
@@ -24,14 +24,11 @@ const ClubItem = ({ index,title, imageSrc, location, isFree, date }) => {
         <Link to="/cbDescription" className="block mb-2 text-black hover:text-blue-700">
           {title}
         </Link>
-        <div className="flex items-center justify-between mb-10 text-sm">
-          <span className={`font-bold ${isFree ? 'text-green-500' : 'text-red-500'}`}>
-            {isFree ? '무료' : '유료'}
-          </span>
+        <div className="flex items-center justify-between mb-16 text-sm">
           <span className="text-gray-500">{date}</span>
         </div>
       </div>
-      <Link to="/cbJoin" className="absolute p-2 text-white transform -translate-x-1/2 bg-blue-500 rounded bottom-4 left-1/2 hover:bg-blue-700">
+      <Link to="/cbJoin" className="absolute p-2 text-white transform -translate-x-1/2 bg-blue-400 rounded bottom-4 left-1/2 hover:bg-blue-200 w-12 text-center">
         신청
       </Link>
     </div>
