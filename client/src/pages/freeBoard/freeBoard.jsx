@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import MyInfo from "../../components/myInfo/myInfo";
+import { Link } from "react-router-dom";
 import CocktailHeader from "../../components/cocktailHeader";
 import { supabase } from "../../App";
 
@@ -23,6 +24,10 @@ export default function FreeBoard() {
     }
   };
 
+  const handleClick = () => {
+    console.log("Button clicked!"); // 클릭 이벤트 확인용
+  };
+
   return (
     <div className="mt-32">
       <CocktailHeader />
@@ -31,7 +36,7 @@ export default function FreeBoard() {
           <MyInfo />
         </div>
         <div className="w-3/5 p-6">
-          <div className="flex justify-between items-center mt-8 mb-16">
+          <div className="flex justify-between items-center mt-8 mb-10">
             <h1
               className="text-2xl font-bold"
               style={{ fontFamily: '"Dancing Script", sans-serif' }}
@@ -44,6 +49,16 @@ export default function FreeBoard() {
               placeholder="게시글 검색"
               className="border px-2 py-1 rounded mt-2"
             />
+          </div>
+          <div className="flex justify-end mb-5">
+            <Link to="/addFreeBoard">
+              <button 
+                className="bg-blue-300 text-white border rounded-md py-1 px-2 hover:bg-slate-400"
+                onClick={handleClick} // 클릭 핸들러 추가
+              >
+                게시글 작성
+              </button>
+            </Link>
           </div>
           <hr />
           <div>
@@ -70,4 +85,3 @@ export default function FreeBoard() {
     </div>
   );
 }
-

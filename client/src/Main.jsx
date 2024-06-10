@@ -28,6 +28,7 @@ import ClubNotice from "./pages/clubNotice/clubNotice";
 import FreeBoard from "./pages/freeBoard/freeBoard";
 import QuestionBoard from "./pages/questionBoard/questionBoard";
 import CbDescription_2 from "./pages/cbDescription/cbDescription_2";
+import AddFreeBoard from "./pages/freeBoard/addFreeBoard";
 export default function Main() {
   return (
     <BrowserRouter>
@@ -54,6 +55,7 @@ export default function Main() {
           <Route path="clubNotice" element={<ClubNotice/>}/>
           <Route path="freeBoard" element={<FreeBoard/>}/>
           <Route path="questionBoard" element={<QuestionBoard/>}/>
+          <Route path="addFreeBoard" element={<AddFreeBoard/>}/>
           <Route path="clubManagement" element={<ClubManagement />}> {/*여기서 Route가 닫힌다!*/}
           </Route>
         </Route>
