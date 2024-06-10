@@ -118,7 +118,7 @@ export default function MyInfo() {
             <button>동아리 공지사항</button>
           </Link>
           <Link to="/freeBoard">
-            <button>자유게시판</button>
+            <button>한줄 자유게시판</button>
           </Link>
           <Link to="/questionBoard">
             <button>질문게시판</button>
