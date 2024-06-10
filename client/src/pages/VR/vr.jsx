@@ -111,7 +111,7 @@ const sakuraPool = new ObjectPool(() => ({
   rotation: "",
   scale: "30 30 30",
   src: "/vr_src/sakura_tree.glb"
-}), 50);
+}), 30);
 
 const grassPool = new ObjectPool(() => ({
   key: Math.random(),
@@ -120,7 +120,7 @@ const grassPool = new ObjectPool(() => ({
   width: "6",
   height: "6",
   src: "/vr_src/grass.jpg"
-}), 500);
+}), 300);
 
 const tablePool = new ObjectPool(() => ({
   key: Math.random(),
@@ -128,7 +128,7 @@ const tablePool = new ObjectPool(() => ({
   rotation: "0 90 0",
   scale: "2.5 1.1 2.8",
   src: "/vr_src/folding_table.glb"
-}), 50);
+}), 20);
 
 const tentPool = new ObjectPool(() => ({
   key: Math.random(),
@@ -136,7 +136,7 @@ const tentPool = new ObjectPool(() => ({
   rotation: "0 -90 0",
   scale: "1.2 1.2 1.2",
   src: "/vr_src/Commercial_Tent_4x4_Meters.glb"
-}), 50);
+}), 20);
 
 const easelPool = new ObjectPool(() => ({
   key: Math.random(),
@@ -144,7 +144,7 @@ const easelPool = new ObjectPool(() => ({
   rotation: "",
   scale: "0.3 0.3 0.3",
   src: "/vr_src/easel.glb"
-}), 50);
+}), 10);
 
 const stonePool = new ObjectPool(() => ({
   key: Math.random(),
@@ -152,7 +152,7 @@ const stonePool = new ObjectPool(() => ({
   rotation: "",
   scale: "2.7 2.5 2.5",
   src: "/vr_src/stone_ground.glb"
-}), 50);
+}), 20);
 
 
 export default function Vr() {
