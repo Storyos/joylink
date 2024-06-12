@@ -108,7 +108,8 @@ export default function Vr() {
       <a-scene className="aframe-scene">
 
         {/* 카메라 */}
-        <a-camera 
+        <a-camera
+        camera="far:50" 
         jump = "height: 0.5; duration: 400"
         boundary-constraint="minX: -10; maxX: 10; minZ: -70; maxZ: 7"
         position="0 1.6 6"
