@@ -92,9 +92,9 @@ export default function ClubModels ({ category, index }) {
   //사람 오브젝트
   const soccerman = "vr_src/people/soccerman.glb"
   const soccerman2 = "vr_src/people/soccerman2.glb"
-  const korean = "vr_src/people/korean.glb"
+  const korean = "vr_src/people/newkorean.glb"
   const korean2 = "vr_src/people/korean2.glb"
-  const korean3 = "vr_src/people/korean3.glb"
+  const korean3 = "vr_src/people/newkorean3.glb"
   const korean4 = "vr_src/people/korean4.glb"
   const korean5 = "vr_src/people/korean5.glb"
   const person1 = "vr_src/people/person1.glb";

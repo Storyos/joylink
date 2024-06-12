@@ -89,7 +89,7 @@ export default function Vr() {
   
   const table ="/vr_src/folding_table.glb"
   const tent = "/vr_src/Commercial_Tent_4x4_Meters.glb"
-  const sakura ="/vr_src/sakura_tree.glb";
+  const sakura ="/vr_src/newsakura_tree.glb";
   const grassImgPath ="/vr_src/grass.jpg";
   const easel = "/vr_src/easel.glb";
   const stone = "/vr_src/stone_ground.glb";
