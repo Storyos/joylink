@@ -66,7 +66,6 @@ export default function Gallery() {
         <div className="w-3/5 p-6">
           <div className="flex items-center justify-between mt-8 mb-16">
             <h1 className="text-2xl font-bold" style={{ fontFamily: '"Dancing Script", sans-serif' }}>Gallery</h1>
-            <input type="text" id="search" placeholder="갤러리 검색" className="px-2 py-1 mt-2 border rounded" />
           </div>
           <hr/>
 
