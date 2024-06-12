@@ -156,6 +156,13 @@ const stonePool = new ObjectPool(() => ({
 
 
 export default function Vr() {
+  
+  const table ="/vr_src/folding_table.glb"
+  const tent = "/vr_src/Commercial_Tent_4x4_Meters.glb"
+  const sakura ="/vr_src/newsakura_tree.glb";
+  const grassImgPath ="/vr_src/grass.jpg";
+  const easel = "/vr_src/easel.glb";
+  const stone = "/vr_src/stone_ground.glb";
   const arcitechture1 = "/vr_src/arcitechture1.png";
   const arcitechture2 = "/vr_src/arcitechture2.png"; 
 
@@ -243,7 +250,8 @@ export default function Vr() {
       <a-scene className="aframe-scene">
 
         {/* 카메라 */}
-        <a-camera 
+        <a-camera
+        camera="far:50" 
         jump = "height: 0.5; duration: 400"
         boundary-constraint="minX: -10; maxX: 10; minZ: -70; maxZ: 7"
         position="0 1.6 6"
