@@ -69,7 +69,7 @@ export default function FreeBoard() {
                 posts.map((post) => (
                   <li key={post.id} className="flex items-center justify-between border-b py-4">
                     <div className="flex">
-                      <h2 className="text-md font-bold">{post.title}</h2> {/* 게시글 제목 */}
+                      <h2 className="text-md">{post.title}</h2> {/* 게시글 제목 */}
                     </div>
                     <div className="flex ml-auto">
                       <p className="text-gray-500 mr-4">작성자: {post.author}</p> {/* 게시글 작성자 */}
@@ -85,3 +85,5 @@ export default function FreeBoard() {
     </div>
   );
 }
+
+
