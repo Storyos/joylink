@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const SearchBar = () => (
-  <div className="flex items-center justify-center p-4 mt-28">
-    <div className="w-full max-w-[1280px] p-4 bg-white border border-gray-300 rounded-lg shadow">
+  <div className="flex items-center justify-center p-4 mt-32">
+    <div className="w-full max-w-[1240px] p-4 bg-white border border-gray-300 rounded-lg shadow">
       <div className="flex flex-wrap items-stretch items-center justify-between w-full space-x-2">
         <select className="w-full p-2 border border-gray-300 rounded-md sm:w-auto">
           <option value="">카테고리</option>

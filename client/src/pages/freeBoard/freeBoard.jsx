@@ -1,29 +1,42 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MyInfo from "../../components/myInfo/myInfo";
+import { Link } from "react-router-dom";
+import CocktailHeader from "../../components/cocktailHeader";
+import { supabase } from "../../App";
 
 export default function FreeBoard() {
-  return (
-    <div className="mt-28">
-      <h1
-        className="text-center text-6xl mt-40 mb-16"
-        id="myClub_heading"
-        style={{ fontFamily: '"Dancing Script", sans-serif' }}
-      >
-        sex on the beach
-        <br /> Margarita
-      </h1>
-      <h3 className="text-center text-xl text-gray-500 mb-20">
-        Life's journey thrives on exploration, the ultimate way to connect with
-        <br />
-        Negroni, Whiskey Sour, Cosmopolitan
-      </h3>
+  const [posts, setPosts] = useState([]); // 게시글 목록을 저장할 상태 변수
 
+  useEffect(() => {
+    fetchPosts(); // 컴포넌트가 마운트될 때 fetchPosts 함수 호출
+  }, []);
+
+  // Supabase에서 freeboard 테이블의 데이터를 가져오는 함수
+  const fetchPosts = async () => {
+    const { data, error } = await supabase
+      .from('freeboard')
+      .select('*'); // freeboard 테이블에서 모든 행을 선택
+
+    if (error) {
+      console.error('Error fetching posts:', error); // 에러가 발생하면 콘솔에 출력
+    } else {
+      setPosts(data); // 성공적으로 데이터를 가져오면 posts 상태에 저장
+    }
+  };
+
+  const handleClick = () => {
+    console.log("Button clicked!"); // 클릭 이벤트 확인용
+  };
+
+  return (
+    <div className="mt-32">
+      <CocktailHeader />
       <div className="flex justify-center">
         <div className="mb-16">
           <MyInfo />
         </div>
         <div className="w-3/5 p-6">
-          <div className="flex justify-between items-center mt-8 mb-16">
+          <div className="flex justify-between items-center mt-8 mb-10">
             <h1
               className="text-2xl font-bold"
               style={{ fontFamily: '"Dancing Script", sans-serif' }}
@@ -37,87 +50,40 @@ export default function FreeBoard() {
               className="border px-2 py-1 rounded mt-2"
             />
           </div>
+          <div className="flex justify-end mb-5">
+            <Link to="/addFreeBoard">
+              <button 
+                className="bg-blue-300 text-white border rounded-md py-1 px-2 hover:bg-slate-400"
+                onClick={handleClick} // 클릭 핸들러 추가
+              >
+                게시글 작성
+              </button>
+            </Link>
+          </div>
           <hr />
-          {/* 여기에 게시글 목록 컴포넌트를 추가 */}
-
-          <table className="w-full text-center border-collapse">
-            <thead>
-              <tr>
-                <th className="py-2">번호</th>
-                <th className="py-2">구분</th>
-                <th className="py-2">제목</th>
-                <th className="py-2">작성자</th>
-                <th className="py-2">등록일</th>
-                <th className="py-2">조회수</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="border">
-                <td className="py-2">1</td>
-                <td className="py-2">자유</td>
-                <td className="py-2">호랑이와 원숭이</td>
-                <td className="py-2">박기재</td>
-                <td className="py-2">2024/06/03</td>
-                <td className="py-2">327</td>
-              </tr>
-
-              <tr className="border">
-                <td className="py-2">2</td>
-                <td className="py-2">자유</td>
-                <td className="py-2">연태고량주는 맛있다</td>
-                <td className="py-2">김범규</td>
-                <td className="py-2">2024/06/03</td>
-                <td className="py-2">37</td>
-              </tr>
-
-              <tr className="border">
-                <td className="py-2">3</td>
-                <td className="py-2">자유</td>
-                <td className="py-2">칵테일 만드는 방법</td>
-                <td className="py-2">손가얼</td>
-                <td className="py-2">2024/06/06</td>
-                <td className="py-2">7</td>
-              </tr>
-
-              <tr className="border">
-                <td className="py-2">4</td>
-                <td className="py-2">자유</td>
-                <td className="py-2">부경대 맛집 추천</td>
-                <td className="py-2">최세윤</td>
-                <td className="py-2">2024/06/07</td>
-                <td className="py-2">7</td>
-              </tr>
-
-              <tr className="border">
-                <td className="py-2">5</td>
-                <td className="py-2">자유</td>
-                <td className="py-2">건강에 좋은 음식</td>
-                <td className="py-2">강지애</td>
-                <td className="py-2">2024/06/07</td>
-                <td className="py-2">0</td>
-              </tr>
-
-              <tr className="border">
-                <td className="py-2">6</td>
-                <td className="py-2">자유</td>
-                <td className="py-2">치아에 좋은 습관을 찾자</td>
-                <td className="py-2">박현준</td>
-                <td className="py-2">2024/06/07</td>
-                <td className="py-2">2</td>
-              </tr>
-
-              <tr className="border">
-                <td className="py-2">7</td>
-                <td className="py-2">자유</td>
-                <td className="py-2">How to Make Cocktails</td>
-                <td className="py-2">John Doe</td>
-                <td className="py-2">2024/06/06</td>
-                <td className="py-2">7</td>
-              </tr>
-            </tbody>
-          </table>
+          <div>
+            <ul>
+              {posts.length === 0 ? (
+                <li>게시글이 없습니다.</li>
+              ) : (
+                posts.map((post) => (
+                  <li key={post.id} className="flex items-center justify-between border-b py-4">
+                    <div className="flex">
+                      <h2 className="text-md">{post.title}</h2> {/* 게시글 제목 */}
+                    </div>
+                    <div className="flex ml-auto">
+                      <p className="text-gray-500 mr-4">작성자: {post.author}</p> {/* 게시글 작성자 */}
+                      <p className="text-gray-500">{post.date}</p> {/* 게시글 작성 날짜 */}
+                    </div>
+                  </li>
+                ))
+              )}
+            </ul>
+          </div>
         </div>
       </div>
     </div>
   );
 }
+
+
