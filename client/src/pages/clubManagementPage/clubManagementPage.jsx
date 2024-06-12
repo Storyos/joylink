@@ -21,12 +21,6 @@ export default function ClubManagementPage() {
         </button>
         <button 
           className="p-2 m-5 text-white bg-indigo-400 rounded-md" 
-          onClick={() => handleTabClick('페이지 관리')}
-        >
-          페이지 관리
-        </button>
-        <button 
-          className="p-2 m-5 text-white bg-indigo-400 rounded-md" 
           onClick={() => handleTabClick('장부 관리')}
         >
           장부 관리
@@ -35,7 +29,7 @@ export default function ClubManagementPage() {
           className="p-2 m-5 text-white bg-indigo-400 rounded-md" 
           onClick={() => handleTabClick('가입 승인')}
         >
-          가입 방식
+          가입 승인
         </button>
       </div>
 
