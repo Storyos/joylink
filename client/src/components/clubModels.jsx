@@ -67,8 +67,8 @@ export default function ClubModels ({ category, index }) {
   const footballbenner2="vr_src/football_club/footballbenner2.png"
   //로봇제어계측 동아리
   const mechanic_arm = "vr_src/mechanic_club/mechanic_arm.glb"
-  const drone = "vr_src/mechanic_club/drone.glb"
-  const drone2 = "vr_src/mechanic_club/drone2.glb"
+  const drone = "vr_src/mechanic_club/new_drone.glb"
+  const drone2 = "vr_src/mechanic_club/new_drone2.glb"
   const tool_box = "vr_src/mechanic_club/tool_box.glb"
   const controller = "vr_src/mechanic_club/controller.glb"
   const highrowposter = "vr_src/mechanic_club/highrow.jpg"
