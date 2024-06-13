@@ -55,7 +55,7 @@ export default function ClubModels ({ category, index }) {
   const travelBanner2 = "vr_src/traveling_club/travel_banner2.png";
 
   // 축구동아리 소스
-  const footballshoes = "vr_src/football_club/football_shoes.glb"
+  // const footballshoes = "vr_src/football_club/football_shoes.glb"
   const football_set="vr_src/football_club/football_set.glb"
   const soccer_uniform = "vr_src/football_club/soccer_uniform.glb"
   const cone = "vr_src/football_club/cone.glb"
@@ -90,7 +90,7 @@ export default function ClubModels ({ category, index }) {
   const stockbanner = "vr_src/stockclub/stockbanner.png"
   const stockbanner2 = "vr_src/stockclub/stockbanner2.png"
   //사람 오브젝트
-  const soccerman = "vr_src/people/soccerman.glb"
+  const soccerman = "vr_src/people/newsoccerman.glb"
   const soccerman2 = "vr_src/people/soccerman2.glb"
   const korean = "vr_src/people/newkorean.glb"
   const korean2 = "vr_src/people/korean2.glb"
@@ -101,7 +101,7 @@ export default function ClubModels ({ category, index }) {
   const person2 = "vr_src/people/person2.glb";
   const person3 = "vr_src/people/person3.glb";
   const person4 = "vr_src/people/person4.glb";
-  const person5 = "vr_src/people/person5.glb";
+  const person5 = "vr_src/people/newperson5.glb";
   const person6 = "vr_src/people/person6.glb";
   const person7 = "vr_src/people/person7.glb";
   const person8 = "vr_src/people/person8.glb";
@@ -456,10 +456,10 @@ export default function ClubModels ({ category, index }) {
         position={`-9 1 ${-0.5-(15*index)}`}
         scale="0.3 0.3 0.3"
         rotation="0 -90 0"></a-entity>
-        <a-entity gltf-model={`url(${footballshoes})`} 
+        {/* <a-entity gltf-model={`url(${footballshoes})`} 
         position={`-6 0.5 ${1-(15*index)}`}
         scale="1.5 1.5 1.5"
-        rotation="0 -90 0"></a-entity>
+        rotation="0 -90 0"></a-entity> */}
         <a-entity gltf-model={`url(${football_set})`} 
         position={`-6 0.5 ${-4-(15*index)}`}
         rotation="0 90 0"></a-entity>
@@ -468,6 +468,18 @@ export default function ClubModels ({ category, index }) {
         rotation="0 180 0"></a-entity>
         <a-entity gltf-model={`url(${cone})`} 
         position={`-6 0.2 ${1.7-(15*index)}`}
+        scale="0.1 0.1 0.1"
+        rotation="0 -90 0"></a-entity>
+        <a-entity gltf-model={`url(${cone})`} 
+        position={`-5.5 0.2 ${1-(15*index)}`}
+        scale="0.1 0.1 0.1"
+        rotation="0 -90 0"></a-entity>
+        <a-entity gltf-model={`url(${cone})`} 
+        position={`-5.5 0.2 ${1.4-(15*index)}`}
+        scale="0.1 0.1 0.1"
+        rotation="0 -90 0"></a-entity>
+        <a-entity gltf-model={`url(${cone})`} 
+        position={`-5.5 0.3 ${1-(15*index)}`}
         scale="0.1 0.1 0.1"
         rotation="0 -90 0"></a-entity>
         <a-image src={applicationForm}

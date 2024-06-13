@@ -250,7 +250,7 @@ export default function Vr() {
       <h1>vr 페이지 입니다</h1>
       <h1>vr 페이지 입니다</h1>
       <a-scene className="aframe-scene">
-
+        
         {/* 카메라 */}
         <a-camera 
         jump = "height: 0.5; duration: 400"
@@ -262,6 +262,9 @@ export default function Vr() {
 
         {/* 마우스 커서 */}
         <a-entity cursor="fuse: false; rayOrigin: mouse"></a-entity>
+        
+        <a-entity hand-controls="hand: left; handModelStyle: lowPoly; color: #ffcccc"></a-entity>
+        <a-entity hand-controls="hand: right; handModelStyle: lowPoly; color: #ffcccc"></a-entity>
         
         {/* 하늘 */}
         <a-sky color="#9CCEFF"></a-sky>
