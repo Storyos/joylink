@@ -17,10 +17,10 @@ export default function ClubModels ({ category, index }) {
   const readingBanner2 = "vr_src/reading_club/reading_banner2.png";
 
   // 사진 동아리
-  const picture1 = "vr_src/photography_club/picture1.glb";
-  const picture2 = "vr_src/photography_club/picture2.glb";
-  const camera = "vr_src/photography_club/camera.glb";
-  const box = "vr_src/photography_club/box.glb";
+  const picture1 = "vr_src/photography_club/new_picture1.glb";
+  const picture2 = "vr_src/photography_club/new_picture2.glb";
+  const camera = "vr_src/photography_club/new_camera.glb";
+  const box = "vr_src/photography_club/new_box.glb";
   const photographyPoster = "vr_src/photography_club/photography_poster.png";
   const photographyBanner = "vr_src/photography_club/photography_banner.png";
   const photographyBanner2 = "vr_src/photography_club/photography_banner2.png";
@@ -32,14 +32,14 @@ export default function ClubModels ({ category, index }) {
   const bandPoster = "vr_src/band_club/band_poster.png";
   const bandBanner = "vr_src/band_club/band_banner.jpg";
   const bandBanner2 = "vr_src/band_club/band_banner2.png";
-  const speaker = "vr_src/band_club/audio_speaker.glb";
-  const mixer = "vr_src/band_club/new_audio_mixer.glb";
+  const speaker = "vr_src/band_club/new_audio_speaker.glb";
+  // const mixer = "vr_src/band_club/new_audio_mixer.glb";
 
   // 등산 동아리
   const backpack = "vr_src/climbing_club/new_backpack.glb";
   const hat = "vr_src/climbing_club/new_hat.glb";
-  const mountain = "vr_src/climbing_club/mountain.glb";
-  const water = "vr_src/climbing_club/water.glb";
+  const mountain = "vr_src/climbing_club/new_mountain.glb";
+  const water = "vr_src/climbing_club/new_water.glb";
   const climbingPoster = "vr_src/climbing_club/climbing_poster.png";
   const climbingbanner2 = "vr_src/climbing_club/climbingbanner.png";
   const climbingBanner = "vr_src/climbing_club/climbing_banner.png";
@@ -270,11 +270,11 @@ export default function ClubModels ({ category, index }) {
                   scale="3 3 3"
                   rotation="0 -90 0">
         </a-entity>
-        <a-entity gltf-model={`url(${mixer})`} 
+        {/* <a-entity gltf-model={`url(${mixer})`} 
                   position={`9 1.0 ${3.5-(15*index)}`}
                   scale="3 3 3"
                   rotation="0 -90 0">
-        </a-entity>
+        </a-entity> */}
         <a-image src={applicationForm}
                     position={`8.8 1 ${-0.5-(15*index)}`}
                     width="0.84" 

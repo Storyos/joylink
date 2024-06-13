@@ -252,19 +252,28 @@ export default function Vr() {
       <a-scene className="aframe-scene">
         
         {/* 카메라 */}
-        <a-camera 
-        jump = "height: 0.5; duration: 400"
-        boundary-constraint="minX: -10; maxX: 10; minZ: -70; maxZ: 7"
-        position="0 1.6 6"
-        look-controls="enabled:true" 
-        wasd-controls="acceleration: 20">
-        </a-camera>
+        <a-entity id="cameraRig">
+          <a-camera
+            jump = "height: 0.5; duration: 400"
+            boundary-constraint="minX: -10; maxX: 10; minZ: -70; maxZ: 7"
+            position="0 1.6 6"
+            look-controls="enabled:true" 
+            wasd-controls="acceleration: 20">
+        </a-camera></a-entity>
+        
 
         {/* 마우스 커서 */}
         <a-entity cursor="fuse: false; rayOrigin: mouse"></a-entity>
         
-        <a-entity hand-controls="hand: left; handModelStyle: lowPoly; color: #ffcccc"></a-entity>
-        <a-entity hand-controls="hand: right; handModelStyle: lowPoly; color: #ffcccc"></a-entity>
+        <a-entity id="leftHand" 
+                hand-controls="hand: left; handModelStyle: lowPoly; color: #ffcccc" 
+                teleport-controls="cameraRig: #cameraRig; button: trigger; startEvents: teleportstart; endEvents: teleportend;">
+      </a-entity>
+
+      <a-entity id="rightHand" 
+                hand-controls="hand: right; handModelStyle: lowPoly; color: #ffcccc" 
+                teleport-controls="cameraRig: #cameraRig; button: trigger; startEvents: teleportstart; endEvents: teleportend;">
+      </a-entity>
         
         {/* 하늘 */}
         <a-sky color="#9CCEFF"></a-sky>
@@ -272,13 +281,13 @@ export default function Vr() {
         {/* 건물 이미지*/}
         <a-image src={arcitechture1}
                     position={`-50 50 -45`}
-                    width="300" 
+                    width="300"
                     height="100"
                     rotation="0 90 0">
         </a-image>
         <a-image src={arcitechture2}
                     position={`50 40 -45`}
-                    width="240" 
+                    width="240"
                     height="80"
                     rotation="0 -90 0">
         </a-image>
