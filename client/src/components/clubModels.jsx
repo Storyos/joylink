@@ -33,7 +33,7 @@ export default function ClubModels ({ category, index }) {
   const bandBanner = "vr_src/band_club/band_banner.jpg";
   const bandBanner2 = "vr_src/band_club/band_banner2.png";
   const speaker = "vr_src/band_club/audio_speaker.glb";
-  const mixer = "vr_src/band_club/audio_mixer.glb";
+  const mixer = "vr_src/band_club/new_audio_mixer.glb";
 
   // 등산 동아리
   const backpack = "vr_src/climbing_club/backpack.glb";
