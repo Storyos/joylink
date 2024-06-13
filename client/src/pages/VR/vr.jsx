@@ -272,13 +272,13 @@ export default function Vr() {
         {/* 건물 이미지*/}
         <a-image src={arcitechture1}
                     position={`-50 50 -45`}
-                    width="300" 
+                    width="300"
                     height="100"
                     rotation="0 90 0">
         </a-image>
         <a-image src={arcitechture2}
                     position={`50 40 -45`}
-                    width="240" 
+                    width="240"
                     height="80"
                     rotation="0 -90 0">
         </a-image>
