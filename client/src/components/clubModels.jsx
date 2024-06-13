@@ -3,15 +3,15 @@ export default function ClubModels ({ category, index }) {
   const applicationForm = "/vr_src/application_form.png";
 
   // 보드게임 동아리
-  const monopoly = "vr_src/boardgame_club/monopoly.glb";
-  const boardgame = "vr_src/boardgame_club/boardgame.glb";
+  const monopoly = "vr_src/boardgame_club/new_monopoly.glb";
+  const boardgame = "vr_src/boardgame_club/new_boardgame.glb";
   const boardgamePoster = "vr_src/boardgame_club/boardgame_poster.png";
   const boardgameBanner = "vr_src/boardgame_club/boardgame_banner.png";
   const boardgameBanner2 = "vr_src/boardgame_club/boardgame_banner2.png";
 
   // 독서 동아리
-  const books1 = "vr_src/reading_club/books1.glb";
-  const books2 = "vr_src/reading_club/books2.glb";
+  const books1 = "vr_src/reading_club/new_books1.glb";
+  const books2 = "vr_src/reading_club/new_books2.glb";
   const readingPoster = "vr_src/reading_club/reading_poster.png";
   const readingBanner = "vr_src/reading_club/reading_banner.png";
   const readingBanner2 = "vr_src/reading_club/reading_banner2.png";
@@ -26,9 +26,9 @@ export default function ClubModels ({ category, index }) {
   const photographyBanner2 = "vr_src/photography_club/photography_banner2.png";
 
   // 밴드 동아리
-  const microphone = "vr_src/band_club/microphone.glb";
-  const guitar = "vr_src/band_club/guitar.glb";
-  const drum = "vr_src/band_club/drum.glb";
+  const microphone = "vr_src/band_club/new_microphone.glb";
+  const guitar = "vr_src/band_club/new_guitar.glb";
+  const drum = "vr_src/band_club/new_drum.glb";
   const bandPoster = "vr_src/band_club/band_poster.png";
   const bandBanner = "vr_src/band_club/band_banner.jpg";
   const bandBanner2 = "vr_src/band_club/band_banner2.png";
@@ -36,8 +36,8 @@ export default function ClubModels ({ category, index }) {
   const mixer = "vr_src/band_club/new_audio_mixer.glb";
 
   // 등산 동아리
-  const backpack = "vr_src/climbing_club/backpack.glb";
-  const hat = "vr_src/climbing_club/hat.glb";
+  const backpack = "vr_src/climbing_club/new_backpack.glb";
+  const hat = "vr_src/climbing_club/new_hat.glb";
   const mountain = "vr_src/climbing_club/mountain.glb";
   const water = "vr_src/climbing_club/water.glb";
   const climbingPoster = "vr_src/climbing_club/climbing_poster.png";
@@ -75,17 +75,17 @@ export default function ClubModels ({ category, index }) {
   const highrowbanner = "vr_src/mechanic_club/highrowbanner.png"
   const highrowbanner2 = "vr_src/mechanic_club/highrowbanner2.png"
   //술 동아리
-  const alcohol_set = "vr_src/alcohol/bottle_set_alcohol.glb"
-  const wine = "vr_src/alcohol/wine.glb"
-  const oak = "vr_src/alcohol/oak.glb"
-  const certificate = "vr_src/alcohol/certificate.glb"
+  const alcohol_set = "vr_src/alcohol/new_bottle_set_alcohol.glb"
+  const wine = "vr_src/alcohol/new_wine.glb"
+  const oak = "vr_src/alcohol/new_oak.glb"
+  const certificate = "vr_src/alcohol/new_certificate.glb"
   const alcoholposter = "vr_src/alcohol/alcoholposter.jpg"
   const alcoholbanner = "vr_src/alcohol/alcoholbanner.png"
   const alcoholbanner2 = "vr_src/alcohol/alcoholbanner2.png"
   //주식 동아리
   const chart = "vr_src/stockclub/chart.glb"
-  const boxes = "vr_src/stockclub/boxes.glb"
-  const file = "vr_src/stockclub/file.glb"
+  const boxes = "vr_src/stockclub/new_boxes.glb"
+  const file = "vr_src/stockclub/new_file.glb"
   const stockposter = "vr_src/stockclub/stockposter.jpg"
   const stockbanner = "vr_src/stockclub/stockbanner.png"
   const stockbanner2 = "vr_src/stockclub/stockbanner2.png"

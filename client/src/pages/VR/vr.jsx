@@ -110,7 +110,7 @@ const sakuraPool = new ObjectPool(() => ({
   position: "",
   rotation: "",
   scale: "30 30 30",
-  src: "/vr_src/sakura_tree.glb"
+  src: "/vr_src/newsakura_tree.glb"
 }), 30);
 
 const grassPool = new ObjectPool(() => ({
