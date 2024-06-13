@@ -18,7 +18,6 @@ const CbJoin = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
-   
   };
 
   // 주소 검색 창 열기

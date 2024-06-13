@@ -4,6 +4,7 @@ import "aframe-particle-system-component";
 import "aframe-extras";
 import AFRAME from 'aframe';
 import ClubModels from "../../components/clubModels";
+import { useState, useEffect } from "react";
 
 // 카메라 이동 범위 제한하는 컴포넌트 등록
 AFRAME.registerComponent('boundary-constraint', {
@@ -85,31 +86,173 @@ AFRAME.registerComponent('link-to', {
   }
 });
 
+// 객체 풀링 시스템 정의
+class ObjectPool {
+  constructor(createFn, size) {
+    this.createFn = createFn;
+    this.pool = [];
+    for (let i = 0; i < size; i++) {
+      this.pool.push(this.createFn());
+    }
+  }
+
+  acquire() {
+    return this.pool.length > 0 ? this.pool.pop() : this.createFn();
+  }
+
+  release(obj) {
+    this.pool.push(obj);
+  }
+}
+
+const sakuraPool = new ObjectPool(() => ({
+  key: Math.random(),
+  position: "",
+  rotation: "",
+  scale: "30 30 30",
+  src: "/vr_src/newsakura_tree.glb"
+}), 30);
+
+const grassPool = new ObjectPool(() => ({
+  key: Math.random(),
+  position: "",
+  rotation: "90 90 0",
+  width: "6",
+  height: "6",
+  src: "/vr_src/grass.jpg"
+}), 300);
+
+const tablePool = new ObjectPool(() => ({
+  key: Math.random(),
+  position: "",
+  rotation: "0 90 0",
+  scale: "2.5 1.1 2.8",
+  src: "/vr_src/folding_table.glb"
+}), 20);
+
+const tentPool = new ObjectPool(() => ({
+  key: Math.random(),
+  position: "",
+  rotation: "0 -90 0",
+  scale: "1.2 1.2 1.2",
+  src: "/vr_src/Commercial_Tent_4x4_Meters.glb"
+}), 20);
+
+const easelPool = new ObjectPool(() => ({
+  key: Math.random(),
+  position: "",
+  rotation: "",
+  scale: "0.3 0.3 0.3",
+  src: "/vr_src/easel.glb"
+}), 10);
+
+const stonePool = new ObjectPool(() => ({
+  key: Math.random(),
+  position: "",
+  rotation: "",
+  scale: "2.7 2.5 2.5",
+  src: "/vr_src/stone_ground.glb"
+}), 20);
+
+
 export default function Vr() {
   
   const table ="/vr_src/folding_table.glb"
   const tent = "/vr_src/Commercial_Tent_4x4_Meters.glb"
-  const sakura ="/vr_src/newsakura_tree.glb";
+  const sakura ="/vr_src/sakura_tree.glb";
   const grassImgPath ="/vr_src/grass.jpg";
   const easel = "/vr_src/easel.glb";
   const stone = "/vr_src/stone_ground.glb";
   const arcitechture1 = "/vr_src/arcitechture1.png";
   const arcitechture2 = "/vr_src/arcitechture2.png"; 
 
-  const CountCherryBlossom = Array.from({length: 23}, () => 0);
-  const CountGrassX = Array.from({length: 30}, () => 0);
-  const CountGrassZ = Array.from({length: 17}, () => 0);
-  const CountStone = Array.from({length: 9}, () => 0);
-  const tentline = Array.from({length: 5}, () => 0);
+  // 객체 풀에서 필요한 만큼 가져오기
+  const [sakuraEntities, setSakuraEntities] = useState([]);
+  const [grassEntities, setGrassEntities] = useState([]);
+  const [tableEntities, setTableEntities] = useState([]);
+  const [tentEntities, setTentEntities] = useState([]);
+  const [easelEntities, setEaselEntities] = useState([]);
+  const [stoneEntities, setStoneEntities] = useState([]);
+
+  useEffect(() => {
+    const sakuraTemp = [];
+    const grassTemp = [];
+    const tableTemp = [];
+    const tentTemp = [];
+    const easelTemp = [];
+    const stoneTemp = [];
+    
+    for (let i = 0; i < 23; i++) {
+      for (let j = 0; j < 2; j++) {
+        const entity = sakuraPool.acquire();
+        entity.position = j === 0 ? `-12 0 ${60 - (i * 8)}` : `12 0 ${60 - (i * 8)}`;
+        entity.rotation = `0 ${60 * i} 0`;
+        sakuraTemp.push(entity);
+      }
+    }
+    setSakuraEntities(sakuraTemp);
+
+    for (let x = 0; x < 30; x++) {
+      for (let z = 0; z < 17; z++) {
+        const entity = grassPool.acquire();
+        entity.position = `${-48+(6*z)} 0 ${60-(6*x)}`; 
+        grassTemp.push(entity);
+      }
+    }
+    setGrassEntities(grassTemp);
+
+    for (let i = 0; i < 5; i++) {
+      for (let j = 0; j < 2; j++) {
+        const entity = tablePool.acquire();
+        entity.position = j === 0 ? `9 0.5 ${4.5-(i*15)}` : `9 0.5 ${-0.5-(i*15)}`;
+        tableTemp.push(entity);
+      }
+      for (let j = 0; j < 2; j++) {
+        const entity = tablePool.acquire();
+        entity.position = j === 0 ? `-9 0.5 ${4.5-(i*15)}` : `-9 0.5 ${-0.5-(i*15)}`;
+        tableTemp.push(entity);
+      }
+    }
+    setTableEntities(tableTemp);
+
+    for (let i = 0; i < 5; i++) {
+      for (let j = 0; j < 2; j++) {
+        const entity = tentPool.acquire();
+        entity.position = j === 0 ? `-8 0 ${2-(i*15)}` : `8 0 ${2-(i*15)}`;
+        tentTemp.push(entity);
+      }
+    }
+    setTentEntities(tentTemp);
+
+    for (let i = 0; i < 5; i++) {
+      for (let j = 0; j < 2; j++) {
+        const entity = easelPool.acquire();
+        entity.position = j === 0 ? `-5 0 ${-2-(i*15)}` : `5 0 ${6.5-(i*15)}`;
+        entity.rotation = j === 0 ? `0 -90 0` : `0 90 0`;
+        easelTemp.push(entity);
+      }
+    }
+    setEaselEntities(easelTemp);
+
+    for (let i = 0; i < 9; i++) {
+      for (let j = 0; j < 2; j++) {
+        const entity = stonePool.acquire();
+        entity.position = j === 0 ? `-5.35 -0.6 ${60.3-(19.84*i)}` : `5.4 -0.6 ${60-(19.84*i)}`;
+        stoneTemp.push(entity);
+      }
+    }
+    setStoneEntities(stoneTemp);
+  }, []);
 
   return (
     <div>
       <h1>vr 페이지 입니다</h1>
+      <h1>vr 페이지 입니다</h1>
+      <h1>vr 페이지 입니다</h1>
       <a-scene className="aframe-scene">
 
         {/* 카메라 */}
-        <a-camera
-        camera="far:50" 
+        <a-camera 
         jump = "height: 0.5; duration: 400"
         boundary-constraint="minX: -10; maxX: 10; minZ: -70; maxZ: 7"
         position="0 1.6 6"
@@ -138,109 +281,75 @@ export default function Vr() {
         </a-image>
         
         {/* 풀밭 이미지 */}
-        {CountGrassX.map((_, XIndex)=>(
-          CountGrassZ.map((_, ZIndex)=>(
-            <a-image src={grassImgPath} 
-                    position={`${-48+(6*ZIndex)} 0 ${60-(6*XIndex)}`} 
-                    width="6" 
-                    height="6"
-                    rotation="90 90 0">
-            </a-image>
-          ))
+        {grassEntities.map((entity, index) => (
+          <a-image 
+            key={entity.key}
+            src={entity.src} 
+            position={entity.position} 
+            width={entity.width} 
+            height={entity.height} 
+            rotation={entity.rotation}>
+          </a-image>
         ))}
         
         {/* 동아리 부스 */}
-        {tentline.map((_, index)=>(
-          <a-entity gltf-model={`url(${tent})`} 
-          position={`-8 0 ${2-(index*15)}`}
-          scale="1.2 1.2 1.2"
-          rotation="0 -90 0"></a-entity>
-        ))}
-        {tentline.map((_, index)=>(
-          <a-entity gltf-model={`url(${tent})`} 
-          position={`8 0 ${2-(index*15)}`}
-          scale="1.2 1.2 1.2"
-          rotation="0 -90 0"></a-entity>
+        {tentEntities.map((entity, index) => (
+          <a-entity 
+            key={entity.key}
+            gltf-model={`url(${entity.src})`}
+            position={entity.position}
+            scale={entity.scale}
+            rotation={entity.rotation}>
+          </a-entity>
         ))}
         
         {/* 이젤 */}
-        {tentline.map((_, index)=>(
-          <a-entity id="easel" 
-                  gltf-model={`url(${easel})`}
-                  scale = "0.3 0.3 0.3"
-                  position={`-5 0 ${-2-(index*15)}`}
-                  rotation="0 -90 0" >
-          </a-entity>
-        ))}
-        {tentline.map((_, index)=>(
-          <a-entity id="easel" 
-                  gltf-model={`url(${easel})`}
-                  scale = "0.3 0.3 0.3"
-                  position={`5 0 ${6.5-(index*15)}`}
-                  rotation="0 90 0" >
+        {easelEntities.map((entity, index) => (
+          <a-entity 
+            key={entity.key}
+            gltf-model={`url(${entity.src})`}
+            position={entity.position}
+            scale={entity.scale}
+            rotation={entity.rotation}>
           </a-entity>
         ))}
         
         {/* 벚꽃나무 */}
-        {CountCherryBlossom.map((_, index)=>(
-          <a-entity gltf-model={`url(${sakura})`} 
-          position={`-12 0 ${60-(index*8)}`}
-          scale="30 30 30"
-          rotation={`0 ${60*index}  0`}></a-entity>
-        ))}
-        {CountCherryBlossom.map((_, index)=>(
-          <a-entity gltf-model={`url(${sakura})`} 
-          position={`12 0 ${60-(index*8)}`}
-          scale="30 30 30"
-          rotation={`0 ${60*index}  0`}></a-entity>
+        {sakuraEntities.map((entity, index) => (
+          <a-entity 
+            key={entity.key}
+            gltf-model={`url(${entity.src})`}
+            position={entity.position}
+            scale={entity.scale}
+            rotation={entity.rotation}>
+          </a-entity>
         ))}
         
         {/* 돌바닥 */}
-        {CountStone.map((_, index) => (
-          <>
-            <a-entity gltf-model={`url(${stone})`} 
-                      position={`-5.35 -0.6 ${60.3-(19.84*index)}`}
-                      scale="2.7 2.5 2.5"
-                      rotation="0 0 0">
-            </a-entity>
-            <a-entity gltf-model={`url(${stone})`} 
-                      position={`5.4 -0.6 ${60-(19.84*index)}`}
-                      scale="2.7 2.5 2.5"
-                      rotation="0 180 0">
-            </a-entity>
-          </>
-        ))}
-        {tentline.map((_, index)=>(
-          <>
-          <a-entity gltf-model={`url(${table})`} 
-          position={`9 0.5 ${4.5-(index*15)}`}
-          scale="2.5 1.1 2.8"
-          rotation="0 90 0"
-          ></a-entity> 
-          <a-entity gltf-model={`url(${table})`} 
-          position={`9 0.5 ${-0.5-(index*15)}`}
-          scale="2.5 1.1 2.8"
-          rotation="0 90 0"
-          ></a-entity></>
-        ))} 
-        {tentline.map((_, index)=>(
-          <>
-          <a-entity gltf-model={`url(${table})`} 
-          position={`-9 0.5 ${4.5-(index*15)}`}
-          scale="2.5 1.1 2.8"
-          rotation="0 90 0"
-          ></a-entity> 
-          <a-entity gltf-model={`url(${table})`} 
-          position={`-9 0.5 ${-0.5-(index*15)}`}
-          scale="2.5 1.1 2.8"
-          rotation="0 90 0"
-          ></a-entity></>
+        {stoneEntities.map((entity, index) => (
+          <a-entity 
+            key={entity.key}
+            gltf-model={`url(${entity.src})`}
+            position={entity.position}
+            scale={entity.scale}
+            rotation={entity.rotation}>
+          </a-entity>
         ))}
 
+
+        {/* 테이블 */}
+        {tableEntities.map((entity, index) => (
+          <a-entity 
+            key={entity.key}
+            gltf-model={`url(${entity.src})`}
+            position={entity.position}
+            scale={entity.scale}
+            rotation={entity.rotation}>
+          </a-entity>
+        ))}
         
         {/* 보드게임 동아리 */}
         <ClubModels category="boardgame" index={0}/>
-
         {/* 축구 동아리 */}
         <ClubModels category="football" index={0}/>
         
@@ -252,16 +361,16 @@ export default function Vr() {
         
         {/* 밴드 동아리 */}
         <ClubModels category="band" index={2}/>
-
+        
         {/* 주식 동아리 */}
         <ClubModels category="stock" index={3}/>
 
         {/* 등산 동아리 */}
         <ClubModels category="climbing" index={4}/>
-
+        
         {/* 로봇 제어 계측 동아리 */}
         <ClubModels category="mechanic" index={1}/>
-
+        
         {/* 술 동아리 */}
         <ClubModels category="alcohol" index={2}/>
         
