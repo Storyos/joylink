@@ -86,6 +86,25 @@ AFRAME.registerComponent('link-to', {
   }
 });
 
+// 거리 기반 렌더링 컴포넌트
+AFRAME.registerComponent('distance-culling', {
+  schema: {
+    maxDistance: { type: 'number', default: 50 }
+  },
+  tick: function () {
+    var cameraEl = document.querySelector('[camera]');
+    var cameraPos = cameraEl.object3D.position;
+    var objectPos = this.el.object3D.position;
+    var distance = cameraPos.distanceTo(objectPos);
+
+    if (distance > this.data.maxDistance) {
+      this.el.setAttribute('visible', false);
+    } else {
+      this.el.setAttribute('visible', true);
+    }
+  }
+});
+
 // 객체 풀링 시스템 정의
 class ObjectPool {
   constructor(createFn, size) {
@@ -252,28 +271,19 @@ export default function Vr() {
       <a-scene className="aframe-scene">
         
         {/* 카메라 */}
-        <a-entity id="cameraRig">
-          <a-camera
-            jump = "height: 0.5; duration: 400"
-            boundary-constraint="minX: -10; maxX: 10; minZ: -70; maxZ: 7"
-            position="0 1.6 6"
-            look-controls="enabled:true" 
-            wasd-controls="acceleration: 20">
-        </a-camera></a-entity>
-        
+        <a-camera 
+        jump = "height: 0.5; duration: 400"
+        boundary-constraint="minX: -10; maxX: 10; minZ: -70; maxZ: 7"
+        position="0 1.6 6"
+        look-controls="enabled:true" 
+        wasd-controls="acceleration: 20">
+        </a-camera>
 
         {/* 마우스 커서 */}
         <a-entity cursor="fuse: false; rayOrigin: mouse"></a-entity>
         
-        <a-entity id="leftHand" 
-                hand-controls="hand: left; handModelStyle: lowPoly; color: #ffcccc" 
-                teleport-controls="cameraRig: #cameraRig; button: trigger; startEvents: teleportstart; endEvents: teleportend;">
-      </a-entity>
-
-      <a-entity id="rightHand" 
-                hand-controls="hand: right; handModelStyle: lowPoly; color: #ffcccc" 
-                teleport-controls="cameraRig: #cameraRig; button: trigger; startEvents: teleportstart; endEvents: teleportend;">
-      </a-entity>
+        <a-entity hand-controls="hand: left; handModelStyle: lowPoly; color: #ffcccc"></a-entity>
+        <a-entity hand-controls="hand: right; handModelStyle: lowPoly; color: #ffcccc"></a-entity>
         
         {/* 하늘 */}
         <a-sky color="#9CCEFF"></a-sky>
@@ -281,13 +291,13 @@ export default function Vr() {
         {/* 건물 이미지*/}
         <a-image src={arcitechture1}
                     position={`-50 50 -45`}
-                    width="300"
+                    width="300" 
                     height="100"
                     rotation="0 90 0">
         </a-image>
         <a-image src={arcitechture2}
                     position={`50 40 -45`}
-                    width="240"
+                    width="240" 
                     height="80"
                     rotation="0 -90 0">
         </a-image>
@@ -300,7 +310,8 @@ export default function Vr() {
             position={entity.position} 
             width={entity.width} 
             height={entity.height} 
-            rotation={entity.rotation}>
+            rotation={entity.rotation}
+            distance-culling="maxDistance: 50">
           </a-image>
         ))}
         
@@ -311,7 +322,8 @@ export default function Vr() {
             gltf-model={`url(${entity.src})`}
             position={entity.position}
             scale={entity.scale}
-            rotation={entity.rotation}>
+            rotation={entity.rotation}
+            distance-culling="maxDistance: 50">
           </a-entity>
         ))}
         
@@ -322,7 +334,8 @@ export default function Vr() {
             gltf-model={`url(${entity.src})`}
             position={entity.position}
             scale={entity.scale}
-            rotation={entity.rotation}>
+            rotation={entity.rotation}
+            distance-culling="maxDistance: 50">
           </a-entity>
         ))}
         
@@ -333,7 +346,8 @@ export default function Vr() {
             gltf-model={`url(${entity.src})`}
             position={entity.position}
             scale={entity.scale}
-            rotation={entity.rotation}>
+            rotation={entity.rotation}
+            distance-culling="maxDistance: 50">
           </a-entity>
         ))}
         
@@ -344,7 +358,8 @@ export default function Vr() {
             gltf-model={`url(${entity.src})`}
             position={entity.position}
             scale={entity.scale}
-            rotation={entity.rotation}>
+            rotation={entity.rotation}
+            distance-culling="maxDistance: 50">
           </a-entity>
         ))}
 
@@ -356,7 +371,8 @@ export default function Vr() {
             gltf-model={`url(${entity.src})`}
             position={entity.position}
             scale={entity.scale}
-            rotation={entity.rotation}>
+            rotation={entity.rotation}
+            distance-culling="maxDistance: 50">
           </a-entity>
         ))}
         
