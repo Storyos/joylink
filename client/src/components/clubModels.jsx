@@ -96,7 +96,7 @@ export default function ClubModels({ category, index }) {
   const korean2 = "vr_src/people/newkorean2.glb"
   const korean3 = "vr_src/people/newkorean3.glb"
   const korean4 = "vr_src/people/korean4.glb"
-  const korean5 = "vr_src/people/korean5.glb"
+  const korean5 = "vr_src/people/newkorean5.glb"
   const person1 = "vr_src/people/person1.glb";
   const person2 = "vr_src/people/person2.glb";
   const person3 = "vr_src/people/person3.glb";

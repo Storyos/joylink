@@ -175,15 +175,15 @@ const stonePool = new ObjectPool(() => ({
 
 
 export default function Vr() {
-  
-  const table ="/vr_src/folding_table.glb"
+
+  const table = "/vr_src/folding_table.glb"
   const tent = "/vr_src/Commercial_Tent_4x4_Meters.glb"
-  const sakura ="/vr_src/sakura_tree.glb";
-  const grassImgPath ="/vr_src/grass.jpg";
+  const sakura = "/vr_src/sakura_tree.glb";
+  const grassImgPath = "/vr_src/grass.jpg";
   const easel = "/vr_src/easel.glb";
   const stone = "/vr_src/stone_ground.glb";
   const arcitechture1 = "/vr_src/arcitechture1.png";
-  const arcitechture2 = "/vr_src/arcitechture2.png"; 
+  const arcitechture2 = "/vr_src/arcitechture2.png";
 
   // 객체 풀에서 필요한 만큼 가져오기
   const [sakuraEntities, setSakuraEntities] = useState([]);
@@ -200,7 +200,7 @@ export default function Vr() {
     const tentTemp = [];
     const easelTemp = [];
     const stoneTemp = [];
-    
+
     for (let i = 0; i < 23; i++) {
       for (let j = 0; j < 2; j++) {
         const entity = sakuraPool.acquire();
@@ -214,7 +214,7 @@ export default function Vr() {
     for (let x = 0; x < 30; x++) {
       for (let z = 0; z < 17; z++) {
         const entity = grassPool.acquire();
-        entity.position = `${-48+(6*z)} 0 ${60-(6*x)}`; 
+        entity.position = `${-48 + (6 * z)} 0 ${60 - (6 * x)}`;
         grassTemp.push(entity);
       }
     }
@@ -223,12 +223,12 @@ export default function Vr() {
     for (let i = 0; i < 5; i++) {
       for (let j = 0; j < 2; j++) {
         const entity = tablePool.acquire();
-        entity.position = j === 0 ? `9 0.5 ${4.5-(i*15)}` : `9 0.5 ${-0.5-(i*15)}`;
+        entity.position = j === 0 ? `9 0.5 ${4.5 - (i * 15)}` : `9 0.5 ${-0.5 - (i * 15)}`;
         tableTemp.push(entity);
       }
       for (let j = 0; j < 2; j++) {
         const entity = tablePool.acquire();
-        entity.position = j === 0 ? `-9 0.5 ${4.5-(i*15)}` : `-9 0.5 ${-0.5-(i*15)}`;
+        entity.position = j === 0 ? `-9 0.5 ${4.5 - (i * 15)}` : `-9 0.5 ${-0.5 - (i * 15)}`;
         tableTemp.push(entity);
       }
     }
@@ -237,7 +237,7 @@ export default function Vr() {
     for (let i = 0; i < 5; i++) {
       for (let j = 0; j < 2; j++) {
         const entity = tentPool.acquire();
-        entity.position = j === 0 ? `-8 0 ${2-(i*15)}` : `8 0 ${2-(i*15)}`;
+        entity.position = j === 0 ? `-8 0 ${2 - (i * 15)}` : `8 0 ${2 - (i * 15)}`;
         tentTemp.push(entity);
       }
     }
@@ -246,7 +246,7 @@ export default function Vr() {
     for (let i = 0; i < 5; i++) {
       for (let j = 0; j < 2; j++) {
         const entity = easelPool.acquire();
-        entity.position = j === 0 ? `-5 0 ${-2-(i*15)}` : `5 0 ${6.5-(i*15)}`;
+        entity.position = j === 0 ? `-5 0 ${-2 - (i * 15)}` : `5 0 ${6.5 - (i * 15)}`;
         entity.rotation = j === 0 ? `0 -90 0` : `0 90 0`;
         easelTemp.push(entity);
       }
@@ -256,7 +256,7 @@ export default function Vr() {
     for (let i = 0; i < 9; i++) {
       for (let j = 0; j < 2; j++) {
         const entity = stonePool.acquire();
-        entity.position = j === 0 ? `-5.35 -0.6 ${60.3-(19.84*i)}` : `5.4 -0.6 ${60-(19.84*i)}`;
+        entity.position = j === 0 ? `-5.35 -0.6 ${60.3 - (19.84 * i)}` : `5.4 -0.6 ${60 - (19.84 * i)}`;
         stoneTemp.push(entity);
       }
     }
@@ -269,55 +269,62 @@ export default function Vr() {
       <h1>vr 페이지 입니다</h1>
       <h1>vr 페이지 입니다</h1>
       <a-scene className="aframe-scene">
-        
-        {/* 카메라 */}
-        <a-camera 
-        jump = "height: 0.5; duration: 400"
-        boundary-constraint="minX: -10; maxX: 10; minZ: -70; maxZ: 7"
-        position="0 1.6 6"
-        look-controls="enabled:true" 
-        wasd-controls="acceleration: 20">
-        </a-camera>
 
+        {/* cameraRig */}
+        <a-entity id="cameraRig" movement-controls="constrainToNavMesh: true" position="0 1.6 6">
+          {/* 카메라 */}
+          <a-camera
+            id="camera"
+            jump="height: 0.5; duration: 400"
+            boundary-constraint="minX: -10; maxX: 10; minZ: -70; maxZ: 7"
+            look-controls="enabled:true"
+            wasd-controls="acceleration: 20">
+          </a-camera>
+
+          {/* 왼손 컨트롤러 */}
+          <a-entity id="leftHand" hand-controls="hand: left" oculus-touch-controls="hand: left"
+            tracked-controls="controller: 0; idPrefix: OpenVR"></a-entity>
+
+          {/* 오른손 컨트롤러 */}
+          <a-entity id="rightHand" hand-controls="hand: right" oculus-touch-controls="hand: right"
+            tracked-controls="controller: 1; idPrefix: OpenVR"></a-entity>
+        </a-entity>
         {/* 마우스 커서 */}
         <a-entity cursor="fuse: false; rayOrigin: mouse"></a-entity>
-        
-        <a-entity hand-controls="hand: left; handModelStyle: lowPoly; color: #ffcccc"></a-entity>
-        <a-entity hand-controls="hand: right; handModelStyle: lowPoly; color: #ffcccc"></a-entity>
-        
+
         {/* 하늘 */}
         <a-sky color="#9CCEFF"></a-sky>
-        
+
         {/* 건물 이미지*/}
         <a-image src={arcitechture1}
-                    position={`-50 50 -45`}
-                    width="300" 
-                    height="100"
-                    rotation="0 90 0">
+          position={`-50 50 -45`}
+          width="300"
+          height="100"
+          rotation="0 90 0">
         </a-image>
         <a-image src={arcitechture2}
-                    position={`50 40 -45`}
-                    width="240" 
-                    height="80"
-                    rotation="0 -90 0">
+          position={`50 40 -45`}
+          width="240"
+          height="80"
+          rotation="0 -90 0">
         </a-image>
-        
+
         {/* 풀밭 이미지 */}
         {grassEntities.map((entity, index) => (
-          <a-image 
+          <a-image
             key={entity.key}
-            src={entity.src} 
-            position={entity.position} 
-            width={entity.width} 
-            height={entity.height} 
+            src={entity.src}
+            position={entity.position}
+            width={entity.width}
+            height={entity.height}
             rotation={entity.rotation}
             distance-culling="maxDistance: 50">
           </a-image>
         ))}
-        
+
         {/* 동아리 부스 */}
         {tentEntities.map((entity, index) => (
-          <a-entity 
+          <a-entity
             key={entity.key}
             gltf-model={`url(${entity.src})`}
             position={entity.position}
@@ -326,10 +333,10 @@ export default function Vr() {
             distance-culling="maxDistance: 50">
           </a-entity>
         ))}
-        
+
         {/* 이젤 */}
         {easelEntities.map((entity, index) => (
-          <a-entity 
+          <a-entity
             key={entity.key}
             gltf-model={`url(${entity.src})`}
             position={entity.position}
@@ -338,10 +345,10 @@ export default function Vr() {
             distance-culling="maxDistance: 50">
           </a-entity>
         ))}
-        
+
         {/* 벚꽃나무 */}
         {sakuraEntities.map((entity, index) => (
-          <a-entity 
+          <a-entity
             key={entity.key}
             gltf-model={`url(${entity.src})`}
             position={entity.position}
@@ -350,10 +357,10 @@ export default function Vr() {
             distance-culling="maxDistance: 50">
           </a-entity>
         ))}
-        
+
         {/* 돌바닥 */}
         {stoneEntities.map((entity, index) => (
-          <a-entity 
+          <a-entity
             key={entity.key}
             gltf-model={`url(${entity.src})`}
             position={entity.position}
@@ -366,7 +373,7 @@ export default function Vr() {
 
         {/* 테이블 */}
         {tableEntities.map((entity, index) => (
-          <a-entity 
+          <a-entity
             key={entity.key}
             gltf-model={`url(${entity.src})`}
             position={entity.position}
@@ -375,38 +382,38 @@ export default function Vr() {
             distance-culling="maxDistance: 50">
           </a-entity>
         ))}
-        
+
         {/* 보드게임 동아리 */}
-        <ClubModels category="boardgame" index={0}/>
+        <ClubModels category="boardgame" index={0} />
         {/* 축구 동아리 */}
-        <ClubModels category="football" index={0}/>
-        
+        <ClubModels category="football" index={0} />
+
         {/* 독서 동아리 */}
-        <ClubModels category="reading" index={1}/>
-        
+        <ClubModels category="reading" index={1} />
+
         {/* 사진 동아리 */}
-        <ClubModels category="photography" index={3}/>
-        
+        <ClubModels category="photography" index={3} />
+
         {/* 밴드 동아리 */}
-        <ClubModels category="band" index={2}/>
-        
+        <ClubModels category="band" index={2} />
+
         {/* 주식 동아리 */}
-        <ClubModels category="stock" index={3}/>
+        <ClubModels category="stock" index={3} />
 
         {/* 등산 동아리 */}
-        <ClubModels category="climbing" index={4}/>
-        
+        <ClubModels category="climbing" index={4} />
+
         {/* 로봇 제어 계측 동아리 */}
-        <ClubModels category="mechanic" index={1}/>
-        
+        <ClubModels category="mechanic" index={1} />
+
         {/* 술 동아리 */}
-        <ClubModels category="alcohol" index={2}/>
-        
+        <ClubModels category="alcohol" index={2} />
+
         {/* 여행 동아리 */}
-        <ClubModels category="traver" index={4}/>
-        
+        <ClubModels category="traver" index={4} />
+
         {/*사람오브젝트*/}
-        <ClubModels category="people"/>
+        <ClubModels category="people" />
       </a-scene>
     </div>
   );
