@@ -83,6 +83,75 @@ AFRAME.registerComponent('link-to', {
   }
 });
 
+// 객체 풀링 시스템 정의
+class ObjectPool {
+  constructor(createFn, size) {
+    this.createFn = createFn;
+    this.pool = [];
+    for (let i = 0; i < size; i++) {
+      this.pool.push(this.createFn());
+    }
+  }
+
+  acquire() {
+    return this.pool.length > 0 ? this.pool.pop() : this.createFn();
+  }
+
+  release(obj) {
+    this.pool.push(obj);
+  }
+}
+
+const sakuraPool = new ObjectPool(() => ({
+  key: Math.random(),
+  position: "",
+  rotation: "",
+  scale: "30 30 30",
+  src: "/vr_src/newsakura_tree.glb"
+}), 30);
+
+const grassPool = new ObjectPool(() => ({
+  key: Math.random(),
+  position: "",
+  rotation: "90 90 0",
+  width: "6",
+  height: "6",
+  src: "/vr_src/grass.jpg"
+}), 300);
+
+const tablePool = new ObjectPool(() => ({
+  key: Math.random(),
+  position: "",
+  rotation: "0 90 0",
+  scale: "2.5 1.1 2.8",
+  src: "/vr_src/folding_table.glb"
+}), 20);
+
+const tentPool = new ObjectPool(() => ({
+  key: Math.random(),
+  position: "",
+  rotation: "0 -90 0",
+  scale: "1.2 1.2 1.2",
+  src: "/vr_src/Commercial_Tent_4x4_Meters.glb"
+}), 20);
+
+const easelPool = new ObjectPool(() => ({
+  key: Math.random(),
+  position: "",
+  rotation: "",
+  scale: "0.3 0.3 0.3",
+  src: "/vr_src/easel.glb"
+}), 10);
+
+const stonePool = new ObjectPool(() => ({
+  key: Math.random(),
+  position: "",
+  rotation: "",
+  scale: "2.7 2.5 2.5",
+  src: "/vr_src/stone_ground.glb"
+}), 20);
+
+
 export default function Vr() {
   
   const table ="/vr_src/folding_table.glb"
@@ -107,16 +176,28 @@ export default function Vr() {
       <a-scene className="aframe-scene">
 
         {/* 카메라 */}
-        <a-camera 
-        jump = "height: 0.5; duration: 400"
-        boundary-constraint="minX: -10; maxX: 10; minZ: -70; maxZ: 7"
-        position="0 1.6 6"
-        look-controls="enabled:true" 
-        wasd-controls="acceleration: 20">
-        </a-camera>
+        <a-entity id="cameraRig">
+          <a-camera
+            jump = "height: 0.5; duration: 400"
+            boundary-constraint="minX: -10; maxX: 10; minZ: -70; maxZ: 7"
+            position="0 1.6 6"
+            look-controls="enabled:true" 
+            wasd-controls="acceleration: 20">
+        </a-camera></a-entity>
+        
 
         {/* 마우스 커서 */}
         <a-entity cursor="fuse: false; rayOrigin: mouse"></a-entity>
+        
+        <a-entity id="leftHand" 
+                hand-controls="hand: left; handModelStyle: lowPoly; color: #ffcccc" 
+                teleport-controls="cameraRig: #cameraRig; button: trigger; startEvents: teleportstart; endEvents: teleportend;">
+      </a-entity>
+
+      <a-entity id="rightHand" 
+                hand-controls="hand: right; handModelStyle: lowPoly; color: #ffcccc" 
+                teleport-controls="cameraRig: #cameraRig; button: trigger; startEvents: teleportstart; endEvents: teleportend;">
+      </a-entity>
         
         {/* 하늘 */}
         <a-sky color="#9CCEFF"></a-sky>
@@ -124,115 +205,83 @@ export default function Vr() {
         {/* 건물 이미지*/}
         <a-image src={arcitechture1}
                     position={`-50 50 -45`}
-                    width="300" 
+                    width="300"
                     height="100"
                     rotation="0 90 0">
         </a-image>
         <a-image src={arcitechture2}
                     position={`50 40 -45`}
-                    width="240" 
+                    width="240"
                     height="80"
                     rotation="0 -90 0">
         </a-image>
         
         {/* 풀밭 이미지 */}
-        {CountGrassX.map((_, XIndex)=>(
-          CountGrassZ.map((_, ZIndex)=>(
-            <a-image src={grassImgPath} 
-                    position={`${-48+(6*ZIndex)} 0 ${60-(6*XIndex)}`} 
-                    width="6" 
-                    height="6"
-                    rotation="90 90 0">
-            </a-image>
-          ))
+        {grassEntities.map((entity, index) => (
+          <a-image 
+            key={entity.key}
+            src={entity.src} 
+            position={entity.position} 
+            width={entity.width} 
+            height={entity.height} 
+            rotation={entity.rotation}>
+          </a-image>
         ))}
         
         {/* 동아리 부스 */}
-        {tentline.map((_, index)=>(
-          <a-entity gltf-model={`url(${tent})`} 
-          position={`-8 0 ${2-(index*15)}`}
-          scale="1.2 1.2 1.2"
-          rotation="0 -90 0"></a-entity>
-        ))}
-        {tentline.map((_, index)=>(
-          <a-entity gltf-model={`url(${tent})`} 
-          position={`8 0 ${2-(index*15)}`}
-          scale="1.2 1.2 1.2"
-          rotation="0 -90 0"></a-entity>
+        {tentEntities.map((entity, index) => (
+          <a-entity 
+            key={entity.key}
+            gltf-model={`url(${entity.src})`}
+            position={entity.position}
+            scale={entity.scale}
+            rotation={entity.rotation}>
+          </a-entity>
         ))}
         
         {/* 이젤 */}
-        {tentline.map((_, index)=>(
-          <a-entity id="easel" 
-                  gltf-model={`url(${easel})`}
-                  scale = "0.3 0.3 0.3"
-                  position={`-5 0 ${-2-(index*15)}`}
-                  rotation="0 -90 0" >
-          </a-entity>
-        ))}
-        {tentline.map((_, index)=>(
-          <a-entity id="easel" 
-                  gltf-model={`url(${easel})`}
-                  scale = "0.3 0.3 0.3"
-                  position={`5 0 ${6.5-(index*15)}`}
-                  rotation="0 90 0" >
+        {easelEntities.map((entity, index) => (
+          <a-entity 
+            key={entity.key}
+            gltf-model={`url(${entity.src})`}
+            position={entity.position}
+            scale={entity.scale}
+            rotation={entity.rotation}>
           </a-entity>
         ))}
         
         {/* 벚꽃나무 */}
-        {CountCherryBlossom.map((_, index)=>(
-          <a-entity gltf-model={`url(${sakura})`} 
-          position={`-12 0 ${60-(index*8)}`}
-          scale="30 30 30"
-          rotation={`0 ${60*index}  0`}></a-entity>
-        ))}
-        {CountCherryBlossom.map((_, index)=>(
-          <a-entity gltf-model={`url(${sakura})`} 
-          position={`12 0 ${60-(index*8)}`}
-          scale="30 30 30"
-          rotation={`0 ${60*index}  0`}></a-entity>
+        {sakuraEntities.map((entity, index) => (
+          <a-entity 
+            key={entity.key}
+            gltf-model={`url(${entity.src})`}
+            position={entity.position}
+            scale={entity.scale}
+            rotation={entity.rotation}>
+          </a-entity>
         ))}
         
         {/* 돌바닥 */}
-        {CountStone.map((_, index) => (
-          <>
-            <a-entity gltf-model={`url(${stone})`} 
-                      position={`-5.35 -0.6 ${60.3-(19.84*index)}`}
-                      scale="2.7 2.5 2.5"
-                      rotation="0 0 0">
-            </a-entity>
-            <a-entity gltf-model={`url(${stone})`} 
-                      position={`5.4 -0.6 ${60-(19.84*index)}`}
-                      scale="2.7 2.5 2.5"
-                      rotation="0 180 0">
-            </a-entity>
-          </>
+        {stoneEntities.map((entity, index) => (
+          <a-entity 
+            key={entity.key}
+            gltf-model={`url(${entity.src})`}
+            position={entity.position}
+            scale={entity.scale}
+            rotation={entity.rotation}>
+          </a-entity>
         ))}
-        {tentline.map((_, index)=>(
-          <>
-          <a-entity gltf-model={`url(${table})`} 
-          position={`9 0.5 ${4.5-(index*15)}`}
-          scale="2.5 1.1 2.8"
-          rotation="0 90 0"
-          ></a-entity> 
-          <a-entity gltf-model={`url(${table})`} 
-          position={`9 0.5 ${-0.5-(index*15)}`}
-          scale="2.5 1.1 2.8"
-          rotation="0 90 0"
-          ></a-entity></>
-        ))} 
-        {tentline.map((_, index)=>(
-          <>
-          <a-entity gltf-model={`url(${table})`} 
-          position={`-9 0.5 ${4.5-(index*15)}`}
-          scale="2.5 1.1 2.8"
-          rotation="0 90 0"
-          ></a-entity> 
-          <a-entity gltf-model={`url(${table})`} 
-          position={`-9 0.5 ${-0.5-(index*15)}`}
-          scale="2.5 1.1 2.8"
-          rotation="0 90 0"
-          ></a-entity></>
+
+
+        {/* 테이블 */}
+        {tableEntities.map((entity, index) => (
+          <a-entity 
+            key={entity.key}
+            gltf-model={`url(${entity.src})`}
+            position={entity.position}
+            scale={entity.scale}
+            rotation={entity.rotation}>
+          </a-entity>
         ))}
         
         {/* 보드게임 동아리 */}

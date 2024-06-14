@@ -47,7 +47,11 @@ export default function ClubModels ({ category, index }) {
   const travelBanner = "vr_src/traveling_club/travel_banner.png";
 
   // 축구동아리 소스
+<<<<<<< HEAD
   const footballshoes = "vr_src/football_club/football_shoes.glb"
+=======
+  // const footballshoes = "vr_src/football_club/football_shoes.glb"
+>>>>>>> parent of 3577a33 (거리별 rendering 제한 ( 배경 제외))
   const football_set="vr_src/football_club/football_set.glb"
   const soccer_uniform = "vr_src/football_club/soccer_uniform.glb"
   const cone = "vr_src/football_club/cone.glb"
@@ -117,7 +121,11 @@ export default function ClubModels ({ category, index }) {
                     width="4.8px"
                     rotation="0 -90 0">
       </a-image>
+<<<<<<< HEAD
       <a-image src={boardgameBanner} 
+=======
+      <a-image src={boardgameBanner2} 
+>>>>>>> parent of 3577a33 (거리별 rendering 제한 ( 배경 제외))
                     position={`5.4 2.6 ${4.45-(15*index)}`}
                     height="0.7px"
                     width="4.8px"
@@ -158,7 +166,11 @@ export default function ClubModels ({ category, index }) {
                     width="4.8px"
                     rotation="0 -90 0">
       </a-image>
+<<<<<<< HEAD
       <a-image src={readingBanner} 
+=======
+      <a-image src={readingBanner2} 
+>>>>>>> parent of 3577a33 (거리별 rendering 제한 ( 배경 제외))
                     position={`5.4 2.6 ${4.45-(15*index)}`}
                     height="0.7px"
                     width="4.8px"
@@ -209,7 +221,11 @@ export default function ClubModels ({ category, index }) {
                     width="4.8px"
                     rotation="0 -90 0">
       </a-image>
+<<<<<<< HEAD
       <a-image src={photographyBanner} 
+=======
+      <a-image src={photographyBanner2} 
+>>>>>>> parent of 3577a33 (거리별 rendering 제한 ( 배경 제외))
                     position={`5.4 2.6 ${4.45-(15*index)}`}
                     height="0.7px"
                     width="4.8px"
@@ -224,6 +240,7 @@ export default function ClubModels ({ category, index }) {
         <a-entity gltf-model={`url(${microphone})`} 
                   position={`6.5 0.1 ${5.5-(15*index)}`}
                   scale="0.3 0.3 0.3"
+<<<<<<< HEAD
                   rotation="0 -90 0">
         </a-entity>
         <a-entity gltf-model={`url(${guitar})`} 
@@ -236,12 +253,45 @@ export default function ClubModels ({ category, index }) {
                   scale="1 1 1"
                   rotation="0 -90 0">
         </a-entity>
+=======
+                  rotation="0 -90 0">
+        </a-entity>
+        <a-entity gltf-model={`url(${guitar})`} 
+                  position={`9 1.0 ${5.5-(15*index)}`}
+                  scale="0.015 0.015 0.015"
+                  rotation="0 -45 0">
+        </a-entity>
+        <a-entity gltf-model={`url(${drum})`} 
+                  position={`6 0.1 ${3.5-(15*index)}`}
+                  scale="1 1 1"
+                  rotation="0 -90 0">
+        </a-entity>
+        <a-entity gltf-model={`url(${speaker})`} 
+                  position={`9 1.0 ${4.5-(15*index)}`}
+                  scale="3 3 3"
+                  rotation="0 -90 0">
+        </a-entity>
+        <a-entity gltf-model={`url(${speaker})`} 
+                  position={`9 1.0 ${2.5-(15*index)}`}
+                  scale="3 3 3"
+                  rotation="0 -90 0">
+        </a-entity>
+        {/* <a-entity gltf-model={`url(${mixer})`} 
+                  position={`9 1.0 ${3.5-(15*index)}`}
+                  scale="3 3 3"
+                  rotation="0 -90 0">
+        </a-entity> */}
+>>>>>>> parent of 3577a33 (거리별 rendering 제한 ( 배경 제외))
         <a-image src={applicationForm}
                     position={`8.8 1 ${-0.5-(15*index)}`}
                     width="0.84" 
                     height="1.2"
                     rotation="-90 -90 0"
+<<<<<<< HEAD
                     link-to="url: /cbDescription">
+=======
+                    link-to="url: /cbDescription_2">
+>>>>>>> parent of 3577a33 (거리별 rendering 제한 ( 배경 제외))
         </a-image>
         <a-image src={bandPoster}
                     position={`5.05 1.05 ${6.5-(15*index)}`}
@@ -255,7 +305,11 @@ export default function ClubModels ({ category, index }) {
                       width="4.8px"
                       rotation="0 -90 0">
         </a-image>
+<<<<<<< HEAD
         <a-image src={bandBanner} 
+=======
+        <a-image src={bandBanner2} 
+>>>>>>> parent of 3577a33 (거리별 rendering 제한 ( 배경 제외))
                       position={`5.4 2.6 ${4.45-(15*index)}`}
                       height="0.7px"
                       width="4.8px"
@@ -306,7 +360,11 @@ export default function ClubModels ({ category, index }) {
                       width="4.8px"
                       rotation="0 -90 0">
         </a-image>
+<<<<<<< HEAD
         <a-image src={climbingBanner} 
+=======
+        <a-image src={climbingbanner2} 
+>>>>>>> parent of 3577a33 (거리별 rendering 제한 ( 배경 제외))
                       position={`5.4 2.6 ${4.45-(15*index)}`}
                       height="0.7px"
                       width="4.8px"
@@ -368,7 +426,11 @@ export default function ClubModels ({ category, index }) {
                       width="4.8px"
                       rotation="0 90 0">
         </a-image>
+<<<<<<< HEAD
         <a-image src={travelBanner} 
+=======
+        <a-image src={travelBanner2} 
+>>>>>>> parent of 3577a33 (거리별 rendering 제한 ( 배경 제외))
                       position={`-5.4 2.6 ${4.45-(15*index)}`}
                       height="0.7px"
                       width="4.8px"
@@ -417,10 +479,17 @@ export default function ClubModels ({ category, index }) {
         position={`-9 1 ${-0.5-(15*index)}`}
         scale="0.3 0.3 0.3"
         rotation="0 -90 0"></a-entity>
+<<<<<<< HEAD
         <a-entity gltf-model={`url(${footballshoes})`} 
         position={`-6 0.5 ${1-(15*index)}`}
         scale="1.5 1.5 1.5"
         rotation="0 -90 0"></a-entity>
+=======
+        {/* <a-entity gltf-model={`url(${footballshoes})`} 
+        position={`-6 0.5 ${1-(15*index)}`}
+        scale="1.5 1.5 1.5"
+        rotation="0 -90 0"></a-entity> */}
+>>>>>>> parent of 3577a33 (거리별 rendering 제한 ( 배경 제외))
         <a-entity gltf-model={`url(${football_set})`} 
         position={`-6 0.5 ${-4-(15*index)}`}
         rotation="0 90 0"></a-entity>
@@ -431,12 +500,31 @@ export default function ClubModels ({ category, index }) {
         position={`-6 0.2 ${1.7-(15*index)}`}
         scale="0.1 0.1 0.1"
         rotation="0 -90 0"></a-entity>
+<<<<<<< HEAD
+=======
+        <a-entity gltf-model={`url(${cone})`} 
+        position={`-5.5 0.2 ${1-(15*index)}`}
+        scale="0.1 0.1 0.1"
+        rotation="0 -90 0"></a-entity>
+        <a-entity gltf-model={`url(${cone})`} 
+        position={`-5.5 0.2 ${1.4-(15*index)}`}
+        scale="0.1 0.1 0.1"
+        rotation="0 -90 0"></a-entity>
+        <a-entity gltf-model={`url(${cone})`} 
+        position={`-5.5 0.3 ${1-(15*index)}`}
+        scale="0.1 0.1 0.1"
+        rotation="0 -90 0"></a-entity>
+>>>>>>> parent of 3577a33 (거리별 rendering 제한 ( 배경 제외))
         <a-image src={applicationForm}
                     position={`-8.8 1 ${4.5-(15*index)}`}
                     width="0.84" 
                     height="1.2"
                     rotation="-90 90 0"
+<<<<<<< HEAD
                     link-to="url: /cbDescription">
+=======
+                    link-to="url: /cbDescription_1">
+>>>>>>> parent of 3577a33 (거리별 rendering 제한 ( 배경 제외))
         </a-image>
       </>
     }
@@ -587,6 +675,82 @@ export default function ClubModels ({ category, index }) {
         </a-image>
       </>
     }
+<<<<<<< HEAD
     </>
+=======
+    
+    {/* 사람들 */}
+    {category === "people" &&
+    <>
+      <a-entity gltf-model={`url(${soccerman})`}
+                  position={`-5.5 0 0 `}
+                  rotation ="0 90 0"></a-entity>
+      <a-entity gltf-model={`url(${soccerman2})`}
+                  position={`-4.5 0 0 `}
+                  rotation ="0 -90 0"></a-entity>
+      <a-entity gltf-model={`url(${korean})`}
+                  position={`-3 0.05 -18 `}
+                  rotation ="0 20 0"
+                  scale="0.7 0.7 0.7"></a-entity>
+      <a-entity gltf-model={`url(${korean2})`}
+                  position={`-7 0.05 -10 `}
+                  rotation ="0 20 0"
+                  scale="0.7 0.7 0.7"></a-entity>
+      <a-entity gltf-model={`url(${korean3})`}
+                  position={`-5 0.05 -12 `}
+                  rotation ="0 -90 0"
+                  scale="0.7 0.7 0.7"></a-entity>
+      <a-entity gltf-model={`url(${korean4})`}
+                  position={`-4.5 0.05 -11 `}
+                  rotation ="0 -60 0"
+                  scale="1 1 1"></a-entity>
+      <a-entity gltf-model={`url(${korean5})`}
+                  position={`-6 0.05 -29.5 `}
+                  rotation ="0 -60 0"
+                  scale="0.7 0.7 0.7"></a-entity>
+      <a-entity gltf-model={person1}
+                position="-6.5 0.1 -61"
+                scale="0.025 0.025 0.025"
+                rotation="0 -135 0">
+      </a-entity>
+      <a-entity gltf-model={person2}
+                position="5 0.1 -10"
+                scale="0.01 0.01 0.01"
+                rotation="0 0 0">
+      </a-entity>
+      <a-entity gltf-model={person3}
+                position="3 0.1 -40"
+                scale="1 1 1"
+                rotation="0 90 0">
+      </a-entity>
+      <a-entity gltf-model={person4}
+                position="-4 1 -47"
+                scale="1 1 1"
+                rotation="-15 -90 0">
+      </a-entity>
+      <a-entity gltf-model={person5}
+                position="-6 1 -45"
+                scale="1 1 1"
+                rotation="0 -90 0">
+      </a-entity>
+      <a-entity gltf-model={person6}
+                position="5 1 0"
+                scale="1 1 1"
+                rotation="-20 45 0">
+      </a-entity>
+      <a-entity gltf-model={person7}
+                position="4 0.1 -25"
+                scale="1 1 1"
+                rotation="-15 90 0">
+      </a-entity>
+      <a-entity gltf-model={person8}
+                position="3 1 -60"
+                scale="1 1 1"
+                rotation="-15 90 0">
+      </a-entity>
+    </>
+    }
+    </>
+>>>>>>> parent of 3577a33 (거리별 rendering 제한 ( 배경 제외))
   ) 
 }
