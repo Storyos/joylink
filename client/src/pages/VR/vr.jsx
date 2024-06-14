@@ -271,14 +271,14 @@ export default function Vr() {
       <a-scene className="aframe-scene">
 
         {/* cameraRig */}
-        <a-entity id="cameraRig" movement-controls="constrainToNavMesh: true" position="0 1.6 6">
+        <a-entity id="cameraRig" movement-controls="constrainToNavMesh: true" position="0 0 6">
           {/* 카메라 */}
           <a-camera
             id="camera"
             jump="height: 0.5; duration: 400"
-            boundary-constraint="minX: -10; maxX: 10; minZ: -70; maxZ: 7"
+            boundary-constraint="minX: -11; maxX: 11; minZ: -80; maxZ: 8"
             look-controls="enabled:true"
-            wasd-controls="acceleration: 20">
+            wasd-controls="acceleration: -10">
           </a-camera>
 
           {/* 왼손 컨트롤러 */}
