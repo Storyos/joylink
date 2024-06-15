@@ -82,6 +82,8 @@ export default function ClubModels({ category, index }) {
   const alcoholposter = "vr_src/alcohol/alcoholposter.jpg"
   const alcoholbanner = "vr_src/alcohol/alcoholbanner.png"
   const alcoholbanner2 = "vr_src/alcohol/alcoholbanner2.png"
+  const bottles = "vr_src/alcohol/bottles.glb"
+  const table = "vr_src/alcohol/table.glb"
   //주식 동아리
   const chart = "vr_src/stockclub/chart.glb"
   const boxes = "vr_src/stockclub/new_boxes.glb"
@@ -89,6 +91,8 @@ export default function ClubModels({ category, index }) {
   const stockposter = "vr_src/stockclub/stockposter.jpg"
   const stockbanner = "vr_src/stockclub/stockbanner.png"
   const stockbanner2 = "vr_src/stockclub/stockbanner2.png"
+  const boxes2 = "vr_src/stockclub/boxes2.glb"
+  const newspaper = "vr_src/stockclub/newspaper.glb"
   //사람 오브젝트
   const soccerman = "vr_src/people/newsoccerman.glb"
   const soccerman2 = "vr_src/people/soccerman2.glb"
@@ -674,12 +678,25 @@ export default function ClubModels({ category, index }) {
             distance-culling="maxDistance: 50"
           ></a-image>
           {/* 술테이블 */}
-          <a-entity gltf-model={`url(${alcohol_set})`}
+          {/* <a-entity gltf-model={`url(${alcohol_set})`}
             position={`-5 1 ${0.3 - (15 * index)}`}
             scale="0.015 0.015 0.015"
             rotation="0 -90 0"
             distance-culling="maxDistance: 50"
+          ></a-entity> */}
+          <a-entity gltf-model={`url(${table})`}
+            position={`-5 0.1 ${0.3 - (15 * index)}`}
+            scale="0.3 0.3 0.3"
+            rotation="0 -90 0"
+            distance-culling="maxDistance: 50"
           ></a-entity>
+          <a-entity gltf-model={`url(${bottles})`}
+            position={`-5 1.1 ${0.3 - (15 * index)}`}
+            scale="0.008 0.008 0.008"
+            rotation="0 -90 0"
+            distance-culling="maxDistance: 50"
+          ></a-entity>
+
           {/* 와인 */}
           <a-entity gltf-model={`url(${wine})`}
             position={`-8.4 1 ${0 - (15 * index)}`}
@@ -747,16 +764,28 @@ export default function ClubModels({ category, index }) {
             distance-culling="maxDistance: 50"
           ></a-entity>
           {/* 서류박스 */}
-          <a-entity gltf-model={`url(${boxes})`}
+          {/* <a-entity gltf-model={`url(${boxes})`}
             position={`-5 0 ${0.3 - (15 * index)}`}
             rotation="0 -90 0"
             scale="1.3 1.2 1.2"
             distance-culling="maxDistance: 50"
+          ></a-entity> */}
+          <a-entity gltf-model={`url(${boxes2})`}
+            position={`-5 0.5 ${0.3 - (15 * index)}`}
+            rotation="0 0 0"
+            scale="1.3 1.2 1.2"
+            distance-culling="maxDistance: 50"
           ></a-entity>
           {/* 서류 */}
-          <a-entity gltf-model={`url(${file})`}
+          {/* <a-entity gltf-model={`url(${file})`}
             position={`-8.4 1 ${0 - (15 * index)}`}
             scale="0.3 0.3 0.3"
+            rotation="0 90 0"
+            distance-culling="maxDistance: 50"
+          ></a-entity> */}
+          <a-entity gltf-model={`url(${newspaper})`}
+            position={`-8.6 1 ${0 - (14.7 * index)}`}
+            scale="0.04 0.04 0.04"
             rotation="0 90 0"
             distance-culling="maxDistance: 50"
           ></a-entity>
