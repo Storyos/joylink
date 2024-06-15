@@ -82,6 +82,8 @@ export default function ClubModels({ category, index }) {
   const alcoholposter = "vr_src/alcohol/alcoholposter.jpg"
   const alcoholbanner = "vr_src/alcohol/alcoholbanner.png"
   const alcoholbanner2 = "vr_src/alcohol/alcoholbanner2.png"
+  const bottles = "vr_src/alcohol/bottles.glb"
+  const table = "vr_src/alcohol/table.glb"
   //주식 동아리
   const chart = "vr_src/stockclub/chart.glb"
   const boxes = "vr_src/stockclub/new_boxes.glb"
@@ -89,6 +91,8 @@ export default function ClubModels({ category, index }) {
   const stockposter = "vr_src/stockclub/stockposter.jpg"
   const stockbanner = "vr_src/stockclub/stockbanner.png"
   const stockbanner2 = "vr_src/stockclub/stockbanner2.png"
+  const boxes2 = "vr_src/stockclub/boxes2.glb"
+  const newspaper = "vr_src/stockclub/newspaper.glb"
   //사람 오브젝트
   const soccerman = "vr_src/people/newsoccerman.glb"
   const soccerman2 = "vr_src/people/soccerman2.glb"
@@ -405,28 +409,28 @@ export default function ClubModels({ category, index }) {
             position={`-7.2 0.2 ${-2 - (15 * index)}`}
             scale="0.008 0.008 0.008"
             rotation="0 0 0"
-            distance-culling="maxDistance: 20"
+            distance-culling="maxDistance: 50"
           >
           </a-entity>
           <a-entity gltf-model={`url(${water})`}
             position={`-9 1 ${0.5 - (15 * index)}`}
             scale="2 2 2"
             rotation="0 0 0"
-            distance-culling="maxDistance: 20"
+            distance-culling="maxDistance: 50"
           >
           </a-entity>
           <a-entity gltf-model={`url(${steak1})`}
             position={`-8.3 1 ${-1.5 - (15 * index)}`}
             scale="1.5 1.5 1.5"
             rotation="0 0 0"
-            distance-culling="maxDistance: 10"
+            distance-culling="maxDistance: 50"
           >
           </a-entity>
           <a-entity gltf-model={`url(${steak2})`}
             position={`-8.3 1 ${-1 - (15 * index)}`}
             scale="0.05 0.05 0.05"
             rotation="-35 0 0"
-            distance-culling="maxDistance: 10"
+            distance-culling="maxDistance: 50"
           >
           </a-entity>
           <a-image src={map}
@@ -434,7 +438,7 @@ export default function ClubModels({ category, index }) {
             width="0.84"
             height="1.2"
             rotation="-90 90 0"
-            distance-culling="maxDistance: 20"
+            distance-culling="maxDistance: 50"
           >
           </a-image>
           <a-image src={applicationForm}
@@ -443,7 +447,7 @@ export default function ClubModels({ category, index }) {
             height="1.2"
             rotation="-90 90 0"
             link-to="url: /cbDescription"
-            distance-culling="maxDistance: 20"
+            distance-culling="maxDistance: 50"
           >
           </a-image>
           <a-image src={travelPoster}
@@ -451,7 +455,7 @@ export default function ClubModels({ category, index }) {
             width="0.84"
             height="1.2"
             rotation="-15 90 0"
-            distance-culling="maxDistance: 20"
+            distance-culling="maxDistance: 50"
           >
           </a-image>
           <a-image src={travelBanner}
@@ -674,12 +678,25 @@ export default function ClubModels({ category, index }) {
             distance-culling="maxDistance: 50"
           ></a-image>
           {/* 술테이블 */}
-          <a-entity gltf-model={`url(${alcohol_set})`}
+          {/* <a-entity gltf-model={`url(${alcohol_set})`}
             position={`-5 1 ${0.3 - (15 * index)}`}
             scale="0.015 0.015 0.015"
             rotation="0 -90 0"
             distance-culling="maxDistance: 50"
+          ></a-entity> */}
+          <a-entity gltf-model={`url(${table})`}
+            position={`-5 0.1 ${0.3 - (15 * index)}`}
+            scale="0.3 0.3 0.3"
+            rotation="0 -90 0"
+            distance-culling="maxDistance: 50"
           ></a-entity>
+          <a-entity gltf-model={`url(${bottles})`}
+            position={`-5 1.1 ${0.3 - (15 * index)}`}
+            scale="0.008 0.008 0.008"
+            rotation="0 -90 0"
+            distance-culling="maxDistance: 50"
+          ></a-entity>
+
           {/* 와인 */}
           <a-entity gltf-model={`url(${wine})`}
             position={`-8.4 1 ${0 - (15 * index)}`}
@@ -747,16 +764,28 @@ export default function ClubModels({ category, index }) {
             distance-culling="maxDistance: 50"
           ></a-entity>
           {/* 서류박스 */}
-          <a-entity gltf-model={`url(${boxes})`}
+          {/* <a-entity gltf-model={`url(${boxes})`}
             position={`-5 0 ${0.3 - (15 * index)}`}
             rotation="0 -90 0"
             scale="1.3 1.2 1.2"
             distance-culling="maxDistance: 50"
+          ></a-entity> */}
+          <a-entity gltf-model={`url(${boxes2})`}
+            position={`-5 0.5 ${0.3 - (15 * index)}`}
+            rotation="0 0 0"
+            scale="1.3 1.2 1.2"
+            distance-culling="maxDistance: 50"
           ></a-entity>
           {/* 서류 */}
-          <a-entity gltf-model={`url(${file})`}
+          {/* <a-entity gltf-model={`url(${file})`}
             position={`-8.4 1 ${0 - (15 * index)}`}
             scale="0.3 0.3 0.3"
+            rotation="0 90 0"
+            distance-culling="maxDistance: 50"
+          ></a-entity> */}
+          <a-entity gltf-model={`url(${newspaper})`}
+            position={`-8.6 1 ${0 - (14.7 * index)}`}
+            scale="0.04 0.04 0.04"
             rotation="0 90 0"
             distance-culling="maxDistance: 50"
           ></a-entity>
@@ -778,97 +807,97 @@ export default function ClubModels({ category, index }) {
           <a-entity gltf-model={`url(${soccerman})`}
             position={`-5.5 0 0 `}
             rotation="0 90 0"
-            distance-culling="maxDistance: 20"
+            distance-culling="maxDistance: 50"
           ></a-entity>
           <a-entity gltf-model={`url(${soccerman2})`}
             position={`-4.5 0 0 `}
             rotation="0 -90 0"
-            distance-culling="maxDistance: 20"
+            distance-culling="maxDistance: 50"
           ></a-entity>
           <a-entity gltf-model={`url(${korean})`}
             position={`-3 0.05 -18 `}
             rotation="0 20 0"
             scale="0.7 0.7 0.7"
-            distance-culling="maxDistance: 20"
+            distance-culling="maxDistance: 50"
           ></a-entity>
           <a-entity gltf-model={`url(${korean2})`}
             position={`-7 0.05 -10 `}
             rotation="0 20 0"
             scale="0.7 0.7 0.7"
-            distance-culling="maxDistance: 20"
+            distance-culling="maxDistance: 50"
           ></a-entity>
           <a-entity gltf-model={`url(${korean3})`}
             position={`-5 0.05 -12 `}
             rotation="0 -90 0"
             scale="0.7 0.7 0.7"
-            distance-culling="maxDistance: 20"
+            distance-culling="maxDistance: 50"
           ></a-entity>
           <a-entity gltf-model={`url(${korean4})`}
             position={`-4.5 0.05 -11 `}
             rotation="0 -60 0"
             scale="1 1 1"
-            distance-culling="maxDistance: 20"
+            distance-culling="maxDistance: 50"
           ></a-entity>
           <a-entity gltf-model={`url(${korean5})`}
             position={`-6 0.05 -29.5 `}
             rotation="0 -60 0"
             scale="0.7 0.7 0.7"
-            distance-culling="maxDistance: 20"
+            distance-culling="maxDistance: 50"
           ></a-entity>
           <a-entity gltf-model={person1}
             position="-6.5 0.1 -61"
             scale="0.025 0.025 0.025"
             rotation="0 -135 0"
-            distance-culling="maxDistance: 20"
+            distance-culling="maxDistance: 50"
           >
           </a-entity>
           <a-entity gltf-model={person2}
             position="5 0.1 -10"
             scale="0.01 0.01 0.01"
             rotation="0 0 0"
-            distance-culling="maxDistance: 20"
+            distance-culling="maxDistance: 50"
           >
           </a-entity>
           <a-entity gltf-model={person3}
             position="3 0.1 -40"
             scale="1 1 1"
             rotation="0 90 0"
-            distance-culling="maxDistance: 20"
+            distance-culling="maxDistance: 50"
           >
           </a-entity>
           <a-entity gltf-model={person4}
             position="-4 1 -47"
             scale="1 1 1"
             rotation="-15 -90 0"
-            distance-culling="maxDistance: 20"
+            distance-culling="maxDistance: 50"
           >
           </a-entity>
           <a-entity gltf-model={person5}
             position="-6 1 -45"
             scale="1 1 1"
             rotation="0 -90 0"
-            distance-culling="maxDistance: 20"
+            distance-culling="maxDistance: 50"
           >
           </a-entity>
           <a-entity gltf-model={person6}
             position="5 1 0"
             scale="1 1 1"
             rotation="-20 45 0"
-            distance-culling="maxDistance: 20"
+            distance-culling="maxDistance: 50"
           >
           </a-entity>
           <a-entity gltf-model={person7}
             position="4 0.1 -25"
             scale="1 1 1"
             rotation="-15 90 0"
-            distance-culling="maxDistance: 20"
+            distance-culling="maxDistance: 50"
           >
           </a-entity>
           <a-entity gltf-model={person8}
             position="3 1 -60"
             scale="1 1 1"
             rotation="-15 90 0"
-            distance-culling="maxDistance: 20"
+            distance-culling="maxDistance: 50"
           >
           </a-entity>
         </>
