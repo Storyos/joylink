@@ -86,6 +86,14 @@ AFRAME.registerComponent('link-to', {
   }
 });
 
+// AFRAME.registerComponent('click-listener', {
+//   init: function () {
+//     this.el.addEventListener('click', function (evt) {
+//       console.log('Box clicked!', evt.target);
+//     });
+//   }
+// });
+
 // 거리 기반 렌더링 컴포넌트
 AFRAME.registerComponent('distance-culling', {
   schema: {
@@ -93,8 +101,12 @@ AFRAME.registerComponent('distance-culling', {
   },
   tick: function () {
     var cameraEl = document.querySelector('[camera]');
-    var cameraPos = cameraEl.object3D.position;
-    var objectPos = this.el.object3D.position;
+    var cameraPos = new AFRAME.THREE.Vector3();
+    var objectPos = new AFRAME.THREE.Vector3();
+    
+    cameraEl.object3D.getWorldPosition(cameraPos);
+    this.el.object3D.getWorldPosition(objectPos);
+    
     var distance = cameraPos.distanceTo(objectPos);
 
     if (distance > this.data.maxDistance) {
@@ -172,7 +184,6 @@ const stonePool = new ObjectPool(() => ({
   scale: "2.7 2.5 2.5",
   src: "/vr_src/stone_ground.glb"
 }), 20);
-
 
 export default function Vr() {
 
@@ -259,7 +270,7 @@ export default function Vr() {
         entity.position = j === 0 ? `-5.35 -0.6 ${60.3 - (19.84 * i)}` : `5.4 -0.6 ${60 - (19.84 * i)}`;
         stoneTemp.push(entity);
       }
-    }
+    }gi
     setStoneEntities(stoneTemp);
   }, []);
 
@@ -278,7 +289,8 @@ export default function Vr() {
             jump="height: 0.5; duration: 400"
             boundary-constraint="minX: -11; maxX: 11; minZ: -80; maxZ: 8"
             look-controls="enabled:true"
-            wasd-controls="acceleration: -10">
+            wasd-controls="acceleration: 20"
+            movement-controls="speed: 0.1; controls: vive-controls, oculus-touch-controls, windows-motion-controls">
           </a-camera>
 
           {/* 왼손 컨트롤러 */}
@@ -370,7 +382,6 @@ export default function Vr() {
           </a-entity>
         ))}
 
-
         {/* 테이블 */}
         {tableEntities.map((entity, index) => (
           <a-entity
@@ -413,7 +424,7 @@ export default function Vr() {
         <ClubModels category="traver" index={4} />
 
         {/*사람오브젝트*/}
-        <ClubModels category="people" />
+        {/* <ClubModels category="people" /> */}
       </a-scene>
     </div>
   );
