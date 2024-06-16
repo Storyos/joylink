@@ -137,7 +137,7 @@ export default function ClubModels({ category, index }) {
             rotation="0 0 0"
             distance-culling="maxDistance: 20">
           </a-entity>
-          <a-image src={applicationForm}
+          <a-image class="clickable" src={applicationForm}
             position={`8.8 1 ${-0.5 - (15 * index)}`}
             width="0.84"
             height="1.2"
@@ -190,7 +190,7 @@ export default function ClubModels({ category, index }) {
             rotation="0 0 0"
             distance-culling="maxDistance: 20">
           </a-entity>
-          <a-image src={applicationForm}
+          <a-image class="clickable" src={applicationForm}
             position={`8.8 1 ${-0.5 - (15 * index)}`}
             width="0.84"
             height="1.2"
@@ -249,7 +249,7 @@ export default function ClubModels({ category, index }) {
             rotation="0 90 0"
             distance-culling="maxDistance: 20">
           </a-entity>
-          <a-image src={applicationForm}
+          <a-image class="clickable" src={applicationForm}
             position={`8.8 1 ${-0.5 - (15 * index)}`}
             width="0.84"
             height="1.2"
@@ -319,7 +319,7 @@ export default function ClubModels({ category, index }) {
                   scale="3 3 3"
                   rotation="0 -90 0">
         </a-entity> */}
-          <a-image src={applicationForm}
+          <a-image class="clickable" src={applicationForm}
             position={`8.8 1 ${-0.5 - (15 * index)}`}
             width="0.84"
             height="1.2"
@@ -378,7 +378,7 @@ export default function ClubModels({ category, index }) {
             rotation="0 0 0"
             distance-culling="maxDistance: 20">
           </a-entity>
-          <a-image src={applicationForm}
+          <a-image class="clickable" src={applicationForm}
             position={`8.8 1 ${-0.5 - (15 * index)}`}
             width="0.84"
             height="1.2"
@@ -456,7 +456,7 @@ export default function ClubModels({ category, index }) {
             distance-culling="maxDistance: 20"
           >
           </a-image>
-          <a-image src={applicationForm}
+          <a-image class="clickable" src={applicationForm}
             position={`-8.8 1 ${4.5 - (15 * index)}`}
             width="0.84"
             height="1.2"
@@ -593,7 +593,7 @@ export default function ClubModels({ category, index }) {
             rotation="0 -90 0"
             distance-culling="maxDistance: 20"
           ></a-entity>
-          <a-image src={applicationForm}
+          <a-image class="clickable" src={applicationForm}
             position={`-8.8 1 ${4.5 - (15 * index)}`}
             width="0.84"
             height="1.2"
@@ -665,7 +665,7 @@ export default function ClubModels({ category, index }) {
             position={`-8.3 1.15 -13.8`}
             distance-culling="maxDistance: 20"
           ></a-entity>
-          <a-image src={applicationForm}
+          <a-image class="clickable" src={applicationForm}
             position={`-8.8 1 ${4.5 - (15 * index)}`}
             width="0.84"
             height="1.2"
@@ -744,7 +744,7 @@ export default function ClubModels({ category, index }) {
             rotation="-0 90 0"
             distance-culling="maxDistance: 20"
           ></a-entity>
-          <a-image src={applicationForm}
+          <a-image class="clickable" src={applicationForm}
             position={`-8.8 1 ${4.5 - (15 * index)}`}
             width="0.84"
             height="1.2"
@@ -815,7 +815,7 @@ export default function ClubModels({ category, index }) {
             rotation="0 90 0"
             distance-culling="maxDistance: 20"
           ></a-entity>
-          <a-image src={applicationForm}
+          <a-image class="clickable" src={applicationForm}
             position={`-8.8 1 ${4.5 - (15 * index)}`}
             width="0.84"
             height="1.2"

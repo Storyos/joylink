@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "aframe";
 import "aframe-particle-system-component";
 import "aframe-extras";
 import AFRAME from 'aframe';
 import ClubModels from "../../components/clubModels";
-import { useState, useEffect } from "react";
 
 // 카메라 이동 범위 제한하는 컴포넌트 등록
 AFRAME.registerComponent('boundary-constraint', {
@@ -71,7 +70,7 @@ AFRAME.registerComponent('jump', {
   }
 });
 
-// 신청서 클릭시 동아리 소개 페이지 팝업
+// 신청서 클릭시 URL로 이동하고 VR 세션 종료
 AFRAME.registerComponent('link-to', {
   schema: {
     url: { type: 'string' }
@@ -80,19 +79,11 @@ AFRAME.registerComponent('link-to', {
     this.el.addEventListener('click', (event) => {
       event.stopPropagation();
       event.preventDefault();
-      // window.location.href = this.data.url;
-      window.open(`${this.data.url}`)
+      window.location.href = this.data.url; // URL로 이동
+      this.el.sceneEl.exitVR(); // VR 세션 종료
     });
   }
 });
-
-// AFRAME.registerComponent('click-listener', {
-//   init: function () {
-//     this.el.addEventListener('click', function (evt) {
-//       console.log('Box clicked!', evt.target);
-//     });
-//   }
-// });
 
 // 거리 기반 렌더링 컴포넌트
 AFRAME.registerComponent('distance-culling', {
@@ -117,6 +108,32 @@ AFRAME.registerComponent('distance-culling', {
   }
 });
 
+// 버튼 클릭 이벤트 컴포넌트 추가
+AFRAME.registerComponent('button-logging', {
+  init: function () {
+    this.el.addEventListener('triggerdown', this.logButton);
+    this.el.addEventListener('thumbstickdown', this.logButton); // 추가
+  },
+  logButton: function (evt) {
+    simulateMouseClick();
+  }
+});
+
+const simulateMouseClick = () => {
+  const raycasterEl = document.querySelector('[raycaster]');
+  if (raycasterEl) {
+    const intersects = raycasterEl.components.raycaster.intersectedEls;
+    console.log('Intersects:', intersects); // 디버깅을 위해 교차한 객체 로그 출력
+    if (intersects.length > 0) {
+      const clickEvent = new MouseEvent('click', {
+        view: window,
+        bubbles: true,
+        cancelable: true
+      });
+      intersects[0].dispatchEvent(clickEvent);
+    }
+  }
+};
 // 객체 풀링 시스템 정의
 class ObjectPool {
   constructor(createFn, size) {
@@ -273,7 +290,6 @@ export default function Vr() {
     }
     setStoneEntities(stoneTemp);
   }, []);
-
   return (
     <div>
       <h1>vr 페이지 입니다</h1>
@@ -282,9 +298,7 @@ export default function Vr() {
       <a-scene antialias="false" className="aframe-scene">
         <a-entity light="type: ambient; color: #BBB"></a-entity>
         <a-entity light="type: directional; intensity: 0.5" position="1 1 1"></a-entity>
-        {/* cameraRig */}
         <a-entity id="cameraRig" movement-controls="constrainToNavMesh: true" position="0 0 6">
-          {/* 카메라 */}
           <a-camera
             id="camera"
             jump="height: 0.5; duration: 400"
@@ -293,23 +307,21 @@ export default function Vr() {
             wasd-controls="acceleration: 20"
             movement-controls="speed: 0.1; controls: vive-controls, oculus-touch-controls, windows-motion-controls">
           </a-camera>
-
           {/* 왼손 컨트롤러 */}
           <a-entity id="leftHand" hand-controls="hand: left" oculus-touch-controls="hand: left"
             tracked-controls="controller: 0; idPrefix: OpenVR"
-            raycaster="objects: .clickable"
-            line="color: red; opacity: 0.75"></a-entity>
+            raycaster="objects: .clickable; far: 1; showLine: true"
+            line="start: 0 0 0; end: 0 0 0.5; color: red; opacity: 0.75"
+            button-logging></a-entity>
 
           {/* 오른손 컨트롤러 */}
           <a-entity id="rightHand" hand-controls="hand: right" oculus-touch-controls="hand: right"
             tracked-controls="controller: 1; idPrefix: OpenVR"
-            raycaster="objects: .clickable"
-            line="color: red; opacity: 0.75"></a-entity>
+            raycaster="objects: .clickable; far: 1; showLine: true"
+            line="start: 0 0 0; end: 0 0 0.5; color: red; opacity: 0.75"
+            button-logging></a-entity>
         </a-entity>
-        {/* 마우스 커서 */}
-        <a-entity cursor="fuse: false; rayOrigin: mouse"></a-entity>
-
-        {/* 하늘 */}
+            
         <a-sky color="#9CCEFF"></a-sky>
 
         {/* 건물 이미지*/}
