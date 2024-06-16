@@ -103,10 +103,10 @@ AFRAME.registerComponent('distance-culling', {
     var cameraEl = document.querySelector('[camera]');
     var cameraPos = new AFRAME.THREE.Vector3();
     var objectPos = new AFRAME.THREE.Vector3();
-    
+
     cameraEl.object3D.getWorldPosition(cameraPos);
     this.el.object3D.getWorldPosition(objectPos);
-    
+
     var distance = cameraPos.distanceTo(objectPos);
 
     if (distance > this.data.maxDistance) {
@@ -270,7 +270,7 @@ export default function Vr() {
         entity.position = j === 0 ? `-5.35 -0.6 ${60.3 - (19.84 * i)}` : `5.4 -0.6 ${60 - (19.84 * i)}`;
         stoneTemp.push(entity);
       }
-    }gi
+    }
     setStoneEntities(stoneTemp);
   }, []);
 
@@ -279,8 +279,9 @@ export default function Vr() {
       <h1>vr 페이지 입니다</h1>
       <h1>vr 페이지 입니다</h1>
       <h1>vr 페이지 입니다</h1>
-      <a-scene className="aframe-scene">
-
+      <a-scene antialias="false" className="aframe-scene">
+        <a-entity light="type: ambient; color: #BBB"></a-entity>
+        <a-entity light="type: directional; intensity: 0.5" position="1 1 1"></a-entity>
         {/* cameraRig */}
         <a-entity id="cameraRig" movement-controls="constrainToNavMesh: true" position="0 0 6">
           {/* 카메라 */}
@@ -295,11 +296,15 @@ export default function Vr() {
 
           {/* 왼손 컨트롤러 */}
           <a-entity id="leftHand" hand-controls="hand: left" oculus-touch-controls="hand: left"
-            tracked-controls="controller: 0; idPrefix: OpenVR"></a-entity>
+            tracked-controls="controller: 0; idPrefix: OpenVR"
+            raycaster="objects: .clickable"
+            line="color: red; opacity: 0.75"></a-entity>
 
           {/* 오른손 컨트롤러 */}
           <a-entity id="rightHand" hand-controls="hand: right" oculus-touch-controls="hand: right"
-            tracked-controls="controller: 1; idPrefix: OpenVR"></a-entity>
+            tracked-controls="controller: 1; idPrefix: OpenVR"
+            raycaster="objects: .clickable"
+            line="color: red; opacity: 0.75"></a-entity>
         </a-entity>
         {/* 마우스 커서 */}
         <a-entity cursor="fuse: false; rayOrigin: mouse"></a-entity>
@@ -424,7 +429,7 @@ export default function Vr() {
         <ClubModels category="traver" index={4} />
 
         {/*사람오브젝트*/}
-        {/* <ClubModels category="people" /> */}
+        <ClubModels category="people" />
       </a-scene>
     </div>
   );
