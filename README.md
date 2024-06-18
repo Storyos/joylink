@@ -31,3 +31,18 @@
 <p><img src="https://img.shields.io/badge/figma-F24E1E?style=flat-square&logo=figma&logoColor=white"/>
 <img src="https://img.shields.io/badge/github-181717?style=flat-square&logo=github&logoColor=white"/>
 <img src="https://img.shields.io/badge/trello-0052CC?style=flat-square&logo=trello&logoColor=white"/>
+
+## 📌 주요 기능
+
+### ⭐ 모임 (동아리) 가입 및 생성 기능
+<ul>▪️ 원하는 모임을 찾아 가입신청을 하거나, 없을 경우 생성가능 </ul>
+<ul>▪️ 카테고리 별로 모임을 분류하여 원하는 모임을 쉽게 찾을 수 있다!  </ul>
+
+### ⭐ 블록체인을 이용한 장부관리 기능
+<ul> ▪️ DB에 들어갈 장부 데이터를 해싱하여 블록체인에 추가로 저장</ul>
+<ul> ▪️ 누구나 블록체인의 Data와 DB의 비교로 무결성 검증 가능 </ul>
+
+### ⭐ VR을 활용한 모임 홍보관 기능
+<ul> ▪️ 각 동아리 별로 VR 홍보 부스를 만들어 좀 더 재밌는 모임찾기 가능! 
+<ul> ※ 추후 VR 동아리 부스 커스텀 등 개발 예정...! </ul>
+</ul>
