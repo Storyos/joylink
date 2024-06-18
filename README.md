@@ -16,18 +16,18 @@
 <img src="https://img.shields.io/badge/Supabase-3FCF8E?style=flat-square&logo=Supabase&logoColor=white"/>
 </p>
 - Backend
-<img src="https://img.shields.io/badge/Supabase-3FCF8E?style=flat-square&logo=Supabase&logoColor=white"/>
+<p><img src="https://img.shields.io/badge/Supabase-3FCF8E?style=flat-square&logo=Supabase&logoColor=white"/>
 <img src="https://img.shields.io/badge/node.js-5FA04E?style=flat-square&logo=node.js&logoColor=white"/>
 <img src="https://img.shields.io/badge/Express-000000?style=flat-square&logo=Express&logoColor=white"/>
 
 - BlockChain
-<img src="https://img.shields.io/badge/web3.js-F16822?style=flat-square&logo=web3.js&logoColor=white"/>
+<p><img src="https://img.shields.io/badge/web3.js-F16822?style=flat-square&logo=web3.js&logoColor=white"/>
 
 - VR
-<img src="https://img.shields.io/badge/blender-E87D0D?style=flat-square&logo=blender&logoColor=white"/>
+<p><img src="https://img.shields.io/badge/blender-E87D0D?style=flat-square&logo=blender&logoColor=white"/>
 <img src="https://img.shields.io/badge/aframe-EF2D5E?style=flat-square&logo=aframe&logoColor=white"/>
 
 - collaborated with
-<img src="https://img.shields.io/badge/figma-F24E1E?style=flat-square&logo=figma&logoColor=white"/>
+<p><img src="https://img.shields.io/badge/figma-F24E1E?style=flat-square&logo=figma&logoColor=white"/>
 <img src="https://img.shields.io/badge/github-181717?style=flat-square&logo=github&logoColor=white"/>
 <img src="https://img.shields.io/badge/trello-0052CC?style=flat-square&logo=trello&logoColor=white"/>
