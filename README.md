@@ -48,3 +48,12 @@
 <ul> ▪️ 각 동아리 별로 VR 홍보 부스를 만들어 좀 더 재밌는 모임찾기 가능! 
 <ul> ※ 추후 VR 동아리 부스 커스텀 등 개발 예정...! </ul>
 </ul>
+
+## 화면 구성
+|메인페이지|마이페이지|
+| :---: | :---: |
+|<img src="https://github.com/seyun00.png" width="400">|<img src="https://github.com/haenjuna.png" width="400">|
+|모임상세페이지|마이클럽페이지|
+|<img src="https://github.com/seyun00.png" width="400">|<img src="https://github.com/haenjuna.png" width="400">|
+|VR홍보관|장부페이지|
+|<img src="https://github.com/seyun00.png" width="400">|<img src="https://github.com/haenjuna.png" width="400">|
