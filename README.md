@@ -1,6 +1,15 @@
 ## 🙌 안녕하세요. Joylink를 만든 Team 무궁무진 입니다!
 ![mainpage](client/public/assets/mainpage.jpg)
 
+## 📖 디지털 스마트부산 아카데 4기 웹 개발 과정⭐
+사업명 : SW 전문인재 양성 사업
+
+[디지털스마트부산 아카데미](https://icms.pknu.ac.kr/dsbacademy/)   
+
+교육장소 : 부경대 대연캠퍼스 창의관 중심 첨단교육장
+
+개발기간 : 24.03.05 ~ 24.06.18
+
 ## 🥇Team 무궁무진
 #### 디지털스마트부산아카데미 제4기 웹프로그래밍과정
 |<img src="https://github.com/seyun00.png" width="80">|<img src="https://github.com/haenjuna.png" width="80">|<img src="https://github.com/Storyos.png" width="80">|<img src="https://github.com/forgetme-not.png" width="80">|<img src="https://github.com/Gaeol.png" width="80">|
