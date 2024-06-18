@@ -2,16 +2,15 @@
 ![mainpage](client/public/assets/mainpage.jpg)
 
 ## 🔎 JoyLink가 뭔가요?
-#### 각종 동호회, 교내 동아리 등등 다양한 모임을 효율적으로 관리할 수 있는 플랫폼입니다.
-<br>
-- 특별한 📜 장부 관리 기능을 통해 모임 회비를 투명하게 관리해 보세요! <br>
-<br>
-- 저희 플랫폼은 🥽 가상 현실 체험을 통해 재미있고 특별한 체험이 가능해요! <br>
-<br>
-- 채팅, 쪽지, 게시글 등, 다양한 👨‍👩‍👦 커뮤니티 활동을 통해 사람들과 활발히 소통해 보세요! <br>
-<br>
+#### 각종 동호회, 교내 동아리 등 다양한 모임을 효율적으로 관리할 수 있는 플랫폼입니다.
 
-## 📖 디지털 스마트부산 아카데 4기 웹 개발 과정⭐
+- 특별한 📜 장부 관리 기능을 통해 모임 회비를 투명하게 관리해 보세요!
+
+- 저희 플랫폼은 🥽 가상 현실 체험을 통해 재미있고 특별한 체험이 가능해요!
+
+- 채팅, 쪽지, 게시글 등, 다양한 👨‍👩‍👦 커뮤니티 활동을 통해 사람들과 활발히 소통해 보세요!
+
+## 📖 디지털 스마트부산 아카데미 제4기 웹 개발 과정⭐
 사업명 : SW 전문인재 양성 사업
 
 [디지털스마트부산 아카데미](https://icms.pknu.ac.kr/dsbacademy/)   
@@ -20,7 +19,7 @@
 
 개발기간 : 24.03.05 ~ 24.06.18
 
-## 🥇Team 무궁무진
+## 🥇 Team 무궁무진
 |<img src="https://github.com/seyun00.png" width="80">|<img src="https://github.com/haenjuna.png" width="80">|<img src="https://github.com/Storyos.png" width="80">|<img src="https://github.com/forgetme-not.png" width="80">|<img src="https://github.com/Gaeol.png" width="80">|
 | :---: | :---: | :---: | :---: | :---: |
 |최세윤|박현준|김범규|박기재|손가얼|
@@ -43,7 +42,7 @@
 <ul> ※ 추후 VR 동아리 부스 커스텀 등 개발 예정...! </ul>
 </ul>
 
-## 화면 구성
+## 🖥화면 구성
 |메인페이지|마이페이지|
 | :---: | :---: |
 |<img src="READMEimg/mainpage.png" width="400">|<img src="READMEimg/mypage.png" width="400">|
