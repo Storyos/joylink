@@ -52,7 +52,7 @@
 ## 화면 구성
 |메인페이지|마이페이지|
 | :---: | :---: |
-|<img src="https://github.com/seyun00.png" width="400">|<img src="https://github.com/haenjuna.png" width="400">|
+|<img src="READMEimg/mainpage.png" width="400">|<img src="https://github.com/haenjuna.png" width="400">|
 |모임상세페이지|마이클럽페이지|
 |<img src="https://github.com/seyun00.png" width="400">|<img src="https://github.com/haenjuna.png" width="400">|
 |VR홍보관|장부페이지|
