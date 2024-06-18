@@ -22,7 +22,7 @@
 <img src="https://img.shields.io/badge/Express-000000?style=flat-square&logo=Express&logoColor=white"/>
 
 ### BlockChain
-<p><img src="https://img.shields.io/badge/web3.js-F16822?style=flat-square&logo=web3.js&logoColor=white"/>
+<p><img src="https://img.shields.io/badge/web3.js-F16822?style=flat-square&logo=web3.js&logoColor=white"/>, Hardhat
 
 ### VR
 <p><img src="https://img.shields.io/badge/blender-E87D0D?style=flat-square&logo=blender&logoColor=white"/>
