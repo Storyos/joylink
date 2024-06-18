@@ -2,6 +2,7 @@
 (client/public/assets/mainpage.jpg)
 
 ## Team 무궁무진
+|<img src="https://github.com/seyun00.png" width="80">|<img src="https://github.com/haenjuna.png" width="80">|<img src="https://github.com/Storyos.png" width="80">|<img src="https://github.com/forgetme-not.png" width="80">|<img src="https://github.com/Gaeol.png" width="80">|
 |최세윤|박현준|김범규|박기재|손가얼|
 | --- | --- | --- | --- | --- |
 |VR,FE|VR,BE| TeamLeader | FE, Design | FE,Design |
